@@ -1,12 +1,85 @@
-.navbar{
+.navbar {
+  $navbar: &;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 32px 0;
-  &__profile{
+  padding: 20px 32px;
+  transition: all ease-in-out .3s;
+
+  &__title{
+    display: none;
+    margin: 0 0 0 16px;
+    color: $green-soft-4;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  &__left,
+  &__right{
     display: flex;
     align-items: center;
-    &-img{
+  }
+
+  &__menu {
+    width: 30px;
+    position: relative;
+    cursor: pointer;
+    $menu: &;
+
+    &-bar {
+      background-color: $green-soft-4;
+      border-radius: 2px;
+      display: block;
+      width: 100%;
+      height: 3px;
+      animation-direction: reverse;
+
+      &:nth-child(1) {
+        // animation: outT 0.8s backwards;
+      }
+
+      &:nth-child(2) {
+        margin: 5px 0;
+        // animation: outM 0.8s backwards;
+      }
+
+      &:nth-child(3) {
+        // animation: outB 0.8s backwards;
+      }
+    }
+
+    &--change {
+      #{$menu} {
+        &-bar {
+          &:nth-child(1) {
+            animation: inT 0.8s forwards;
+          }
+
+          &:nth-child(2) {
+            animation: inM 0.8s forwards;
+          }
+
+          &:nth-child(3) {
+            animation: inB 0.8s forwards;
+          }
+        }
+      }
+    }
+  }
+
+  .group-chat {
+    &__btn {
+      &--create {
+        display: none;
+      }
+    }
+  }
+
+  &__profile {
+    display: flex;
+    align-items: center;
+
+    &-img {
       width: 32px;
       height: 32px;
       border-radius: 50%;
@@ -14,13 +87,15 @@
       border: solid 2px $white;
       @include backgroundImg;
     }
-    &-name{
+
+    &-name {
       margin: 0 43px 0 16px;
       font-size: 14px;
       font-weight: 600;
       color: $green-soft-4;
     }
-    &-menu{
+
+    &-menu {
       cursor: pointer;
       width: 24px;
       height: 24px;
@@ -28,4 +103,114 @@
       background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9IiMwNDc4NUIiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgPGNpcmNsZSBjeD0iMy4yNzMiIGN5PSIzLjI3MyIgcj0iMy4yNzMiLz4KICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjMuMjczIiByPSIzLjI3MyIvPgogICAgICAgIDxjaXJjbGUgY3g9IjIwLjcyNyIgY3k9IjMuMjczIiByPSIzLjI3MyIvPgogICAgICAgIDxjaXJjbGUgY3g9IjMuMjczIiBjeT0iMTIiIHI9IjMuMjczIi8+CiAgICAgICAgPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMy4yNzMiLz4KICAgICAgICA8Y2lyY2xlIGN4PSIyMC43MjciIGN5PSIxMiIgcj0iMy4yNzMiLz4KICAgICAgICA8Y2lyY2xlIGN4PSIzLjI3MyIgY3k9IjIwLjcyNyIgcj0iMy4yNzMiLz4KICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjIwLjcyNyIgcj0iMy4yNzMiLz4KICAgICAgICA8Y2lyY2xlIGN4PSIyMC43MjciIGN5PSIyMC43MjciIHI9IjMuMjczIi8+CiAgICA8L2c+Cjwvc3ZnPgo=');
     }
   }
+
+  &--fixed {
+    position: fixed;
+    width: calc(100% - 160px);
+    left: 160px;
+    z-index: 1;
+    background-image: url('../img/bg-header@2x.png');
+    @include backgroundImg;
+    display: flex;
+    box-shadow: 0 2px 8px 0 $black-8;
+    animation: slideDown ease-in-out 0.4s;
+    transition: all ease-in-out .3s;
+
+    .group-chat {
+      &__btn {
+        &--create {
+          display: block;
+        }
+      }
+    }
+
+    #{$navbar}{
+      &__title{
+        display: block;
+      }
+
+      &__profile{
+        border-left: solid 1px #a6cc9e;
+        padding-left: 32px;
+        margin-left: 32px;
+        height: 48px;
+      }
+    }
+  }
 }
+
+// @keyframes inM {
+//   50% {
+//     transform: rotate(0deg);
+//   }
+
+//   100% {
+//     transform: rotate(45deg);
+//   }
+// }
+
+// @keyframes outM {
+//   50% {
+//     transform: rotate(0deg);
+//   }
+
+//   100% {
+//     transform: rotate(45deg);
+//   }
+// }
+
+// @keyframes inT {
+//   0% {
+//     transform: translateY(0px) rotate(0deg);
+//   }
+
+//   50% {
+//     transform: translateY(9px) rotate(0deg);
+//   }
+
+//   100% {
+//     transform: translateY(9px) rotate(135deg);
+//   }
+// }
+
+// @keyframes outT {
+//   0% {
+//     transform: translateY(0px) rotate(0deg);
+//   }
+
+//   50% {
+//     transform: translateY(9px) rotate(0deg);
+//   }
+
+//   100% {
+//     transform: translateY(9px) rotate(135deg);
+//   }
+// }
+
+// @keyframes inB {
+//   0% {
+//     transform: translateY(0px) rotate(0deg);
+//   }
+
+//   50% {
+//     transform: translateY(-9px) rotate(0deg);
+//   }
+
+//   100% {
+//     transform: translateY(-9px) rotate(135deg);
+//   }
+// }
+
+// @keyframes outB {
+//   0% {
+//     transform: translateY(0px) rotate(0deg);
+//   }
+
+//   50% {
+//     transform: translateY(-9px) rotate(0deg);
+//   }
+
+//   100% {
+//     transform: translateY(-9px) rotate(135deg);
+//   }
+// }
