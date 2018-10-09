@@ -29,7 +29,7 @@ gulp.task('color', function () {
 gulp.task('compile-unf-scss', function () {
   var anchor = '// Add import';
 
-  gulp.src(['../user_unify/scss/dialog.scss', '../user_unify/scss/Button.scss', '../user_unify/scss/Tooltip.scss'])
+  gulp.src(['../user_unify/scss/dialog.scss', '../user_unify/scss/Button.scss', '../user_unify/scss/Tooltip.scss', '../user_unify/scss/Textfield.scss'])
     .pipe(replace(anchor, '@import \'./variables/color.scss\'\n' + ';'))
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer('last 3 version', 'safari 5', 'ie 8', 'ie 9'))
