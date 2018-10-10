@@ -136,7 +136,7 @@ $(document).ready(function () {
               <div class="list-action__btn">
                 <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--chat"><span>chat</span></a>
                 <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit"><span>edit</span></a>
-                <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--preview"><span>preview</span></a>
+                <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--preview" onclick="showPreview()"><span>preview</span></a>
               </div>
             </div>
           </td>

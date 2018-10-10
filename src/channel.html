@@ -14,6 +14,7 @@
 
   <script src="../node_modules/jquery/dist/jquery.min.js"></script>
   <script src="./assets/plugins/scrollBar/scrollBar.js"></script>
+  <script src="./assets/js/interaction.js"></script>
   <script src="./assets/js/unify.js"></script>
   <script src="./assets/js/script.js"></script>
   <script src="./assets/js/dummy.js"></script>
@@ -151,47 +152,53 @@
 
       <div class="unf-user-overlay unf-user-overlay--desktop"></div>
 
+      <!-- Dialog Create GC -->
+
       <div class="unf-user-dialog unf-user-dialog--create-gc create-gc">
-        <div class="unf-user-dialog__content">
+        <div class="unf-user-dialog__content p-0">
           <div class="unf-user-dialog__title">Create Group Chat</div>
           <span class="unf-user-dialog__close unf-user-dialog__close--create-gc"></span> 
-          <div class="unf-user-dialog__content-input">
+          <div class="unf-user-dialog__content-input customScrollBar customScrollBar--y customScrollBar--create-gc">
             <div class="unf-user-input create-gc__image">
               <label class="unf-user-input__label">Cover Image</label>
               <div class="unf-user-input__control unf-user-input__control--image">
-                <input id="cover-img" type="file" accept=".jpg,.jpeg,.png">
-                <div class="unf-user-input__image-container hide">
-                  <img id="img-ktp" class="user-input__image-file">
-                  <!-- <label class="unf-user-input__image-name"></label> -->
-                  <!-- <span id="change-ktp" class="unf-user-input__image-change"></span> -->
+                <input id="input-gc-cover-img" type="file" accept=".jpg,.jpeg,.png">
+                <div class="unf-user-input__image-container d-hide">
+                  <img class="unf-user-input__image-file">
+                  <div class="unf-user-input__image-action">
+                    <div class="unf-user-input__image-action-container">
+                      <span class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
+                      <span class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
+                    </div>
+                  </div> 
                 </div>
-                <div id="upload-ktp" class="unf-user-input__image-upload">
+                <div id="upload-gc-cover-img" class="unf-user-input__image-upload">
                   <span></span>
                 </div>
               </div>
             </div>    
             <div class="unf-user-input">
               <label class="unf-user-input__label">Group Chat Name</label>
-              <input type="text" class="unf-user-input__control" name="gc-name">
+              <input type="text" id="gc-name" class="unf-user-input__control" name="gc-name" maxlength="70">
               <div class="unf-user-input__info">
                 <span></span>
-                <span>0/70</span>
+                <span class="unf-user-input__info-counter">0/70</span>
               </div>
             </div>
             <div class="unf-user-input">
               <label class="unf-user-input__label">Description</label>
-              <textarea type="text" class="unf-user-input__control create-gc__input-textarea" name="description"></textarea>
+              <textarea type="text" id="gc-desc" class="unf-user-input__control create-gc__input-textarea" name="description" maxlength="1000"></textarea>
               <div class="unf-user-input__info">
                 <span></span>
-                <span>0/1000</span>
+                <span class="unf-user-input__info-counter">0/1000</span>
               </div>
             </div>
             <h6 class="create-gc__moderator-label">Moderator</h6>
             <div class="unf-user-input">
               <label class="unf-user-input__label">Moderator Email</label>
               <div class="unf-user-input__group-btn">
-                <input type="text" class="unf-user-input__control" name="description">
-                <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary">Check</button>
+                <input type="text" id="moderator-email" class="unf-user-input__control" name="description">
+                <button id="check-moderator-email" class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary">Check</button>
               </div>
               <div class="unf-user-input__info">
                 <span>Please enter your email accounts in Tokopedia</span>
@@ -223,10 +230,12 @@
         </div>
       </div>
 
+      <!-- Dialog Preview GC -->
+
       <div class="unf-user-dialog unf-user-dialog--preview-gc preview-gc">
         <div class="unf-user-dialog__content p-0">
           <div class="unf-user-dialog__title">Group Chat Preview</div>
-          <span class="unf-user-dialog__close unf-user-dialog__close--create-gc"></span>
+          <span class="unf-user-dialog__close unf-user-dialog__close--preview-gc"></span>
           <div class="d-flex">
 
             <div class="preview-gc__detail customScrollBar hiddenScroll"> 
@@ -282,12 +291,12 @@
             </div>
 
             <div class="preview-gc__options preview-options">
-              <input type="radio" name="tab-options" id="tab-ads" checked>
-              <input type="radio" name="tab-options" id="tab-official">
-              <input type="radio" name="tab-options" id="tab-flashsale">
-              <input type="radio" name="tab-options" id="tab-rewards">
-              <input type="radio" name="tab-options" id="tab-polling">
-              <input type="radio" name="tab-options" id="tab-room">
+              <input type="radio" name="tab-options" class="tab-list" id="tab-ads" checked>
+              <input type="radio" name="tab-options" class="tab-list" id="tab-official">
+              <input type="radio" name="tab-options" class="tab-list" id="tab-flashsale">
+              <input type="radio" name="tab-options" class="tab-list" id="tab-rewards">
+              <input type="radio" name="tab-options" class="tab-list" id="tab-polling">
+              <input type="radio" name="tab-options" class="tab-list" id="tab-room">
               <ul class="preview-options__tab">
                 <li class="preview-options__tab-item">
                   <label class="label-tab-item" for="tab-ads">Ads</label>
@@ -309,7 +318,7 @@
                 </li>
                 <span id="preview-options__tab-indicator" class="preview-options__tab-indicator"></span>
               </ul>
-              <div class="preview-options__content">
+              <div class="preview-options__content customScrollBar hiddenScroll">
 
                 <!-- Ads -->
                 <section class="section-content">
@@ -401,7 +410,14 @@
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Time</label>
                       <div class="preview-detail__column-right">
-                        <p class="preview-detail__text">Seagate Back Up Slim 1TB USB 3.0.2.5 Putih + Gratis Pouch</p>
+                        <div class="preview-detail__time">
+                          <label class="preview-detail__label">Start</label>
+                          <p class="preview-detail__text">23 July 2018, 18.00 WIB</p>
+                        </div>
+                        <div class="preview-detail__time">
+                          <label class="preview-detail__label">End</label>
+                          <p class="preview-detail__text">23 July 2018, 18.00 WIB</p>
+                        </div>
                       </div>
                     </div>
                     <div class="preview-detail">
@@ -421,13 +437,13 @@
                   </div>
                   <div class="section-content__detail">
                     <div class="preview-detail">
-                      <label class="preview-detail__column-left preview-detail__label">Flashsale ID</label>
+                      <label class="preview-detail__column-left preview-detail__label">Rewards ID</label>
                       <div class="preview-detail__column-right">
                         <p class="preview-detail__text">001</p>
                       </div>
                     </div>
                     <div class="preview-detail">
-                      <label class="preview-detail__column-left preview-detail__label">Flashsale Title</label>
+                      <label class="preview-detail__column-left preview-detail__label">Rewards Title</label>
                       <div class="preview-detail__column-right">
                         <p class="preview-detail__text">Tokopoints 10</p>
                       </div>
@@ -443,27 +459,123 @@
                   </div>
                   <div class="section-content__detail">
                     <div class="preview-detail">
-                      <label class="preview-detail__column-left preview-detail__label">Flashsale ID</label>
+                      <label class="preview-detail__column-left preview-detail__label">Polling ID</label>
                       <div class="preview-detail__column-right">
                         <p class="preview-detail__text">001</p>
                       </div>
                     </div>
                     <div class="preview-detail">
-                      <label class="preview-detail__column-left preview-detail__label">Flashsale Title</label>
+                      <label class="preview-detail__column-left preview-detail__label">Polling Title</label>
                       <div class="preview-detail__column-right">
-                        <p class="preview-detail__text">Flashsale 23 July 2018</p>
+                        <p class="preview-detail__text">Polling 1</p>
                       </div>
                     </div>
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Time</label>
                       <div class="preview-detail__column-right">
-                        <p class="preview-detail__text">Seagate Back Up Slim 1TB USB 3.0.2.5 Putih + Gratis Pouch</p>
+                        <div class="preview-detail__time">
+                          <label class="preview-detail__label">Start</label>
+                          <p class="preview-detail__text">23 July 2018, 18.00 WIB</p>
+                        </div>
+                        <div class="preview-detail__time">
+                          <label class="preview-detail__label">End</label>
+                          <p class="preview-detail__text">23 July 2018, 18.00 WIB</p>
+                        </div>
                       </div>
                     </div>
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Product</label>
                       <div class="preview-detail__column-right">
-                        <p class="preview-detail__text">Seagate Back Up Slim 1TB USB 3.0.2.5 Putih + Gratis Pouch</p>
+                        <p class="preview-detail__text">Active | Gift | Image</p>
+                        <!-- <p class="preview-detail__text preview-detail__text-product">Active</p>
+                        <p class="preview-detail__text preview-detail__text-product">Gift</p>
+                        <p class="preview-detail__text preview-detail__text-product">Image</p> -->
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Winner Info</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">-</p>
+                      </div>
+                    </div>
+                    <hr class="preview-detail-separator">
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Question</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">Siapa pemain MVP tahun ini</p>
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Option 1</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">Christian Ronaldo</p>
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Options 2</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">Lionel Messi</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="section-content__detail">
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Polling ID</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">001</p>
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Polling Title</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">Polling 1</p>
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Time</label>
+                      <div class="preview-detail__column-right">
+                        <div class="preview-detail__time">
+                          <label class="preview-detail__label">Start</label>
+                          <p class="preview-detail__text">23 July 2018, 18.00 WIB</p>
+                        </div>
+                        <div class="preview-detail__time">
+                          <label class="preview-detail__label">End</label>
+                          <p class="preview-detail__text">23 July 2018, 18.00 WIB</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Product</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">Active | Gift | Image</p>
+                        <!-- <p class="preview-detail__text preview-detail__text-product">Active</p>
+                        <p class="preview-detail__text preview-detail__text-product">Gift</p>
+                        <p class="preview-detail__text preview-detail__text-product">Image</p> -->
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Winner Info</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">-</p>
+                      </div>
+                    </div>
+                    <hr class="preview-detail-separator">
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Question</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">Siapa pemain MVP tahun ini</p>
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Option 1</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">Christian Ronaldo</p>
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Options 2</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">Lionel Messi</p>
                       </div>
                     </div>
                   </div>
@@ -509,7 +621,7 @@
 
           </div>
           <div class="unf-user-dialog__action preview-gc__btn">
-            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary">Close</button>
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-dialog__close--preview-gc">Close</button>
           </div>
         </div>
       </div>
