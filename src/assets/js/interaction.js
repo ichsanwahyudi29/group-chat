@@ -1,6 +1,7 @@
 $(window).on({
   resize: function () {
-    if ($(window).width() < 1200) {
+    var width = 1200
+    if ($(window).width() < width) {
       $('.group-chat').addClass('group-chat--mini')
     } else {
       $('.group-chat').removeClass('group-chat--mini')
@@ -53,4 +54,13 @@ function initTabIndicator(w, l) {
     width: w,
     left: l
   })
+}
+
+function loadingCheckEmail(loading) {
+  if(loading){
+    $('.unf-user-input__icon').removeClass('unf-user-input__icon--check')
+    $('.unf-user-input__icon').addClass('unf-user-input__icon--loader')
+  }else{
+    $('.unf-user-input__icon').removeClass('unf-user-input__icon--loader')
+  }
 }

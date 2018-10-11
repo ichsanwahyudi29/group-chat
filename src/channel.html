@@ -11,13 +11,6 @@
   <link rel="stylesheet" href="./assets/plugins/scrollBar/scrollBar.css">
   <link rel="stylesheet" href="./assets/css/unify.css">
   <link rel="stylesheet" href="./assets/css/master.css">
-
-  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="./assets/plugins/scrollBar/scrollBar.js"></script>
-  <script src="./assets/js/interaction.js"></script>
-  <script src="./assets/js/unify.js"></script>
-  <script src="./assets/js/script.js"></script>
-  <script src="./assets/js/dummy.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -163,12 +156,12 @@
               <label class="unf-user-input__label">Cover Image</label>
               <div class="unf-user-input__control unf-user-input__control--image">
                 <input id="input-gc-cover-img" type="file" accept=".jpg,.jpeg,.png">
-                <div class="unf-user-input__image-container d-hide">
-                  <img class="unf-user-input__image-file">
+                <div class="unf-user-input__image-container hide">
+                  <img id="gc-cover-img" class="unf-user-input__image-file">
                   <div class="unf-user-input__image-action">
                     <div class="unf-user-input__image-action-container">
-                      <span class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
-                      <span class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
+                      <span id="change-gc-cover-img" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
+                      <span id="delete-gc-cover-img" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
                     </div>
                   </div> 
                 </div>
@@ -194,20 +187,21 @@
               </div>
             </div>
             <h6 class="create-gc__moderator-label">Moderator</h6>
-            <div class="unf-user-input">
+            <div class="unf-user-input unf-user-input--moderator-email">
               <label class="unf-user-input__label">Moderator Email</label>
               <div class="unf-user-input__group-btn">
                 <input type="text" id="moderator-email" class="unf-user-input__control" name="description">
                 <button id="check-moderator-email" class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary">Check</button>
+                <span class="unf-user-input__icon"></span>
               </div>
               <div class="unf-user-input__info">
-                <span>Please enter your email accounts in Tokopedia</span>
+                <span class="unf-user-input__info-msg">Please enter your email accounts in Tokopedia</span>
               </div>
               <div class="create-gc__moderator">
                 <img class="create-gc__moderator-pic" src="./assets/img/moderator.jpg" alt="" srcset="">
                 <div>
                   <div class="unf-user-input">
-                    <input type="text" class="unf-user-input__control" name="moderator-name">
+                    <input id="moderator-name" type="text" class="unf-user-input__control" name="moderator-name" value="Ichsan Indra Wahyudi">
                   </div>
                   <div class="create-gc__moderator-input">
                     <div class="unf-user-input">
@@ -225,7 +219,7 @@
           </div>
           <div class="unf-user-dialog__action create-gc__btn">
             <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-dialog__close--create-gc">Cancel</button>
-            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
+            <button id="save-create-gc" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
           </div>
         </div>
       </div>
@@ -626,5 +620,13 @@
         </div>
       </div>
     </div>
+
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/plugins/scrollBar/scrollBar.js"></script>
+  <script src="./assets/js/interaction.js"></script>
+  <script src="./assets/js/lang.js"></script>
+  <script src="./assets/js/unify.js"></script>
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/dummy.js"></script>
 </body>
 </html>

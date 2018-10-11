@@ -26,15 +26,48 @@
     &__group-btn {
       display: flex;
       align-items: center;
+      position: relative;
 
       input {
         border-radius: 3px 0px 0px 3px;
+        padding-right: 38px;
       }
 
       button {
         width: 100px;
         border-left: none;
         border-radius: 0px 3px 3px 0px;
+      }
+    }
+    &__icon{
+      position: absolute;
+      right: 100px;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      &::after{
+        content: "";
+      }
+      &--loader{
+        &:after {      
+          display: block;
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          border: 2px solid #e0e0e0;
+          border-color: #e0e0e0 transparent #e0e0e0 transparent;
+          animation: loaderRing 1.2s linear infinite;
+        }
+      }
+      &--check{
+        &::after{
+          animation: show .4s;
+          width: 16px;
+          height: 16px;
+          @include backgroundImg;
+          background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjgiIGZpbGw9IiM0MkI1NDkiLz4KICAgICAgICA8cGF0aCBmaWxsLXJ1bGU9Im5vbnplcm8iIGQ9Ik0xOCAzNC43OGM5LjM4OSAwIDE3LTcuNjExIDE3LTE3cy03LjYxMS0xNy0xNy0xNy0xNyA3LjYxMS0xNyAxNyA3LjYxMSAxNyAxNyAxN3ptMCAxYy05Ljk0MSAwLTE4LTguMDU5LTE4LTE4czguMDU5LTE4IDE4LTE4IDE4IDguMDU5IDE4IDE4LTguMDU5IDE4LTE4IDE4eiIvPgogICAgICAgIDxwYXRoIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSIjRkZGIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik00IDcuNjQ1bDIuNjcgMi42NTNMMTIgNSIvPgogICAgPC9nPgo8L3N2Zz4K');
+          
+        }
       }
     }
   }
@@ -73,6 +106,13 @@
         }
         &-container{
           z-index: 1;
+          &.hide {
+            .unf-user-input {
+              &__image-file {
+                display: none;
+              }
+            }
+          }
         }
         &-file{
           width: 100%;
@@ -136,11 +176,15 @@
     background-color: $gray-soft;
     padding: 16px;
     display: none;
+    // height: 0;
+    transition: all ease-in-out .4s;
     margin-top: -22px;
     position: relative;
 
     &--show{
       display: flex;
+      // height: 151px;
+      // animation: show .4s;
     }
 
     &-label {

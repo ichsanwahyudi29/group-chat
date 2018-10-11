@@ -4,3 +4,15 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+@mixin animatedSection {
+  animation-name: content;
+  @include contentAnimation
+}
+
+@mixin contentAnimation {
+  animation-direction: normal;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+}

@@ -15,7 +15,7 @@ function handleDialogClose() {
 }
 
 function handleInputError(el, text, eraseError) {
-  var info_msg = $(`${el} .unf-user-input__info`).children();
+  var info_msg = el.find('.unf-user-input__info-msg')
 
   if (!eraseError) {
     $(el).addClass('unf-user-input--isError');
@@ -41,12 +41,11 @@ function infoMessageAnimate(info_msg) {
   }, 280);
 }
 
-function validateEmail(el, input) {
+function validateEmail(el) {
   var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  var value = $(el).val();
+  var value = el.val();
 
   if (!regex.test(value)) {
-    handleInputError(input, helper.email.error[0], false);
     return false;
   }
 
