@@ -39,9 +39,8 @@ $(document).ready(function () {
                   <h6 class="sorting-title">Sort</h6>
                   <div class="sorting-option">
                     <select name="" id="">
-                      <option value="">created date</option>
-                      <option value="">updated date</option>
-                      <option value="">name</option>
+                      <option value="created">Created date</option>
+                      <option value="updated">Updated date</option>
                     </select>
                   </div>
                 </div>
@@ -72,10 +71,9 @@ $(document).ready(function () {
                 <div class="channel__header-sorting">
                   <h6 class="sorting-title">Sort</h6>
                   <div class="sorting-option">
-                    <select name="" id="">
-                      <option value="">created date</option>
-                      <option value="">updated date</option>
-                      <option value="">name</option>
+                    <select class="sorting-option__select">
+                      <option value="created">Created date</option>
+                      <option value="updated">Updated date</option>
                     </select>
                   </div>
                 </div>
@@ -118,9 +116,9 @@ $(document).ready(function () {
             </div>
           </td>
           <td class="channel__list-status">
-            <select name="" id="">
-              <option value="">Active</option>
-              <option value="">Inactive</option>
+            <select name="channel__status-select">
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
             </select>
           </td>
           <td class="channel__list-action">

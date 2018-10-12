@@ -10,13 +10,8 @@ var inputEmail = $('.unf-user-input--moderator-email')
 $(document).ready(function () {
   // init 
   $('.customScrollBar').scrollbar();
-  handleDialogOpen($('.unf-user-dialog--create-gc'))
-
-  $('.navbar__menu').on({
-    click: function () {
-      $('.group-chat').toggleClass('group-chat--mini')
-    }
-  })
+  initCustomSelect();
+  // handleDialogOpen($('.unf-user-dialog--create-gc'))
 
   $('.group-chat__btn--create').on({
     click: function () {
@@ -59,14 +54,19 @@ $(document).ready(function () {
 
   $('#input-gc-cover-img').on({
     change: function () {
+      var imgType = ["image/png", "image/jpg", "image/jpeg"];
       if (this.files.length !== 0) {
-        if (this.files[0].size <= 10000000) {
-          // handleInputError(_usrInputFileKTP, helper.image.input[0], true);
-          isCover = true
-          readURL(this);
-        } else {
-          // showToaster()
-          // handleInputError(_usrInputFileKTP, helper.image.error[0], false);
+        if (this.files[0].type == imgType[0] || this.files[0].type == imgType[1] || this.files[0].type == imgType[2]) {
+          if (this.files[0].size <= 10000000) {
+            isCover = true
+            readURL(this);
+          } else {
+            $(this).val('')
+            handleOpenToaster(true, true, helper.image.error[0])
+          }
+        }else{
+          handleOpenToaster(true, true, helper.image.error[1])
+          $(this).val('')
         }
       }
       checkInputEmpty()
@@ -117,16 +117,16 @@ $(document).ready(function () {
     click: function () {
       loadingCheckEmail(true)
 
-      if (!validateEmail(email)) {
-        setTimeout(() => {
-          loadingCheckEmail(false)
-        }, 500);
-        handleInputError(inputEmail, helper.email.error[0], false);
-        $('.create-gc__moderator').removeClass('create-gc__moderator--show')
-        return false;
-      }
+      // if (!validateEmail(email)) {
+      //   setTimeout(() => {
+      //     loadingCheckEmail(false)
+      //   }, 500);
+      //   handleInputError(inputEmail, helper.email.error[0], false);
+      //   $('.create-gc__moderator').removeClass('create-gc__moderator--show')
+      //   return false;
+      // }
 
-      if (email.val() !== 'ichsan.wahyudi@tokopedia.com') {
+      if (email.val() !== 'i') {
         setTimeout(() => {
           loadingCheckEmail(false)
         }, 500);
@@ -142,29 +142,31 @@ $(document).ready(function () {
       }, 500);
 
       isModeratorEmail = true
+      isModeratorName = true
+
+      console.log(isModeratorEmail, isModeratorName)
       checkInputEmpty()
-      $('.create-gc__moderator').addClass('create-gc__moderator--show')
+      
       $('.customScrollBar--create-gc').animate({
         scrollTop: 520
-      }, 500)
-      if ($(this).val()) {
-        isModeratorName = true
-      } else {
-        isModeratorName = false
-      }
+      }, 1200)
+
+
+      $('.create-gc__moderator').addClass('create-gc__moderator--show')
+      
     }
   })
 
-  $('#moderator-name').on({
-    input: function () {
-      if ($(this).val()) {
-        isModeratorName = true
-      } else {
-        isModeratorName = false
-      }
-      checkInputEmpty()
-    }
-  })
+  // $('#moderator-name').on({
+  //   input: function () {
+  //     if ($(this).val()) {
+  //       isModeratorName = true
+  //     } else {
+  //       isModeratorName = false
+  //     }
+  //     checkInputEmpty()
+  //   }
+  // })
 
 })
 
@@ -202,5 +204,54 @@ function showPreview() {
   handleDialogOpen($('.unf-user-dialog--preview-gc'));
 }
 
+function initCustomSelect() {
+  $('select').each(function () {
+    var $this = $(this),
+      numberOfOptions = $(this).children('option').length;
 
+    $this.addClass('unf-user-select__hidden');
+    $this.wrap('<div class="unf-user-select"></div>');
+    $this.after('<div class="unf-user-select__selected"><span></span></div>');
+
+    var $styledSelect = $this.next('div.unf-user-select__selected');
+    console.log($styledSelect)
+    $styledSelect.text($this.children('option').eq(0).text());
+    
+
+    var $list = $('<ul />', {
+      'class': 'unf-user-select__options'
+    }).insertAfter($styledSelect);
+
+    for (var i = 0; i < numberOfOptions; i++) {
+      $('<li />', {
+        text: $this.children('option').eq(i).text(),
+        rel: $this.children('option').eq(i).val()
+      }).appendTo($list);
+    }
+
+    var $listItems = $list.children('li');
+
+    $styledSelect.click(function (e) {
+      e.stopPropagation();
+      $('div.unf-user-select__selected.unf-user-select__selected--open').not(this).each(function () {
+        $(this).removeClass('unf-user-select__selected--open')
+      });
+      $(this).toggleClass('unf-user-select__selected--open')
+    });
+
+    $listItems.click(function (e) {
+      e.stopPropagation();
+      $styledSelect.text($(this).text()).removeClass('unf-user-select__selected--open');
+      $this.val($(this).attr('rel'));
+      // $list.hide();
+      //console.log($this.val());
+    });
+
+    $(document).click(function () {
+      $styledSelect.removeClass('unf-user-select__selected--open');
+      // $list.hide();
+    });
+
+  });
+}
 

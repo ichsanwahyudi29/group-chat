@@ -184,7 +184,21 @@
     &--show{
       display: flex;
       // height: 151px;
-      // animation: show .4s;
+      animation: showEmail .4s;
+    }
+
+    @keyframes showEmail {
+      0% {
+        opacity: 0;
+        display: none;
+        // transform: translateY(5%);
+      }
+
+      100% {
+        opacity: 1;
+        display: flex;
+        // transform: translateY(0%);
+      }
     }
 
     &-label {
