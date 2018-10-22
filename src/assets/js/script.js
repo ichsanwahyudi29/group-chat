@@ -11,23 +11,11 @@ $(document).ready(function () {
   // init 
   $('.customScrollBar').scrollbar();
   initCustomSelect();
-  // handleDialogOpen($('.unf-user-dialog--create-gc'))
+  // handleDialogOpen($('.unf-user-dialog--archive-gc'))
 
   $('.group-chat__btn--create').on({
     click: function () {
       handleDialogOpen($('.unf-user-dialog--create-gc'))
-    }
-  })
-
-  $('.unf-user-dialog__close--create-gc').on({
-    click: function () {
-      handleDialogClose()
-    }
-  })
-
-  $('.unf-user-dialog__close--preview-gc').on({
-    click: function () {
-      handleDialogClose()
     }
   })
 
@@ -200,22 +188,18 @@ function checkInputEmpty() {
   }
 }
 
-function showPreview() {
-  handleDialogOpen($('.unf-user-dialog--preview-gc'));
-}
-
 function initCustomSelect() {
   $('select').each(function () {
     var $this = $(this),
       numberOfOptions = $(this).children('option').length;
 
-    $this.addClass('unf-user-select__hidden');
-    $this.wrap('<div class="unf-user-select"></div>');
-    $this.after('<div class="unf-user-select__selected"><span></span></div>');
+    var $selectedVal = this.options[this.selectedIndex].innerHTML
+    var status = this.className
 
+    $this.wrap('<div class="unf-user-select"></div>');
+    $this.after(`<div class="unf-user-select__selected ${this.className}"><div class="unf-user-select__selected-arrow"></div><span></span></div>`);
     var $styledSelect = $this.next('div.unf-user-select__selected');
-    console.log($styledSelect)
-    $styledSelect.text($this.children('option').eq(0).text());
+    $styledSelect.children('span').text($selectedVal);
     
 
     var $list = $('<ul />', {
@@ -241,8 +225,16 @@ function initCustomSelect() {
 
     $listItems.click(function (e) {
       e.stopPropagation();
-      $styledSelect.text($(this).text()).removeClass('unf-user-select__selected--open');
       $this.val($(this).attr('rel'));
+      // $this.change()
+      console.log(status)
+      
+      if (status === 'channel__status-select'){
+        console.log('masuk')
+        
+      }
+      
+      $styledSelect.removeClass('unf-user-select__selected--open').children('span').text($(this).text());
       // $list.hide();
       //console.log($this.val());
     });

@@ -3,12 +3,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 32px;
+  padding: 20px 32px 20px 22px;
   transition: all ease-in-out .3s;
 
   &__title{
     display: none;
-    margin: 0 0 0 16px;
+    margin: 0 0 0 6px;
     color: $green-soft-4;
     font-size: 18px;
     font-weight: 600;
@@ -21,10 +21,28 @@
   }
 
   &__menu {
-    width: 30px;
-    position: relative;
     cursor: pointer;
+    height: 42px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: solid transparent 1px;
+    // border-color: $green-soft-4;
+    border-radius: 50%;
+    transition: all ease-in-out .2s;
+
     $menu: &;
+    &:hover{
+      border-color: $green-soft-4;
+      
+    }
+
+    &-container{
+      width: 20px;
+      position: relative;
+      cursor: pointer;
+    }
 
     &-bar {
       background-color: $green-soft-4;
@@ -39,7 +57,7 @@
       }
 
       &:nth-child(2) {
-        margin: 5px 0;
+        margin: 3px 0;
         // animation: outM 0.8s backwards;
       }
 

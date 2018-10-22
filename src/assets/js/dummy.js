@@ -38,7 +38,7 @@ $(document).ready(function () {
                 <div class="channel__header-sorting">
                   <h6 class="sorting-title">Sort</h6>
                   <div class="sorting-option">
-                    <select name="" id="">
+                    <select>
                       <option value="created">Created date</option>
                       <option value="updated">Updated date</option>
                     </select>
@@ -71,7 +71,7 @@ $(document).ready(function () {
                 <div class="channel__header-sorting">
                   <h6 class="sorting-title">Sort</h6>
                   <div class="sorting-option">
-                    <select class="sorting-option__select">
+                    <select>
                       <option value="created">Created date</option>
                       <option value="updated">Updated date</option>
                     </select>
@@ -97,9 +97,12 @@ $(document).ready(function () {
 
     $('.container').append(channelActive)
     $('.container').append(channelInactive)
+    loopData()
+})
 
-    for (const key in data) {
-      var listChannel = `
+function loopData() {
+  for (const key in data) {
+    var listChannel = `
         <tr>
           <td class="channel__list-num">
             <h6 class="list-num__id">ID ${data[key].id}</h6>
@@ -116,9 +119,9 @@ $(document).ready(function () {
             </div>
           </td>
           <td class="channel__list-status">
-            <select name="channel__status-select">
-              <option value="Active">Active</option>
-              <option value="Inactive">Inactive</option>
+            <select class="channel__status-select" onchange="changeStatus(this)">
+              <option value="Active" ${data[key].status === 1 ? 'selected' : ''}>Active</option>
+              <option value="Inactive" ${data[key].status === 2 ? 'selected' : ''}>Inactive</option>
             </select>
           </td>
           <td class="channel__list-action">
@@ -134,18 +137,36 @@ $(document).ready(function () {
               <div class="list-action__btn">
                 <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--chat"><span>chat</span></a>
                 <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit"><span>edit</span></a>
-                <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--preview" onclick="showPreview()"><span>preview</span></a>
+                <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--preview" onclick="preview(${data[key].id})"><span>preview</span></a>
+                <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--archive" onclick="archive(${data[key].id})"><span>archive</span></a>
               </div>
             </div>
           </td>
         </tr>
       `
 
-      if(data[key].status === 1){
-        $('.channel--active .channel__list tbody').append(listChannel)
-      }else{
-        $('.channel--inactive .channel__list tbody').append(listChannel)
-      }
+    if (data[key].status === 1) {
+      $('.channel--active .channel__list tbody').append(listChannel)
+    } else {
+      $('.channel--inactive .channel__list tbody').append(listChannel)
     }
+  }
+}
 
-})
+function preview(id) {
+  handleDialogOpen($('.unf-user-dialog--preview-gc'));
+}
+
+function archive(id) {
+  handleDialogOpen($('.unf-user-dialog--archive-gc'));
+}
+
+function changeStatus(e) {
+  console.log(e.selectedIndex)
+  if(e.selectedIndex === 0){
+    handleDialogOpen($('.unf-user-dialog--activate-gc'));
+  }else{
+    handleDialogOpen($('.unf-user-dialog--deactive-gc'));
+  }
+  
+}

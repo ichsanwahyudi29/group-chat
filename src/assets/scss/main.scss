@@ -228,6 +228,21 @@
     }
   }
 
+  &__status-select{
+    padding-left: 24px;
+    &::before{
+      content: '';
+      width: 8px;
+      height: 8px;
+      background-color: $green;
+      border-radius: 50%;
+      transition: all ease .2s;
+      position: absolute;
+      top: 11.5px;
+      left: 8px;
+    }
+  }
+
   &--inactive {
     #{$channel} {
       &__header {
@@ -246,6 +261,18 @@
               }
             }
           }
+        }
+        .group-chat{
+          &__btn{
+            &--archive{
+              display: flex;
+            }
+          }
+        }
+      }
+      &__status-select{
+        &::before{
+          background-color: #bdbdbd;
         }
       }
     }

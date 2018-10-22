@@ -45,10 +45,12 @@
             <div class="header__top navbar">
               <div class="navbar__left">
                 <div class="navbar__menu">
-                  <div class="navbar__menu-bar"></div>
-                  <div class="navbar__menu-bar"></div>
-                  <div class="navbar__menu-bar"></div>
-                </div>
+                  <div class="navbar__menu-container">
+                    <div class="navbar__menu-bar"></div>
+                    <div class="navbar__menu-bar"></div>
+                    <div class="navbar__menu-bar"></div>
+                  </div>
+                </div> 
                 <h2 class="navbar__title">Channel</h2>
               </div> 
               <div class="navbar__right">
@@ -145,12 +147,57 @@
 
       <div class="unf-user-overlay unf-user-overlay--desktop"></div>
 
+      <!-- Dialog Deactive GC -->
+
+      <div class="unf-user-dialog unf-user-dialog--deactive-gc confirmation-gc">
+        <div class="unf-user-dialog__content">
+          <div class="unf-user-dialog__title">Deactivate Group Chat</div>
+          <p class="unf-user-dialog__description">
+            Do you want to deactive this group chat?
+          </p>
+          <div class="unf-user-dialog__action">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Yes, Deactive</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dialog Activate GC -->
+      
+      <div class="unf-user-dialog unf-user-dialog--activate-gc confirmation-gc">
+        <div class="unf-user-dialog__content">
+          <div class="unf-user-dialog__title">Activate Group Chat</div>
+          <p class="unf-user-dialog__description">
+            Do you want to activate this group chat?
+          </p>
+          <div class="unf-user-dialog__action">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Yes, Activate</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dialog Archive GC -->
+      
+      <div class="unf-user-dialog unf-user-dialog--archive-gc confirmation-gc">
+        <div class="unf-user-dialog__content">
+          <div class="unf-user-dialog__title">Archive Group Chat</div>
+          <p class="unf-user-dialog__description">
+            Do you want to archive this group chat?
+          </p>
+          <div class="unf-user-dialog__action">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Yes, Archive</button>
+          </div>
+        </div>
+      </div>
+
       <!-- Dialog Create GC -->
 
       <div class="unf-user-dialog unf-user-dialog--create-gc create-gc">
         <div class="unf-user-dialog__content p-0">
           <div class="unf-user-dialog__title">Create Group Chat</div>
-          <span class="unf-user-dialog__close unf-user-dialog__close--create-gc"></span> 
+          <span class="unf-user-dialog__close" onclick="handleDialogClose()"></span> 
           <div class="unf-user-dialog__content-input customScrollBar customScrollBar--y customScrollBar--create-gc">
             <div class="unf-user-input create-gc__image">
               <label class="unf-user-input__label">Cover Image</label>
@@ -166,7 +213,7 @@
                   </div> 
                 </div>
                 <div id="upload-gc-cover-img" class="unf-user-input__image-upload">
-                  <span></span>
+                  <span class="unf-user-input__image-upload-text unf-user-input__image-upload-text--column">Add Image</span>
                 </div>
               </div>
             </div>    
@@ -218,7 +265,7 @@
             </div>
           </div>
           <div class="unf-user-dialog__action create-gc__btn">
-            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-dialog__close--create-gc">Cancel</button>
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
             <button id="save-create-gc" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
           </div>
         </div>
@@ -229,7 +276,7 @@
       <div class="unf-user-dialog unf-user-dialog--preview-gc preview-gc">
         <div class="unf-user-dialog__content p-0">
           <div class="unf-user-dialog__title">Group Chat Preview</div>
-          <span class="unf-user-dialog__close unf-user-dialog__close--preview-gc"></span>
+          <span class="unf-user-dialog__close" onclick="handleDialogClose()"></span>
           <div class="d-flex">
 
             <div class="preview-gc__detail customScrollBar hiddenScroll"> 
@@ -615,7 +662,7 @@
 
           </div>
           <div class="unf-user-dialog__action preview-gc__btn">
-            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-dialog__close--preview-gc">Close</button>
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Close</button>
           </div>
         </div>
       </div>
