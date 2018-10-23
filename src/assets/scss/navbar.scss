@@ -14,6 +14,19 @@
     font-weight: 600;
   }
 
+  &__arrow{
+    width: 14px !important;
+    height: 14px !important;
+    display: none !important;
+  }
+
+  &__channel-title{
+    display: none;
+    margin: 0;
+    font-size: 18px;
+    color: $black-7;
+  }
+
   &__left,
   &__right{
     display: flex;
@@ -143,8 +156,10 @@
     }
 
     #{$navbar}{
-      &__title{
-        display: block;
+      &__title,
+      &__arrow,
+      &__channel-title{
+        display: block !important;
       }
 
       &__profile{
@@ -156,79 +171,3 @@
     }
   }
 }
-
-// @keyframes inM {
-//   50% {
-//     transform: rotate(0deg);
-//   }
-
-//   100% {
-//     transform: rotate(45deg);
-//   }
-// }
-
-// @keyframes outM {
-//   50% {
-//     transform: rotate(0deg);
-//   }
-
-//   100% {
-//     transform: rotate(45deg);
-//   }
-// }
-
-// @keyframes inT {
-//   0% {
-//     transform: translateY(0px) rotate(0deg);
-//   }
-
-//   50% {
-//     transform: translateY(9px) rotate(0deg);
-//   }
-
-//   100% {
-//     transform: translateY(9px) rotate(135deg);
-//   }
-// }
-
-// @keyframes outT {
-//   0% {
-//     transform: translateY(0px) rotate(0deg);
-//   }
-
-//   50% {
-//     transform: translateY(9px) rotate(0deg);
-//   }
-
-//   100% {
-//     transform: translateY(9px) rotate(135deg);
-//   }
-// }
-
-// @keyframes inB {
-//   0% {
-//     transform: translateY(0px) rotate(0deg);
-//   }
-
-//   50% {
-//     transform: translateY(-9px) rotate(0deg);
-//   }
-
-//   100% {
-//     transform: translateY(-9px) rotate(135deg);
-//   }
-// }
-
-// @keyframes outB {
-//   0% {
-//     transform: translateY(0px) rotate(0deg);
-//   }
-
-//   50% {
-//     transform: translateY(-9px) rotate(0deg);
-//   }
-
-//   100% {
-//     transform: translateY(-9px) rotate(135deg);
-//   }
-// }

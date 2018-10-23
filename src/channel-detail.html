@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Group Chat</title>
+  <link rel="shortcut icon" href="https://ecs7.tokopedia.net/assets-tokopedia-lite/prod/icon144.png">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="../node_modules/normalize.css/normalize.css">
+  <link rel="stylesheet" href="./assets/plugins/scrollBar/scrollBar.css">
+  <link rel="stylesheet" href="./assets/css/unify.css">
+  <link rel="stylesheet" href="./assets/css/master.css">
+</head>
+<body>
+    <div class="wrapper">
+      <div class="group-chat">
+
+        <div class="sidebar">
+          <a href="" class="sidebar__icon-tkpd"></a>
+          <ul class="sidebar__list">
+            <li class="sidebar__list-item unf-user-tooltip">
+              <div class="unf-user-tooltip__container sidebar__list-item-tooltip" aria-label="Channel" data-position="left"></div>
+              <a class="list-item list-item--channel list-item--active">
+                <span>Channel</span>
+              </a>
+            </li>
+            <li class="sidebar__list-item unf-user-tooltip">
+              <div class="unf-user-tooltip__container sidebar__list-item-tooltip" aria-label="Polling" data-position="left"></div>
+              <a class="list-item list-item--polling">
+                <span>Polling</span>
+              </a>
+            </li>
+            <li class="sidebar__list-item unf-user-tooltip">
+              <div class="unf-user-tooltip__container sidebar__list-item-tooltip" aria-label="Rewards" data-position="left"></div>
+              <a class="list-item list-item--rewards">
+                <span>Rewards</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="main-content">
+          <div class="header">
+            <div class="header__top navbar">
+              <div class="navbar__left">
+                <div class="navbar__menu">
+                  <div class="navbar__menu-container">
+                    <div class="navbar__menu-bar"></div>
+                    <div class="navbar__menu-bar"></div>
+                    <div class="navbar__menu-bar"></div>
+                  </div>
+                </div> 
+                <h2 class="navbar__title">Channel</h2>
+                <span class="navbar__arrow breadcrumb__arrow"></span>
+                <h3 class="navbar__channel-title">2018 FIFA World Cup's Chat</h3>
+              </div> 
+              <div class="navbar__right">
+                <!-- <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Create Group Chat</div> -->
+                <div class="navbar__profile">
+                  <span class="navbar__profile-img" style="background-image: url('./assets/img/profile.png')"></span>
+                  <h3 class="navbar__profile-name">Ichsan Indra Wahyudi</h3>
+                  <span class="navbar__profile-menu"></span>
+                </div>     
+              </div>
+            </div>
+            <div class="header__bottom">
+              <div class="breadcrumb">
+                <h2 class="breadcrumb__title breadcrumb__title--detail">Channel</h2>
+                <span class="breadcrumb__arrow"></span>
+                <h3 class="breadcrumb__channel-title">2018 FIFA World Cup's Chat</h3>
+              </div>
+            </div>
+          </div>
+          <div class="container d-flex">
+            <div class="container__left">
+              <div class="card template-chat">
+                <div class="card__header">
+                  <div class="card__header-title">
+                    Template Chat
+                  </div>
+                  <div class="unf-user-btn unf-user-btn--medium group-chat__btn-primary">Add Template</div>
+                </div>
+                <div class="table__list table__list--medium">
+                  <table cellspacing="0" cellpadding="0">
+                    <thead>
+                      <tr>
+                        <td>ID</td>
+                        <td>Vibrate</td>
+                        <td>Message</td>
+                        <td>Action</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="table__list-num">
+                          <h6 class="list-num__id">201</h6>
+                        </td>
+                        <td class="table__list-num">
+                          <h6 class="list-num__id list-num__id--text">Yes</h6>
+                        </td>
+                        <td class="table__list-content">
+                          <div class="list-content">
+                            <div class="list-content__text">
+                              <p class="list-content__text-desc m-0">Selamat malam Toppers, jagokan negara favorit kalian disini.
+                                Kira-kira siapa ya negara pemenang piala duni tahun ini?</p>
+                              <img class="list-content__photo list-content__photo--template" src="./assets/img/gc1.jpg" alt="">
+                            </div>
+                          </div>
+                        </td>
+                        <td class="table__list-action">
+                          <div class="list-action">
+                            <div class="list-action__set">
+                              <select name="" id="">
+                                <option value="">Active</option>
+                                <option value="">Inactive</option>
+                              </select>
+                            </div>
+                            <div class="list-action__btn">
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--chat"><span>chat</span></a>
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit"><span>edit</span></a>
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--preview"><span>preview</span></a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="table__list-num">
+                          <h6 class="list-num__id">201</h6>
+                        </td>
+                        <td class="table__list-num">
+                          <h6 class="list-num__id list-num__id--text">Yes</h6>
+                        </td>
+                        <td class="table__list-content">
+                          <div class="list-content">
+                            <div class="list-content__text">
+                              <p class="list-content__text-desc m-0">Selamat malam Toppers, jagokan negara favorit kalian disini.
+                                Kira-kira
+                                siapa ya negara pemenang piala duni tahun ini?</p>
+                              <img class="list-content__photo list-content__photo--template" src="./assets/img/gc1.jpg" alt="">
+                            </div>
+                          </div>
+                        </td>
+                        <td class="table__list-action">
+                          <div class="list-action">
+                            <div class="list-action__set">
+                              <select name="" id="">
+                                <option value="">Active</option>
+                                <option value="">Inactive</option>
+                              </select>
+                            </div>
+                            <div class="list-action__btn">
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--chat"><span>chat</span></a>
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit"><span>edit</span></a>
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--preview"><span>preview</span></a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card pinned-chat">
+                <div class="card__header">
+                  <div class="card__header-title">
+                    Pinned Chat
+                  </div>
+                  <div class="unf-user-btn unf-user-btn--medium group-chat__btn-primary">Add Pin Chat</div>
+                </div>
+                <div class="table__list table__list--medium">
+                  <table cellspacing="0" cellpadding="0">
+                    <thead>
+                      <tr>
+                        <td>ID</td>
+                        <td>Title</td>
+                        <td>Message</td>
+                        <td>Action</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="table__list-num">
+                          <h6 class="list-num__id">201</h6>
+                        </td>
+                        <td class="table__list-num">
+                          <h6 class="list-num__id list-num__id--text">Ayo Jawab Kusinya Sekarang</h6>
+                        </td>
+                        <td class="table__list-content">
+                          <div class="list-content">
+                            <div class="list-content__text">
+                              <p class="list-content__text-desc m-0">Jawab kuisnya dengan menyertakan #TokopediaChallenge</p>
+                              <img class="list-content__photo list-content__photo--pinned" src="./assets/img/gc1.jpg" alt="">
+                            </div>
+                          </div>
+                        </td>
+                        <td class="table__list-action">
+                          <div class="list-action">
+                            <div class="list-action__set">
+                              <select class="table__list-status">
+                                <option value="">Active</option>
+                                <option value="">Inactive</option>
+                              </select>
+                            </div>
+                            <div class="list-action__btn">
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--chat"><span>chat</span></a>
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit"><span>edit</span></a>
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--preview"><span>preview</span></a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card quick-reply">
+                <div class="card__header">
+                  <div class="card__header-title">
+                    Quick Reply
+                  </div>
+                  <div class="unf-user-btn unf-user-btn--medium group-chat__btn-primary">Add Quick Reply</div>
+                </div>
+                <div class="table__list table__list--xsmall">
+                  <table cellspacing="0" cellpadding="0">
+                    <thead>
+                      <tr>
+                        <td>ID</td>
+                        <td>Message</td>
+                        <td>Status</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="table__list-num">
+                          <h6 class="list-num__id">201</h6>
+                        </td>
+                        <td class="table__list-num">
+                          <h6 class="list-num__id list-num__id--text">Halo</h6>
+                        </td>
+                        <td class="table__list-action">
+                          <div class="list-action">
+                            <div class="list-action__set">
+                              <select class="table__list-status">
+                                <option value="">Active</option>
+                                <option value="">Inactive</option>
+                              </select>
+                            </div>
+                            <div class="list-action__btn">
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit"><span>edit</span></a>
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--delete"><span>delete</span></a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card banned-user">
+                <div class="card__header">
+                  <div class="card__header-title">
+                    Banned User
+                  </div>
+                  <div class="unf-user-btn unf-user-btn--medium group-chat__btn-primary">Ban User</div>
+                </div>
+                <div class="table__list table__list--small">
+                  <table cellspacing="0" cellpadding="0">
+                    <thead>
+                      <tr>
+                        <td>User ID</td>
+                        <td>Name</td>
+                        <td>Status</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="table__list-num">
+                          <h6 class="list-num__id">5512939</h6>
+                          <span class="list-num__url">(Participant ID 123231)</span>
+                        </td>
+                        <td class="table__list-num">
+                          <h6 class="list-num__id">Tasya Farsya</h6>
+                        </td>
+                        <td class="table__list-action">
+                          <div class="list-action">
+                            <div class="list-action__set">
+                              <select class="table__list-status">
+                                <option value="">Active</option>
+                                <option value="">Inactive</option>
+                              </select>
+                            </div>
+                            <div class="list-action__btn">
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--unban"><span>Unban</span></a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="container__right">
+              <div class="card live-chat">
+                test
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+      <div class="unf-user-overlay unf-user-overlay--desktop"></div>
+
+      <!-- Dialog Deactive GC -->
+
+      <div class="unf-user-dialog unf-user-dialog--deactive-gc confirmation-gc">
+        <div class="unf-user-dialog__content">
+          <div class="unf-user-dialog__title">Deactivate Group Chat</div>
+          <p class="unf-user-dialog__description">
+            Do you want to deactive this group chat?
+          </p>
+          <div class="unf-user-dialog__action">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
+            <button id="btn-deactive-channel" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Yes, Deactive</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="unf-user-toaster">
+      <div class="unf-user-toaster__body">
+        <span id="unf-user-toaster__message"></span>
+      </div>
+    </div>
+
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/plugins/scrollBar/scrollBar.js"></script>
+  <script src="./assets/js/lang.js"></script>
+  <script src="./assets/js/unify.js"></script>
+  <script src="./assets/js/interaction.js"></script>
+  <!-- <script src="./assets/js/dummy.js"></script> -->
+  <script src="./assets/js/script.js"></script>
+
+  <script>
+    initCustomSelect()
+  </script>
+</body>
+</html>
