@@ -111,10 +111,15 @@
                         <td class="table__list-action">
                           <div class="list-action">
                             <div class="list-action__set">
-                              <select name="" id="">
-                                <option value="">Active</option>
-                                <option value="">Inactive</option>
-                              </select>
+                              <button class="unf-user-btn unf-user-btn--small unf-user-btn--primary group-chat__btn-send">Send Now</button>
+                              <div class="template-chat__auto-send">
+                                <label class="template-chat__auto-send-label">Auto-Send</label>
+                                <div class="unf-user-toggle">
+                                  <input type="checkbox" class="unf-user-toggle__checkbox" id="testcheck">
+                                  <label for="testcheck"></label>
+                                </div>
+                              </div>
+                              <span class="template-chat__time-auto-send">Sisa waktu: <b>59m 59s</b></span>
                             </div>
                             <div class="list-action__btn">
                               <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--chat"><span>chat</span></a>
@@ -134,20 +139,21 @@
                         <td class="table__list-content">
                           <div class="list-content">
                             <div class="list-content__text">
-                              <p class="list-content__text-desc m-0">Selamat malam Toppers, jagokan negara favorit kalian disini.
-                                Kira-kira
-                                siapa ya negara pemenang piala duni tahun ini?</p>
-                              <img class="list-content__photo list-content__photo--template" src="./assets/img/gc1.jpg" alt="">
+                              <p class="list-content__text-desc m-0">Jawab kuisnya dengan menyertakan #TokopediaChallenge</p>
                             </div>
                           </div>
                         </td>
                         <td class="table__list-action">
                           <div class="list-action">
                             <div class="list-action__set">
-                              <select name="" id="">
-                                <option value="">Active</option>
-                                <option value="">Inactive</option>
-                              </select>
+                              <button class="unf-user-btn unf-user-btn--small unf-user-btn--primary group-chat__btn-send">Send Now</button>
+                              <div class="template-chat__auto-send">
+                                <label class="template-chat__auto-send-label">Auto-Send</label>
+                                <div class="unf-user-toggle">
+                                  <input type="checkbox" class="unf-user-toggle__checkbox" id="testcheck">
+                                  <label for="testcheck"></label>
+                                </div>
+                              </div>
                             </div>
                             <div class="list-action__btn">
                               <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--chat"><span>chat</span></a>
@@ -183,8 +189,8 @@
                         <td class="table__list-num">
                           <h6 class="list-num__id">201</h6>
                         </td>
-                        <td class="table__list-num">
-                          <h6 class="list-num__id list-num__id--text">Ayo Jawab Kusinya Sekarang</h6>
+                        <td class="table__list-content">
+                          <h6 class="list-content__text-msg list-content__text-msg--title">Ayo Jawab Kusinya Sekarang</h6>
                         </td>
                         <td class="table__list-content">
                           <div class="list-content">
@@ -203,9 +209,8 @@
                               </select>
                             </div>
                             <div class="list-action__btn">
-                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--chat"><span>chat</span></a>
                               <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit"><span>edit</span></a>
-                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--preview"><span>preview</span></a>
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--delete"><span>delete</span></a>
                             </div>
                           </div>
                         </td>
@@ -235,8 +240,8 @@
                         <td class="table__list-num">
                           <h6 class="list-num__id">201</h6>
                         </td>
-                        <td class="table__list-num">
-                          <h6 class="list-num__id list-num__id--text">Halo</h6>
+                        <td class="table__list-content">
+                          <p class="list-content__text-msg">Halo</p>
                         </td>
                         <td class="table__list-action">
                           <div class="list-action">
@@ -279,8 +284,8 @@
                           <h6 class="list-num__id">5512939</h6>
                           <span class="list-num__url">(Participant ID 123231)</span>
                         </td>
-                        <td class="table__list-num">
-                          <h6 class="list-num__id">Tasya Farsya</h6>
+                        <td class="table__list-content">
+                          <h6 class="list-content__text-msg list-content__text-msg--name">Tasya Farsya</h6>
                         </td>
                         <td class="table__list-action">
                           <div class="list-action">
@@ -303,7 +308,105 @@
             </div>
             <div class="container__right">
               <div class="card live-chat">
-                test
+                <div class="live-chat__area customScrollBar customScrollBar--y hiddenScroll customScrollBar--live-chat">
+                  <span class="live-chat__date">Hari ini</span>
+                  <div class="live-chat__content">
+                    <img class="live-chat__content-img" src="./assets/img/gc1.jpg" alt="">
+                    <div class="live-chat__content-text">
+                      <div class="live-chat__content-profile">
+                        <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
+                        <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">admin</label>
+                        <span class="profile-time">12.00</span>
+                      </div>
+                      <p class="live-chat__content-msg">Hi! Apa kabar para pecinta sepak bola?</p>
+                    </div>
+                  </div>
+                  <div class="live-chat__content">
+                    <img class="live-chat__content-img" src="./assets/img/gc1.jpg" alt="">
+                    <div class="live-chat__content-text">
+                      <div class="live-chat__content-profile">
+                        <span class="profile-name">Ichsan Indra Wahyudi</span>
+                        <span class="profile-time">12.00</span>
+                      </div>
+                      <p class="live-chat__content-msg">Wuuu baik om! Go Brazil go!</p>
+                    </div>
+                  </div>
+                  <div class="live-chat__content">
+                    <img class="live-chat__content-img" src="./assets/img/gc1.jpg" alt="">
+                    <div class="live-chat__content-text">
+                      <div class="live-chat__content-profile">
+                        <span class="profile-name profile-name--joined">Shinta Tamara bergabung</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="live-chat__content">
+                    <img class="live-chat__content-img" src="./assets/img/gc1.jpg" alt="">
+                    <div class="live-chat__content-text">
+                      <div class="live-chat__content-profile">
+                        <span class="profile-name">Zahrah</span>
+                        <span class="profile-time">12.00</span>
+                      </div>
+                      <p class="live-chat__content-msg">Saya jual jersey semua negara kumpil! Bisa order di link berikut tokopedia.com y</p>
+                    </div>
+                  </div>
+                  <div class="live-chat__content">
+                    <img class="live-chat__content-img" src="./assets/img/gc1.jpg" alt="">
+                    <div class="live-chat__content-text">
+                      <div class="live-chat__content-profile">
+                        <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
+                        <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">admin</label>
+                        <span class="profile-time">12.00</span>
+                      </div>
+                      <div class="live-chat__vote">
+                        <h5 class="live-chat__vote-title live-chat__vote-title--poll">Vote Telah Dimulai</h5>
+                        <p class="live-chat__vote-quest">Menurut Toppers, siapa ya yang akan jadi pemain MVP di Piala Dunia Tahun Ini?</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="live-chat__pinned">
+                  <h6 class="live-chat__pinned-admin">Admin:</h6>
+                  <p class="live-chat__pinned-text">Tantangan Kuis Emoji Berhadiah 1 juta Rupiah</p>
+                </div>
+                <div class="live-chat__quick-reply">
+                  <div class="d-flex">
+                    <div class="live-chat__quick-reply-bubble">Halo</div>
+                    <div class="live-chat__quick-reply-bubble">Halo</div>
+                    <div class="live-chat__quick-reply-bubble">Halo</div>
+                    <div class="live-chat__quick-reply-bubble">Halo</div>
+                    <div class="live-chat__quick-reply-bubble">Halo</div>
+                    <div class="live-chat__quick-reply-bubble">Halo</div>
+                    <div class="live-chat__quick-reply-bubble">Halo</div>
+                  </div>
+                </div>
+                <div class="tab-options live-chat__send-input">
+                  <input type="radio" name="send-input" id="send-chat" checked>
+                  <input type="radio" name="send-input" id="send-image">
+                  <ul class="tab-options__container send-input__tab">
+                    <li class="tab-options__item">
+                      <label class="tab-options__item-label" for="send-chat">Send Chat</label>
+                    </li>
+                    <li class="tab-options-item">
+                      <label class="tab-options__item-label" for="send-image">Send Image</label>
+                    </li>
+                    <span class="tab-options__indicator send-input__tab-indicator"></span>
+                  </ul>
+                  <div class="tab-options__content">
+                    <section class="send-input__content">
+                      <div class="unf-user-input">
+                        <div class="unf-user-input__group-btn">
+                          <input type="text" class="unf-user-input__control">
+                        </div>
+                        <div class="unf-user-input__info">
+                          <span class="unf-user-input__info-msg"></span>
+                        </div>
+                      </div>
+                      <div class="send-input__action">
+                        <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary group-chat__btn-send">Send</button>
+                      </div>
+                    </section>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

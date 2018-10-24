@@ -168,7 +168,7 @@
           margin: 0;
           color: $black-7;
           font-size: 13px;
-          font-weight: 600;
+          line-height: 1.6;
           &--text{
             font-size: 14px;
             line-height: 1.29;
@@ -203,6 +203,18 @@
         &__text{
           &--channel{
             margin-left: 16px;
+          }
+          &-msg{
+            font-size: 12px;
+            margin: 0;
+            line-height: 1.5;
+            color: $black-54;
+            &--title{
+              color: $black-7;
+            }
+            &--name{
+              color: $green;
+            }
           }
           &-title{
             margin: 0;
@@ -316,7 +328,26 @@
 }
 
 .template-chat{
-
+  &__auto-send{
+    display: flex;
+    align-items: center;
+    margin: 14px 0 13px;
+    &-label{
+      font-size: 12px;
+      color: $black-54;
+      margin-right: 16px;
+    }
+  }
+  &__time-auto-send{
+    border-radius: 4px;
+    background-color: $hover-dropdown;
+    padding: 4px 10px;
+    font-size: 11px;
+    color: $black-54;
+    b{
+      color: $black-7;
+    }
+  }
 }
 
 .channel{

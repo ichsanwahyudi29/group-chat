@@ -16,3 +16,9 @@
   animation-timing-function: ease-in-out;
   animation-iteration-count: 1;
 }
+
+@mixin ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

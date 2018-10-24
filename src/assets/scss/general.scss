@@ -36,6 +36,10 @@ html,body{
   margin: 0 !important;
 }
 
+.ml-4{
+  margin-left: 4px !important;
+}
+
 .wrapper {
   width: 100%;
   height: 100%;
@@ -47,11 +51,11 @@ html,body{
   position: relative;
   margin-top: -44px;
   &__left{
-    width: 73.5%;
+    width: 73%;
     margin-right: 16px;
   }
   &__right{
-    width: 26.5%;
+    width: 27%;
   }
 }
 
@@ -191,6 +195,21 @@ html,body{
         @include backgroundImg;
       }
     }
+    &-send{
+      width: 125px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &::before{
+        content: '';
+        width: 16px;
+        height: 16px;
+        margin-right: 8.5px;
+        @include backgroundImg;
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxwYXRoIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEgM3Y3LjMzNmwxNS43MTMgMi4wOUwxIDE0LjUyNXY3LjMzbDIyLTkuNDI3eiIvPgo8L3N2Zz4K');
+      }
+    }
     &--create{
       width: 250px;
       &:before{
@@ -319,6 +338,17 @@ html,body{
   }  
 }
 
+.customScrollBar{
+  &--live-chat{
+    > .scroll-element{
+      &.scroll-y{
+        width: 6px;
+        right: 5px;
+      }
+    }
+  }
+}
+
 .unf-user-select{
   width: 136px;
   max-width: 136px;
@@ -434,6 +464,55 @@ html,body{
         background-color: $hover-dropdown;
       }
     }
+  }
+}
+
+.unf-user-label{
+  font-size: 10px;
+  border-radius: 12px;
+  padding: 0 8px;
+  font-weight: 600;
+  &--small{
+    line-height: 16px;
+  }
+  &--green{
+    color: $green;
+    background-color: $green-label;
+  }
+}
+
+// tab
+.tab-options{
+  input[type="radio"]{
+    display: none;
+  }
+  &__container{
+    position: relative;
+    display: flex;
+    border-bottom: solid $gray-border 1px;
+  }
+  &__item{
+    margin-right: 32px;
+    &:last-child{
+      margin-right: 0px;
+    }
+    &-label{
+      font-size: 13px;
+      color: $black-38;
+      cursor: pointer;
+    }
+  }
+  &__indicator{
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    border: solid $green 1px;
+    min-width: 22px;
+    left: 16px;
+    transition: all ease 0.4s;
+  }
+  &__content{
+    
   }
 }
 
