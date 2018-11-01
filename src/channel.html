@@ -133,13 +133,13 @@
               <label class="unf-user-input__label">Cover Image</label>
               <div class="unf-user-input__control unf-user-input__control--image">
                 <input id="input-gc-cover-img" type="file" accept=".jpg,.jpeg,.png">
-                <div class="unf-user-input__image-container hide">
+                <div class="unf-user-input__image-container unf-user-input__image-container--full hide">
                   <img id="gc-cover-img" class="unf-user-input__image-file">
                   <div class="unf-user-input__image-action">
-                    <div class="unf-user-input__image-action-container">
+                    <!-- <div class="unf-user-input__image-action-container"> -->
                       <span id="change-gc-cover-img" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
                       <span id="delete-gc-cover-img" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
-                    </div>
+                    <!-- </div> -->
                   </div> 
                 </div>
                 <div id="upload-gc-cover-img" class="unf-user-input__image-upload">
@@ -209,7 +209,7 @@
           <span class="unf-user-dialog__close" onclick="handleDialogClose()"></span>
           <div class="d-flex">
 
-            <div class="preview-gc__detail customScrollBar hiddenScroll"> 
+            <div class="preview-gc__detail customScrollBar customScrollBar--y"> 
               <div class="preview-gc__detail-list">
                 <div class="preview-detail">
                   <label class="preview-detail__column-left preview-detail__label">Group Chat ID</label>
@@ -261,35 +261,35 @@
               </div>
             </div>
 
-            <div class="preview-gc__options preview-options">
-              <input type="radio" name="tab-options" class="tab-list" id="tab-ads" checked>
-              <input type="radio" name="tab-options" class="tab-list" id="tab-official">
-              <input type="radio" name="tab-options" class="tab-list" id="tab-flashsale">
-              <input type="radio" name="tab-options" class="tab-list" id="tab-rewards">
-              <input type="radio" name="tab-options" class="tab-list" id="tab-polling">
-              <input type="radio" name="tab-options" class="tab-list" id="tab-room">
-              <ul class="preview-options__tab">
-                <li class="preview-options__tab-item">
-                  <label class="label-tab-item" for="tab-ads">Ads</label>
+            <div class="preview-gc__options preview-options tab-options">
+              <input type="radio" name="preview-options" class="tab-list" id="tab-ads" checked>
+              <input type="radio" name="preview-options" class="tab-list" id="tab-official">
+              <input type="radio" name="preview-options" class="tab-list" id="tab-flashsale">
+              <input type="radio" name="preview-options" class="tab-list" id="tab-rewards">
+              <input type="radio" name="preview-options" class="tab-list" id="tab-polling">
+              <input type="radio" name="preview-options" class="tab-list" id="tab-room">
+              <ul class="tab-options__container preview-options__tab">
+                <li class="tab-options__item">
+                  <label class="tab-options__item-label" for="tab-ads">Ads</label>
                 </li>
-                <li class="preview-options__tab-item">
-                  <label class="label-tab-item" for="tab-official">Official</label>
+                <li class="tab-options__item">
+                  <label class="tab-options__item-label" for="tab-official">Official</label>
                 </li>
-                <li class="preview-options__tab-item">
-                  <label class="label-tab-item" for="tab-flashsale">Flashsale</label>
+                <li class="tab-options__item">
+                  <label class="tab-options__item-label" for="tab-flashsale">Flashsale</label>
                 </li>
-                <li class="preview-options__tab-item">
-                  <label class="label-tab-item" for="tab-rewards">Rewards</label>
+                <li class="tab-options__item">
+                  <label class="tab-options__item-label" for="tab-rewards">Rewards</label>
                 </li>
-                <li class="preview-options__tab-item">
-                  <label class="label-tab-item" for="tab-polling">Polling</label>
+                <li class="tab-options__item">
+                  <label class="tab-options__item-label" for="tab-polling">Polling</label>
                 </li>
-                <li class="preview-options__tab-item">
-                  <label class="label-tab-item" for="tab-room">Room</label>
+                <li class="tab-options__item">
+                  <label class="tab-options__item-label" for="tab-room">Room</label>
                 </li>
-                <span id="preview-options__tab-indicator" class="preview-options__tab-indicator"></span>
+                <span id="preview-options__tab-indicator" class="tab-options__indicator"></span>
               </ul>
-              <div class="preview-options__content customScrollBar hiddenScroll">
+              <div class="tab-options__content preview-options__content customScrollBar customScrollBar--y">
 
                 <!-- Ads -->
                 <section class="section-content">
@@ -297,7 +297,7 @@
                     <h6 class="section-content__header-title">Active Ads</h6>
                     <a class="section-content__header-setting"></a>
                   </div>
-                  <div class="section-content__detail">
+                  <div class="card section-content__detail">
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Ads ID</label>
                       <div class="preview-detail__column-right">
@@ -331,7 +331,7 @@
                     <h6 class="section-content__header-title">Official Partner</h6>
                     <a class="section-content__header-setting"></a>
                   </div>
-                  <div class="section-content__detail">
+                  <div class="card section-content__detail">
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Brand ID</label>
                       <div class="preview-detail__column-right">
@@ -365,7 +365,7 @@
                     <h6 class="section-content__header-title">Active Flashsale</h6>
                     <a class="section-content__header-setting"></a>
                   </div>
-                  <div class="section-content__detail">
+                  <div class="card section-content__detail">
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Flashsale ID</label>
                       <div class="preview-detail__column-right">
@@ -406,7 +406,7 @@
                     <h6 class="section-content__header-title">Active Rewards</h6>
                     <a class="section-content__header-setting"></a>
                   </div>
-                  <div class="section-content__detail">
+                  <div class="card section-content__detail">
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Rewards ID</label>
                       <div class="preview-detail__column-right">
@@ -428,7 +428,7 @@
                     <h6 class="section-content__header-title">Active Poll</h6>
                     <a class="section-content__header-setting"></a>
                   </div>
-                  <div class="section-content__detail">
+                  <div class="card section-content__detail">
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Polling ID</label>
                       <div class="preview-detail__column-right">
@@ -489,7 +489,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="section-content__detail">
+                  <div class="card section-content__detail">
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Polling ID</label>
                       <div class="preview-detail__column-right">
@@ -558,7 +558,7 @@
                     <h6 class="section-content__header-title">Active Room</h6>
                     <a class="section-content__header-setting"></a>
                   </div>
-                  <div class="section-content__detail">
+                  <div class="card section-content__detail">
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Room ID</label>
                       <div class="preview-detail__column-right">
@@ -572,7 +572,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="section-content__detail">
+                  <div class="card section-content__detail">
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Room ID</label>
                       <div class="preview-detail__column-right">
@@ -611,5 +611,6 @@
   <script src="./assets/js/interaction.js"></script>
   <script src="./assets/js/dummy.js"></script>
   <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/channel.js"></script>
 </body>
 </html>

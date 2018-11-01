@@ -5,6 +5,12 @@
   background-position: center;
 }
 
+@mixin chatAnimated {
+  animation-name: chat;
+  @include contentAnimation;
+  animation-duration: .5s;
+}
+
 @mixin animatedSection {
   animation-name: content;
   @include contentAnimation

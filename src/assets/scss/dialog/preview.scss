@@ -37,37 +37,6 @@
     // width: 453px;
     flex: 0 0 53.3%;
     background-color: $gray-soft-3;
-
-    input[type="radio"] {
-      display: none;
-
-      @for $i from 1 through 6 {
-        &:nth-of-type(#{$i}) {
-          &:checked {
-            ~.preview-options {
-              &__tab {
-                li {
-                  &:nth-of-type(#{$i}) {
-                    label {
-                      // font-weight: 600;
-                      color: $green;
-                    }
-                  }
-                }
-              }
-
-              &__content {
-                .section-content {
-                  &:nth-of-type(#{$i}) {
-                    display: block !important;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
   }
 
   .preview-detail {
@@ -183,38 +152,8 @@
 
   .preview-options {
     &__tab {
-      background-color: $white;
       padding: 16px;
-      width: 100%;
-      display: flex;
-      position: relative;
       z-index: 2;
-      border-bottom: solid $gray-border 1px;
-
-      &-indicator{
-        box-sizing: border-box;
-        position: absolute;
-        bottom: 0;
-        border: solid $green 1px;
-        min-width: 22px;
-        left: 16px;
-        transition: all ease 0.4s;
-      }
-
-      &-item {
-        margin-right: 32px;
-        user-select: none;
-
-        &:nth-child(6) {
-          margin-right: 0px;
-        }
-
-        .label-tab-item {
-          font-size: 13px;
-          color: $black-38;
-          cursor: pointer;
-        }
-      }
     }
 
     &__content {
@@ -223,10 +162,7 @@
     }
 
     .section-content {
-      display: none;
-      position: relative;
       padding: 24px 16px;
-      @include animatedSection;
 
       &__header {
         display: flex;
@@ -252,8 +188,6 @@
 
       &__detail {
         border-radius: 4px;
-        box-shadow: 0 1px 6px 0 $gray-12;
-        background-color: $white;
         padding: 16px;
         margin-bottom: 18px;
 

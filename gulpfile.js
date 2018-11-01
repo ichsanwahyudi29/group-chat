@@ -37,6 +37,8 @@ gulp.task('compile-unf-scss', function() {
       '../user_unify/scss/Tooltip.scss',
       '../user_unify/scss/Textfield.scss',
       '../user_unify/scss/Toggle.scss',
+      '../user_unify/scss/Checkbox-v2.scss',
+      '../user_unify/scss/Label.scss',
       '../user_unify/scss/Toaster.scss',
     ])
     .pipe(replace(anchor, "@import './variables/color.scss'\n" + ';'))

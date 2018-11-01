@@ -311,7 +311,7 @@
                 <div class="live-chat__area customScrollBar customScrollBar--y hiddenScroll customScrollBar--live-chat">
                   <span class="live-chat__date">Hari ini</span>
                   <div class="live-chat__content">
-                    <img class="live-chat__content-img" src="./assets/img/gc1.jpg" alt="">
+                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
                     <div class="live-chat__content-text">
                       <div class="live-chat__content-profile">
                         <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
@@ -322,7 +322,7 @@
                     </div>
                   </div>
                   <div class="live-chat__content">
-                    <img class="live-chat__content-img" src="./assets/img/gc1.jpg" alt="">
+                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
                     <div class="live-chat__content-text">
                       <div class="live-chat__content-profile">
                         <span class="profile-name">Ichsan Indra Wahyudi</span>
@@ -332,7 +332,7 @@
                     </div>
                   </div>
                   <div class="live-chat__content">
-                    <img class="live-chat__content-img" src="./assets/img/gc1.jpg" alt="">
+                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
                     <div class="live-chat__content-text">
                       <div class="live-chat__content-profile">
                         <span class="profile-name profile-name--joined">Shinta Tamara bergabung</span>
@@ -340,7 +340,7 @@
                     </div>
                   </div>
                   <div class="live-chat__content">
-                    <img class="live-chat__content-img" src="./assets/img/gc1.jpg" alt="">
+                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
                     <div class="live-chat__content-text">
                       <div class="live-chat__content-profile">
                         <span class="profile-name">Zahrah</span>
@@ -350,7 +350,7 @@
                     </div>
                   </div>
                   <div class="live-chat__content">
-                    <img class="live-chat__content-img" src="./assets/img/gc1.jpg" alt="">
+                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
                     <div class="live-chat__content-text">
                       <div class="live-chat__content-profile">
                         <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
@@ -363,6 +363,19 @@
                       </div>
                     </div>
                   </div>
+                  <div class="live-chat__content">
+                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
+                    <div class="live-chat__content-text">
+                      <div class="live-chat__content-profile">
+                        <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
+                        <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">admin</label>
+                        <span class="profile-time">12.00</span>
+                      </div>
+                      <div class="live-chat__image">
+                        <img class="live-chat__content-img" src="https://ecs7.tokopedia.net/img/cache/700/attachment/2018/10/17/39112639/39112639_98c0867f-8b3b-478d-aaab-968c03d22ce9.jpg" alt="">
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="live-chat__pinned">
                   <h6 class="live-chat__pinned-admin">Admin:</h6>
@@ -371,7 +384,7 @@
                 <div class="live-chat__quick-reply">
                   <div class="d-flex">
                     <div class="live-chat__quick-reply-bubble">Halo</div>
-                    <div class="live-chat__quick-reply-bubble">Halo</div>
+                    <div class="live-chat__quick-reply-bubble"><span>&#x1F600</span></div>
                     <div class="live-chat__quick-reply-bubble">Halo</div>
                     <div class="live-chat__quick-reply-bubble">Halo</div>
                     <div class="live-chat__quick-reply-bubble">Halo</div>
@@ -389,20 +402,75 @@
                     <li class="tab-options-item">
                       <label class="tab-options__item-label" for="send-image">Send Image</label>
                     </li>
-                    <span class="tab-options__indicator send-input__tab-indicator"></span>
+                    <span id="send-input__tab-indicator" class="tab-options__indicator send-input__tab-indicator"></span>
                   </ul>
                   <div class="tab-options__content">
                     <section class="send-input__content">
                       <div class="unf-user-input">
                         <div class="unf-user-input__group-btn">
-                          <input type="text" class="unf-user-input__control">
+                          <div class="unf-user-input__icon unf-user-input__icon--right">
+                            <input id="input__live-chat--text" type="text" class="unf-user-input__control">
+                            <div class="unf-user-input__icon-emoji">
+                              <div class="unf-user-input__emoji">
+                                <div class="card unf-user-input__emoji-container">
+                                  <div class="unf-user-input__emoji-content">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                         <div class="unf-user-input__info">
                           <span class="unf-user-input__info-msg"></span>
                         </div>
                       </div>
                       <div class="send-input__action">
-                        <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary group-chat__btn-send">Send</button>
+                        <div class="unf-user-checkbox">
+                          <input type="checkbox" id="with-vibrate-text">
+                          <label class="unf-user-checkbox__control unf-user-checkbox__control--small" for="with-vibrate-text">
+                            <span class="unf-user-checkbox__label">Send with Vibrate</span>
+                          </label>
+                        </div>
+                        <button id="btn__live-chat--text" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary group-chat__btn-send send-input__btn" disabled>Send</button>
+                      </div>
+                    </section>
+                    <section class="send-input__content">
+                      <div class="unf-user-input mb-16">
+                        <div class="unf-user-input__control unf-user-input__control--image">
+                          <input id="input__live-chat--send-img" type="file" accept=".jpg,.jpeg,.png">
+                          <div class="unf-user-input__image-container hide">
+                            <img id="img__live-chat--send-img" class="unf-user-input__image-file">
+                            <label class="unf-user-input__image-name">ichsan.jpg</label>
+                            <div class="unf-user-input__image-action">
+                              <span id="change__live-chat--send-img" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
+                              <hr>
+                              <span id="delete__live-chat--send-img" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
+                            </div>
+                          </div>
+                          <div id="upload__live-chat--send-img" class="unf-user-input__image-upload">
+                            <span class="unf-user-input__image-upload-text">Add Image</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="unf-user-input">
+                        <div class="unf-user-input__group-btn">
+                          <div class="unf-user-input__icon unf-user-input__icon--left">
+                            <input id="input__live-chat--url"  type="text" class="unf-user-input__control" placeholder="e.g.http://www.tokopedia.com">
+                          </div>      
+                        </div>
+                        <div class="unf-user-input__info">
+                          <span class="unf-user-input__info-msg"></span>
+                        </div>
+                      </div>
+                      <div class="send-input__action">
+                        <div class="unf-user-checkbox">
+                          <input type="checkbox" id="with-vibrate-img">
+                          <label class="unf-user-checkbox__control unf-user-checkbox__control--small" for="with-vibrate-img">
+                            <span class="unf-user-checkbox__label">Send with Vibrate</span>
+                          </label>
+                        </div>
+                        <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary group-chat__btn-send send-input__btn"
+                          disabled>Send</button>
                       </div>
                     </section>
                   </div>
@@ -445,6 +513,7 @@
   <script src="./assets/js/interaction.js"></script>
   <!-- <script src="./assets/js/dummy.js"></script> -->
   <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/live-chat.js"></script>
 
   <script>
     initCustomSelect()

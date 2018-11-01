@@ -1,5 +1,5 @@
 .live-chat{
-  padding: 16px 0px 24px;
+  padding: 0px 0px 24px;
   margin-bottom: 0;
   &__area{
     overflow-y: auto;
@@ -11,13 +11,14 @@
     display: block;
     color: $black-38;
     text-align: center;
-    margin-bottom: 16px;
+    margin: 16px 0;
   }
   &__content{
     display: flex;
     align-items: flex-start;
     margin-bottom: 14px;
-    &-img{
+    @include chatAnimated;
+    &-ava{
       width: 24px;
       height: 24px;
       border-radius: 50%;
@@ -109,6 +110,19 @@
       font-weight: 600;
     }
   }
+  &__image{
+    margin-top: 8px;
+    max-width: 240px;
+    max-height: 240px;
+    border-radius: 0px 12px 12px 12px;
+    border: solid $gray-border 1px;
+    box-sizing: border-box;
+    overflow: hidden;
+    img{
+      max-width: 100%;
+      display: block;
+    }
+  }
   &__pinned{
     display: flex;
     align-items: center;
@@ -175,6 +189,15 @@
       }
       &__content{
         padding: 16px 16px 0px 16px;
+      }
+      &__action{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      &__btn{
+        width: 87px;
+        
       }
     }
   }

@@ -39,68 +39,68 @@ function initContainer() {
   $('.channel').remove()
   var channelActive = `
       <div class="content channel channel--active">
-              <div class="channel__header">
-                <div class="channel__header-title">
-                  Active Channel
-                </div>
-                <div class="channel__header-sorting">
-                  <h6 class="sorting-title">Sort</h6>
-                  <div class="sorting-option">
-                    <select>
-                      <option value="created">Created date</option>
-                      <option value="updated">Updated date</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="channel__list">
-                <table cellspacing="0" cellpadding="0">
-                  <thead>
-                    <tr>
-                      <td>ID</td>
-                      <td>Group Chat</td>
-                      <td>Status</td>
-                      <td>Action</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
-              </div>
+        <div class="channel__header">
+          <div class="channel__header-title">
+            Active Channel
+          </div>
+          <div class="channel__header-sorting">
+            <h6 class="sorting-title">Sort</h6>
+            <div class="sorting-option">
+              <select>
+                <option value="created">Created date</option>
+                <option value="updated">Updated date</option>
+              </select>
             </div>
+          </div>
+        </div>
+        <div class="channel__list">
+          <table cellspacing="0" cellpadding="0">
+            <thead>
+              <tr>
+                <td>ID</td>
+                <td>Group Chat</td>
+                <td>Status</td>
+                <td>Action</td>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
     `
 
   var channelInactive = `
       <div class="content channel channel--inactive">
-              <div class="channel__header">
-                <div class="channel__header-title">
-                  Inactive Channel
-                </div>
-                <div class="channel__header-sorting">
-                  <h6 class="sorting-title">Sort</h6>
-                  <div class="sorting-option">
-                    <select>
-                      <option value="created">Created date</option>
-                      <option value="updated">Updated date</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="channel__list">
-                <table cellspacing="0" cellpadding="0">
-                  <thead>
-                    <tr>
-                      <td>ID</td>
-                      <td>Group Chat</td>
-                      <td>Status</td>
-                      <td>Action</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
-              </div>
+        <div class="channel__header">
+          <div class="channel__header-title">
+            Inactive Channel
+          </div>
+          <div class="channel__header-sorting">
+            <h6 class="sorting-title">Sort</h6>
+            <div class="sorting-option">
+              <select>
+                <option value="created">Created date</option>
+                <option value="updated">Updated date</option>
+              </select>
             </div>
+          </div>
+        </div>
+        <div class="channel__list">
+          <table cellspacing="0" cellpadding="0">
+            <thead>
+              <tr>
+                <td>ID</td>
+                <td>Group Chat</td>
+                <td>Status</td>
+                <td>Action</td>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
     `
 
   $('.container').append(channelActive)

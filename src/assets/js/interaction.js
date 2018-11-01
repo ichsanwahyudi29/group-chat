@@ -1,53 +1,85 @@
 $(window).on({
-  resize: function () {
-    var width = 1200
+  resize: function() {
+    var width = 1200;
     if ($(window).width() < width) {
-      $('.group-chat').addClass('group-chat--mini')
+      $('.group-chat').addClass('group-chat--mini');
     } else {
-      $('.group-chat').removeClass('group-chat--mini')
+      $('.group-chat').removeClass('group-chat--mini');
     }
   },
-  scroll: function () {
-    var scroll = $(this).scrollTop()
-    var height = 200
+  scroll: function() {
+    var scroll = $(this).scrollTop();
+    var height = 200;
 
     if (scroll > height) {
-      $('.navbar').addClass('navbar--fixed')
+      $('.navbar').addClass('navbar--fixed');
     } else {
-      $('.navbar').removeClass('navbar--fixed')
+      $('.navbar').removeClass('navbar--fixed');
     }
-  }
-})
+  },
+});
 
-$(document).ready(function () {
+$(document).ready(function() {
   $('.navbar__menu').on({
-    click: function (e) {
-      var _self = $(this)
-      $('.group-chat').toggleClass('group-chat--mini')
-    }
-  })
+    click: function(e) {
+      var _self = $(this);
+      $('.group-chat').toggleClass('group-chat--mini');
+    },
+  });
 
   $('.customScrollBar--create-gc').on({
-    scroll: function () {
-      var scroll = $(this).scrollTop()
+    scroll: function() {
+      var scroll = $(this).scrollTop();
 
       if (scroll > 0) {
-        $('.unf-user-dialog__title').addClass('unf-user-dialog__title-shadow')
+        $('.unf-user-dialog__title').addClass('unf-user-dialog__title-shadow');
       } else {
-        $('.unf-user-dialog__title').removeClass('unf-user-dialog__title-shadow')
+        $('.unf-user-dialog__title').removeClass(
+          'unf-user-dialog__title-shadow'
+        );
       }
-    }
-  })
+    },
+  });
 
-  $('.label-tab-item').on({
-    click: function () {
-      var _self = $(this)[0]
-      var width = _self.offsetWidth;
-      var position = _self.offsetLeft;
-      initTabIndicator(width, position)
-    }
-  })
-})
+  // tab
+
+  $('.preview-options__tab .tab-options__item-label').on({
+    click: function() {
+      optionsTab(this);
+    },
+  });
+
+  $('.send-input__tab .tab-options__item-label').on({
+    click: function() {
+      optionsTab(this);
+    },
+  });
+
+  var emoji = `
+     <a class="emoji-outer">
+      <span class="emoji-icon">&#x1F600</span>
+    </a>
+  `;
+
+  for (let i = 0; i < 50; i++) {
+    var emoji = `
+      <a class="emoji-outer">
+        <span class="emoji-icon">&#x1F60${i}</span>
+      </a>
+    `;
+
+    var emoji2 = `
+      <a class="emoji-outer">
+        <span class="emoji-icon">&#x1F6${i}0</span>
+      </a>
+    `;
+
+    $('.unf-user-input__emoji-content').append(emoji);
+    $('.unf-user-input__emoji-content').append(emoji2);
+  }
+
+  
+});
 
 // function initFirstTabActive() {
 //   $('#tab-item1').prop("checked", true)
@@ -56,18 +88,44 @@ $(document).ready(function () {
 //   tabTemplate(1)
 // }
 
-function initTabIndicator(w, l) {
-  $('#preview-options__tab-indicator').css({
-    width: w,
-    left: l
+$(function handleEmoji() {
+  $('body').on({
+    click: function (e) {
+      let emoji = e.target.classList[0];
+      if (emoji != 'unf-user-input__icon-emoji') {
+        $('.unf-user-input__icon-emoji').removeClass('unf-user-input__icon-emoji--show');
+      }
+    }
   })
+
+  $('.unf-user-input__icon-emoji').on({
+    click: function () {
+      $(this).toggleClass('unf-user-input__icon-emoji--show');
+    },
+  });
+})
+
+function optionsTab(e) {
+  var _self = $(e)[0];
+  var width = _self.offsetWidth;
+  var position = _self.offsetLeft;
+  var ul = _self.closest('ul');
+  var indicatorId = $(ul).find('.tab-options__indicator')[0].id;
+  initTabIndicator(indicatorId, width, position);
+}
+
+function initTabIndicator(id, w, l) {
+  $(`#${id}`).css({
+    width: w,
+    left: l,
+  });
 }
 
 function loadingCheckEmail(loading) {
-  if(loading){
-    $('.unf-user-input__icon').removeClass('unf-user-input__icon--check')
-    $('.unf-user-input__icon').addClass('unf-user-input__icon--loader')
-  }else{
-    $('.unf-user-input__icon').removeClass('unf-user-input__icon--loader')
+  if (loading) {
+    $('.unf-user-input__icon').removeClass('unf-user-input__icon--check');
+    $('.unf-user-input__icon').addClass('unf-user-input__icon--loader');
+  } else {
+    $('.unf-user-input__icon').removeClass('unf-user-input__icon--loader');
   }
 }
