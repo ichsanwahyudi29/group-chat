@@ -9,7 +9,7 @@ var inputEmail = $('.unf-user-input--moderator-email');
 
 $(function handleCreateChannel() {
   $('.group-chat__btn--create').on({
-    click: function () {
+    click: function() {
       handleDialogOpen($('.unf-user-dialog--create-gc'));
     },
   });
@@ -21,7 +21,7 @@ $(function handleCreateChannel() {
   //     } else {
   //       isModeratorName = false
   //     }
-  //     checkInputEmpty()
+  //     handleCheckInputChannel()
   //   }
   // })
 });
@@ -34,13 +34,23 @@ $(function handleResetValueChannel() {
       $('#gc-desc').val('');
       $('#moderator-email').val('');
 
-      if ($('.unf-user-input--moderator-email').hasClass('unf-user-input--isError')) {
-        $('.unf-user-input--moderator-email').removeClass('unf-user-input--isError');
-        $('.unf-user-input--moderator-email .unf-user-input__info-msg').text('Please enter your email accounts in Tokopedia');
+      if (
+        $('.unf-user-input--moderator-email').hasClass(
+          'unf-user-input--isError'
+        )
+      ) {
+        $('.unf-user-input--moderator-email').removeClass(
+          'unf-user-input--isError'
+        );
+        $('.unf-user-input--moderator-email .unf-user-input__info-msg').text(
+          'Please enter your email accounts in Tokopedia'
+        );
       }
 
       if ($('.create-gc__moderator').hasClass('create-gc__moderator--show')) {
-        $('.unf-user-input--moderator-email .unf-user-input__icon').removeClass('unf-user-input__icon--check');
+        $('.unf-user-input--moderator-email .unf-user-input__icon').removeClass(
+          'unf-user-input__icon--check'
+        );
         $('.create-gc__moderator').removeClass('create-gc__moderator--show');
       }
 
@@ -84,7 +94,7 @@ $(function handleInputChannelImg() {
   $('#input-gc-cover-img').on({
     change: function() {
       var imgType = ['image/png', 'image/jpg', 'image/jpeg'];
-      var file = this.files
+      var file = this.files;
       if (file.length !== 0) {
         if (
           file[0].type == imgType[0] ||
@@ -95,43 +105,43 @@ $(function handleInputChannelImg() {
             isCover = true;
             readURL(this);
           } else {
-            $(this).val('');
+            // $(this).val('');
             handleOpenToaster(true, true, helper.image.error[0]);
           }
         } else {
+          // $(this).val('');
           handleOpenToaster(true, true, helper.image.error[1]);
-          $(this).val('');
         }
       }
-      checkInputEmpty();
+      handleCheckInputChannel();
     },
   });
 });
 
 $(function handleInputChannelName() {
   $('#gc-name').on({
-    input: function () {
+    input: function() {
       counterInput(this, '70');
       if ($(this).val()) {
         isName = true;
       } else {
         isName = false;
       }
-      checkInputEmpty();
+      handleCheckInputChannel();
     },
   });
 });
 
 $(function handleInputChannelDesc() {
   $('#gc-desc').on({
-    input: function () {
+    input: function() {
       counterInput(this, '1000');
       if ($(this).val()) {
         isDesc = true;
       } else {
         isDesc = false;
       }
-      checkInputEmpty();
+      handleCheckInputChannel();
     },
   });
 });
@@ -140,7 +150,7 @@ $(function handleInputModeratorEmail() {
   $('#moderator-email').on({
     input: function() {
       // isModeratorEmail = true
-      // checkInputEmpty()
+      // handleCheckInputChannel()
     },
     focus: function() {
       handleInputError(
@@ -194,7 +204,7 @@ $(function checkModeratorEmail() {
       isModeratorName = true;
 
       // console.log(isModeratorEmail, isModeratorName);
-      checkInputEmpty();
+      handleCheckInputChannel();
 
       $('.customScrollBar--create-gc').animate({ scrollTop: 520 }, 1200);
 
@@ -203,7 +213,7 @@ $(function checkModeratorEmail() {
   });
 });
 
-function checkInputEmpty() {
+function handleCheckInputChannel() {
   // console.log(isCover, isName, isDesc, isModeratorEmail, isModeratorName);
   if (isCover && isName && isDesc && isModeratorEmail && isModeratorName) {
     $('#save-create-gc').attr('disabled', false);
@@ -211,5 +221,3 @@ function checkInputEmpty() {
     $('#save-create-gc').attr('disabled', true);
   }
 }
-
-

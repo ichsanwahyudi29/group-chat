@@ -7,4 +7,7 @@ var helper = {
     input: [`Besar file: maksimum 10.000 kilobytes (10 Megabytes)`],
     error: [`Ukuran file terlalu besar, ukuran maksimum 10.000 Kilobytes`, `Image not valid`],
   },
+  link: {
+    error: [`Link tidak valid`]
+  }
 };
