@@ -319,47 +319,61 @@
   box-shadow: 0 2px 8px 0 $black-8;
   padding: 32px 24px 24px;
   margin-bottom: 24px;
-  
-  &__header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 24px;
-    &-title{
-      font-size: 18px;
-      font-weight: 600;
-      line-height: 1;
-      letter-spacing: .5px;
-      color: $black-7;
-      display: flex;
-      align-items: center;
-      &:before{
-        content: '';
-        display: inline-block;
-        position: relative;
-        top: 1px;
-        border-radius: 50%;
-        margin-right: 14px;
-        width: 10px;
-        height: 10px;
-        background-color: $green;
-        transition: all ease-in-out .3s;
-      }
-    }
-    &-sorting{
-      display: flex;
-      align-items: center;
-      .sorting{
-        &-title{
-          margin: 0;
-          font-size: 13px;
-          font-weight: 600;
-          color: $black-54;
-          margin-right: 17px;
-        }
-      }
+
+  &__title{
+    &:before{
+      content: '';
+      display: inline-block;
+      position: relative;
+      top: 1px;
+      border-radius: 50%;
+      margin-right: 14px;
+      width: 10px;
+      height: 10px;
+      transition: all ease-in-out .3s;
     }
   }
+  
+  // &__header{
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: space-between;
+  //   margin-bottom: 24px;
+  //   &-title{
+  //     font-size: 18px;
+  //     font-weight: 600;
+  //     line-height: 1;
+  //     letter-spacing: .5px;
+  //     color: $black-7;
+  //     display: flex;
+  //     align-items: center;
+  //     &:before{
+  //       content: '';
+  //       display: inline-block;
+  //       position: relative;
+  //       top: 1px;
+  //       border-radius: 50%;
+  //       margin-right: 14px;
+  //       width: 10px;
+  //       height: 10px;
+  //       background-color: $green;
+  //       transition: all ease-in-out .3s;
+  //     }
+  //   }
+  //   &-sorting{
+  //     display: flex;
+  //     align-items: center;
+  //     .sorting{
+  //       &-title{
+  //         margin: 0;
+  //         font-size: 13px;
+  //         font-weight: 600;
+  //         color: $black-54;
+  //         margin-right: 17px;
+  //       }
+  //     }
+  //   }
+  // }
   &__list{
     width: 100%;
     table{
@@ -558,13 +572,22 @@
     }
   }
 
+  &--active{
+    #{$channel} {
+      &__title{
+        &::before{
+          background-color: $green;
+        }
+        
+      }
+    }
+  }
+
   &--inactive {
     #{$channel} {
-      &__header {
-        &-title {
-          &:before {
-            background-color: $gray-soft-2;
-          }
+      &__title{
+        &::before{
+          background-color: $gray-soft-2;
         }
       }
       &__list{

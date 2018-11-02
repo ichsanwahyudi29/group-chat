@@ -51,6 +51,7 @@
     margin-top: 0; }
   .unf-user-dialog__close {
     position: absolute;
+    z-index: 4;
     background: url(data:image/svg+xml;base64,IAo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDE2IDE2Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzQyYjU0OTt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPkFzc2V0IDUyPC90aXRsZT48ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIj48ZyBpZD0iTGF5ZXJfNyIgZGF0YS1uYW1lPSJMYXllciA3Ij48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik01LjE4LDExLjI5YS40Ny40NywwLDAsMS0uMzMtLjhsNS42NS01LjY1YS40Ny40NywwLDAsMSwuNjcuNjdMNS41MSwxMS4xNkEuNDcuNDcsMCwwLDEsNS4xOCwxMS4yOVoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMC44MiwxMS4yOWEuNDcuNDcsMCwwLDEtLjMzLS4xNEw0Ljg0LDUuNTFhLjQ3LjQ3LDAsMCwxLC42Ny0uNjdsNS42NSw1LjY1YS40Ny40NywwLDAsMS0uMzMuOFoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik04LDE2YTgsOCwwLDEsMSw4LThBOCw4LDAsMCwxLDgsMTZaTTgsLjk0QTcuMDYsNy4wNiwwLDEsMCwxNS4wNiw4LDcuMDcsNy4wNywwLDAsMCw4LC45NFoiLz48L2c+PC9nPjwvc3ZnPg==) no-repeat;
     cursor: pointer;
     width: 24px;
@@ -65,22 +66,40 @@
     clear: both;
     border-radius: 10px;
     position: relative;
-    padding: 32px;
+    padding: 32px 0;
     -webkit-box-shadow: none;
             box-shadow: none; }
   .unf-user-dialog__title {
     font-size: 16px;
     font-weight: 600;
-    color: #000000;
     color: rgba(0, 0, 0, 0.7);
     line-height: 24px;
-    margin-bottom: 16px;
+    padding: 0 0 16px;
     text-align: center; }
+  .unf-user-dialog__header {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.7);
+    line-height: 24px;
+    text-align: center;
+    padding: 24px 0 16px;
+    position: relative;
+    z-index: 3;
+    -webkit-transition: all ease-in-out .25s;
+    -o-transition: all ease-in-out .25s;
+    transition: all ease-in-out .25s; }
+    .unf-user-dialog__header-shadow {
+      -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+              box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08); }
+  .unf-user-dialog__body {
+    padding: 0 32px;
+    max-height: 520px;
+    overflow: auto; }
   .unf-user-dialog__description {
     font-size: 13px;
     color: rgba(0, 0, 0, 0.56);
     line-height: 20px;
-    margin-bottom: 24px; }
+    margin: 0 0 24px; }
     .unf-user-dialog__description-info {
       font-size: 12px;
       line-height: normal; }
@@ -319,6 +338,11 @@
         -ms-flex-align: center;
             align-items: center;
     position: relative; }
+    .unf-user-input__group-btn input[type="text"] {
+      border-radius: 3px 0px 0px 3px; }
+    .unf-user-input__group-btn button {
+      border-left: none;
+      border-radius: 0px 3px 3px 0px; }
   .unf-user-input__control {
     width: 100%;
     background-color: #FFFFFF;
@@ -753,6 +777,63 @@
   .unf-user-label--red {
     color: #F05F68;
     background-color: #FDEBEC; }
+
+.unf-user-radio {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  cursor: pointer;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  .unf-user-radio input[type="radio"] {
+    display: none; }
+  .unf-user-radio input[type="radio"]:checked + .unf-user-radio__area {
+    border-color: #42B549; }
+  .unf-user-radio input[type="radio"]:checked ~ .unf-user-radio__label {
+    color: #42B549; }
+  .unf-user-radio__area {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    border: 1px solid #E0E0E0;
+    border-radius: 50%;
+    position: relative;
+    display: inline-block; }
+  .unf-user-radio__label {
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 14px;
+    margin-left: 8px; }
+  .unf-user-radio input[type="radio"]:checked + .unf-user-radio__area::before {
+    background: -webkit-gradient(linear, left top, left bottom, from(#42B549), to(#87D58B));
+    background: -o-linear-gradient(top, #42B549, #87D58B);
+    background: linear-gradient(to bottom, #42B549, #87D58B);
+    -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1); }
+  .unf-user-radio__area::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    left: 2px;
+    bottom: 2px;
+    border-radius: 50%;
+    -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform-origin: center;
+        -ms-transform-origin: center;
+            transform-origin: center;
+    -webkit-transition: -webkit-transform 0.28s ease;
+    transition: -webkit-transform 0.28s ease;
+    -o-transition: transform 0.28s ease;
+    transition: transform 0.28s ease;
+    transition: transform 0.28s ease, -webkit-transform 0.28s ease; }
 
 .unf-user-toaster {
   position: fixed;

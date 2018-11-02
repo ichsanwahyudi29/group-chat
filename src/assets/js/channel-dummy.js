@@ -38,12 +38,12 @@ $(document).ready(function () {
 function initContainer() {
   $('.channel').remove()
   var channelActive = `
-      <div class="content channel channel--active">
-        <div class="channel__header">
-          <div class="channel__header-title">
+      <div class="card channel channel--active">
+        <div class="card__header">
+          <div class="card__header-title channel__title">
             Active Channel
           </div>
-          <div class="channel__header-sorting">
+          <div class="card__header-sorting">
             <h6 class="sorting-title">Sort</h6>
             <div class="sorting-option">
               <select>
@@ -53,7 +53,7 @@ function initContainer() {
             </div>
           </div>
         </div>
-        <div class="channel__list">
+        <div class="table__list channel__list">
           <table cellspacing="0" cellpadding="0">
             <thead>
               <tr>
@@ -71,12 +71,12 @@ function initContainer() {
     `
 
   var channelInactive = `
-      <div class="content channel channel--inactive">
-        <div class="channel__header">
-          <div class="channel__header-title">
+      <div class="card channel channel--inactive">
+        <div class="card__header">
+          <div class="card__header-title channel__title">
             Inactive Channel
           </div>
-          <div class="channel__header-sorting">
+          <div class="card__header-sorting">
             <h6 class="sorting-title">Sort</h6>
             <div class="sorting-option">
               <select>
@@ -86,7 +86,7 @@ function initContainer() {
             </div>
           </div>
         </div>
-        <div class="channel__list">
+        <div class="table__list channel__list">
           <table cellspacing="0" cellpadding="0">
             <thead>
               <tr>
@@ -109,7 +109,7 @@ function initContainer() {
 
 function loopData() {
   initContainer()
-  $('.channel__list tbody').empty()
+  $('.channel .table__list tbody').empty()
   for (const data of dataChannel) {
     var listChannel = `
         <tr>
@@ -146,8 +146,8 @@ function loopData() {
               <div class="list-action__btn">
                 <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--chat"><span>chat</span></a>
                 <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit"><span>edit</span></a>
-                <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--preview" onclick="preview(${data.id})"><span>preview</span></a>
-                <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--archive" onclick="archive(${data.id})"><span>archive</span></a>
+                <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--preview" onclick="previewChannel(${data.id})"><span>preview</span></a>
+                <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--archive" onclick="archiveChannel(${data.id})"><span>archive</span></a>
               </div>
             </div>
           </td>
@@ -166,70 +166,45 @@ function loopData() {
   initCustomSelect()
 }
 
-function preview(id) {
-  handleDialogOpen($('.unf-user-dialog--preview-gc'));
+function previewChannel(id) {
+  handleDialogOpen($('.unf-user-dialog--preview-channel'));
 }
 
-function archive(id) {
-  handleDialogOpen($('.unf-user-dialog--archive-gc'));
-  $('#btn-archive-channel').attr('data-id', id)
+function archiveChannel(id) {
+  handleDialogOpen($('.unf-user-dialog--archive-channel'));
+  $('#btn__channel--archive').attr('data-id', id)
 }
 
 function changeStatus(e, id) {
   if(e.selectedIndex === 0){
-    handleDialogOpen($('.unf-user-dialog--activate-gc'));
-    $('#btn-activate-channel').attr('data-id', id)
+    handleDialogOpen($('.unf-user-dialog--activate-channel'));
+    $('#btn__channel--activate').attr('data-id', id)
   }else{
-    handleDialogOpen($('.unf-user-dialog--deactive-gc')); 
-    $('#btn-deactive-channel').attr('data-id', id)
+    handleDialogOpen($('.unf-user-dialog--deactive-channel')); 
+    $('#btn__channel--deactive').attr('data-id', id)
   }
 }
 
-$(function activateChannel() {
-  $('#btn-activate-channel').on({
-    click: () => {
+$(function onClickActivateChannel() {
+  $('#btn__channel--activate').on({
+    click: function() {
       handleStatusChannel(this , 1)
     }
   })
 })
 
-$(function deactiveChannel(){
-  $('#btn-deactive-channel').on({
-    click: () => {
+$(function onClickDeactiveChannel(){
+  $('#btn__channel--deactive').on({
+    click: function() {
       handleStatusChannel(this , 2)
     }
   })
 })
 
-$(function archiveChannel() {
-  $('#btn-archive-channel').on({
-    click: () => {
+$(function onClickArchiveChannel() {
+  $('#btn__channel--archive').on({
+    click: function() {
       handleArchiveChannel(this, true)
-    }
-  })
-})
-
-$(function handleCreateChannel() {
-  $('#save-create-gc').on({
-    click: () => {
-
-      const id = dataChannel[dataChannel.length - 1].id + 1
-      const name = $('#gc-name').val()
-      const description = $('#gc-desc').val()
-      const moderator = $('#moderator-name').val()
-
-      const newChannel = {
-        id,
-        url: '',
-        status: 1,
-        archive: false,
-        img: './assets/img/gc1.jpg',
-        name,
-        description,
-        moderator
-      }
-
-      pushData(newChannel)
     }
   })
 })
@@ -251,6 +226,7 @@ function handleArchiveChannel(e, val) {
 function pushData(data) {
   dataChannel.push(data)
   handleDialogClose()
+  resetInputValueChannel()
   loopData()
 }
 

@@ -69,16 +69,8 @@ $(function handleScrollLiveChatSendText() {
 
 // send Image
 
-$(function onClickLiveChatImg() {
-  $('#upload__live-chat--send-img').on({
-    click: function() {
-      $('#input__live-chat--send-img').click();
-    },
-  });
-});
-
 $(function onChangeLiveChatImg() {
-  $('#change__live-chat--send-img').on({
+  $('#upload__live-chat--send-img, #change__live-chat--send-img').on({
     click: function() {
       $('#input__live-chat--send-img').click();
     },

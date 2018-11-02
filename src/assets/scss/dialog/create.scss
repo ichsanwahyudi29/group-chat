@@ -1,79 +1,14 @@
-.create-gc {
+.create-channel {
   .unf-user-dialog {
-    &__title {
-      padding: 26px 0 16px;
-      margin: 0;
-      position: relative;
-      z-index: 2;
-      transition: all ease-in-out .25s;
-      &-shadow{
-        box-shadow: 0 2px 4px 0 $black-8;
-      }
-    }
-    &__close {
-      z-index: 3;
-    }
-    &__content {
-      &-input{
-        padding: 0 32px;
-        max-height: 520px;
-        overflow: auto;
-      }
-    }
-  }
-
-  .unf-user-input {
-    &__group-btn {
- 
-      input {
-        border-radius: 3px 0px 0px 3px;
-        padding-right: 38px;
-      }
-
-      button {
-        width: 100px;
-        border-left: none;
-        border-radius: 0px 3px 3px 0px;
-      }
-    }
-    &__icon{
-      position: absolute;
-      right: 100px;
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      &::after{
-        content: "";
-      }
-      &--loader{
-        &:after {      
-          display: block;
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          border: 2px solid $gray-border;
-          // border-color: $green transparent $green transparent;
-          border-top-color: $green;
-          animation: loaderRing 1.2s linear infinite;
-          // @include backgroundImg;
-          // background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij4KICAgIDxwYXRoIGZpbGw9IiM0MmI1NDkiIGZpbGwtcnVsZT0ibm9uemVybyIgZD0iTTEzLjk5NSA5Ljk5OGE1LjEwNSA1LjEwNSAwIDAgMC0zLjIzLTQuNjU1IDUuMDA4IDUuMDA4IDAgMCAwLTMuODI2LjA3NUE0Ljk0NSA0Ljk0NSAwIDAgMCA0LjMzMSA4LjEzYTQuODQ3IDQuODQ3IDAgMCAwIC4wNzQgMy43MDIgNC43ODQgNC43ODQgMCAwIDAgMi42MjcgMi41MjIgNC42ODYgNC42ODYgMCAwIDAgMy41NzktLjA3NSA0LjYyMiA0LjYyMiAwIDAgMCAyLjQzNC0yLjU0Yy4xMzEtLjMzNi4yMi0uNjg4LjI2Ny0xLjA0NWwuMDM4LjAwMWEuNjQ1LjY0NSAwIDAgMCAuNjQyLS42OThoLjAwM3pNMTIuOTcgMTEuNzFhNC40NjEgNC40NjEgMCAwIDEtMi40NTIgMi4zNDcgNC4zNjQgNC4zNjQgMCAwIDEtMy4zMzItLjA3NSA0LjMgNC4zIDAgMCAxLTIuMjYtMi4zNjUgNC4yMDIgNC4yMDIgMCAwIDEgLjA3NS0zLjIwOEE0LjE0IDQuMTQgMCAwIDEgNy4yOCA2LjIzN2E0LjA0IDQuMDQgMCAwIDEgMy4wODUuMDc0IDMuOTc4IDMuOTc4IDAgMCAxIDIuMDg1IDIuMTljLjE4NC40NzguMjcuOTg5LjI1NiAxLjQ5N2guMDAzYS42NDUuNjQ1IDAgMCAwIC41NzMuNjk1Yy0uMDYzLjM1LS4xNjcuNjkzLS4zMSAxLjAxN3oiLz4KPC9zdmc+Cg==');
-        }
-      }
-      &--check{
-        &::after{
-          animation: show .4s;
-          width: 16px;
-          height: 16px;
-          @include backgroundImg;
-          background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjgiIGZpbGw9IiM0MkI1NDkiLz4KICAgICAgICA8cGF0aCBmaWxsLXJ1bGU9Im5vbnplcm8iIGQ9Ik0xOCAzNC43OGM5LjM4OSAwIDE3LTcuNjExIDE3LTE3cy03LjYxMS0xNy0xNy0xNy0xNyA3LjYxMS0xNyAxNyA3LjYxMSAxNyAxNyAxN3ptMCAxYy05Ljk0MSAwLTE4LTguMDU5LTE4LTE4czguMDU5LTE4IDE4LTE4IDE4IDguMDU5IDE4IDE4LTguMDU5IDE4LTE4IDE4eiIvPgogICAgICAgIDxwYXRoIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSIjRkZGIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik00IDcuNjQ1bDIuNjcgMi42NTNMMTIgNSIvPgogICAgPC9nPgo8L3N2Zz4K');
-          
-        }
-      }
+    &__body{
+      padding: 0 32px;
+      max-height: 520px;
+      overflow: auto;
     }
   }
 
   .customScrollBar {
-    &--create-gc {
+    &--create-channel {
       >.scroll-element {
         &.scroll-y {
           right: 4px;
@@ -85,86 +20,15 @@
 
   &__image {
     margin-bottom: 24px;
-
     .unf-user-input {
       &__control {
-        width: 200px;
-        height: 100px;
-        border: none; 
+        &--image{
+          width: 200px;
+          height: 100px;
+          border: none;
+        } 
       }
-      // &__image{
-      //   &-upload{
-      //     border: dashed 1px $gray-border;
-      //     border-radius: 3px;
-      //     span{
-      //       &:before{
-      //         position: relative;
-      //         top: 1px;
-      //         left: 3px;
-      //       }
-      //     }
-      //   }
-      //   &-container{
-      //     z-index: 1;
-      //     border-radius: 4px;
-      //     overflow: hidden;
-      //     &.hide {
-      //       .unf-user-input {
-      //         &__image-file {
-      //           display: none;
-      //         }
-      //       }
-      //     }
-      //   }
-      //   &-action{
-      //     background-color: $black-5;
-      //     position: absolute;
-      //     width: 100%;
-      //     height: 100%;
-      //     top: 0;
-      //     left: 0;
-      //     bottom: 0;
-      //     right: 0;
-      //     user-select: none;
-      //     &-container{
-      //       position: absolute;
-      //       bottom: 7px;
-      //       right: 8px;
-      //     }
-      //     &-btn{
-      //       width: 24px;
-      //       height: 24px;
-      //       border-radius: 2px;
-      //       background-color: $white;
-      //       display: inline-block; 
-      //       cursor: pointer;
-      //       padding: 4px;   
-      //       &::before{
-      //         content: '';
-      //         width: 100%;
-      //         height: 100%;
-      //         @include backgroundImg;
-      //       }
-      //       &--edit {
-      //         margin-right: 8px;
-      //         &::before {                 
-      //           background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iYSIgZD0iTTMgM2gxOC4wMDJ2MTguMDAzSDN6Ii8+CiAgICA8L2RlZnM+CiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxtYXNrIGlkPSJiIiBmaWxsPSIjZmZmIj4KICAgICAgICAgICAgPHVzZSB4bGluazpocmVmPSIjYSIvPgogICAgICAgIDwvbWFzaz4KICAgICAgICA8cGF0aCBmaWxsPSIjNDJCNTQ5IiBkPSJNMjAuNzEgNy4wNDNhLjk5Ni45OTYgMCAwIDAgMC0xLjQxbC0yLjM0LTIuMzRhLjk5Ni45OTYgMCAwIDAtMS40MSAwbC0xLjk3NCAxLjk3MyAzLjc2OSAzLjczMiAxLjk1NS0xLjk1NXpNMyAxNy4yNTN2My43NWgzLjc1TDE4IDkuNzUzIDE0LjI4MSA1Ljk3IDMgMTcuMjUzeiIgbWFzaz0idXJsKCNiKSIvPgogICAgICAgIDxwYXRoIGZpbGw9IiM0MkI1NDkiIGQ9Ik0yMC43MDggNS43bC0yLjQwNi0yLjQwNmExLjAwNCAxLjAwNCAwIDAgMC0xLjQxNCAwTDE1LjgwMiA0LjM4YTEuMDAzIDEuMDAzIDAgMCAwIDAgMS40MTRMMTguMjA4IDguMmMuMzkuMzg5IDEuMDI1LjM4OSAxLjQxNCAwbDEuMDg2LTEuMDg2YTEgMSAwIDAgMCAwLTEuNDE0em0tMy41MzUgMy40NjZhMS4wMDMgMS4wMDMgMCAwIDEgMCAxLjQxNEw2Ljc1NSAyMC45OThoLTMuNzV2LTMuNzVMMTMuNDIzIDYuODNhMS4wMDMgMS4wMDMgMCAwIDEgMS40MTQgMGwyLjMzNiAyLjMzNnoiIG1hc2s9InVybCgjYikiLz4KICAgIDwvZz4KPC9zdmc+Cg==');
-      //         }
-      //       }
-      //       &--delete {
-      //         &::before {
-      //           background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9IiM0MkI1NDkiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTYgMTljMCAxLjEuOSAyIDIgMmg4YzEuMSAwIDItLjkgMi0yVjdINnYxMnpNMTggNGgtM2MwLS41NS0uNDUtMS0xLTFoLTRjLS41NSAwLTEgLjQ1LTEgMUg2Yy0uNTUgMC0xIC40NS0xIDF2MWgxNFY1YzAtLjU1LS40NS0xLTEtMSIvPgogICAgPC9nPgo8L3N2Zz4K');
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
     }
-  }
-
-  &__input-textarea {
-    min-height: 80px;
-    max-height: 80px;
   }
 
   &__moderator {
@@ -173,27 +37,13 @@
     display: none;
     // height: 0;
     transition: all ease-in-out .4s;
-    margin-top: -22px;
+    margin-top: -30px;
     position: relative;
 
     &--show{
       display: flex;
       // height: 151px;
       animation: showEmail .4s;
-    }
-
-    @keyframes showEmail {
-      0% {
-        opacity: 0;
-        display: none;
-        // transform: translateY(5%);
-      }
-
-      100% {
-        opacity: 1;
-        display: flex;
-        // transform: translateY(0%);
-      }
     }
 
     &-label {
@@ -227,21 +77,12 @@
         }
       }
     }
-
   }
 
-  &__btn {
-    padding: 24px 0 32px;
-
-    .unf-user-btn {
-      width: 144px;
-
-      &:first-child {
-        margin-right: 4px;
-      }
-
-      &:last-child {
-        margin-left: 4px;
+  #btn{
+    &__channel{
+      &--moderator-email{
+        width: 100px;
       }
     }
   }

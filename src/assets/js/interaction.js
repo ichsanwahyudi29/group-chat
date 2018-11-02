@@ -27,20 +27,6 @@ $(document).ready(function() {
     },
   });
 
-  $('.customScrollBar--create-gc').on({
-    scroll: function() {
-      var scroll = $(this).scrollTop();
-
-      if (scroll > 0) {
-        $('.unf-user-dialog__title').addClass('unf-user-dialog__title-shadow');
-      } else {
-        $('.unf-user-dialog__title').removeClass(
-          'unf-user-dialog__title-shadow'
-        );
-      }
-    },
-  });
-
   // tab
 
   $('.preview-options__tab .tab-options__item-label').on({
@@ -119,13 +105,4 @@ function initTabIndicator(id, w, l) {
     width: w,
     left: l,
   });
-}
-
-function loadingCheckEmail(loading) {
-  if (loading) {
-    $('.unf-user-input__icon').removeClass('unf-user-input__icon--check');
-    $('.unf-user-input__icon').addClass('unf-user-input__icon--loader');
-  } else {
-    $('.unf-user-input__icon').removeClass('unf-user-input__icon--loader');
-  }
 }

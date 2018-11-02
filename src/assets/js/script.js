@@ -17,7 +17,6 @@ function readURL(input) {
 }
 
 function counterInput(el, maxLength) {
-  console.log('masuk')
   var _self = $(el);
   var length = _self.val().length;
   var counter = _self.next().find('.unf-user-input__info-counter');
