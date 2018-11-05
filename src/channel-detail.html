@@ -222,7 +222,7 @@
                   <div class="card__header-title">
                     Quick Reply
                   </div>
-                  <div class="unf-user-btn unf-user-btn--medium group-chat__btn-primary">Add Quick Reply</div>
+                  <div id="btn__quick-reply--add" class="unf-user-btn unf-user-btn--medium group-chat__btn-primary">Add Quick Reply</div>
                 </div>
                 <div class="table__list table__list--xsmall">
                   <table cellspacing="0" cellpadding="0">
@@ -234,7 +234,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      <!-- <tr>
                         <td class="table__list-num">
                           <h6 class="list-num__id">201</h6>
                         </td>
@@ -255,7 +255,7 @@
                             </div>
                           </div>
                         </td>
-                      </tr>
+                      </tr> -->
                     </tbody>
                   </table>
                 </div>
@@ -265,7 +265,7 @@
                   <div class="card__header-title">
                     Banned User
                   </div>
-                  <div class="unf-user-btn unf-user-btn--medium group-chat__btn-primary">Ban User</div>
+                  <div id="btn__banned-user--add" class="unf-user-btn unf-user-btn--medium group-chat__btn-primary">Ban User</div>
                 </div>
                 <div class="table__list table__list--small">
                   <table cellspacing="0" cellpadding="0">
@@ -273,32 +273,10 @@
                       <tr>
                         <td>User ID</td>
                         <td>Name</td>
-                        <td>Status</td>
+                        <td>Action</td>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="table__list-num">
-                          <h6 class="list-num__id">5512939</h6>
-                          <span class="list-num__url">(Participant ID 123231)</span>
-                        </td>
-                        <td class="table__list-content">
-                          <h6 class="list-content__text-msg list-content__text-msg--name">Tasya Farsya</h6>
-                        </td>
-                        <td class="table__list-action">
-                          <div class="list-action">
-                            <div class="list-action__set">
-                              <select class="table__list-status">
-                                <option value="">Active</option>
-                                <option value="">Inactive</option>
-                              </select>
-                            </div>
-                            <div class="list-action__btn">
-                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--unban"><span>Unban</span></a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -620,10 +598,10 @@
 
       <!-- Dialog Add Quick Reply -->
       
-      <div class="unf-user-dialog unf-user-dialog--add-quick-reply small-dialog">
+      <div class="unf-user-dialog small-dialog dialog-quick-reply">
         <div class="unf-user-dialog__content p-0">
           <div class="unf-user-dialog__header mb-16">Add Quick Reply</div>
-          <span class="unf-user-dialog__close unf-user-dialog__close--add-quick-reply"></span>
+          <span class="unf-user-dialog__close dialog-quick-reply__close"></span>
           <div class="unf-user-dialog__body of-init">
             <div class="unf-user-input">
               <label class="unf-user-input__label">Message</label>
@@ -646,8 +624,8 @@
             </div>
           </div>
           <div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
-            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-dialog__close--add-quick-reply">Cancel</button>
-            <button id="btn__quick-reply--add" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary dialog-quick-reply__close">Cancel</button>
+            <button id="btn__quick-reply--save" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
           </div>
         </div>
       </div>
@@ -657,87 +635,35 @@
       <div class="unf-user-dialog small-dialog dialog-banned-user">
         <div class="unf-user-dialog__content p-0">
           <div class="unf-user-dialog__header mb-16">Ban User</div>
-          <span class="unf-user-dialog__close unf-user-dialog__close--banned-user"></span>
+          <span class="unf-user-dialog__close dialog-banned-user__close"></span>
           <div class="unf-user-dialog__body dialog-banned-user__body">
-            <div class="unf-user-input">
+            <div class="unf-user-input dialog-banned-user__input">
               <div class="unf-user-input__group-btn">
                 <input type="text" id="input__banned-user" class="unf-user-input__control" name="description" placeholder="Search Name or User ID">
                 <button id="btn__banned-user--search" class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary icon-search"></button>
               </div>
             </div>
-            <div class="dialog-banned-user__search dialog-banned-user__search--result">
+            <div class="dialog-banned-user__search">
               <div class="dialog-banned-user__search-empty">
                 <img class="empty-img" src="./assets/img/empty-state-search.png" alt="" srcset="">
                 <span class="empty-input"></span>
               </div>
               <div class="dialog-banned-user__search-result">
-                <div class="result">
-                  <div class="result__container">
-                    <img class="result__img" src="./assets/img/gc1.jpg" alt="" srcset="">
-                    <span class="result__name">Ichsan <b>Indra</b></span>
-                  </div>
-                  <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Ban</button>
-                </div>
-                <div class="result">
-                  <div class="result__container">
-                    <img class="result__img" src="./assets/img/gc1.jpg" alt="" srcset="">
-                    <span class="result__name">Ichsan <b>Indra</b></span>
-                  </div>
-                  <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Ban</button>
-                </div>
-                <div class="result">
-                  <div class="result__container">
-                    <img class="result__img" src="./assets/img/gc1.jpg" alt="" srcset="">
-                    <span class="result__name">Ichsan <b>Indra</b></span>
-                  </div>
-                  <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Ban</button>
-                </div>
-                <div class="result">
-                  <div class="result__container">
-                    <img class="result__img" src="./assets/img/gc1.jpg" alt="" srcset="">
-                    <span class="result__name">Ichsan <b>Indra</b></span>
-                  </div>
-                  <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Ban</button>
-                </div>
-                <div class="result">
-                  <div class="result__container">
-                    <img class="result__img" src="./assets/img/gc1.jpg" alt="" srcset="">
-                    <span class="result__name">Ichsan <b>Indra</b></span>
-                  </div>
-                  <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Ban</button>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Dialog Delete Template Chat -->
-      
-      <div class="unf-user-dialog unf-user-dialog--delete-template-chat confirmation-dialog">
-        <div class="unf-user-dialog__content">
-          <div class="unf-user-dialog__title">Delete Template Chat</div>
-          <p class="unf-user-dialog__description">
-            Do you want to delete the template?
-          </p>
-          <div class="unf-user-dialog__action">
-            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
-            <button id="btn__template-chat--delete" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Yes,Delete</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dialog Delete Pin Chat -->
+      <!-- Dialog Confirmation -->
       
       <div class="unf-user-dialog unf-user-dialog--delete-pin-chat confirmation-dialog">
         <div class="unf-user-dialog__content">
-          <div class="unf-user-dialog__title">Delete Pin Chat</div>
-          <p class="unf-user-dialog__description">
-            Do you want to delete the pin chat?
-          </p>
+          <div class="unf-user-dialog__title"></div>
+          <p class="unf-user-dialog__description"></p>
           <div class="unf-user-dialog__action">
             <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
-            <button id="btn__pin-chat--delete" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Yes,Delete</button>
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary"></button>
           </div>
         </div>
       </div>
@@ -763,8 +689,8 @@
   <script src="./assets/js/quick-reply.js"></script>
   <script src="./assets/js/banned-user.js"></script>
 
-  <script>
-    initCustomSelect()
-  </script>
+  <!-- <script>
+    initCustomSelect();
+  </script> -->
 </body>
 </html>

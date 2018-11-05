@@ -7,6 +7,9 @@
     &__content{
       padding: 24px;
     }
+    &__title{
+      text-transform: capitalize;
+    }
   }
   .unf-user-btn{
     width: 112px;
@@ -16,6 +19,7 @@
     }
     &:last-child{
       margin-left: 4px;
+      text-transform: capitalize;
     }
   }
 }
