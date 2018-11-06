@@ -4,3 +4,27 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+@mixin chatAnimated {
+  animation-name: chat;
+  @include contentAnimation;
+  animation-duration: .5s;
+}
+
+@mixin animatedSection {
+  animation-name: content;
+  @include contentAnimation
+}
+
+@mixin contentAnimation {
+  animation-direction: normal;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+}
+
+@mixin ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,0 +1,78 @@
+.confirmation-dialog{
+  &.unf-user-dialog{
+    max-width: 320px;
+    text-align: center;
+  }
+  .unf-user-dialog{
+    &__content{
+      padding: 24px;
+    }
+    &__title{
+      text-transform: capitalize;
+    }
+  }
+  .unf-user-btn{
+    width: 112px;
+    padding: 0;
+    &:first-child{
+      margin-right: 4px;
+    }
+    &:last-child{
+      margin-left: 4px;
+      text-transform: capitalize;
+    }
+  }
+}
+
+.small-dialog{
+  &.unf-user-dialog{
+    max-width: 414px;
+    text-align: center;
+  }
+}
+
+.unf-user-input{
+  $ui: &;
+  &--column{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    label{
+      margin-bottom: 0;
+    }
+    .unf-user-toggle{
+      right: 12px;
+    }
+  }
+  &--radio{
+    margin-bottom: 24px;
+    #{$ui}{
+      &__label{
+        margin-bottom: 8px;
+      }
+    }
+    .unf-user-radio{
+      &:first-child{
+        margin-right: 56px;
+      }
+    }
+  }
+}
+
+.unf-user-dialog{
+  &__action{
+    &--group-chat{
+      padding: 24px 0 32px;
+      button{
+        width: 144px;
+        &:first-child{
+          margin-right: 4px;
+        }
+        &:last-child{
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+}

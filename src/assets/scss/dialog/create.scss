@@ -1,0 +1,89 @@
+.create-channel {
+  .unf-user-dialog {
+    &__body{
+      padding: 0 32px;
+      max-height: 520px;
+      overflow: auto;
+    }
+  }
+
+  .customScrollBar {
+    &--create-channel {
+      >.scroll-element {
+        &.scroll-y {
+          right: 4px;
+          width: 6px;
+        }
+      }
+    }
+  }
+
+  &__image {
+    margin-bottom: 24px;
+    .unf-user-input {
+      &__control {
+        &--image{
+          width: 200px;
+          height: 100px;
+          border: none;
+        } 
+      }
+    }
+  }
+
+  &__moderator {
+    background-color: $gray-soft;
+    padding: 16px;
+    display: none;
+    // height: 0;
+    transition: all ease-in-out .4s;
+    margin-top: -30px;
+    position: relative;
+
+    &--show{
+      display: flex;
+      // height: 151px;
+      animation: showEmail .4s;
+    }
+
+    &-label {
+      margin: 16px 0 8px;
+      color: $black-7;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    &-pic {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 16px;
+    }
+
+    &-input {
+      display: flex;
+      margin-top: 13px;
+
+      .unf-user-input {
+        &:first-child {
+          flex-basis: 37%;
+          margin-right: 4px;
+        }
+
+        &:last-child {
+          flex-basis: 63%;
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+
+  #btn{
+    &__channel{
+      &--moderator-email{
+        width: 100px;
+      }
+    }
+  }
+}

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Group Chat</title>
+  <link rel="shortcut icon" href="https://ecs7.tokopedia.net/assets-tokopedia-lite/prod/icon144.png">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="../node_modules/normalize.css/normalize.css">
+  <link rel="stylesheet" href="./assets/plugins/scrollBar/scrollBar.css">
+  <link rel="stylesheet" href="./assets/css/unify.css">
+  <link rel="stylesheet" href="./assets/css/master.css">
+</head>
+<body>
+    <div class="wrapper">
+      <div class="group-chat">
+
+        <div class="sidebar">
+          <a href="" class="sidebar__icon-tkpd"></a>
+          <ul class="sidebar__list">
+            <li class="sidebar__list-item unf-user-tooltip">
+              <div class="unf-user-tooltip__container sidebar__list-item-tooltip" aria-label="Channel" data-position="left"></div>
+              <a class="list-item list-item--channel list-item--active">
+                <span>Channel</span>
+              </a>
+            </li>
+            <li class="sidebar__list-item unf-user-tooltip">
+              <div class="unf-user-tooltip__container sidebar__list-item-tooltip" aria-label="Polling" data-position="left"></div>
+              <a class="list-item list-item--polling">
+                <span>Polling</span>
+              </a>
+            </li>
+            <li class="sidebar__list-item unf-user-tooltip">
+              <div class="unf-user-tooltip__container sidebar__list-item-tooltip" aria-label="Rewards" data-position="left"></div>
+              <a class="list-item list-item--rewards">
+                <span>Rewards</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="main-content">
+          <div class="header">
+            <div class="header__top navbar">
+              <div class="navbar__left">
+                <div class="navbar__menu">
+                  <div class="navbar__menu-container">
+                    <div class="navbar__menu-bar"></div>
+                    <div class="navbar__menu-bar"></div>
+                    <div class="navbar__menu-bar"></div>
+                  </div>
+                </div> 
+                <h2 class="navbar__title">Channel</h2>
+                <span class="navbar__arrow breadcrumb__arrow"></span>
+                <h3 class="navbar__channel-title">2018 FIFA World Cup's Chat</h3>
+              </div> 
+              <div class="navbar__right">
+                <!-- <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Create Group Chat</div> -->
+                <div class="navbar__profile">
+                  <span class="navbar__profile-img" style="background-image: url('./assets/img/profile.png')"></span>
+                  <h3 class="navbar__profile-name">Ichsan Indra Wahyudi</h3>
+                  <span class="navbar__profile-menu"></span>
+                </div>     
+              </div>
+            </div>
+            <div class="header__bottom">
+              <div class="breadcrumb">
+                <h2 class="breadcrumb__title breadcrumb__title--detail">Channel</h2>
+                <span class="breadcrumb__arrow"></span>
+                <h3 class="breadcrumb__channel-title">2018 FIFA World Cup's Chat</h3>
+              </div>
+            </div>
+          </div>
+          <div class="container d-flex">
+            <div class="container__left">
+              <div class="card template-chat">
+                <div class="card__header">
+                  <div class="card__header-title">
+                    Template Chat
+                  </div>
+                  <div id="btn__template-chat--add" class="unf-user-btn unf-user-btn--medium group-chat__btn-primary">Add Template</div>
+                </div>
+                <div class="table__list table__list--medium">
+                  <table cellspacing="0" cellpadding="0">
+                    <thead>
+                      <tr>
+                        <td>ID</td>
+                        <td>Vibrate</td>
+                        <td>Message</td>
+                        <td>Action</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="table__list-num">
+                          <h6 class="list-num__id">201</h6>
+                        </td>
+                        <td class="table__list-num">
+                          <h6 class="list-num__id list-num__id--text">Yes</h6>
+                        </td>
+                        <td class="table__list-content">
+                          <div class="list-content">
+                            <div class="list-content__text">
+                              <p class="list-content__text-desc m-0">Selamat malam Toppers, jagokan negara favorit kalian disini.
+                                Kira-kira siapa ya negara pemenang piala duni tahun ini?</p>
+                              <img class="list-content__photo list-content__photo--template" src="./assets/img/gc1.jpg" alt="">
+                            </div>
+                          </div>
+                        </td>
+                        <td class="table__list-action">
+                          <div class="list-action">
+                            <div class="list-action__set">
+                              <button class="unf-user-btn unf-user-btn--small unf-user-btn--primary group-chat__btn-send">Send Now</button>
+                              <div class="template-chat__auto-send">
+                                <label class="template-chat__auto-send-label">Auto-Send</label>
+                                <div class="unf-user-toggle">
+                                  <input type="checkbox" class="unf-user-toggle__checkbox" id="testcheck">
+                                  <label for="testcheck"></label>
+                                </div>
+                              </div>
+                              <span class="template-chat__time-auto-send">Sisa waktu: <b>59m 59s</b></span>
+                            </div>
+                            <div class="list-action__btn">
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit" onclick="editTemplateChat(this)"><span>edit</span></a>
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--delete" onclick="deleteTemplateChat(this)"><span>delete</span></a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="table__list-num">
+                          <h6 class="list-num__id">201</h6>
+                        </td>
+                        <td class="table__list-num">
+                          <h6 class="list-num__id list-num__id--text">Yes</h6>
+                        </td>
+                        <td class="table__list-content">
+                          <div class="list-content">
+                            <div class="list-content__text">
+                              <p class="list-content__text-desc m-0">Jawab kuisnya dengan menyertakan #TokopediaChallenge</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="table__list-action">
+                          <div class="list-action">
+                            <div class="list-action__set">
+                              <button class="unf-user-btn unf-user-btn--small unf-user-btn--primary group-chat__btn-send">Send Now</button>
+                              <div class="template-chat__auto-send">
+                                <label class="template-chat__auto-send-label">Auto-Send</label>
+                                <div class="unf-user-toggle">
+                                  <input type="checkbox" class="unf-user-toggle__checkbox" id="testcheck">
+                                  <label for="testcheck"></label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="list-action__btn">
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit" onclick="editTemplateChat(this)"><span>edit</span></a>
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--delete" onclick="deleteTemplateChat(this)"><span>delete</span></a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card pinned-chat">
+                <div class="card__header">
+                  <div class="card__header-title">
+                    Pinned Chat
+                  </div>
+                  <div id="btn__pin-chat--add" class="unf-user-btn unf-user-btn--medium group-chat__btn-primary">Add Pin Chat</div>
+                </div>
+                <div class="table__list table__list--medium">
+                  <table cellspacing="0" cellpadding="0">
+                    <thead>
+                      <tr>
+                        <td>ID</td>
+                        <td>Title</td>
+                        <td>Message</td>
+                        <td>Action</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="table__list-num">
+                          <h6 class="list-num__id">201</h6>
+                        </td>
+                        <td class="table__list-content">
+                          <h6 class="list-content__text-msg list-content__text-msg--title">Ayo Jawab Kusinya Sekarang</h6>
+                        </td>
+                        <td class="table__list-content">
+                          <div class="list-content">
+                            <div class="list-content__text">
+                              <p class="list-content__text-desc m-0">Jawab kuisnya dengan menyertakan #TokopediaChallenge</p>
+                              <img class="list-content__photo list-content__photo--pinned" src="./assets/img/gc1.jpg" alt="">
+                            </div>
+                          </div>
+                        </td>
+                        <td class="table__list-action">
+                          <div class="list-action">
+                            <div class="list-action__set">
+                              <select class="table__list-status">
+                                <option value="">Active</option>
+                                <option value="">Inactive</option>
+                              </select>
+                            </div>
+                            <div class="list-action__btn">
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit" onclick="editPinChat(this)"><span>edit</span></a>
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--delete" onclick="deletePinChat(this)"><span>delete</span></a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card quick-reply">
+                <div class="card__header">
+                  <div class="card__header-title">
+                    Quick Reply
+                  </div>
+                  <div id="btn__quick-reply--add" class="unf-user-btn unf-user-btn--medium group-chat__btn-primary">Add Quick Reply</div>
+                </div>
+                <div class="table__list table__list--xsmall">
+                  <table cellspacing="0" cellpadding="0">
+                    <thead>
+                      <tr>
+                        <td>ID</td>
+                        <td>Message</td>
+                        <td>Status</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- <tr>
+                        <td class="table__list-num">
+                          <h6 class="list-num__id">201</h6>
+                        </td>
+                        <td class="table__list-content">
+                          <p class="list-content__text-msg">Halo</p>
+                        </td>
+                        <td class="table__list-action">
+                          <div class="list-action">
+                            <div class="list-action__set">
+                              <select class="table__list-status">
+                                <option value="">Active</option>
+                                <option value="">Inactive</option>
+                              </select>
+                            </div>
+                            <div class="list-action__btn">
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit"><span>edit</span></a>
+                              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--delete"><span>delete</span></a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr> -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card banned-user">
+                <div class="card__header">
+                  <div class="card__header-title">
+                    Banned User
+                  </div>
+                  <div id="btn__banned-user--add" class="unf-user-btn unf-user-btn--medium group-chat__btn-primary">Ban User</div>
+                </div>
+                <div class="table__list table__list--small">
+                  <table cellspacing="0" cellpadding="0">
+                    <thead>
+                      <tr>
+                        <td>User ID</td>
+                        <td>Name</td>
+                        <td>Action</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="container__right">
+              <div class="card live-chat">
+                <div class="live-chat__area customScrollBar customScrollBar--y hiddenScroll customScrollBar--live-chat">
+                  <span class="live-chat__date">Hari ini</span>
+                  <div class="live-chat__content">
+                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
+                    <div class="live-chat__content-text">
+                      <div class="live-chat__content-profile">
+                        <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
+                        <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">admin</label>
+                        <span class="profile-time">12.00</span>
+                      </div>
+                      <p class="live-chat__content-msg">Hi! Apa kabar para pecinta sepak bola?</p>
+                    </div>
+                  </div>
+                  <div class="live-chat__content">
+                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
+                    <div class="live-chat__content-text">
+                      <div class="live-chat__content-profile">
+                        <span class="profile-name">Ichsan Indra Wahyudi</span>
+                        <span class="profile-time">12.00</span>
+                      </div>
+                      <p class="live-chat__content-msg">Wuuu baik om! Go Brazil go!</p>
+                    </div>
+                  </div>
+                  <div class="live-chat__content">
+                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
+                    <div class="live-chat__content-text">
+                      <div class="live-chat__content-profile">
+                        <span class="profile-name profile-name--joined">Shinta Tamara bergabung</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="live-chat__content">
+                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
+                    <div class="live-chat__content-text">
+                      <div class="live-chat__content-profile">
+                        <span class="profile-name">Zahrah</span>
+                        <span class="profile-time">12.00</span>
+                      </div>
+                      <p class="live-chat__content-msg">Saya jual jersey semua negara kumpil! Bisa order di link berikut tokopedia.com y</p>
+                    </div>
+                  </div>
+                  <div class="live-chat__content">
+                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
+                    <div class="live-chat__content-text">
+                      <div class="live-chat__content-profile">
+                        <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
+                        <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">admin</label>
+                        <span class="profile-time">12.00</span>
+                      </div>
+                      <div class="live-chat__vote">
+                        <h5 class="live-chat__vote-title live-chat__vote-title--poll">Vote Telah Dimulai</h5>
+                        <p class="live-chat__vote-quest">Menurut Toppers, siapa ya yang akan jadi pemain MVP di Piala Dunia Tahun Ini?</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="live-chat__content">
+                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
+                    <div class="live-chat__content-text">
+                      <div class="live-chat__content-profile">
+                        <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
+                        <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">admin</label>
+                        <span class="profile-time">12.00</span>
+                      </div>
+                      <div class="live-chat__image">
+                        <a href="" target="_blank">
+                          <img class="live-chat__content-img" src="https://ecs7.tokopedia.net/img/cache/700/attachment/2018/10/17/39112639/39112639_98c0867f-8b3b-478d-aaab-968c03d22ce9.jpg" alt="">
+                        </a> 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="live-chat__pinned">
+                  <h6 class="live-chat__pinned-admin">Admin:</h6>
+                  <p class="live-chat__pinned-text">Tantangan Kuis Emoji Berhadiah 1 juta Rupiah</p>
+                </div>
+                <div class="live-chat__quick-reply customScrollBar customScrollBar--x hiddenScroll">
+                  <div class="d-flex">
+                    <div class="live-chat__quick-reply-bubble"><span>Hallo</span></div>
+                    <div class="live-chat__quick-reply-bubble"><span>&#x1F600</span></div>
+                    <div class="live-chat__quick-reply-bubble"><span>Dapatkan cashback TokoCash</span></div>
+                    <div class="live-chat__quick-reply-bubble"><span>Lagi pada ngapain nih</span></div>
+                    <div class="live-chat__quick-reply-bubble"><span>#TokopediaBerbagi</span></div>
+                    <div class="live-chat__quick-reply-bubble"><span>Kalian sukanya apa sih</span></div>
+                    <div class="live-chat__quick-reply-bubble"><span>Mimin mau nanya boleh gak?</span></div>
+                  </div>
+                </div>
+                <div class="tab-options live-chat__send-input">
+                  <input type="radio" name="send-input" id="send-chat" checked>
+                  <input type="radio" name="send-input" id="send-image">
+                  <ul class="tab-options__container send-input__tab">
+                    <li class="tab-options__item">
+                      <label class="tab-options__item-label" for="send-chat">Send Chat</label>
+                    </li>
+                    <li class="tab-options-item">
+                      <label class="tab-options__item-label" for="send-image">Send Image</label>
+                    </li>
+                    <span id="send-input__tab-indicator" class="tab-options__indicator send-input__tab-indicator"></span>
+                  </ul>
+                  <div class="tab-options__content">
+                    <section class="send-input__content">
+                      <div class="unf-user-input">
+                        <div class="unf-user-input__group-btn">
+                          <div class="unf-user-input__icon unf-user-input__icon--right">
+                            <input id="input__live-chat--text" type="text" class="unf-user-input__control">
+                            <div class="unf-user-input__icon-emoji">
+                              <div class="unf-user-input__emoji">
+                                <div class="card unf-user-input__emoji-container">
+                                  <div class="unf-user-input__emoji-content">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="unf-user-input__info">
+                          <span class="unf-user-input__info-msg"></span>
+                        </div>
+                      </div>
+                      <div class="send-input__action">
+                        <div class="unf-user-checkbox">
+                          <input type="checkbox" id="with-vibrate-text">
+                          <label class="unf-user-checkbox__control unf-user-checkbox__control--small" for="with-vibrate-text">
+                            <span class="unf-user-checkbox__label">Send with Vibrate</span>
+                          </label>
+                        </div>
+                        <button id="btn__live-chat--text" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary group-chat__btn-send send-input__btn" disabled>Send</button>
+                      </div>
+                    </section>
+                    <section class="send-input__content">
+                      <div class="unf-user-input mb-16">
+                        <div class="unf-user-input__control unf-user-input__control--image">
+                          <input id="input__live-chat--send-img" type="file" accept=".jpg,.jpeg,.png">
+                          <div class="unf-user-input__image-container hide">
+                            <img id="img__live-chat--send-img" class="unf-user-input__image-file">
+                            <label class="unf-user-input__image-name">ichsan.jpg</label>
+                            <div class="unf-user-input__image-action">
+                              <span id="change__live-chat--send-img" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
+                              <hr>
+                              <span id="delete__live-chat--send-img" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
+                            </div>
+                          </div>
+                          <div id="upload__live-chat--send-img" class="unf-user-input__image-upload">
+                            <span class="unf-user-input__image-upload-text">Add Image</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="unf-user-input">
+                        <div class="unf-user-input__group-btn">
+                          <div class="unf-user-input__icon unf-user-input__icon--left icon-link">
+                            <input id="input__live-chat--url" type="text" class="unf-user-input__control" placeholder="e.g.http://www.tokopedia.com">
+                          </div>      
+                        </div>
+                        <div class="unf-user-input__info">
+                          <span class="unf-user-input__info-msg"></span>
+                        </div>
+                      </div>
+                      <div class="send-input__action">
+                        <div class="unf-user-checkbox">
+                          <input type="checkbox" id="with-vibrate-img">
+                          <label class="unf-user-checkbox__control unf-user-checkbox__control--small" for="with-vibrate-img">
+                            <span class="unf-user-checkbox__label">Send with Vibrate</span>
+                          </label>
+                        </div>
+                        <button id="btn__live-chat--url" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary group-chat__btn-send send-input__btn"
+                          disabled>Send</button>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+      <div class="unf-user-overlay unf-user-overlay--desktop"></div>
+
+      <!-- Dialog Add Template Chat -->
+      
+      <div class="unf-user-dialog unf-user-dialog--add-template-chat small-dialog">
+        <div class="unf-user-dialog__content p-0">
+          <div class="unf-user-dialog__header mb-16">Add Template Chat</div>
+          <span class="unf-user-dialog__close unf-user-dialog__close--add-template"></span>
+          <div class="unf-user-dialog__body">
+            <div class="unf-user-input unf-user-input--radio">
+              <label class="unf-user-input__label">Message type:</label>
+              <div class="d-flex">
+                <label class="unf-user-radio" for="template-chat--text">
+                  <input type="radio" name="template-chat--type" id="template-chat--text" checked>
+                    <span class="unf-user-radio__area"></span>
+                    <span class="unf-user-radio__label">Text</span>
+                </label>
+                <label class="unf-user-radio" for="template-chat--img">
+                  <input type="radio" name="template-chat--type" id="template-chat--img">
+                    <span class="unf-user-radio__area"></span>
+                    <span class="unf-user-radio__label">Image</span>
+                </label>
+              </div>
+            </div>
+            <div class="template-chat__type-content">
+              <div class="unf-user-input">
+                <label class="unf-user-input__label">Message</label>
+                <textarea type="text" id="input__template-chat--msg" class="unf-user-input__control" name="template-chat--msg"
+                  maxlength="200" rows="3"></textarea>
+                <div class="unf-user-input__info">
+                  <span></span>
+                  <span class="unf-user-input__info-counter">0/200</span>
+                </div>
+              </div>
+              <div class="unf-user-input unf-user-input--column">
+                <label class="unf-user-input__label">Vibrate</label>
+                <div class="unf-user-toggle">
+                  <input type="checkbox" class="unf-user-toggle__checkbox" id="input__template-chat--vibrate">
+                  <label for="input__template-chat--vibrate"></label>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="template-chat__type-content">
+              <div class="unf-user-input">
+                <label class="unf-user-input__label">Title</label>
+                <input id="input__template-chat--title" type="text" class="unf-user-input__control">
+                <div class="unf-user-input__info"></div>
+              </div>
+              <div class="unf-user-input">
+                <label class="unf-user-input__label">Image</label>
+                <div class="unf-user-input__control unf-user-input__control--image">
+                  <input id="input__template-chat--image" type="file" accept=".jpg,.jpeg,.png">
+                  <div class="unf-user-input__image-container hide">
+                    <img id="img__template-chat--image" class="unf-user-input__image-file">
+                    <div class="unf-user-input__image-action">
+                      <span id="change__template-chat--image" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
+                      <span id="delete__template-chat--image" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
+                    </div>
+                  </div>
+                  <div id="upload__template-chat--image" class="unf-user-input__image-upload">
+                    <span class="unf-user-input__image-upload-text">Add Image</span>
+                  </div>
+                </div>
+                <div class="unf-user-input__info"></div>
+              </div>
+              <div class="unf-user-input">
+                <label class="unf-user-input__label">URL</label>
+                <input id="input__template-chat--url" type="text" class="unf-user-input__control" placeholder="https://www.tokopedia.com">
+                <div class="unf-user-input__info"></div>
+              </div>
+              <div class="unf-user-input unf-user-input--column">
+                <label class="unf-user-input__label">Vibrate</label>
+                <div class="unf-user-toggle">
+                  <input type="checkbox" class="unf-user-toggle__checkbox" id="input__template-chat--vibrate">
+                  <label for="input__template-chat--vibrate"></label>
+                </div>
+              </div>
+            </div>   -->
+          </div>
+          <div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-dialog__close--add-template">Cancel</button>
+            <button id="btn__template-chat--add" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dialog Add Pin Chat -->
+      
+      <div class="unf-user-dialog unf-user-dialog--add-pin-chat small-dialog">
+        <div class="unf-user-dialog__content p-0">
+          <div class="unf-user-dialog__header mb-16">Add Pin Chat</div>
+          <span class="unf-user-dialog__close unf-user-dialog__close--add-pin"></span>
+          <div class="unf-user-dialog__body">
+            <div class="unf-user-input">
+              <label class="unf-user-input__label">Title</label>
+              <input id="input__pin-chat--title" type="text" class="unf-user-input__control">
+              <div class="unf-user-input__info"></div>
+            </div>
+            <div class="unf-user-input">
+              <label class="unf-user-input__label">Message</label>
+              <textarea type="text" id="input__pin-chat--msg" class="unf-user-input__control" name="pin-chat--msg"
+                maxlength="200" rows="3"></textarea>
+              <div class="unf-user-input__info">
+                <span></span>
+                <span class="unf-user-input__info-counter">0/200</span>
+              </div>
+            </div>
+            <div class="unf-user-input">
+              <label class="unf-user-input__label">Image</label>
+              <div class="unf-user-input__control unf-user-input__control--image">
+                <input id="input__pin-chat--image" type="file" accept=".jpg,.jpeg,.png">
+                <div class="unf-user-input__image-container hide">
+                  <img id="img__pin-chat--image" class="unf-user-input__image-file">
+                  <div class="unf-user-input__image-action">
+                    <span id="change__pin-chat--image" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
+                    <span id="delete__pin-chat--image" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
+                  </div>
+                </div>
+                <div id="upload__pin-chat--image" class="unf-user-input__image-upload">
+                  <span class="unf-user-input__image-upload-text">Add Image</span>
+                </div>
+              </div>
+              <div class="unf-user-input__info"></div>
+            </div>
+            <div class="unf-user-input">
+              <label class="unf-user-input__label">URL</label>
+              <input id="input__pin-chat--url" type="text" class="unf-user-input__control" placeholder="https://www.tokopedia.com">
+              <div class="unf-user-input__info"></div>
+            </div>
+          </div>
+          <div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-dialog__close--add-pin">Cancel</button>
+            <button id="btn__pin-chat--add" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dialog Add Quick Reply -->
+      
+      <div class="unf-user-dialog small-dialog dialog-quick-reply">
+        <div class="unf-user-dialog__content p-0">
+          <div class="unf-user-dialog__header mb-16">Add Quick Reply</div>
+          <span class="unf-user-dialog__close dialog-quick-reply__close"></span>
+          <div class="unf-user-dialog__body of-init">
+            <div class="unf-user-input">
+              <label class="unf-user-input__label">Message</label>
+              <div class="unf-user-input__group-btn">
+                <div class="unf-user-input__icon unf-user-input__icon--right">
+                  <input id="input__quick-reply" type="text" class="unf-user-input__control">
+                  <div class="unf-user-input__icon-emoji">
+                    <div class="unf-user-input__emoji">
+                      <div class="card unf-user-input__emoji-container">
+                        <div class="unf-user-input__emoji-content">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="unf-user-input__info">
+                <span class="unf-user-input__info-msg"></span>
+              </div>
+            </div>
+          </div>
+          <div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary dialog-quick-reply__close">Cancel</button>
+            <button id="btn__quick-reply--save" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dialog Edit Quick Reply -->
+      
+      <div class="unf-user-dialog small-dialog dialog-quick-reply dialog-quick-reply--edit">
+        <div class="unf-user-dialog__content p-0">
+          <div class="unf-user-dialog__header mb-16">Edit Quick Reply</div>
+          <span class="unf-user-dialog__close dialog-quick-reply__close"></span>
+          <div class="unf-user-dialog__body of-init">
+            <div class="unf-user-input">
+              <label class="unf-user-input__label">Message</label>
+              <div class="unf-user-input__group-btn">
+                <div class="unf-user-input__icon unf-user-input__icon--right">
+                  <input id="input__quick-reply--edit" type="text" class="unf-user-input__control">
+                  <div class="unf-user-input__icon-emoji">
+                    <div class="unf-user-input__emoji">
+                      <div class="card unf-user-input__emoji-container">
+                        <div class="unf-user-input__emoji-content">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="unf-user-input__info">
+                <span class="unf-user-input__info-msg"></span>
+              </div>
+            </div>
+          </div>
+          <div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary dialog-quick-reply__close">Cancel</button>
+            <button id="btn__quick-reply--save-edit" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dialog Ban User -->
+      
+      <div class="unf-user-dialog small-dialog dialog-banned-user">
+        <div class="unf-user-dialog__content p-0">
+          <div class="unf-user-dialog__header mb-16">Ban User</div>
+          <span class="unf-user-dialog__close dialog-banned-user__close"></span>
+          <div class="unf-user-dialog__body dialog-banned-user__body">
+            <div class="unf-user-input dialog-banned-user__input">
+              <div class="unf-user-input__group-btn">
+                <input type="text" id="input__banned-user" class="unf-user-input__control" name="description" placeholder="Search Name or User ID">
+                <button id="btn__banned-user--search" class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary icon-search"></button>
+              </div>
+            </div>
+            <div class="dialog-banned-user__search">
+              <div class="dialog-banned-user__search-empty">
+                <img class="empty-img" src="./assets/img/empty-state-search.png" alt="" srcset="">
+                <span class="empty-input"></span>
+              </div>
+              <div class="dialog-banned-user__search-result">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dialog Confirmation -->
+      
+      <div class="unf-user-dialog unf-user-dialog--delete-pin-chat confirmation-dialog">
+        <div class="unf-user-dialog__content">
+          <div class="unf-user-dialog__title"></div>
+          <p class="unf-user-dialog__description"></p>
+          <div class="unf-user-dialog__action">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary"></button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="unf-user-toaster">
+      <div class="unf-user-toaster__body">
+        <span id="unf-user-toaster__message"></span>
+      </div>
+    </div>
+
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/plugins/scrollBar/scrollBar.js"></script>
+  <script src="./assets/js/lang.js"></script>
+  <script src="./assets/js/unify.js"></script>
+  <script src="./assets/js/interaction.js"></script>
+  <!-- <script src="./assets/js/dummy.js"></script> -->
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/live-chat.js"></script>
+  <script src="./assets/js/template-chat.js"></script>
+  <script src="./assets/js/pin-chat.js"></script>
+  <script src="./assets/js/quick-reply.js"></script>
+  <script src="./assets/js/banned-user.js"></script>
+
+  <script>
+    // $(document).ready(function () {
+    //   initCustomSelect();
+    // })
+  </script>
+</body>
+</html>

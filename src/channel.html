@@ -11,12 +11,6 @@
   <link rel="stylesheet" href="./assets/plugins/scrollBar/scrollBar.css">
   <link rel="stylesheet" href="./assets/css/unify.css">
   <link rel="stylesheet" href="./assets/css/master.css">
-
-  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="./assets/plugins/scrollBar/scrollBar.js"></script>
-  <script src="./assets/js/unify.js"></script>
-  <script src="./assets/js/script.js"></script>
-  <script src="./assets/js/dummy.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -51,14 +45,16 @@
             <div class="header__top navbar">
               <div class="navbar__left">
                 <div class="navbar__menu">
-                  <div class="navbar__menu-bar"></div>
-                  <div class="navbar__menu-bar"></div>
-                  <div class="navbar__menu-bar"></div>
-                </div>
+                  <div class="navbar__menu-container">
+                    <div class="navbar__menu-bar"></div>
+                    <div class="navbar__menu-bar"></div>
+                    <div class="navbar__menu-bar"></div>
+                  </div>
+                </div> 
                 <h2 class="navbar__title">Channel</h2>
               </div> 
               <div class="navbar__right">
-                <div class="unf-user-btn group-chat__btn--create">Create Group Chat</div>
+                <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Create Group Chat</div>
                 <div class="navbar__profile">
                   <span class="navbar__profile-img" style="background-image: url('./assets/img/profile.png')"></span>
                   <h3 class="navbar__profile-name">Ichsan Indra Wahyudi</h3>
@@ -70,167 +66,151 @@
               <div class="breadcrumb">
                 <h2 class="breadcrumb__title">Channel</h2>
               </div>
-              <div class="unf-user-btn group-chat__btn--create">Create Group Chat</div>
+              <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Create Group Chat</div>
             </div>
           </div>
           <div class="container">
-            <!-- <div class="content channel">
-              <div class="channel__header">
-                <div class="channel__header-title">
-                  Active Channel
-                </div>
-                <div class="channel__header-sorting">
-                  <h6 class="sorting-title">Sort</h6>
-                  <div class="sorting-option">
-                    <select name="" id="">
-                      <option value="">created date</option>
-                      <option value="">updated date</option>
-                      <option value="">name</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="channel__list">
-                <table cellspacing="0" cellpadding="0">
-                  <thead>
-                    <tr>
-                      <td>ID</td>
-                      <td>Group Chat</td>
-                      <td>Status</td>
-                      <td>Action</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="channel__list-num">
-                        <h6 class="list-num__id">ID 201</h6>
-                        <span class="list-num__url">(URL budCuv)</span>
-                      </td>
-                      <td class="channel__list-gc">
-                        <div class="list-gc">
-                          <img class="list-gc__photo" src="./assets/img/gc1.jpg" alt="">
-                          <div class="list-gc__text">
-                            <h3 class="list-gc__text-title">2018 FIFA World Cup</h3>
-                            <p class="list-gc__text-desc">Hai para pecinta sepak bola, Ramaikan piala dunia 2018 bersama Tokopedia! Ikuti quiznya dan menangkan Tokocash senilai
-                            jutaan rupiah. Buruan, jangan sampai kelewatan!</p>
-                            <p class="list-gc__text-moderator">Moderator: <span>Darius Sinathrya</span></p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="channel__list-status">
-                        <select name="" id="">
-                          <option value="">Active</option>
-                          <option value="">Inactive</option>
-                        </select>
-                      </td>
-                      <td class="channel__list-action">
-                        <div class="list-action">
-                          <div class="list-action__set">
-                            <a class="set-btn set-btn__ads">Set Ads</a>
-                            <a class="set-btn set-btn__official">Set Official</a>
-                            <a class="set-btn set-btn__flashsale">Set Flashsale</a>
-                            <a class="set-btn set-btn__rewards">Set Rewards</a>
-                            <a class="set-btn set-btn__polling">Set Polling</a>
-                            <a class="set-btn set-btn__room">Set Room</a>
-                          </div>
-                          <div class="list-action__btn">
-                            <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--chat"><span>chat</span></a>
-                            <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit"><span>edit</span></a>
-                            <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--preview"><span>preview</span></a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div> -->
+
           </div>
         </div>
       </div> 
 
       <div class="unf-user-overlay unf-user-overlay--desktop"></div>
 
-      <div class="unf-user-dialog unf-user-dialog--create-gc create-gc">
+      <!-- Dialog Deactive Channel -->
+
+      <div class="unf-user-dialog unf-user-dialog--deactive-channel confirmation-dialog">
         <div class="unf-user-dialog__content">
-          <div class="unf-user-dialog__title">Create Group Chat</div>
-          <span class="unf-user-dialog__close unf-user-dialog__close--create-gc"></span> 
-          <div class="unf-user-dialog__content-input">
-            <div class="unf-user-input create-gc__image">
+          <div class="unf-user-dialog__title">Deactivate Group Chat</div>
+          <p class="unf-user-dialog__description">
+            Do you want to deactive this group chat?
+          </p>
+          <div class="unf-user-dialog__action">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
+            <button id="btn__channel--deactive" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Yes, Deactive</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dialog Activate Channel -->
+      
+      <div class="unf-user-dialog unf-user-dialog--activate-channel confirmation-dialog">
+        <div class="unf-user-dialog__content">
+          <div class="unf-user-dialog__title">Activate Group Chat</div>
+          <p class="unf-user-dialog__description">
+            Do you want to activate this group chat?
+          </p>
+          <div class="unf-user-dialog__action">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
+            <button id="btn__channel--activate" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Yes, Activate</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dialog Archive Channel -->
+      
+      <div class="unf-user-dialog unf-user-dialog--archive-channel confirmation-dialog">
+        <div class="unf-user-dialog__content">
+          <div class="unf-user-dialog__title">Archive Group Chat</div>
+          <p class="unf-user-dialog__description">
+            Do you want to archive this group chat?
+          </p>
+          <div class="unf-user-dialog__action">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
+            <button id="btn__channel--archive" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Yes, Archive</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dialog Create Channel -->
+
+      <div class="unf-user-dialog unf-user-dialog--create-channel create-channel">
+        <div class="unf-user-dialog__content p-0">
+          <div class="unf-user-dialog__header">Create Group Chat</div>
+          <span class="unf-user-dialog__close unf-user-dialog__close--create-channel"></span> 
+          <div class="unf-user-dialog__body customScrollBar customScrollBar--y customScrollBar--create-channel">
+            <div class="unf-user-input create-channel__image">
               <label class="unf-user-input__label">Cover Image</label>
               <div class="unf-user-input__control unf-user-input__control--image">
-                <input id="cover-img" type="file" accept=".jpg,.jpeg,.png">
-                <div class="unf-user-input__image-container hide">
-                  <img id="img-ktp" class="user-input__image-file">
-                  <!-- <label class="unf-user-input__image-name"></label> -->
-                  <!-- <span id="change-ktp" class="unf-user-input__image-change"></span> -->
+                <input id="input__channel--cover" type="file" accept=".jpg,.jpeg,.png">
+                <div class="unf-user-input__image-container unf-user-input__image-container--full hide">
+                  <img id="img__channel--cover" class="unf-user-input__image-file">
+                  <div class="unf-user-input__image-action">
+                    <span id="change__channel--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
+                    <span id="delete__channel--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
+                  </div> 
                 </div>
-                <div id="upload-ktp" class="unf-user-input__image-upload">
-                  <span></span>
+                <div id="upload__channel--cover" class="unf-user-input__image-upload">
+                  <span class="unf-user-input__image-upload-text unf-user-input__image-upload-text--column">Add Image</span>
                 </div>
               </div>
             </div>    
             <div class="unf-user-input">
               <label class="unf-user-input__label">Group Chat Name</label>
-              <input type="text" class="unf-user-input__control" name="gc-name">
+              <input type="text" id="input__channel--name" class="unf-user-input__control" name="channel-name" maxlength="70">
               <div class="unf-user-input__info">
                 <span></span>
-                <span>0/70</span>
+                <span class="unf-user-input__info-counter">0/70</span>
               </div>
             </div>
             <div class="unf-user-input">
               <label class="unf-user-input__label">Description</label>
-              <textarea type="text" class="unf-user-input__control create-gc__input-textarea" name="description"></textarea>
+              <textarea type="text" id="input__channel--desc" class="unf-user-input__control create-channel__input-textarea" name="channel-desc" maxlength="1000" rows="3"></textarea>
               <div class="unf-user-input__info">
                 <span></span>
-                <span>0/1000</span>
+                <span class="unf-user-input__info-counter">0/1000</span>
               </div>
             </div>
-            <h6 class="create-gc__moderator-label">Moderator</h6>
-            <div class="unf-user-input">
+            <h6 class="create-channel__moderator-label">Moderator</h6>
+            <div class="unf-user-input unf-user-input--moderator-email">
               <label class="unf-user-input__label">Moderator Email</label>
               <div class="unf-user-input__group-btn">
-                <input type="text" class="unf-user-input__control" name="description">
-                <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary">Check</button>
+                <div class="unf-user-input__icon unf-user-input__icon--right">
+                  <input type="text" id="input__channel--moderator-email" class="unf-user-input__control" name="description">
+                </div>    
+                <button id="btn__channel--moderator-email" class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary">Check</button>
               </div>
               <div class="unf-user-input__info">
-                <span>Please enter your email accounts in Tokopedia</span>
+                <span class="unf-user-input__info-msg">Please enter your email accounts in Tokopedia</span>
               </div>
-              <div class="create-gc__moderator">
-                <img class="create-gc__moderator-pic" src="./assets/img/moderator.jpg" alt="" srcset="">
-                <div>
+            </div>
+            <div class="create-channel__moderator">
+              <img class="create-channel__moderator-pic" src="./assets/img/moderator.jpg" alt="" srcset="">
+              <div>
+                <div class="unf-user-input">
+                  <input id="input__channel--moderator-name" type="text" class="unf-user-input__control" name="moderator-name"
+                    value="Ichsan Indra Wahyudi">
+                </div>
+                <div class="create-channel__moderator-input">
                   <div class="unf-user-input">
-                    <input type="text" class="unf-user-input__control" name="moderator-name">
+                    <label class="unf-user-input__label">User ID</label>
+                    <input type="text" class="unf-user-input__control" name="moderator-Id" disabled value="1234567890">
                   </div>
-                  <div class="create-gc__moderator-input">
-                    <div class="unf-user-input">
-                      <label class="unf-user-input__label">User ID</label>
-                      <input type="text" class="unf-user-input__control" name="moderator-Id" disabled>
-                    </div>
-                    <div class="unf-user-input">
-                      <label class="unf-user-input__label">Profile URL</label>
-                      <input type="text" class="unf-user-input__control" name="moderator-profileUrl" disabled>
-                    </div>
+                  <div class="unf-user-input">
+                    <label class="unf-user-input__label">Profile URL</label>
+                    <input type="text" class="unf-user-input__control" name="moderator-profileUrl" disabled value="http://www.tokopedia.com/ichsanindrawahyudi">
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="unf-user-dialog__action create-gc__btn">
-            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-dialog__close--create-gc">Cancel</button>
-            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
+          <div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-dialog__close--create-channel">Cancel</button>
+            <button id="btn__channel--create" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
           </div>
         </div>
       </div>
 
-      <div class="unf-user-dialog unf-user-dialog--preview-gc preview-gc">
+      <!-- Dialog Preview Channel -->
+
+      <div class="unf-user-dialog unf-user-dialog--preview-channel preview-channel">
         <div class="unf-user-dialog__content p-0">
-          <div class="unf-user-dialog__title">Group Chat Preview</div>
-          <span class="unf-user-dialog__close unf-user-dialog__close--create-gc"></span>
+          <div class="unf-user-dialog__header unf-user-dialog__header-shadow">Group Chat Preview</div>
+          <span class="unf-user-dialog__close" onclick="handleDialogClose()"></span>
           <div class="d-flex">
 
-            <div class="preview-gc__detail customScrollBar hiddenScroll"> 
-              <div class="preview-gc__detail-list">
+            <div class="preview-channel__detail customScrollBar customScrollBar--y"> 
+              <div class="preview-channel__detail-list">
                 <div class="preview-detail">
                   <label class="preview-detail__column-left preview-detail__label">Group Chat ID</label>
                   <div class="preview-detail__column-right">
@@ -271,7 +251,7 @@
                   </div>
                 </div>
               </div>
-              <div class="preview-gc__detail-status">
+              <div class="preview-channel__detail-status">
                 <div class="preview-detail">
                   <label class="preview-detail__column-left preview-detail__label">Status</label>
                   <div class="preview-detail__column-right">
@@ -281,35 +261,35 @@
               </div>
             </div>
 
-            <div class="preview-gc__options preview-options">
-              <input type="radio" name="tab-options" id="tab-ads" checked>
-              <input type="radio" name="tab-options" id="tab-official">
-              <input type="radio" name="tab-options" id="tab-flashsale">
-              <input type="radio" name="tab-options" id="tab-rewards">
-              <input type="radio" name="tab-options" id="tab-polling">
-              <input type="radio" name="tab-options" id="tab-room">
-              <ul class="preview-options__tab">
-                <li class="preview-options__tab-item">
-                  <label class="label-tab-item" for="tab-ads">Ads</label>
+            <div class="preview-channel__options preview-options tab-options">
+              <input type="radio" name="preview-options" class="tab-list" id="tab-ads" checked>
+              <input type="radio" name="preview-options" class="tab-list" id="tab-official">
+              <input type="radio" name="preview-options" class="tab-list" id="tab-flashsale">
+              <input type="radio" name="preview-options" class="tab-list" id="tab-rewards">
+              <input type="radio" name="preview-options" class="tab-list" id="tab-polling">
+              <input type="radio" name="preview-options" class="tab-list" id="tab-room">
+              <ul class="tab-options__container preview-options__tab">
+                <li class="tab-options__item">
+                  <label class="tab-options__item-label" for="tab-ads">Ads</label>
                 </li>
-                <li class="preview-options__tab-item">
-                  <label class="label-tab-item" for="tab-official">Official</label>
+                <li class="tab-options__item">
+                  <label class="tab-options__item-label" for="tab-official">Official</label>
                 </li>
-                <li class="preview-options__tab-item">
-                  <label class="label-tab-item" for="tab-flashsale">Flashsale</label>
+                <li class="tab-options__item">
+                  <label class="tab-options__item-label" for="tab-flashsale">Flashsale</label>
                 </li>
-                <li class="preview-options__tab-item">
-                  <label class="label-tab-item" for="tab-rewards">Rewards</label>
+                <li class="tab-options__item">
+                  <label class="tab-options__item-label" for="tab-rewards">Rewards</label>
                 </li>
-                <li class="preview-options__tab-item">
-                  <label class="label-tab-item" for="tab-polling">Polling</label>
+                <li class="tab-options__item">
+                  <label class="tab-options__item-label" for="tab-polling">Polling</label>
                 </li>
-                <li class="preview-options__tab-item">
-                  <label class="label-tab-item" for="tab-room">Room</label>
+                <li class="tab-options__item">
+                  <label class="tab-options__item-label" for="tab-room">Room</label>
                 </li>
-                <span id="preview-options__tab-indicator" class="preview-options__tab-indicator"></span>
+                <span id="preview-options__tab-indicator" class="tab-options__indicator"></span>
               </ul>
-              <div class="preview-options__content">
+              <div class="tab-options__content preview-options__content customScrollBar customScrollBar--y">
 
                 <!-- Ads -->
                 <section class="section-content">
@@ -317,7 +297,7 @@
                     <h6 class="section-content__header-title">Active Ads</h6>
                     <a class="section-content__header-setting"></a>
                   </div>
-                  <div class="section-content__detail">
+                  <div class="card section-content__detail">
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Ads ID</label>
                       <div class="preview-detail__column-right">
@@ -351,7 +331,7 @@
                     <h6 class="section-content__header-title">Official Partner</h6>
                     <a class="section-content__header-setting"></a>
                   </div>
-                  <div class="section-content__detail">
+                  <div class="card section-content__detail">
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Brand ID</label>
                       <div class="preview-detail__column-right">
@@ -385,7 +365,7 @@
                     <h6 class="section-content__header-title">Active Flashsale</h6>
                     <a class="section-content__header-setting"></a>
                   </div>
-                  <div class="section-content__detail">
+                  <div class="card section-content__detail">
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Flashsale ID</label>
                       <div class="preview-detail__column-right">
@@ -401,7 +381,14 @@
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Time</label>
                       <div class="preview-detail__column-right">
-                        <p class="preview-detail__text">Seagate Back Up Slim 1TB USB 3.0.2.5 Putih + Gratis Pouch</p>
+                        <div class="preview-detail__time">
+                          <label class="preview-detail__label">Start</label>
+                          <p class="preview-detail__text">23 July 2018, 18.00 WIB</p>
+                        </div>
+                        <div class="preview-detail__time">
+                          <label class="preview-detail__label">End</label>
+                          <p class="preview-detail__text">23 July 2018, 18.00 WIB</p>
+                        </div>
                       </div>
                     </div>
                     <div class="preview-detail">
@@ -419,15 +406,15 @@
                     <h6 class="section-content__header-title">Active Rewards</h6>
                     <a class="section-content__header-setting"></a>
                   </div>
-                  <div class="section-content__detail">
+                  <div class="card section-content__detail">
                     <div class="preview-detail">
-                      <label class="preview-detail__column-left preview-detail__label">Flashsale ID</label>
+                      <label class="preview-detail__column-left preview-detail__label">Rewards ID</label>
                       <div class="preview-detail__column-right">
                         <p class="preview-detail__text">001</p>
                       </div>
                     </div>
                     <div class="preview-detail">
-                      <label class="preview-detail__column-left preview-detail__label">Flashsale Title</label>
+                      <label class="preview-detail__column-left preview-detail__label">Rewards Title</label>
                       <div class="preview-detail__column-right">
                         <p class="preview-detail__text">Tokopoints 10</p>
                       </div>
@@ -441,29 +428,125 @@
                     <h6 class="section-content__header-title">Active Poll</h6>
                     <a class="section-content__header-setting"></a>
                   </div>
-                  <div class="section-content__detail">
+                  <div class="card section-content__detail">
                     <div class="preview-detail">
-                      <label class="preview-detail__column-left preview-detail__label">Flashsale ID</label>
+                      <label class="preview-detail__column-left preview-detail__label">Polling ID</label>
                       <div class="preview-detail__column-right">
                         <p class="preview-detail__text">001</p>
                       </div>
                     </div>
                     <div class="preview-detail">
-                      <label class="preview-detail__column-left preview-detail__label">Flashsale Title</label>
+                      <label class="preview-detail__column-left preview-detail__label">Polling Title</label>
                       <div class="preview-detail__column-right">
-                        <p class="preview-detail__text">Flashsale 23 July 2018</p>
+                        <p class="preview-detail__text">Polling 1</p>
                       </div>
                     </div>
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Time</label>
                       <div class="preview-detail__column-right">
-                        <p class="preview-detail__text">Seagate Back Up Slim 1TB USB 3.0.2.5 Putih + Gratis Pouch</p>
+                        <div class="preview-detail__time">
+                          <label class="preview-detail__label">Start</label>
+                          <p class="preview-detail__text">23 July 2018, 18.00 WIB</p>
+                        </div>
+                        <div class="preview-detail__time">
+                          <label class="preview-detail__label">End</label>
+                          <p class="preview-detail__text">23 July 2018, 18.00 WIB</p>
+                        </div>
                       </div>
                     </div>
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Product</label>
                       <div class="preview-detail__column-right">
-                        <p class="preview-detail__text">Seagate Back Up Slim 1TB USB 3.0.2.5 Putih + Gratis Pouch</p>
+                        <p class="preview-detail__text">Active | Gift | Image</p>
+                        <!-- <p class="preview-detail__text preview-detail__text-product">Active</p>
+                        <p class="preview-detail__text preview-detail__text-product">Gift</p>
+                        <p class="preview-detail__text preview-detail__text-product">Image</p> -->
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Winner Info</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">-</p>
+                      </div>
+                    </div>
+                    <hr class="preview-detail-separator">
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Question</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">Siapa pemain MVP tahun ini</p>
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Option 1</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">Christian Ronaldo</p>
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Options 2</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">Lionel Messi</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card section-content__detail">
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Polling ID</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">001</p>
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Polling Title</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">Polling 1</p>
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Time</label>
+                      <div class="preview-detail__column-right">
+                        <div class="preview-detail__time">
+                          <label class="preview-detail__label">Start</label>
+                          <p class="preview-detail__text">23 July 2018, 18.00 WIB</p>
+                        </div>
+                        <div class="preview-detail__time">
+                          <label class="preview-detail__label">End</label>
+                          <p class="preview-detail__text">23 July 2018, 18.00 WIB</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Product</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">Active | Gift | Image</p>
+                        <!-- <p class="preview-detail__text preview-detail__text-product">Active</p>
+                        <p class="preview-detail__text preview-detail__text-product">Gift</p>
+                        <p class="preview-detail__text preview-detail__text-product">Image</p> -->
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Winner Info</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">-</p>
+                      </div>
+                    </div>
+                    <hr class="preview-detail-separator">
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Question</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">Siapa pemain MVP tahun ini</p>
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Option 1</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">Christian Ronaldo</p>
+                      </div>
+                    </div>
+                    <div class="preview-detail">
+                      <label class="preview-detail__column-left preview-detail__label">Options 2</label>
+                      <div class="preview-detail__column-right">
+                        <p class="preview-detail__text">Lionel Messi</p>
                       </div>
                     </div>
                   </div>
@@ -475,7 +558,7 @@
                     <h6 class="section-content__header-title">Active Room</h6>
                     <a class="section-content__header-setting"></a>
                   </div>
-                  <div class="section-content__detail">
+                  <div class="card section-content__detail">
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Room ID</label>
                       <div class="preview-detail__column-right">
@@ -489,7 +572,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="section-content__detail">
+                  <div class="card section-content__detail">
                     <div class="preview-detail">
                       <label class="preview-detail__column-left preview-detail__label">Room ID</label>
                       <div class="preview-detail__column-right">
@@ -508,11 +591,26 @@
             </div>
 
           </div>
-          <div class="unf-user-dialog__action preview-gc__btn">
-            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary">Close</button>
+          <div class="unf-user-dialog__action preview-channel__btn">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Close</button>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="unf-user-toaster">
+      <div class="unf-user-toaster__body">
+        <span id="unf-user-toaster__message"></span>
+      </div>
+    </div>
+
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/plugins/scrollBar/scrollBar.js"></script>
+  <script src="./assets/js/lang.js"></script>
+  <script src="./assets/js/unify.js"></script>
+  <script src="./assets/js/interaction.js"></script>
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/channel-dummy.js"></script>
+  <script src="./assets/js/channel.js"></script>
 </body>
 </html>
