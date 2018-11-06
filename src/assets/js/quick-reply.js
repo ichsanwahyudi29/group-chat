@@ -36,7 +36,7 @@ function loopDataQuickReply() {
               </select>
             </div>
             <div class="list-action__btn">
-              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit" onclik="editQuickReply()"><span>edit</span></a>
+              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit" onclick="editQuickReply(${data.id})"><span>edit</span></a>
               <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--delete" onclick="deleteQuickReply(${data.id})"><span>delete</span></a>
             </div>
           </div>
@@ -46,6 +46,8 @@ function loopDataQuickReply() {
 
     $('.quick-reply .table__list tbody').append(listQuickReply);
   }
+
+  initCustomSelect()
 }
 
 $(function handleCloseAddQuickReply() {
@@ -61,6 +63,7 @@ $(function onClickAddQuickReply() {
   $('#btn__quick-reply--add').on({
     click: function() {
       handleDialogOpen($('.dialog-quick-reply'));
+      $('.dialog-quick-reply .unf-user-dialog__header').text('Add Quick Reply')
     },
   });
 });
@@ -83,6 +86,11 @@ $(function onInputQuickReply() {
         $('#btn__quick-reply--save').attr('disabled', true);
       }
     },
+    keypress: function (e) {
+      if (e.which === 13) {
+        handleEditQuickReply()
+      }
+    },
   });
 });
 
@@ -93,6 +101,34 @@ function handleDeleteQuickReply(id) {
 function resetValueQuickReply() {
   $('#input__quick-reply').val('');
   $('#btn__quick-reply--save').attr('disabled', true);
+}
+
+function editQuickReply(id) {
+  handleDialogOpen($('.dialog-quick-reply'));
+  $('.dialog-quick-reply .unf-user-dialog__header').text('Edit Quick Reply')
+  for (const data of dataQuickReply) {
+    if(data.id === id){
+      $('#input__quick-reply').val(data.message)
+      $('#btn__quick-reply--save').attr('disabled', false);
+      $('#btn__quick-reply--save').attr('onclick', `handleEditQuickReply(${id})`);
+    }
+  }
+}
+
+function handleEditQuickReply(id) {
+  var val = $('#input__quick-reply').val()
+  updateDataQuickReply(id, 'message', val)
+}
+
+function updateDataQuickReply(id, state, newValue) {
+  for (const data of dataQuickReply) {
+    if (data.id == id) {
+      data[state] = newValue
+      break
+    }
+  }
+  handleDialogClose()
+  loopDataQuickReply()
 }
 
 function deleteQuickReply(id) {

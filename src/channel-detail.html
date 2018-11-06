@@ -630,6 +630,40 @@
         </div>
       </div>
 
+      <!-- Dialog Edit Quick Reply -->
+      
+      <div class="unf-user-dialog small-dialog dialog-quick-reply dialog-quick-reply--edit">
+        <div class="unf-user-dialog__content p-0">
+          <div class="unf-user-dialog__header mb-16">Edit Quick Reply</div>
+          <span class="unf-user-dialog__close dialog-quick-reply__close"></span>
+          <div class="unf-user-dialog__body of-init">
+            <div class="unf-user-input">
+              <label class="unf-user-input__label">Message</label>
+              <div class="unf-user-input__group-btn">
+                <div class="unf-user-input__icon unf-user-input__icon--right">
+                  <input id="input__quick-reply--edit" type="text" class="unf-user-input__control">
+                  <div class="unf-user-input__icon-emoji">
+                    <div class="unf-user-input__emoji">
+                      <div class="card unf-user-input__emoji-container">
+                        <div class="unf-user-input__emoji-content">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="unf-user-input__info">
+                <span class="unf-user-input__info-msg"></span>
+              </div>
+            </div>
+          </div>
+          <div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary dialog-quick-reply__close">Cancel</button>
+            <button id="btn__quick-reply--save-edit" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
+          </div>
+        </div>
+      </div>
+
       <!-- Dialog Ban User -->
       
       <div class="unf-user-dialog small-dialog dialog-banned-user">
@@ -689,8 +723,10 @@
   <script src="./assets/js/quick-reply.js"></script>
   <script src="./assets/js/banned-user.js"></script>
 
-  <!-- <script>
-    initCustomSelect();
-  </script> -->
+  <script>
+    // $(document).ready(function () {
+    //   initCustomSelect();
+    // })
+  </script>
 </body>
 </html>
