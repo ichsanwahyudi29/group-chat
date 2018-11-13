@@ -1,12 +1,13 @@
 var dialogModule = (function() {
     var param = {
         title: '',
-        children: null,
+        children: '',
         close: true,
         btnTextPrimary: 'Cancel',
         btnTextSecondary: 'Continue',
-        handleClickPrimary: null,
-        handleClickSecondary: handleDialogClose
+        handleClickPrimary: () => {},
+        handleClickSecondary: handleDialogClose,
+        action: '#',
     }
 
     function renderChildren(children) {
@@ -19,7 +20,8 @@ var dialogModule = (function() {
             param = $.extend(param, newParam);
 
             var templateDialog = 
-                `<div class="unf-user-dialog__content d-inline">
+                `<form action=${param.action}>
+                <div class="unf-user-dialog__content d-inline">
                 <div class="unf-user-dialog__title">${param.title}</div>
                 ${param.close ? '<span class="unf-user-dialog__close" onclick="handleDialogClose()"></span>' : ''}
                 <div class="unf-user-dialog__body">${renderChildren(param.children)}</div> 
@@ -31,7 +33,8 @@ var dialogModule = (function() {
                         ${param.btnTextPrimary}
                     </button>
                 </div>
-                </div>`;
+                </div>
+                </form>`;
                 
             handleDialogOpen('.js__template-dialog', function() {
                 $('.js__template-dialog')
@@ -48,23 +51,3 @@ var dialogModule = (function() {
         }
     }
 })();
-
-function deleteTemplateChatDialog() {
-    dialogModule.renderDialog({
-        title: 'Delete Template Chat',
-        children: $('.js__child-dialog-delete-template-chat'),
-        close: false,
-        btnTextPrimary: 'Yes, Delete',
-        handleClickPrimary: function() {handleDialogClose();}
-    });
-}
-
-function autoSendActivationDialog() {
-    dialogModule.renderDialog({
-        title: 'Auto-Send Activation',
-        children: $('.js__child-dialog-auto-send-template-chat'),
-        close: true,
-        btnTextPrimary: 'Save',
-        handleClickPrimary: function() {handleDialogClose();}
-    });
-}

@@ -35,9 +35,21 @@ $(function onClickDeleteTemplateChat() {
 });
 
 function deleteTemplateChat(e) {
-  deleteTemplateChatDialog();
+  dialogModule.renderDialog({
+    title: 'Delete Template Chat',
+    children: $('.js__child-dialog-delete-template-chat'),
+    close: false,
+    btnTextPrimary: 'Yes, Delete',
+    handleClickPrimary: function() {handleDialogClose();}
+  });
 }
 
 function autoSendTemplateChat(e) {
-  autoSendActivationDialog();
+  dialogModule.renderDialog({
+    title: 'Auto-Send Activation',
+    children: $('.js__child-dialog-auto-send-template-chat'),
+    close: true,
+    btnTextPrimary: 'Save',
+    handleClickPrimary: function() {handleDialogClose();}
+  });
 }
