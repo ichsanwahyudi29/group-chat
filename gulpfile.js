@@ -15,7 +15,7 @@ replace = require('gulp-replace');
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
-      baseDir: '../',
+      baseDir: './',
     },
     port: 3000,
   });

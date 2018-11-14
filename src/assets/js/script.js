@@ -72,13 +72,12 @@ function initCustomSelect() {
     $listItems.click(function(e) {
       e.stopPropagation();
       $this.val($(this).attr('rel'));
-
-      if (status === 'channel__status-select') {
+      // if (status === 'channel__status-select') {
         if ($selectedVal !== $this.val()) {
           $this.change();
           return;
         }
-      }
+      // }
 
       $styledSelect
         .removeClass('unf-user-select__selected--open')
