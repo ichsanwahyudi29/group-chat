@@ -1867,6 +1867,28 @@ html, body {
     .dialog-banned-user__search--result .dialog-banned-user__search-result {
       display: block; }
 
+.auto-send-list {
+  display: block;
+  list-style-type: none;
+  margin: 24px 0 40px 0; }
+  .auto-send-list__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: 24px; }
+  .auto-send-list__text {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.54);
+    line-height: normal;
+    margin-right: 24px; }
+  .auto-send-list__select {
+    display: block;
+    width: 136px;
+    text-align: left; }
+
 .live-chat {
   padding: 0px 0px 24px;
   margin-bottom: 0; }
