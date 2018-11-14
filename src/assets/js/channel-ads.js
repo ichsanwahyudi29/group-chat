@@ -221,6 +221,9 @@ $(function onClickResetValueAds() {
 });
 
 function resetInputValueAds() {
+    isTitle =  false;
+    isImg = false;
+    isLink = false;
 	// reset input
 	$('#input__ads--title').val('');
 	$('#input__ads--link').val('');
@@ -228,6 +231,7 @@ function resetInputValueAds() {
 	// reset img
 	resetInputImageAds()
     handleDialogClose();
+    handleCheckInputAds();
 }
 
 function resetInputImageAds() {
@@ -235,7 +239,6 @@ function resetInputImageAds() {
 	$('.unf-user-input__image-container').addClass('hide');
 	$('#img__ads--cover').removeAttr('src');
     $('#input__ads--cover').val('');
-    handleCheckInputAds();
   }
 
 function handleCheckInputAds() {
@@ -277,28 +280,32 @@ $(function clickSaveAds(){
     $('#btn__ads--create').on({
         click: function(){
             var $this = $(this)
-            var id = parseInt($this.attr('data-id'))
+            var id = $this.attr('data-id')
+            console.log(id)
             if(id === undefined){
                 // Add
                 var newData = {}
                 newData.id = dataAds.length + 1,
                 newData.url = $('#input__ads--link').val()
                 newData.status = 0
-                newData.img = ''
+                newData.img = $('#img__ads--cover').attr('src')
                 newData.name = $('#input__ads--title').val()
 
-                dataAds.push(newData)
+                dataAds.unshift(newData)
             }
             else{
+                // Edit
                 dataAds.map(item => {
-                    if(item.id === id){
+                    if(item.id === parseInt(id)){
                         item.name = $('#input__ads--title').val()
                         item.url = $('#input__ads--link').val()
+                        item.img = $('#img__ads--cover').attr('src')
                     }
                 })
             }
             initData();
             handleDialogClose();
+            resetInputValueAds();
         }
     })
 })
@@ -308,6 +315,22 @@ function clickDeleteAds(id) {
     handleDialogOpen($('.unf-user-dialog--delete-ads'));
     $('#btn__ads--delete').attr('data-id', id)
 }
+
+$(function deleleAds(){
+    $('#btn__ads--delete').on({
+        click: function(){
+            var $this = $(this)
+            var id = parseInt($this.attr('data-id'))
+            dataAds.map((item, index) => {
+                if(item.id === id){
+                    dataAds.splice(index, 1)
+                }
+            })
+            initData();
+            handleDialogClose();
+        }
+    })
+})
 
 // Ads Status
 $(function onClickActivateAds() {
