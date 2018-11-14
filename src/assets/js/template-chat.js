@@ -35,5 +35,9 @@ $(function onClickDeleteTemplateChat() {
 });
 
 function deleteTemplateChat(e) {
-  handleDialogOpen($('.unf-user-dialog--delete-template-chat'));
+  deleteTemplateChatDialog();
+}
+
+function autoSendTemplateChat(e) {
+  autoSendActivationDialog();
 }
