@@ -11,6 +11,23 @@
   <link rel="stylesheet" href="./assets/plugins/scrollBar/scrollBar.css">
   <link rel="stylesheet" href="./assets/css/unify.css">
   <link rel="stylesheet" href="./assets/css/master.css">
+  <style>
+    .ta-center {
+      text-align: center;
+    }
+
+    .d-inline {
+      display: inline-block;
+    }
+
+    .pl-32 {
+      padding-left: 32px;
+    }
+
+    .pr-32 {
+      padding-right: 32px;
+    }
+  </style>
 </head>
 <body>
     <div class="wrapper">
@@ -115,7 +132,7 @@
                               <div class="template-chat__auto-send">
                                 <label class="template-chat__auto-send-label">Auto-Send</label>
                                 <div class="unf-user-toggle">
-                                  <input type="checkbox" class="unf-user-toggle__checkbox" id="testcheck">
+                                  <input type="checkbox" class="unf-user-toggle__checkbox" id="testcheck" onclick="autoSendTemplateChat(this)">
                                   <label for="testcheck"></label>
                                 </div>
                               </div>
@@ -149,7 +166,7 @@
                               <div class="template-chat__auto-send">
                                 <label class="template-chat__auto-send-label">Auto-Send</label>
                                 <div class="unf-user-toggle">
-                                  <input type="checkbox" class="unf-user-toggle__checkbox" id="testcheck">
+                                  <input type="checkbox" class="unf-user-toggle__checkbox" id="testcheck" onclick="autoSendTemplateChat(this)">
                                   <label for="testcheck"></label>
                                 </div>
                               </div>
@@ -459,66 +476,157 @@
         </div>
       </div> 
 
-      <div class="unf-user-overlay unf-user-overlay--desktop"></div>
+      <!-- Child Dialog Section -->
 
-      <!-- Dialog Add Template Chat -->
-      
-      <div class="unf-user-dialog unf-user-dialog--add-template-chat small-dialog">
-        <div class="unf-user-dialog__content p-0">
-          <div class="unf-user-dialog__header mb-16">Add Template Chat</div>
-          <span class="unf-user-dialog__close unf-user-dialog__close--add-template"></span>
-          <div class="unf-user-dialog__body">
-            <div class="unf-user-input unf-user-input--radio">
-              <label class="unf-user-input__label">Message type:</label>
-              <div class="d-flex">
-                <label class="unf-user-radio" for="template-chat--text">
-                  <input type="radio" name="template-chat--type" id="template-chat--text" checked>
-                    <span class="unf-user-radio__area"></span>
-                    <span class="unf-user-radio__label">Text</span>
-                </label>
-                <label class="unf-user-radio" for="template-chat--img">
-                  <input type="radio" name="template-chat--type" id="template-chat--img">
-                    <span class="unf-user-radio__area"></span>
-                    <span class="unf-user-radio__label">Image</span>
-                </label>
+      <section>
+        <div class="js__child-dialog-delete-template-chat">
+            <p class="unf-user-dialog__description">Do you want to delete the template?</p>
+        </div>
+
+        <div class="js__child-dialog-auto-send-template-chat">
+          <ul class="auto-send-list">
+            <li class="auto-send-list__item">
+              <span class="auto-send-list__text">This chat template will be sent every</span>
+              <select class="auto-send-list__select">
+                <option value="30">30 Chats</option>
+                <option value="50">40 Chats</option>
+              </select>
+            </li>
+            <li class="auto-send-list__item">
+              <span class="auto-send-list__text">With duration of</span>
+              <select class="auto-send-list__select">
+                <option value="1">1 minutes</option>
+                <option value="2">2 minutes</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Dialog Section -->
+
+      <section>
+        <div class="unf-user-overlay unf-user-overlay--desktop"></div>
+
+        <div class="js__template-dialog unf-user-dialog ta-center"></div>
+
+        <!-- Dialog Add Template Chat -->
+        
+        <div class="unf-user-dialog unf-user-dialog--add-template-chat small-dialog">
+          <div class="unf-user-dialog__content p-0">
+            <div class="unf-user-dialog__header mb-16">Add Template Chat</div>
+            <span class="unf-user-dialog__close unf-user-dialog__close--add-template"></span>
+            <div class="unf-user-dialog__body">
+              <div class="unf-user-input unf-user-input--radio">
+                <label class="unf-user-input__label">Message type:</label>
+                <div class="d-flex">
+                  <label class="unf-user-radio" for="template-chat--text">
+                    <input type="radio" name="template-chat--type" id="template-chat--text" checked>
+                      <span class="unf-user-radio__area"></span>
+                      <span class="unf-user-radio__label">Text</span>
+                  </label>
+                  <label class="unf-user-radio" for="template-chat--img">
+                    <input type="radio" name="template-chat--type" id="template-chat--img">
+                      <span class="unf-user-radio__area"></span>
+                      <span class="unf-user-radio__label">Image</span>
+                  </label>
+                </div>
               </div>
+              <div class="template-chat__type-content">
+                <div class="unf-user-input">
+                  <label class="unf-user-input__label">Message</label>
+                  <textarea type="text" id="input__template-chat--msg" class="unf-user-input__control" name="template-chat--msg"
+                    maxlength="200" rows="3"></textarea>
+                  <div class="unf-user-input__info">
+                    <span></span>
+                    <span class="unf-user-input__info-counter">0/200</span>
+                  </div>
+                </div>
+                <div class="unf-user-input unf-user-input--column">
+                  <label class="unf-user-input__label">Vibrate</label>
+                  <div class="unf-user-toggle">
+                    <input type="checkbox" class="unf-user-toggle__checkbox" id="input__template-chat--vibrate">
+                    <label for="input__template-chat--vibrate"></label>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="template-chat__type-content">
+                <div class="unf-user-input">
+                  <label class="unf-user-input__label">Title</label>
+                  <input id="input__template-chat--title" type="text" class="unf-user-input__control">
+                  <div class="unf-user-input__info"></div>
+                </div>
+                <div class="unf-user-input">
+                  <label class="unf-user-input__label">Image</label>
+                  <div class="unf-user-input__control unf-user-input__control--image">
+                    <input id="input__template-chat--image" type="file" accept=".jpg,.jpeg,.png">
+                    <div class="unf-user-input__image-container hide">
+                      <img id="img__template-chat--image" class="unf-user-input__image-file">
+                      <div class="unf-user-input__image-action">
+                        <span id="change__template-chat--image" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
+                        <span id="delete__template-chat--image" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
+                      </div>
+                    </div>
+                    <div id="upload__template-chat--image" class="unf-user-input__image-upload">
+                      <span class="unf-user-input__image-upload-text">Add Image</span>
+                    </div>
+                  </div>
+                  <div class="unf-user-input__info"></div>
+                </div>
+                <div class="unf-user-input">
+                  <label class="unf-user-input__label">URL</label>
+                  <input id="input__template-chat--url" type="text" class="unf-user-input__control" placeholder="https://www.tokopedia.com">
+                  <div class="unf-user-input__info"></div>
+                </div>
+                <div class="unf-user-input unf-user-input--column">
+                  <label class="unf-user-input__label">Vibrate</label>
+                  <div class="unf-user-toggle">
+                    <input type="checkbox" class="unf-user-toggle__checkbox" id="input__template-chat--vibrate">
+                    <label for="input__template-chat--vibrate"></label>
+                  </div>
+                </div>
+              </div>   -->
             </div>
-            <div class="template-chat__type-content">
+            <div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
+              <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-dialog__close--add-template">Cancel</button>
+              <button id="btn__template-chat--add" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Dialog Add Pin Chat -->
+        
+        <div class="unf-user-dialog unf-user-dialog--add-pin-chat small-dialog">
+          <div class="unf-user-dialog__content p-0">
+            <div class="unf-user-dialog__header mb-16">Add Pin Chat</div>
+            <span class="unf-user-dialog__close unf-user-dialog__close--add-pin"></span>
+            <div class="unf-user-dialog__body">
+              <div class="unf-user-input">
+                <label class="unf-user-input__label">Title</label>
+                <input id="input__pin-chat--title" type="text" class="unf-user-input__control">
+                <div class="unf-user-input__info"></div>
+              </div>
               <div class="unf-user-input">
                 <label class="unf-user-input__label">Message</label>
-                <textarea type="text" id="input__template-chat--msg" class="unf-user-input__control" name="template-chat--msg"
+                <textarea type="text" id="input__pin-chat--msg" class="unf-user-input__control" name="pin-chat--msg"
                   maxlength="200" rows="3"></textarea>
                 <div class="unf-user-input__info">
                   <span></span>
                   <span class="unf-user-input__info-counter">0/200</span>
                 </div>
               </div>
-              <div class="unf-user-input unf-user-input--column">
-                <label class="unf-user-input__label">Vibrate</label>
-                <div class="unf-user-toggle">
-                  <input type="checkbox" class="unf-user-toggle__checkbox" id="input__template-chat--vibrate">
-                  <label for="input__template-chat--vibrate"></label>
-                </div>
-              </div>
-            </div>
-            <!-- <div class="template-chat__type-content">
-              <div class="unf-user-input">
-                <label class="unf-user-input__label">Title</label>
-                <input id="input__template-chat--title" type="text" class="unf-user-input__control">
-                <div class="unf-user-input__info"></div>
-              </div>
               <div class="unf-user-input">
                 <label class="unf-user-input__label">Image</label>
                 <div class="unf-user-input__control unf-user-input__control--image">
-                  <input id="input__template-chat--image" type="file" accept=".jpg,.jpeg,.png">
+                  <input id="input__pin-chat--image" type="file" accept=".jpg,.jpeg,.png">
                   <div class="unf-user-input__image-container hide">
-                    <img id="img__template-chat--image" class="unf-user-input__image-file">
+                    <img id="img__pin-chat--image" class="unf-user-input__image-file">
                     <div class="unf-user-input__image-action">
-                      <span id="change__template-chat--image" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
-                      <span id="delete__template-chat--image" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
+                      <span id="change__pin-chat--image" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
+                      <span id="delete__pin-chat--image" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
                     </div>
                   </div>
-                  <div id="upload__template-chat--image" class="unf-user-input__image-upload">
+                  <div id="upload__pin-chat--image" class="unf-user-input__image-upload">
                     <span class="unf-user-input__image-upload-text">Add Image</span>
                   </div>
                 </div>
@@ -526,182 +634,123 @@
               </div>
               <div class="unf-user-input">
                 <label class="unf-user-input__label">URL</label>
-                <input id="input__template-chat--url" type="text" class="unf-user-input__control" placeholder="https://www.tokopedia.com">
+                <input id="input__pin-chat--url" type="text" class="unf-user-input__control" placeholder="https://www.tokopedia.com">
                 <div class="unf-user-input__info"></div>
               </div>
-              <div class="unf-user-input unf-user-input--column">
-                <label class="unf-user-input__label">Vibrate</label>
-                <div class="unf-user-toggle">
-                  <input type="checkbox" class="unf-user-toggle__checkbox" id="input__template-chat--vibrate">
-                  <label for="input__template-chat--vibrate"></label>
-                </div>
-              </div>
-            </div>   -->
-          </div>
-          <div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
-            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-dialog__close--add-template">Cancel</button>
-            <button id="btn__template-chat--add" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
+            </div>
+            <div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
+              <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-dialog__close--add-pin">Cancel</button>
+              <button id="btn__pin-chat--add" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Dialog Add Pin Chat -->
-      
-      <div class="unf-user-dialog unf-user-dialog--add-pin-chat small-dialog">
-        <div class="unf-user-dialog__content p-0">
-          <div class="unf-user-dialog__header mb-16">Add Pin Chat</div>
-          <span class="unf-user-dialog__close unf-user-dialog__close--add-pin"></span>
-          <div class="unf-user-dialog__body">
-            <div class="unf-user-input">
-              <label class="unf-user-input__label">Title</label>
-              <input id="input__pin-chat--title" type="text" class="unf-user-input__control">
-              <div class="unf-user-input__info"></div>
-            </div>
-            <div class="unf-user-input">
-              <label class="unf-user-input__label">Message</label>
-              <textarea type="text" id="input__pin-chat--msg" class="unf-user-input__control" name="pin-chat--msg"
-                maxlength="200" rows="3"></textarea>
-              <div class="unf-user-input__info">
-                <span></span>
-                <span class="unf-user-input__info-counter">0/200</span>
-              </div>
-            </div>
-            <div class="unf-user-input">
-              <label class="unf-user-input__label">Image</label>
-              <div class="unf-user-input__control unf-user-input__control--image">
-                <input id="input__pin-chat--image" type="file" accept=".jpg,.jpeg,.png">
-                <div class="unf-user-input__image-container hide">
-                  <img id="img__pin-chat--image" class="unf-user-input__image-file">
-                  <div class="unf-user-input__image-action">
-                    <span id="change__pin-chat--image" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
-                    <span id="delete__pin-chat--image" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
-                  </div>
-                </div>
-                <div id="upload__pin-chat--image" class="unf-user-input__image-upload">
-                  <span class="unf-user-input__image-upload-text">Add Image</span>
-                </div>
-              </div>
-              <div class="unf-user-input__info"></div>
-            </div>
-            <div class="unf-user-input">
-              <label class="unf-user-input__label">URL</label>
-              <input id="input__pin-chat--url" type="text" class="unf-user-input__control" placeholder="https://www.tokopedia.com">
-              <div class="unf-user-input__info"></div>
-            </div>
-          </div>
-          <div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
-            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-dialog__close--add-pin">Cancel</button>
-            <button id="btn__pin-chat--add" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dialog Add Quick Reply -->
-      
-      <div class="unf-user-dialog small-dialog dialog-quick-reply">
-        <div class="unf-user-dialog__content p-0">
-          <div class="unf-user-dialog__header mb-16">Add Quick Reply</div>
-          <span class="unf-user-dialog__close dialog-quick-reply__close"></span>
-          <div class="unf-user-dialog__body of-init">
-            <div class="unf-user-input">
-              <label class="unf-user-input__label">Message</label>
-              <div class="unf-user-input__group-btn">
-                <div class="unf-user-input__icon unf-user-input__icon--right">
-                  <input id="input__quick-reply" type="text" class="unf-user-input__control">
-                  <div class="unf-user-input__icon-emoji">
-                    <div class="unf-user-input__emoji">
-                      <div class="card unf-user-input__emoji-container">
-                        <div class="unf-user-input__emoji-content">
+  
+        <!-- Dialog Add Quick Reply -->
+        
+        <div class="unf-user-dialog small-dialog dialog-quick-reply">
+          <div class="unf-user-dialog__content p-0">
+            <div class="unf-user-dialog__header mb-16">Add Quick Reply</div>
+            <span class="unf-user-dialog__close dialog-quick-reply__close"></span>
+            <div class="unf-user-dialog__body of-init">
+              <div class="unf-user-input">
+                <label class="unf-user-input__label">Message</label>
+                <div class="unf-user-input__group-btn">
+                  <div class="unf-user-input__icon unf-user-input__icon--right">
+                    <input id="input__quick-reply" type="text" class="unf-user-input__control">
+                    <div class="unf-user-input__icon-emoji">
+                      <div class="unf-user-input__emoji">
+                        <div class="card unf-user-input__emoji-container">
+                          <div class="unf-user-input__emoji-content">
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="unf-user-input__info">
-                <span class="unf-user-input__info-msg"></span>
+                <div class="unf-user-input__info">
+                  <span class="unf-user-input__info-msg"></span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
-            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary dialog-quick-reply__close">Cancel</button>
-            <button id="btn__quick-reply--save" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
+            <div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
+              <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary dialog-quick-reply__close">Cancel</button>
+              <button id="btn__quick-reply--save" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Dialog Edit Quick Reply -->
-      
-      <div class="unf-user-dialog small-dialog dialog-quick-reply dialog-quick-reply--edit">
-        <div class="unf-user-dialog__content p-0">
-          <div class="unf-user-dialog__header mb-16">Edit Quick Reply</div>
-          <span class="unf-user-dialog__close dialog-quick-reply__close"></span>
-          <div class="unf-user-dialog__body of-init">
-            <div class="unf-user-input">
-              <label class="unf-user-input__label">Message</label>
-              <div class="unf-user-input__group-btn">
-                <div class="unf-user-input__icon unf-user-input__icon--right">
-                  <input id="input__quick-reply--edit" type="text" class="unf-user-input__control">
-                  <div class="unf-user-input__icon-emoji">
-                    <div class="unf-user-input__emoji">
-                      <div class="card unf-user-input__emoji-container">
-                        <div class="unf-user-input__emoji-content">
+  
+        <!-- Dialog Edit Quick Reply -->
+        
+        <div class="unf-user-dialog small-dialog dialog-quick-reply dialog-quick-reply--edit">
+          <div class="unf-user-dialog__content p-0">
+            <div class="unf-user-dialog__header mb-16">Edit Quick Reply</div>
+            <span class="unf-user-dialog__close dialog-quick-reply__close"></span>
+            <div class="unf-user-dialog__body of-init">
+              <div class="unf-user-input">
+                <label class="unf-user-input__label">Message</label>
+                <div class="unf-user-input__group-btn">
+                  <div class="unf-user-input__icon unf-user-input__icon--right">
+                    <input id="input__quick-reply--edit" type="text" class="unf-user-input__control">
+                    <div class="unf-user-input__icon-emoji">
+                      <div class="unf-user-input__emoji">
+                        <div class="card unf-user-input__emoji-container">
+                          <div class="unf-user-input__emoji-content">
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="unf-user-input__info">
-                <span class="unf-user-input__info-msg"></span>
-              </div>
-            </div>
-          </div>
-          <div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
-            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary dialog-quick-reply__close">Cancel</button>
-            <button id="btn__quick-reply--save-edit" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dialog Ban User -->
-      
-      <div class="unf-user-dialog small-dialog dialog-banned-user">
-        <div class="unf-user-dialog__content p-0">
-          <div class="unf-user-dialog__header mb-16">Ban User</div>
-          <span class="unf-user-dialog__close dialog-banned-user__close"></span>
-          <div class="unf-user-dialog__body dialog-banned-user__body">
-            <div class="unf-user-input dialog-banned-user__input">
-              <div class="unf-user-input__group-btn">
-                <input type="text" id="input__banned-user" class="unf-user-input__control" name="description" placeholder="Search Name or User ID">
-                <button id="btn__banned-user--search" class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary icon-search"></button>
+                <div class="unf-user-input__info">
+                  <span class="unf-user-input__info-msg"></span>
+                </div>
               </div>
             </div>
-            <div class="dialog-banned-user__search">
-              <div class="dialog-banned-user__search-empty">
-                <img class="empty-img" src="./assets/img/empty-state-search.png" alt="" srcset="">
-                <span class="empty-input"></span>
-              </div>
-              <div class="dialog-banned-user__search-result">
-              </div>
+            <div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
+              <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary dialog-quick-reply__close">Cancel</button>
+              <button id="btn__quick-reply--save-edit" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Dialog Confirmation -->
-      
-      <div class="unf-user-dialog unf-user-dialog--delete-pin-chat confirmation-dialog">
-        <div class="unf-user-dialog__content">
-          <div class="unf-user-dialog__title"></div>
-          <p class="unf-user-dialog__description"></p>
-          <div class="unf-user-dialog__action">
-            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
-            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary"></button>
+  
+        <!-- Dialog Ban User -->
+        
+        <div class="unf-user-dialog small-dialog dialog-banned-user">
+          <div class="unf-user-dialog__content p-0">
+            <div class="unf-user-dialog__header mb-16">Ban User</div>
+            <span class="unf-user-dialog__close dialog-banned-user__close"></span>
+            <div class="unf-user-dialog__body dialog-banned-user__body">
+              <div class="unf-user-input dialog-banned-user__input">
+                <div class="unf-user-input__group-btn">
+                  <input type="text" id="input__banned-user" class="unf-user-input__control" name="description" placeholder="Search Name or User ID">
+                  <button id="btn__banned-user--search" class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary icon-search"></button>
+                </div>
+              </div>
+              <div class="dialog-banned-user__search">
+                <div class="dialog-banned-user__search-empty">
+                  <img class="empty-img" src="./assets/img/empty-state-search.png" alt="" srcset="">
+                  <span class="empty-input"></span>
+                </div>
+                <div class="dialog-banned-user__search-result">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
+  
+        <!-- Dialog Confirmation -->
+        
+        <div class="unf-user-dialog unf-user-dialog--delete-pin-chat confirmation-dialog">
+          <div class="unf-user-dialog__content">
+            <div class="unf-user-dialog__title"></div>
+            <p class="unf-user-dialog__description"></p>
+            <div class="unf-user-dialog__action">
+              <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
+              <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary"></button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
     <div class="unf-user-toaster">
@@ -718,15 +767,10 @@
   <!-- <script src="./assets/js/dummy.js"></script> -->
   <script src="./assets/js/script.js"></script>
   <script src="./assets/js/live-chat.js"></script>
+  <script src="./assets/js/dialog-channel.js"></script>
   <script src="./assets/js/template-chat.js"></script>
   <script src="./assets/js/pin-chat.js"></script>
   <script src="./assets/js/quick-reply.js"></script>
   <script src="./assets/js/banned-user.js"></script>
-
-  <script>
-    // $(document).ready(function () {
-    //   initCustomSelect();
-    // })
-  </script>
 </body>
 </html>
