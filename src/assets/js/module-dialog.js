@@ -1,14 +1,4 @@
 var dialogModule = (function() {
-    var param = {
-        title: '',
-        children: '',
-        close: true,
-        btnTextPrimary: 'Cancel',
-        btnTextSecondary: 'Continue',
-        handleClickPrimary: () => {},
-        handleClickSecondary: handleDialogClose,
-        action: '#',
-    }
 
     function renderChildren(children) {
         return children.html();
@@ -16,12 +6,23 @@ var dialogModule = (function() {
 
     return {
         renderDialog: function(newParam) {
+            var param = {
+                title: '',
+                children: '',
+                close: true,
+                btnPrimaryDisabled: false,
+                btnTextPrimary: 'Continue',
+                btnTextSecondary: 'Cancel',
+                handleClickPrimary: () => {},
+                handleClickSecondary: handleDialogClose,
+                action: '#',
+            }
+
             // Override default value
             param = $.extend(param, newParam);
 
             var templateDialog = 
-                `<form action=${param.action}>
-                <div class="unf-user-dialog__content d-inline">
+                `<div class="unf-user-dialog__content d-inline">
                 <div class="unf-user-dialog__title">${param.title}</div>
                 ${param.close ? '<span class="unf-user-dialog__close" onclick="handleDialogClose()"></span>' : ''}
                 <div class="unf-user-dialog__body">${renderChildren(param.children)}</div> 
@@ -29,12 +30,12 @@ var dialogModule = (function() {
                     <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-btn--dialog">
                         ${param.btnTextSecondary}
                     </button>
-                    <button class="nf-user-btn unf-user-btn--medium unf-user-btn--primary unf-user-btn--dialog">
+                    <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary unf-user-btn--dialog"
+                        ${param.btnPrimaryDisabled && 'disabled'}>
                         ${param.btnTextPrimary}
                     </button>
                 </div>
-                </div>
-                </form>`;
+                </div>`;
                 
             handleDialogOpen('.js__template-dialog', function() {
                 $('.js__template-dialog')

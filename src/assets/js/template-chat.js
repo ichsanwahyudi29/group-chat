@@ -10,29 +10,30 @@ $(function handleCloseAddTemplateChat() {
   })
 });
 
-$(function onClickAddTemplateChat() {
+$(function handleClickAddTemplateChat() {
   $('#btn__template-chat--add').on({
     click: function() {
-      handleDialogOpen($('.unf-user-dialog--add-template-chat'));
+      dialogModule.renderDialog({
+        title: 'Add Template Chat',
+        children: $('.js__child-dialog-add-template'),
+        close: true,
+        btnPrimaryDisabled: true,
+        btnTextPrimary: 'Save',
+        handleClickPrimary: function() {handleDialogClose();}
+      });
     },
   });
 });
 
-$(function onClickEditTemplateChat() {
-  $('#btn__template-chat--edit').on({
-    click: function() {
-      console.log('edit');
-    },
+function editTemplateChat() {
+  dialogModule.renderDialog({
+    title: 'Edit Template Chat',
+    children: $('.js__child-dialog-add-template'),
+    close: true,
+    btnTextPrimary: 'Save',
+    handleClickPrimary: function() {handleDialogClose();}
   });
-});
-
-$(function onClickDeleteTemplateChat() {
-  $('#btn__template-chat--delete').on({
-    click: function(e) {
-      console.log('delete');
-    },
-  });
-});
+}
 
 function deleteTemplateChat(e) {
   dialogModule.renderDialog({

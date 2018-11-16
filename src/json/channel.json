@@ -1,0 +1,32 @@
+[
+  {
+    "id": 201,
+    "url": "http://tokopedia.com",
+    "status": 1,
+    "archive": false,
+    "img": "./assets/img/gc1.jpg",
+    "name": "2018 FIFA World Cup",
+    "description": "Hai para pecinta sepak bola, Ramaikan piala dunia 2018 bersama Tokopedia! Ikuti quiznya dan menangkan Tokocash senilai jutaan rupiah.Buruan, jangan sampai kelewatan!",
+    "moderator": "Darius Sinathrya"
+  },
+  {
+    "id": 202,
+    "url": "http://tokopedia.com",
+    "status": 1,
+    "archive": false,
+    "img": "./assets/img/gc2.jpg",
+    "name": "Pokemon in The 6ix",
+    "description": "Hai para pecinta sepak bola, Ramaikan piala dunia 2018 bersama Tokopedia! Ikuti quiznya dan menangkan Tokocash senilai jutaan rupiah.Buruan, jangan sampai kelewatan!",
+    "moderator": "Darius Sinathrya"
+  },
+  {
+    "id": 203,
+    "url": "http://tokopedia.com",
+    "status": 2,
+    "archive": false,
+    "img": "./assets/img/gc1.jpg",
+    "name": "2018 Asian Games",
+    "description": "Hai para pecinta sepak bola, Ramaikan piala dunia 2018 bersama Tokopedia! Ikuti quiznya dan menangkan Tokocash senilai jutaan rupiah.Buruan, jangan sampai kelewatan!",
+    "moderator": "Ichsan Indra Wahyudi"
+  }
+]

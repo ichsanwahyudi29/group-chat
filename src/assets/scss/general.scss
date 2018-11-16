@@ -20,16 +20,28 @@ html,body{
   margin: 0;
 }
 
-.p-0{
-  padding: 0 !important;
-}
-
 .d-flex{
   display: flex !important;
 }
 
+.d-inline {
+  display: inline-block;
+}
+
 .hide{
   display: none !important;
+}
+
+.p-0{
+  padding: 0 !important;
+}
+
+.pl-32 {
+  padding-left: 32px !important;
+}
+
+.pr-32 {
+  padding-right: 32px !important;
 }
 
 .m-0{
@@ -46,6 +58,10 @@ html,body{
 
 .of-init{
   overflow: initial !important;
+}
+
+.ta-center {
+  text-align: center !important;
 }
 
 .wrapper {
