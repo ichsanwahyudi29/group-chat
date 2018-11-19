@@ -10,34 +10,47 @@ $(function handleCloseAddTemplateChat() {
   })
 });
 
-$(function onClickAddTemplateChat() {
+$(function handleClickAddTemplateChat() {
   $('#btn__template-chat--add').on({
     click: function() {
-      handleDialogOpen($('.unf-user-dialog--add-template-chat'));
+      dialogModule.renderDialog({
+        title: 'Add Template Chat',
+        children: $('.js__child-dialog-add-template'),
+        close: true,
+        btnPrimaryDisabled: true,
+        btnTextPrimary: 'Save',
+        handleClickPrimary: function() {handleDialogClose();}
+      });
     },
   });
 });
 
-$(function onClickEditTemplateChat() {
-  $('#btn__template-chat--edit').on({
-    click: function() {
-      console.log('edit');
-    },
+function editTemplateChat() {
+  dialogModule.renderDialog({
+    title: 'Edit Template Chat',
+    children: $('.js__child-dialog-add-template'),
+    close: true,
+    btnTextPrimary: 'Save',
+    handleClickPrimary: function() {handleDialogClose();}
   });
-});
-
-$(function onClickDeleteTemplateChat() {
-  $('#btn__template-chat--delete').on({
-    click: function(e) {
-      console.log('delete');
-    },
-  });
-});
+}
 
 function deleteTemplateChat(e) {
-  deleteTemplateChatDialog();
+  dialogModule.renderDialog({
+    title: 'Delete Template Chat',
+    children: $('.js__child-dialog-delete-template-chat'),
+    close: false,
+    btnTextPrimary: 'Yes, Delete',
+    handleClickPrimary: function() {handleDialogClose();}
+  });
 }
 
 function autoSendTemplateChat(e) {
-  autoSendActivationDialog();
+  dialogModule.renderDialog({
+    title: 'Auto-Send Activation',
+    children: $('.js__child-dialog-auto-send-template-chat'),
+    close: true,
+    btnTextPrimary: 'Save',
+    handleClickPrimary: function() {handleDialogClose();}
+  });
 }

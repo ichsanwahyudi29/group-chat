@@ -1,0 +1,42 @@
+{
+    "templateChat":[
+        {
+            "id": 201,
+            "vibrate": true,
+            "autoSend": false,
+            "expiredTime": "",
+            "imgURL": "./assets/img/gc2.jpg",
+            "message": "Selamat malam Toppers, jagokan negara favorit kalian disini. Kira-kira siapa ya negara pemenang piala duni tahun ini?"
+        },
+        {
+            "id": 202,
+            "vibrate": false,
+            "autoSend": true,
+            "expiredTime": "",
+            "imgURL": "",
+            "message": "Jawab kuisnya dengan menyertakan #TokopediaChallenge"
+        }
+    ],
+    "pinnedChat": [
+        {
+            "id": 203,
+            "title": "Ayo Jawab Kusinya Sekarang",
+            "active": true,
+            "imgURL": "../assets/img/profile.png",
+            "message": "Selamat malam Toppers, jagokan negara favorit kalian disini. Kira-kira siapa ya negara pemenang piala duni tahun ini?"
+        }     
+    ],
+    "bannedUser": [
+        {
+            "userId": "8512939",
+            "participantId": "423321",
+            "name": "Farrah Nurul Fatimah"
+        },
+        {
+            "userId": "9512939",
+            "participantId": "523321",
+            "name": "Zahrah Arissa"
+        }
+    ]
+}
+

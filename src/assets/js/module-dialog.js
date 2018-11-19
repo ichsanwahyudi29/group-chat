@@ -1,13 +1,4 @@
 var dialogModule = (function() {
-    var param = {
-        title: '',
-        children: null,
-        close: true,
-        btnTextPrimary: 'Cancel',
-        btnTextSecondary: 'Continue',
-        handleClickPrimary: null,
-        handleClickSecondary: handleDialogClose
-    }
 
     function renderChildren(children) {
         return children.html();
@@ -15,6 +6,18 @@ var dialogModule = (function() {
 
     return {
         renderDialog: function(newParam) {
+            var param = {
+                title: '',
+                children: '',
+                close: true,
+                btnPrimaryDisabled: false,
+                btnTextPrimary: 'Continue',
+                btnTextSecondary: 'Cancel',
+                handleClickPrimary: () => {},
+                handleClickSecondary: handleDialogClose,
+                action: '#',
+            }
+
             // Override default value
             param = $.extend(param, newParam);
 
@@ -27,7 +30,8 @@ var dialogModule = (function() {
                     <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-btn--dialog">
                         ${param.btnTextSecondary}
                     </button>
-                    <button class="nf-user-btn unf-user-btn--medium unf-user-btn--primary unf-user-btn--dialog">
+                    <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary unf-user-btn--dialog"
+                        ${param.btnPrimaryDisabled && 'disabled'}>
                         ${param.btnTextPrimary}
                     </button>
                 </div>
@@ -48,23 +52,3 @@ var dialogModule = (function() {
         }
     }
 })();
-
-function deleteTemplateChatDialog() {
-    dialogModule.renderDialog({
-        title: 'Delete Template Chat',
-        children: $('.js__child-dialog-delete-template-chat'),
-        close: false,
-        btnTextPrimary: 'Yes, Delete',
-        handleClickPrimary: function() {handleDialogClose();}
-    });
-}
-
-function autoSendActivationDialog() {
-    dialogModule.renderDialog({
-        title: 'Auto-Send Activation',
-        children: $('.js__child-dialog-auto-send-template-chat'),
-        close: true,
-        btnTextPrimary: 'Save',
-        handleClickPrimary: function() {handleDialogClose();}
-    });
-}

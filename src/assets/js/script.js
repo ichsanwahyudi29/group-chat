@@ -23,7 +23,7 @@ function counterInput(el, maxLength) {
   counter.html(`${length}/${maxLength}`);
 }
 
-function initCustomSelect() {
+function initCustomSelect(element) {
   $('select').each(function() {
     var $this = $(this),
       numberOfOptions = $(this).children('option').length;
@@ -92,4 +92,16 @@ function initCustomSelect() {
       // $list.hide();
     });
   });
+}
+
+function loadJSON(fileJSON, callback) {   
+  var xobj = new XMLHttpRequest();
+  xobj.overrideMimeType("application/json");
+  xobj.open('GET', fileJSON, true);
+  xobj.onreadystatechange = function () {
+    if (xobj.readyState == 4 && xobj.status == "200") {
+      callback(xobj.responseText);
+    }
+  };
+  xobj.send(null);  
 }
