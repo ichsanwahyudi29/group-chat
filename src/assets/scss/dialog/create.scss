@@ -87,3 +87,25 @@
     }
   }
 }
+
+.create-ads{
+  &__image {
+    margin-bottom: 24px;
+    .unf-user-input {
+      &__control {
+        &--image{
+          width: 100% !important;
+          height: 55px !important;
+          border: none;
+          .unf-user-input__image-upload-text{
+            font-weight: 400;
+            &::before{
+              width: 40px;
+              height: 38px;
+            }
+          }
+        } 
+      }
+    }
+  }
+}
