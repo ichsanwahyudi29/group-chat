@@ -1,8 +1,11 @@
 .template-chat {
+    &__type {
+        @include animatedSection;        
 
-    &__type-content {
-        display: block;
-        padding-top: 16px;
-        padding-bottom: 24px;
+        &-content {
+            display: block;
+            padding-top: 16px;
+            padding-bottom: 24px;
+        }
     }
 }

@@ -41,8 +41,8 @@ $(function templateChatRenderer() {
                         <span class="template-chat__time-auto-send">Sisa waktu: <b>59m 59s</b></span>
                         </div>
                         <div class="list-action__btn">
-                        <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit" onclick="editTemplateChat(this)"><span>edit</span></a>
-                        <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--delete" onclick="deleteTemplateChat(this)"><span>delete</span></a>
+                        <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit" onclick="handleClickEditTemplateChat(this)"><span>edit</span></a>
+                        <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--delete" onclick="handleClickDeleteTemplateChat(this)"><span>delete</span></a>
                         </div>
                     </div>
                     </td>
