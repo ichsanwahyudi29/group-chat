@@ -1,9 +1,4 @@
 var dialogModule = (function() {
-
-    function renderChildren(children) {
-        return children.html();
-    }
-
     return {
         renderDialog: function(newParam) {
             var param = {
@@ -13,6 +8,7 @@ var dialogModule = (function() {
                 btnPrimaryDisabled: false,
                 btnTextPrimary: 'Continue',
                 btnTextSecondary: 'Cancel',
+                init: () => {},
                 handleClickPrimary: () => {},
                 handleClickSecondary: handleDialogClose,
                 action: '#',
@@ -25,7 +21,7 @@ var dialogModule = (function() {
                 `<div class="unf-user-dialog__content d-inline">
                 <div class="unf-user-dialog__title">${param.title}</div>
                 ${param.close ? '<span class="unf-user-dialog__close" onclick="handleDialogClose()"></span>' : ''}
-                <div class="unf-user-dialog__body">${renderChildren(param.children)}</div> 
+                <div class="unf-user-dialog__body">${param.children.html()}</div> 
                 <div class="unf-user-dialog__action pl-32 pr-32">
                     <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-btn--dialog">
                         ${param.btnTextSecondary}
@@ -39,15 +35,16 @@ var dialogModule = (function() {
                 
             handleDialogOpen('.js__template-dialog', function() {
                 $('.js__template-dialog')
+                    .off()
                     .html(templateDialog)
-                    .off('click', '.unf-user-btn--secondary')
                     .on('click', '.unf-user-btn--secondary', function() {
                         param.handleClickSecondary();
                     })
-                    .off('click', '.unf-user-btn--primary')
                     .on('click', '.unf-user-btn--primary', function() {
                         param.handleClickPrimary();
-                    });                
+                    });
+
+                param.init();
             });
         }
     }
