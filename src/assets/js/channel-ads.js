@@ -2,6 +2,7 @@
 var isTitle = false;
 var isLink = false;
 var isImg = false;
+var addDialog;
 
 var dataAds = [
     {
@@ -121,9 +122,17 @@ function initData(){
 $(function onClickCreateAds() {
     $('.group-chat__btn--create').on({
       click: function() {
-        handleDialogOpen($('.unf-user-dialog--create-ads'));
-        $('.unf-user-dialog--create-ads .unf-user-dialog__header').text('Add Ads')
-        $('#btn__ads--create').removeAttr('data-id')
+        addDialog = $('.js__child-dialog-add-edit-ads').html()
+        dialogModule.renderDialog({
+            title: 'Add Ads',
+            children: $('.js__child-dialog-add-edit-ads'),
+            close: true,
+            btnTextPrimary: 'Save',
+            btnPrimaryDisabled: true,
+            handleClickPrimary: function() {clickSaveAds()},
+            handleClickSecondary: function() {resetInputValueAds()}
+        });
+        $('.js__child-dialog-add-edit-ads').html('')
       },
     });
 });
@@ -144,39 +153,32 @@ $(function onScrollTopShadow() {
 })
 
 $(function handleInputAdsTitle() {
-	$('#input__ads--title').on({
-	  input: function() {
-		counterInput(this, '20');
+    $(document).on('input', '#input__ads--title', function(){
+        counterInput(this, '20');
 		if ($(this).val()) {
-		  isTitle = true;
+		    isTitle = true;
 		} else {
 			isTitle = false;
 		}
 		handleCheckInputAds();
-	  },
-	});
+    })
 });
 
 $(function onChangeAdsImg() {
-  $('#upload__ads--cover, #change__ads--cover').on({
-    click: function() {
-      $('#input__ads--cover').click();
-    },
-  });
+    $(document).on('click', '#upload__ads--cover, #change__ads--cover', function(){
+        $('#input__ads--cover').click();
+    })
 });
 
 $(function onDeleteAdsImg() {
-  $('#delete__ads--cover').on({
-    click: function() {
-      resetInputImageAds()
-    },
-  });
+    $(document).on('click', '#delete__ads--cover', function(){
+        resetInputImageAds()
+    })
 });
 
 $(function handleInputAdsImg() {
-	$('#input__ads--cover').on({
-	  change: function() {
-		var imgType = ['image/png', 'image/jpg', 'image/jpeg'];
+    $(document).on('change', '#input__ads--cover', function(){
+        var imgType = ['image/png', 'image/jpg', 'image/jpeg'];
 		var file = this.files;
 		if (file.length !== 0) {
 		  if (
@@ -195,43 +197,34 @@ $(function handleInputAdsImg() {
 		  }
 		}
 		handleCheckInputAds();
-	  },
-	});
+    })
   });
 
 $(function handleInputAdsLink() {
-	$('#input__ads--link').on({
-	  input: function() {
+    $(document).on('input', '#input__ads--link', function(){
 		if ($(this).val()) {
 			isLink = true;
 		} else {
 			isLink = false;
 		}
 		handleCheckInputAds();
-	  },
-	});
-});
-
-$(function onClickResetValueAds() {
-    $('.unf-user-dialog__close--create-ads').on({
-      click: function() {
-        resetInputValueAds()
-      },
-    });
+    })
 });
 
 function resetInputValueAds() {
+    console.log($('.unf-user-btn--primary'))
     isTitle =  false;
     isImg = false;
     isLink = false;
 	// reset input
 	$('#input__ads--title').val('');
 	$('#input__ads--link').val('');
-
 	// reset img
 	resetInputImageAds()
-    handleDialogClose();
     handleCheckInputAds();
+    handleDialogClose();
+    //put back html 
+    $('.js__child-dialog-add-edit-ads').html(addDialog)
 }
 
 function resetInputImageAds() {
@@ -239,21 +232,30 @@ function resetInputImageAds() {
 	$('.unf-user-input__image-container').addClass('hide');
 	$('#img__ads--cover').removeAttr('src');
     $('#input__ads--cover').val('');
-  }
+    handleCheckInputAds();
+}
 
 function handleCheckInputAds() {
 	if (isTitle && isImg && isLink) {
-	  $('#btn__ads--create').attr('disabled', false);
+        $('.unf-user-dialog__action .unf-user-btn--primary').attr('disabled', false);
 	} else {
-	  $('#btn__ads--create').attr('disabled', true);
+        $('.unf-user-dialog__action .unf-user-btn--primary').attr('disabled', true);
 	}
 }
 
 // Edit Ads
 function clickEditAds(id) {
-    handleDialogOpen($('.unf-user-dialog--create-ads'));
-    $('#btn__ads--create').attr('data-id', id)
-    $('.unf-user-dialog--create-ads .unf-user-dialog__header').text('Edit Ads')
+    addDialog = $('.js__child-dialog-add-edit-ads').html()
+    dialogModule.renderDialog({
+        title: 'Edit Ads',
+        children: $('.js__child-dialog-add-edit-ads'),
+        close: true,
+        btnTextPrimary: 'Save',
+        btnPrimaryDisabled: true,
+        handleClickPrimary: function() {clickSaveAds(id)},
+        handleClickSecondary: function() {resetInputValueAds()}
+    });
+    $('.js__child-dialog-add-edit-ads').html('')
     fetchAdsData(id)
 }
 
@@ -276,90 +278,78 @@ function revealImg(input, img){
 }
 
 // Add & Edit handle
-$(function clickSaveAds(){
-    $('#btn__ads--create').on({
-        click: function(){
-            var $this = $(this)
-            var id = $this.attr('data-id')
-            console.log(id)
-            if(id === undefined){
-                // Add
-                var newData = {}
-                newData.id = dataAds.length + 1,
-                newData.url = $('#input__ads--link').val()
-                newData.status = 0
-                newData.img = $('#img__ads--cover').attr('src')
-                newData.name = $('#input__ads--title').val()
+function clickSaveAds(id){
+    if(id === undefined){
+        // Add
+        var newData = {}
+        newData.id = dataAds.length + 1,
+        newData.url = $('#input__ads--link').val()
+        newData.status = 0
+        newData.img = $('#img__ads--cover').attr('src')
+        newData.name = $('#input__ads--title').val()
 
-                dataAds.unshift(newData)
+        dataAds.unshift(newData)
+    }
+    else{
+        // Edit
+        dataAds.map(item => {
+            if(item.id === parseInt(id)){
+                item.name = $('#input__ads--title').val()
+                item.url = $('#input__ads--link').val()
+                item.img = $('#img__ads--cover').attr('src')
             }
-            else{
-                // Edit
-                dataAds.map(item => {
-                    if(item.id === parseInt(id)){
-                        item.name = $('#input__ads--title').val()
-                        item.url = $('#input__ads--link').val()
-                        item.img = $('#img__ads--cover').attr('src')
-                    }
-                })
-            }
-            initData();
-            handleDialogClose();
-            resetInputValueAds();
-        }
-    })
-})
+        })
+    }
+    initData();
+    resetInputValueAds();
+}
 
 // Delete Ads
 function clickDeleteAds(id) {
-    handleDialogOpen($('.unf-user-dialog--delete-ads'));
-    $('#btn__ads--delete').attr('data-id', id)
+    dialogModule.renderDialog({
+        title: 'Delete Ads',
+        children: $('.js__child-dialog-delete-ads'),
+        close: false,
+        btnTextPrimary: 'Yes, Delete',
+        handleClickPrimary: function() {deleteAds(id)}
+    });
 }
-
-$(function deleleAds(){
-    $('#btn__ads--delete').on({
-        click: function(){
-            var $this = $(this)
-            var id = parseInt($this.attr('data-id'))
-            dataAds.map((item, index) => {
-                if(item.id === id){
-                    dataAds.splice(index, 1)
-                }
-            })
-            initData();
-            handleDialogClose();
+function deleteAds(id){
+    dataAds.map((item, index) => {
+        if(item.id === id){
+            dataAds.splice(index, 1)
         }
     })
-})
-
-// Ads Status
-$(function onClickActivateAds() {
-    $('#btn__ads--activate').on({
-      click: function() {
-        handleStatusAds(this , 1)
-      }
-    })
-})
-$(function onClickDeactivateAds() {
-    $('#btn__ads--deactive').on({
-      click: function() {
-        handleStatusAds(this , 0)
-      }
-    })
-})
-
-function changeAdsStatus(e, id) {
-    if(e.selectedIndex === 0){
-      handleDialogOpen($('.unf-user-dialog--activate-ads'));
-      $('#btn__ads--activate').attr('data-id', id)
-    }else{
-      handleDialogOpen($('.unf-user-dialog--deactive-ads')); 
-      $('#btn__ads--deactive').attr('data-id', id)
-    }
+    initData();
+    handleDialogClose();
 }
 
-function handleStatusAds(e, val) {
-    var id = $(e).attr('data-id')
-  
+// Ads Status
+function onClickActivateAds(id) {
+    handleStatusAds(id , 1)
+}
+function onClickDeactivateAds(id) {
+    handleStatusAds(id , 0)
+}
+function changeAdsStatus(e, id) {
+    if(e.selectedIndex === 0){
+        dialogModule.renderDialog({
+            title: 'Activate Ads',
+            children: $('.js__child-dialog-activate-ads'),
+            close: false,
+            btnTextPrimary: 'Yes, Activate',
+            handleClickPrimary: function() {onClickActivateAds(id)}
+        });
+    }else{
+        dialogModule.renderDialog({
+            title: 'Deactivate Ads',
+            children: $('.js__child-dialog-deactivate-ads'),
+            close: false,
+            btnTextPrimary: 'Yes, Deactivate',
+            handleClickPrimary: function() {onClickDeactivateAds(id)}
+        });
+    }
+}
+function handleStatusAds(id, val) {
     updateData(id, 'status', val)
 }

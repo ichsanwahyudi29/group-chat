@@ -132,10 +132,10 @@ function loopData() {
           $('.channel--inactive .channel__list tbody').append(listChannel)
         }
       } 
-    }    
+    }   
+    initCustomSelect() 
   });
 
-  initCustomSelect()
 }
 
 function previewChannel(id) {

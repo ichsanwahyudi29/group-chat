@@ -42,134 +42,102 @@
 
 		<div class="main-content">
 		  <div class="header">
-			<div class="header__top navbar">
-			  <div class="navbar__left">
-				<div class="navbar__menu">
-				  <div class="navbar__menu-container">
-					<div class="navbar__menu-bar"></div>
-					<div class="navbar__menu-bar"></div>
-					<div class="navbar__menu-bar"></div>
-				  </div>
+				<div class="header__top navbar">
+					<div class="navbar__left">
+					<div class="navbar__menu">
+						<div class="navbar__menu-container">
+						<div class="navbar__menu-bar"></div>
+						<div class="navbar__menu-bar"></div>
+						<div class="navbar__menu-bar"></div>
+						</div>
+					</div>
+					<h2 class="navbar__title">Channel</h2>
+					<span class="navbar__arrow breadcrumb__arrow"></span>
+					<h3 class="navbar__channel-title">2018 FIFA World Cup's Ads</h3>
+					</div>
+					<div class="navbar__right">
+					<div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Add Ads</div>
+					<div class="navbar__profile">
+						<span class="navbar__profile-img" style="background-image: url('./assets/img/profile.png')"></span>
+						<h3 class="navbar__profile-name">Ichsan Indra Wahyudi</h3>
+						<span class="navbar__profile-menu"></span>
+					</div>
+					</div>
 				</div>
-				<h2 class="navbar__title">Channel</h2>
-				<span class="navbar__arrow breadcrumb__arrow"></span>
-				<h3 class="navbar__channel-title">2018 FIFA World Cup's Ads</h3>
-			  </div>
-			  <div class="navbar__right">
-				<div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Add Ads</div>
-				<div class="navbar__profile">
-				  <span class="navbar__profile-img" style="background-image: url('./assets/img/profile.png')"></span>
-				  <h3 class="navbar__profile-name">Ichsan Indra Wahyudi</h3>
-				  <span class="navbar__profile-menu"></span>
+				<div class="header__bottom">
+					<div class="breadcrumb">
+					<h2 class="breadcrumb__title breadcrumb__title--detail">Channel</h2>
+					<span class="breadcrumb__arrow"></span>
+					<h3 class="breadcrumb__channel-title">2018 FIFA World Cup's Ads</h3>
+					</div>
+					<div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Add Ads</div>
 				</div>
-			  </div>
-			</div>
-			<div class="header__bottom">
-			  <div class="breadcrumb">
-				<h2 class="breadcrumb__title breadcrumb__title--detail">Channel</h2>
-				<span class="breadcrumb__arrow"></span>
-				<h3 class="breadcrumb__channel-title">2018 FIFA World Cup's Ads</h3>
-			  </div>
-			  <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Add Ads</div>
-			</div>
-		  </div>
+				</div>
 
-		  <div class="container">
-				<div class="card ads-card">
+				<div class="container">
+					<div class="card ads-card">
+					</div>
 				</div>
-		  </div>
 
-		</div>
+			</div>
 	  </div>
-
-	<div class="unf-user-overlay unf-user-overlay--desktop"></div>
-
-	<!-- Dialog Create -->
-	<div class="unf-user-dialog unf-user-dialog--create-ads create-channel">
-		<div class="unf-user-dialog__content p-0">
-			<div class="unf-user-dialog__header">Add Ads</div>
-			<span class="unf-user-dialog__close unf-user-dialog__close--create-ads"></span>
-			<div class="unf-user-dialog__body customScrollBar customScrollBar--y customScrollBar--create-ads">
-				<div class="unf-user-input">
-					<label class="unf-user-input__label">Ads Title</label>
-					<input type="text" id="input__ads--title" class="unf-user-input__control" name="ads-title" maxlength="20">
-					<div class="unf-user-input__info">
-						<span></span>
-						<span class="unf-user-input__info-counter">0/20</span>
-					</div>
-				</div>
-				<div class="unf-user-input create-ads__image">
-					<label class="unf-user-input__label">Add Image</label>
-					<div class="unf-user-input__control unf-user-input__control--image">
-						<input id="input__ads--cover" type="file" accept=".jpg,.jpeg,.png">
-						<div class="unf-user-input__image-container unf-user-input__image-container--full hide">
-							<img id="img__ads--cover" class="unf-user-input__image-file">
-							<div class="unf-user-input__image-action">
-								<span id="change__ads--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
-								<span id="delete__ads--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
-							</div> 
-						</div>
-						<div id="upload__ads--cover" class="unf-user-input__image-upload">
-							<span class="unf-user-input__image-upload-text unf-user-input__image-upload-text--row">Add Photo</span>
-						</div>
-					</div>
-				</div>  
-				<div class="unf-user-input">
-						<label class="unf-user-input__label">Ads Link</label>
-						<input type="text" id="input__ads--link" class="unf-user-input__control" name="ads-link" placeholder="https://tokopedia.com">
-				</div>
-			</div>
-			<div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
-				<button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-dialog__close--create-ads">Cancel</button>
-				<button id="btn__ads--create" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
-			</div>
-		</div>
+	<section class="hide">
+		
+	<!-- Dialog Delete Ads -->
+	<div class="js__child-dialog-delete-ads">
+		<p class="unf-user-dialog__description">Do you want to delete this ads?</p>
 	</div>
-
+		
 	<!-- Dialog Deactive Ads -->
 
-	<div class="unf-user-dialog unf-user-dialog--deactive-ads confirmation-dialog">
-		<div class="unf-user-dialog__content">
-			<div class="unf-user-dialog__title">Deactivate Ads</div>
-			<p class="unf-user-dialog__description">
-				Do you want to deactive this ads?
-			</p>
-			<div class="unf-user-dialog__action">
-				<button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
-				<button id="btn__ads--deactive" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Yes, Deactive</button>
-			</div>
-		</div>
+	<div class="js__child-dialog-deactivate-ads">
+		<p class="unf-user-dialog__description">Do you want to deactivate this ads?</p>
 	</div>
 
 	<!-- Dialog Activate Ads -->
 
-	<div class="unf-user-dialog unf-user-dialog--activate-ads confirmation-dialog">
-		<div class="unf-user-dialog__content">
-			<div class="unf-user-dialog__title">Activate Ads</div>
-			<p class="unf-user-dialog__description">
-				Do you want to activate this ads?
-			</p>
-			<div class="unf-user-dialog__action">
-				<button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
-				<button id="btn__ads--activate" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Yes, Activate</button>
-			</div>
-		</div>
+	<div class="js__child-dialog-activate-ads">
+		<p class="unf-user-dialog__description">Do you want to activate this ads?</p>
 	</div>
 
-	<!-- Dialog Delete Ads -->
-
-	<div class="unf-user-dialog unf-user-dialog--delete-ads confirmation-dialog">
-		<div class="unf-user-dialog__content">
-			<div class="unf-user-dialog__title">Delete Ads</div>
-			<p class="unf-user-dialog__description">
-				Do you want to delete this ads?
-			</p>
-			<div class="unf-user-dialog__action">
-				<button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
-				<button id="btn__ads--delete" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Yes, Delete</button>
+	<!-- Content dialog add/edit ads -->
+	<div class="js__child-dialog-add-template js__child-dialog-add-edit-ads">
+		<div class="template-chat__type-content">
+			<div class="unf-user-input">
+				<label class="unf-user-input__label">Ads Title</label>
+				<input type="text" id="input__ads--title" class="unf-user-input__control" name="ads-title" maxlength="20">
+				<div class="unf-user-input__info">
+					<span></span>
+					<span class="unf-user-input__info-counter">0/20</span>
+				</div>
 			</div>
-		</div>
-	</div>
+			<div class="unf-user-input create-ads__image">
+				<label class="unf-user-input__label">Add Image</label>
+				<div class="unf-user-input__control unf-user-input__control--image">
+					<input id="input__ads--cover" type="file" accept=".jpg,.jpeg,.png">
+					<div class="unf-user-input__image-container unf-user-input__image-container--full hide">
+						<img id="img__ads--cover" class="unf-user-input__image-file">
+						<div class="unf-user-input__image-action">
+							<span id="change__ads--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
+							<span id="delete__ads--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
+						</div> 
+					</div>
+					<div id="upload__ads--cover" class="unf-user-input__image-upload">
+						<span class="unf-user-input__image-upload-text unf-user-input__image-upload-text--row">Add Photo</span>
+					</div>
+				</div>
+			</div>  
+			<div class="unf-user-input">
+					<label class="unf-user-input__label">Ads Link</label>
+					<input type="text" id="input__ads--link" class="unf-user-input__control" name="ads-link" placeholder="https://tokopedia.com">
+			</div>
+		</div>          
+	</div>   
+
+	</section>
+	
+	<div class="unf-user-overlay unf-user-overlay--desktop"></div>
+	<div class="js__template-dialog unf-user-dialog ta-center"></div>
 
 	</div>
 	<div class="unf-user-toaster">
@@ -184,6 +152,7 @@
   <script src="./assets/js/unify.js"></script>
   <script src="./assets/js/interaction.js"></script>
   <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/module-dialog.js"></script>
   <script src="./assets/js/channel-ads.js"></script>
 </body>
 </html>
