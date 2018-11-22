@@ -174,7 +174,8 @@
           box-sizing: border-box;
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
-  transition: all 0.3s ease; }
+  transition: all 0.3s ease;
+  white-space: nowrap; }
   .unf-user-btn:disabled {
     color: rgba(0, 0, 0, 0.12);
     border-width: initial;

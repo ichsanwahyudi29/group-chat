@@ -9,21 +9,21 @@ var dataAds = [
         id: 1,
         url: 'https://www.tokopedia.com/promokopiluwak',
         status: 1,
-        img: './assets/img/gc1.jpg',
+        img: './assets/img/gc_ads_1.jpg',
         name: 'Promo Kopi Luwak'
     },
     {
         id: 2,
         url: 'https://www.tokopedia.com/detol',
         status: 0,
-        img: './assets/img/gc2.jpg',
+        img: './assets/img/gc_ads_2.jpeg',
         name: 'Promo Detol'
     },
     {
         id: 3,
         url: 'https://www.tokopedia.com/',
         status: 0,
-        img: './assets/img/bg-header@2x.png',
+        img: './assets/img/gc_ads_3.jpg',
         name: 'Promo Tokopedia'
     }
 ]
@@ -52,7 +52,7 @@ function initAdsContainer(){
                     Ads List
                 </div>
             </div>
-            <div class="table__list">
+            <div class="table__list table__ads">
                 <table cellspacing="0" cellpadding="0">
                 <thead>
                     <tr>
@@ -129,28 +129,15 @@ $(function onClickCreateAds() {
             close: true,
             btnTextPrimary: 'Save',
             btnPrimaryDisabled: true,
+            init: resetInputValueAds,
             handleClickPrimary: function() {clickSaveAds()},
-            handleClickSecondary: function() {resetInputValueAds()}
+            handleClickSecondary:  function() {handleCloseAddEditDialog()}
         });
+        resizeDialog('414px');
         $('.js__child-dialog-add-edit-ads').html('')
       },
     });
 });
-
-$(function onScrollTopShadow() {
-    $('.customScrollBar--create-ads').on({
-      scroll: function() {
-        var scroll = $(this).scrollTop();
-        var title = $('.unf-user-dialog__header')
-
-        if (scroll > 0) {
-         title.addClass('unf-user-dialog__header-shadow');
-        } else {
-         title.removeClass('unf-user-dialog__header-shadow');
-        }
-      },
-    });
-})
 
 $(function handleInputAdsTitle() {
     $(document).on('input', '#input__ads--title', function(){
@@ -212,7 +199,6 @@ $(function handleInputAdsLink() {
 });
 
 function resetInputValueAds() {
-    console.log($('.unf-user-btn--primary'))
     isTitle =  false;
     isImg = false;
     isLink = false;
@@ -222,9 +208,12 @@ function resetInputValueAds() {
 	// reset img
 	resetInputImageAds()
     handleCheckInputAds();
-    handleDialogClose();
+}
+
+function handleCloseAddEditDialog(){
     //put back html 
     $('.js__child-dialog-add-edit-ads').html(addDialog)
+    handleDialogClose()
 }
 
 function resetInputImageAds() {
@@ -252,9 +241,11 @@ function clickEditAds(id) {
         close: true,
         btnTextPrimary: 'Save',
         btnPrimaryDisabled: true,
+        init: resetInputValueAds,  
         handleClickPrimary: function() {clickSaveAds(id)},
-        handleClickSecondary: function() {resetInputValueAds()}
+        handleClickSecondary:  function() {handleCloseAddEditDialog()}
     });
+    resizeDialog('414px');
     $('.js__child-dialog-add-edit-ads').html('')
     fetchAdsData(id)
 }
@@ -301,7 +292,7 @@ function clickSaveAds(id){
         })
     }
     initData();
-    resetInputValueAds();
+    handleCloseAddEditDialog();
 }
 
 // Delete Ads
@@ -313,6 +304,7 @@ function clickDeleteAds(id) {
         btnTextPrimary: 'Yes, Delete',
         handleClickPrimary: function() {deleteAds(id)}
     });
+    resizeDialog('320px');
 }
 function deleteAds(id){
     dataAds.map((item, index) => {
@@ -349,7 +341,14 @@ function changeAdsStatus(e, id) {
             handleClickPrimary: function() {onClickDeactivateAds(id)}
         });
     }
+    resizeDialog('320px');
 }
 function handleStatusAds(id, val) {
     updateData(id, 'status', val)
+}
+
+// resize dialog
+
+function resizeDialog(sizepx){
+    $('.d-inline').css('width', sizepx)
 }

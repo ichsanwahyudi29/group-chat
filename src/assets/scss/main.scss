@@ -1,6 +1,15 @@
 .table{
+  &__ads{
+    thead tr td{
+      &:nth-child(2){
+        width: 288px;
+      }
+      &:last-child{
+        width: 271px;
+      }
+    }
+  }
   &__list{
-    width: 100%;
     table{
       width: 100%;
       border-collapse: collapse;
@@ -12,7 +21,8 @@
           font-size: 14px; 
           td{
             transition: all ease-in-out .3s;
-            padding: 15px 0px 15px 13px;
+            padding: 15px 0px 15px 24px;
+            // padding: 15px 0px 15px 13px;
             background-color: $gray-soft;
             &:first-child{
               border-radius: 6px 0px 0px 6px;
@@ -28,17 +38,20 @@
           border-bottom: solid 1px $gray-border;
           &:nth-child(1){
             td{
-              padding: 24px 13px 32px 13px;
+              padding: 24px 24px 22px 24px;
+              // padding: 24px 13px 32px 13px;
             }
           }
           &:last-child{
             border-bottom: none;
             td{
-              padding: 30px 13px 0px 13px;
+              padding: 24px 24px 26px 24px;
+              // padding: 30px 13px 0px 13px;
             }
           }
           td{ 
-            padding: 30px 13px 32px 13px;
+            padding: 24px 24px 22px 24px;
+            //padding: 30px 13px 32px 13px;
             vertical-align: top;
             &:last-child{
               padding-right: 0;
@@ -468,7 +481,8 @@
           font-size: 14px; 
           td{
             transition: all ease-in-out .3s;
-            padding: 15px 0px 15px 13px;
+            padding: 15px 0px 15px 24px;
+            // padding: 15px 0px 15px 13px;
             background-color: $hover-dropdown;
             &:first-child{
               border-radius: 6px 0px 0px 6px;
@@ -484,17 +498,20 @@
           border-bottom: solid 1px #e0e0e0;
           &:nth-child(1){
             td{
-              padding: 24px 13px 32px 13px;
+              padding: 24px 24px 22px 24px;
+              // padding: 24px 13px 32px 13px;
             }
           }
           &:last-child{
             border-bottom: none;
             td{
-              padding: 30px 13px 0px 13px;
+              padding: 24px 24px 26px 24px;
+              // padding: 30px 13px 0px 13px;
             }
           }
           td{ 
-            padding: 30px 13px 32px 13px;
+            padding: 24px 24px 22px 24px;
+            // padding: 30px 13px 32px 13px;
             vertical-align: top;
             &:last-child{
               padding-right: 0;
