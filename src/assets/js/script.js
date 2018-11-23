@@ -105,3 +105,7 @@ function loadJSON(fileJSON, callback) {
   };
   xobj.send(null);  
 }
+
+function resizeDialog(classname){
+  $('.d-inline').removeClass('dialog-520 dialog-414 dialog 320').addClass(classname)
+}

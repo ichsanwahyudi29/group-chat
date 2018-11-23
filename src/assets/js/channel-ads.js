@@ -101,14 +101,14 @@ function initData(){
                 <td class="table__list-ads-status">
                     <div class="list-ads-status">
                         <div class="list-ads-status__set">
-                            <select class="list-ads-status__select ${data.status === 0 ? 'list-ads-status__select--inactive' : ''}"  onchange="changeAdsStatus(this, ${data.id})">
+                            <select class="list-ads-status__select ${data.status === 0 ? 'list-ads-status__select--inactive' : ''}"  onchange="handleChangeAdsStatus(this, ${data.id})">
                                 <option value="Active" ${data.status === 1 ? 'selected' : ''}>Active</option>
                                 <option value="Inactive" ${data.status === 0 ? 'selected' : ''}>Inactive</option>
                             </select>
                         </div>
                         <div class="list-ads-status__btn">
-                            <a class="unf-user-btn unf-user-btn--small btn-icon btn-icon-action btn-icon--edit" onclick="clickEditAds(${data.id})"></a>
-                            ${data.status === 0 ? `<a class="unf-user-btn unf-user-btn--small btn-icon btn-icon-action btn-icon--delete" onclick="clickDeleteAds(${data.id})"></a>`: ``}                            
+                            <a class="unf-user-btn unf-user-btn--small btn-icon btn-icon-action btn-icon--edit" onclick="handleEditAds(${data.id})"></a>
+                            ${data.status === 0 ? `<a class="unf-user-btn unf-user-btn--small btn-icon btn-icon-action btn-icon--delete" onclick="handleDeleteAds(${data.id})"></a>`: ``}                            
                         </div>
                     </div>
                 </td>
@@ -119,7 +119,7 @@ function initData(){
 }
 
 // Create Ads
-$(function onClickCreateAds() {
+$(function handleCreateAds() {
     $('.group-chat__btn--create').on({
       click: function() {
         addDialog = $('.js__child-dialog-add-edit-ads').html()
@@ -129,11 +129,11 @@ $(function onClickCreateAds() {
             close: true,
             btnTextPrimary: 'Save',
             btnPrimaryDisabled: true,
-            init: resetInputValueAds,
-            handleClickPrimary: function() {clickSaveAds()},
+            init: handleResetInputValueAds,
+            handleClickPrimary: function() {handleSaveAds()},
             handleClickSecondary:  function() {handleCloseAddEditDialog()}
         });
-        resizeDialog('414px');
+        resizeDialog('dialog--414');
         $('.js__child-dialog-add-edit-ads').html('')
       },
     });
@@ -151,15 +151,15 @@ $(function handleInputAdsTitle() {
     })
 });
 
-$(function onChangeAdsImg() {
+$(function handleOnChangeAdsImg() {
     $(document).on('click', '#upload__ads--cover, #change__ads--cover', function(){
         $('#input__ads--cover').click();
     })
 });
 
-$(function onDeleteAdsImg() {
+$(function handleOnDeleteAdsImg() {
     $(document).on('click', '#delete__ads--cover', function(){
-        resetInputImageAds()
+        handleResetInputImageAds()
     })
 });
 
@@ -198,7 +198,7 @@ $(function handleInputAdsLink() {
     })
 });
 
-function resetInputValueAds() {
+function handleResetInputValueAds() {
     isTitle =  false;
     isImg = false;
     isLink = false;
@@ -206,7 +206,7 @@ function resetInputValueAds() {
 	$('#input__ads--title').val('');
 	$('#input__ads--link').val('');
 	// reset img
-	resetInputImageAds()
+	handleResetInputImageAds()
     handleCheckInputAds();
 }
 
@@ -216,7 +216,7 @@ function handleCloseAddEditDialog(){
     handleDialogClose()
 }
 
-function resetInputImageAds() {
+function handleResetInputImageAds() {
     isImg = false;
 	$('.unf-user-input__image-container').addClass('hide');
 	$('#img__ads--cover').removeAttr('src');
@@ -233,7 +233,7 @@ function handleCheckInputAds() {
 }
 
 // Edit Ads
-function clickEditAds(id) {
+function handleEditAds(id) {
     addDialog = $('.js__child-dialog-add-edit-ads').html()
     dialogModule.renderDialog({
         title: 'Edit Ads',
@@ -241,35 +241,34 @@ function clickEditAds(id) {
         close: true,
         btnTextPrimary: 'Save',
         btnPrimaryDisabled: true,
-        init: resetInputValueAds,  
-        handleClickPrimary: function() {clickSaveAds(id)},
+        init: handleResetInputValueAds,  
+        handleClickPrimary: function() {handleSaveAds(id)},
         handleClickSecondary:  function() {handleCloseAddEditDialog()}
     });
-    resizeDialog('414px');
+    resizeDialog('dialog--414');
     $('.js__child-dialog-add-edit-ads').html('')
-    fetchAdsData(id)
+    handleFetchAdsData(id)
 }
 
-function fetchAdsData(id){
+function handleFetchAdsData(id){
     var data = dataAds.filter(item => item.id === id)[0]
 	$('#input__ads--title').val(data.name);
 	$('#input__ads--link').val(data.url);
-    revealImg($('#input__ads--cover')[0], data.img);
+    handleRevealImg($('#input__ads--cover')[0], data.img);
     isTitle = true;
     isImg = true;
     isLink = true;
     handleCheckInputAds();
 }
 
-function revealImg(input, img){
+function handleRevealImg(input, img){
     var fileElem = document.getElementById(input.id).nextElementSibling;
     $('#img__ads--cover').attr('src', img);
-
     $(fileElem).removeClass('hide');
 }
 
 // Add & Edit handle
-function clickSaveAds(id){
+function handleSaveAds(id){
     if(id === undefined){
         // Add
         var newData = {}
@@ -296,7 +295,7 @@ function clickSaveAds(id){
 }
 
 // Delete Ads
-function clickDeleteAds(id) {
+function handleDeleteAds(id) {
     dialogModule.renderDialog({
         title: 'Delete Ads',
         children: $('.js__child-dialog-delete-ads'),
@@ -304,7 +303,7 @@ function clickDeleteAds(id) {
         btnTextPrimary: 'Yes, Delete',
         handleClickPrimary: function() {deleteAds(id)}
     });
-    resizeDialog('320px');
+    resizeDialog('dialog--320');
 }
 function deleteAds(id){
     dataAds.map((item, index) => {
@@ -317,20 +316,20 @@ function deleteAds(id){
 }
 
 // Ads Status
-function onClickActivateAds(id) {
+function handleActivateAds(id) {
     handleStatusAds(id , 1)
 }
-function onClickDeactivateAds(id) {
+function handleDeactivateAds(id) {
     handleStatusAds(id , 0)
 }
-function changeAdsStatus(e, id) {
+function handleChangeAdsStatus(e, id) {
     if(e.selectedIndex === 0){
         dialogModule.renderDialog({
             title: 'Activate Ads',
             children: $('.js__child-dialog-activate-ads'),
             close: false,
             btnTextPrimary: 'Yes, Activate',
-            handleClickPrimary: function() {onClickActivateAds(id)}
+            handleClickPrimary: function() {handleActivateAds(id)}
         });
     }else{
         dialogModule.renderDialog({
@@ -338,17 +337,11 @@ function changeAdsStatus(e, id) {
             children: $('.js__child-dialog-deactivate-ads'),
             close: false,
             btnTextPrimary: 'Yes, Deactivate',
-            handleClickPrimary: function() {onClickDeactivateAds(id)}
+            handleClickPrimary: function() {handleDeactivateAds(id)}
         });
     }
-    resizeDialog('320px');
+    resizeDialog('dialog--320');
 }
 function handleStatusAds(id, val) {
     updateData(id, 'status', val)
-}
-
-// resize dialog
-
-function resizeDialog(sizepx){
-    $('.d-inline').css('width', sizepx)
 }

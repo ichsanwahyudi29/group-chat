@@ -75,4 +75,15 @@
       }
     }
   }
+  &__content{
+    &--group-chat{
+      padding-top: 24px;
+    }
+  }
+  &__title{
+    &--group-chat{
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
 }

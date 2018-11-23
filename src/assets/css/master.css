@@ -909,6 +909,15 @@ html, body {
       color: #42B549;
       padding-left: 20px; }
 
+.dialog--520 {
+  width: 520px; }
+
+.dialog--414 {
+  width: 414px; }
+
+.dialog--320 {
+  width: 320px; }
+
 .table__ads thead tr td:nth-child(2) {
   width: 288px; }
 
@@ -1826,6 +1835,13 @@ html, body {
       margin-right: 4px; }
     .unf-user-dialog__action--group-chat button:last-child {
       margin-left: 4px; }
+
+.unf-user-dialog__content--group-chat {
+  padding-top: 24px; }
+
+.unf-user-dialog__title--group-chat {
+  font-size: 18px;
+  font-weight: bold; }
 
 .dialog-banned-user__input {
   position: absolute;
