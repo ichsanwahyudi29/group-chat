@@ -135,16 +135,25 @@ html, body {
   height: 100%;
   margin: 0; }
 
-.p-0 {
-  padding: 0 !important; }
-
 .d-flex {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important; }
 
+.d-inline {
+  display: inline-block; }
+
 .hide {
   display: none !important; }
+
+.p-0 {
+  padding: 0 !important; }
+
+.pl-32 {
+  padding-left: 32px !important; }
+
+.pr-32 {
+  padding-right: 32px !important; }
 
 .m-0 {
   margin: 0 !important; }
@@ -157,6 +166,9 @@ html, body {
 
 .of-init {
   overflow: initial !important; }
+
+.ta-center {
+  text-align: center !important; }
 
 .wrapper {
   width: 100%;
@@ -2118,3 +2130,19 @@ html, body {
   .live-chat .customScrollBar--live-chat > .scroll-element.scroll-y {
     width: 6px;
     right: 5px; }
+
+.template-chat__type {
+  -webkit-animation-name: content;
+          animation-name: content;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1; }
+  .template-chat__type-content {
+    display: block;
+    padding-top: 16px;
+    padding-bottom: 24px; }
