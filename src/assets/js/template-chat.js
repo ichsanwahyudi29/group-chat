@@ -1,16 +1,17 @@
-$(document).ready(function() {
-  // handleDialogOpen($('.unf-user-dialog--add-template-chat'));
+$(function initialize() {
+  handleCloseAddTemplateChat();
+  handleClickAddTemplateChat();
 });
 
-$(function handleCloseAddTemplateChat() {
+function handleCloseAddTemplateChat() {
   $('.unf-user-dialog__close--add-template').on({
     click: function () {
       handleDialogClose()
     }
   })
-});
+}
 
-$(function handleClickAddTemplateChat() {
+function handleClickAddTemplateChat() {
   $('#btn__template-chat--add').on({
     click: function() {
       dialogModule.renderDialog({
@@ -19,29 +20,31 @@ $(function handleClickAddTemplateChat() {
         close: true,
         btnPrimaryDisabled: true,
         btnTextPrimary: 'Save',
-        handleClickPrimary: function() {handleDialogClose();}
+        init: initAddEditTemplateChat,
+        handleClickPrimary: handleDialogClose
       });
     },
   });
-});
+}
 
-function editTemplateChat() {
+function handleClickEditTemplateChat() {
   dialogModule.renderDialog({
     title: 'Edit Template Chat',
     children: $('.js__child-dialog-add-template'),
     close: true,
     btnTextPrimary: 'Save',
-    handleClickPrimary: function() {handleDialogClose();}
+    init: initAddEditTemplateChat,
+    handleClickPrimary: handleDialogClose
   });
 }
 
-function deleteTemplateChat(e) {
+function handleClickDeleteTemplateChat(e) {
   dialogModule.renderDialog({
     title: 'Delete Template Chat',
     children: $('.js__child-dialog-delete-template-chat'),
     close: false,
     btnTextPrimary: 'Yes, Delete',
-    handleClickPrimary: function() {handleDialogClose();}
+    handleClickPrimary: handleDialogClose
   });
 }
 
@@ -51,6 +54,25 @@ function autoSendTemplateChat(e) {
     children: $('.js__child-dialog-auto-send-template-chat'),
     close: true,
     btnTextPrimary: 'Save',
-    handleClickPrimary: function() {handleDialogClose();}
+    handleClickPrimary: handleDialogClose
   });
+}
+
+function initAddEditTemplateChat() {
+  $('.js__template-dialog')
+    .on('click', '.js__toggle-type-img', function() {
+      $(this).attr('checked', true);
+      $('.js__toggle-type-text').removeAttr('checked');
+      $('.js__template-chat-text').addClass('hide');
+      $('.js__template-chat-image').removeClass('hide');
+    })
+    .on('click', '.js__toggle-type-text', function() {
+      $(this).attr('checked', true);
+      $('.js__toggle-type-img').removeAttr('checked');
+      $('.js__template-chat-image').addClass('hide');
+      $('.js__template-chat-text').removeClass('hide');
+    })
+    .find('.js__toggle-type-text').attr('checked', true).end()
+    .find('.js__template-chat-text').removeClass('hide').end()
+    .find('.js__template-chat-image').addClass('hide').end();
 }

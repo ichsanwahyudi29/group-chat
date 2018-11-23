@@ -422,34 +422,78 @@
             <div class="unf-user-input unf-user-input--radio">
               <label class="unf-user-input__label">Message type:</label>
               <div class="d-flex">
-                <label class="unf-user-radio" for="template-chat--text">
-                  <input type="radio" name="template-chat--type" id="template-chat--text" checked>
+                <label class="unf-user-radio">
+                  <input type="radio" name="template-chat--type" class="js__toggle-type-text">
                     <span class="unf-user-radio__area"></span>
                     <span class="unf-user-radio__label">Text</span>
                 </label>
-                <label class="unf-user-radio" for="template-chat--img">
-                  <input type="radio" name="template-chat--type" id="template-chat--img">
+                <label class="unf-user-radio">
+                  <input type="radio" name="template-chat--type" class="js__toggle-type-img">
                     <span class="unf-user-radio__area"></span>
                     <span class="unf-user-radio__label">Image</span>
                 </label>
               </div>
-            </div>
-            <div class="unf-user-input">
-              <label class="unf-user-input__label">Message</label>
-              <textarea type="text" id="input__template-chat--msg" class="unf-user-input__control" name="template-chat--msg"
-                maxlength="200" rows="3"></textarea>
-              <div class="unf-user-input__info">
-                <span></span>
-                <span class="unf-user-input__info-counter">0/200</span>
+            </div>            
+            <div class="js__template-chat-text template-chat__type">
+              <div class="unf-user-input">
+                <label class="unf-user-input__label">Message</label>
+                <textarea type="text" id="input__template-chat--msg" class="unf-user-input__control" name="template-chat--msg"
+                  maxlength="200" rows="3"></textarea>
+                <div class="unf-user-input__info">
+                  <span></span>
+                  <span class="unf-user-input__info-counter">0/200</span>
+                </div>
               </div>
+              <div class="unf-user-input unf-user-input--column">
+                <label class="unf-user-input__label">Vibrate</label>
+                <div class="unf-user-toggle">
+                  <input type="checkbox" class="unf-user-toggle__checkbox" id="input__template-chat--vibrate">
+                  <label for="input__template-chat--vibrate"></label>
+                </div>
+              </div>  
             </div>
-            <div class="unf-user-input unf-user-input--column">
-              <label class="unf-user-input__label">Vibrate</label>
-              <div class="unf-user-toggle">
-                <input type="checkbox" class="unf-user-toggle__checkbox" id="input__template-chat--vibrate">
-                <label for="input__template-chat--vibrate"></label>
+            <div class="js__template-chat-image template-chat__type hide">
+              <div class="unf-user-input">
+                <label class="unf-user-input__label">Title</label>
+                <input type="text" id="input__image-title" class="unf-user-input__control" name="image-title" maxlength="70">
+                <div class="unf-user-input__info">
+                  <span></span>
+                </div>
               </div>
-            </div>  
+              <div class="unf-user-input">
+                <label class="unf-user-input__label">Image</label>
+                <div class="unf-user-input__control unf-user-input__control--image">
+                  <input id="input__channel--cover" type="file" accept=".jpg,.jpeg,.png">
+                  <div class="unf-user-input__image-container unf-user-input__image-container--full hide">
+                    <img id="img__channel--cover" class="unf-user-input__image-file">
+                    <div class="unf-user-input__image-action">
+                      <span id="change__channel--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
+                      <span id="delete__channel--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
+                    </div> 
+                  </div>
+                  <div id="upload__channel--cover" class="unf-user-input__image-upload">
+                    <span class="unf-user-input__image-upload-text unf-user-input__image-upload-text--column">Add Image</span>
+                  </div>
+                </div>
+                <div class="unf-user-input__info">
+                  <span></span>
+                </div>                
+              </div>                
+              <div class="unf-user-input">
+                <label class="unf-user-input__label">URL</label>
+                <input type="text" id="input__image-url" class="unf-user-input__control" name="image-url" maxlength="70" placeholder="https://www.tokopedia.com">
+                <div class="unf-user-input__info">
+                  <span></span>
+                </div>
+              </div> 
+              <div class="unf-user-input unf-user-input--column">
+                <label class="unf-user-input__label">Vibrate</label>
+                <div class="unf-user-toggle">
+                  <input type="checkbox" class="unf-user-toggle__checkbox" id="input__template-chat--vibrate">
+                  <label for="input__template-chat--vibrate"></label>
+                </div>
+              </div>                               
+            </div>
           </div>          
         </div>    
       </section>
