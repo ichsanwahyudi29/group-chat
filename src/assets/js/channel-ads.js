@@ -127,13 +127,13 @@ $(function handleCreateAds() {
             title: 'Add Ads',
             children: $('.js__child-dialog-add-edit-ads'),
             close: true,
+            styleClass: 'dialog--414',
             btnTextPrimary: 'Save',
             btnPrimaryDisabled: true,
             init: handleResetInputValueAds,
             handleClickPrimary: function() {handleSaveAds()},
             handleClickSecondary:  function() {handleCloseAddEditDialog()}
         });
-        resizeDialog('dialog--414');
         $('.js__child-dialog-add-edit-ads').html('')
       },
     });
@@ -239,13 +239,13 @@ function handleEditAds(id) {
         title: 'Edit Ads',
         children: $('.js__child-dialog-add-edit-ads'),
         close: true,
+        styleClass: 'dialog--414',
         btnTextPrimary: 'Save',
         btnPrimaryDisabled: true,
         init: handleResetInputValueAds,  
         handleClickPrimary: function() {handleSaveAds(id)},
         handleClickSecondary:  function() {handleCloseAddEditDialog()}
     });
-    resizeDialog('dialog--414');
     $('.js__child-dialog-add-edit-ads').html('')
     handleFetchAdsData(id)
 }
@@ -300,10 +300,10 @@ function handleDeleteAds(id) {
         title: 'Delete Ads',
         children: $('.js__child-dialog-delete-ads'),
         close: false,
+        styleClass: 'dialog--320',
         btnTextPrimary: 'Yes, Delete',
         handleClickPrimary: function() {deleteAds(id)}
     });
-    resizeDialog('dialog--320');
 }
 function deleteAds(id){
     dataAds.map((item, index) => {
@@ -328,6 +328,7 @@ function handleChangeAdsStatus(e, id) {
             title: 'Activate Ads',
             children: $('.js__child-dialog-activate-ads'),
             close: false,
+            styleClass: 'dialog--320',
             btnTextPrimary: 'Yes, Activate',
             handleClickPrimary: function() {handleActivateAds(id)}
         });
@@ -336,11 +337,11 @@ function handleChangeAdsStatus(e, id) {
             title: 'Deactivate Ads',
             children: $('.js__child-dialog-deactivate-ads'),
             close: false,
+            styleClass: 'dialog--320',
             btnTextPrimary: 'Yes, Deactivate',
             handleClickPrimary: function() {handleDeactivateAds(id)}
         });
     }
-    resizeDialog('dialog--320');
 }
 function handleStatusAds(id, val) {
     updateData(id, 'status', val)
