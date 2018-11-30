@@ -1,11 +1,19 @@
+$(document).ready(function(){
+  windowSizeCheck()
+})
+
+function windowSizeCheck(){
+  var width = 1200;
+  if($(window).width() < width ){
+    $('.group-chat').addClass('group-chat--mini');
+  } else {
+    $('.group-chat').removeClass('group-chat--mini');
+  }
+}
+
 $(window).on({
   resize: function() {
-    var width = 1200;
-    if ($(window).width() < width) {
-      $('.group-chat').addClass('group-chat--mini');
-    } else {
-      $('.group-chat').removeClass('group-chat--mini');
-    }
+    windowSizeCheck()
   },
   scroll: function() {
     var scroll = $(this).scrollTop();
@@ -47,25 +55,23 @@ $(document).ready(function() {
     </a>
   `;
 
-  for (let i = 0; i < 50; i++) {
+  for(var i = 0; i < 80; i++){
+    var iString = i.toString(16)
+    if(iString.length < 2){
+      iString = '0'+iString
+    }
+    else{
+      iString = iString
+    }
     var emoji = `
-      <a class="emoji-outer">
-        <span class="emoji-icon">&#x1F60${i}</span>
-      </a>
-    `;
-
-    var emoji2 = `
-      <a class="emoji-outer">
-        <span class="emoji-icon">&#x1F6${i}0</span>
-      </a>
-    `;
-
+    <a class="emoji-outer">
+      <span class="emoji-icon">&#x1F6${iString}</span>
+    </a>`;
     $('.unf-user-input__emoji-content').append(emoji);
-    $('.unf-user-input__emoji-content').append(emoji2);
   }
 
-  
 });
+
 
 // function initFirstTabActive() {
 //   $('#tab-item1').prop("checked", true)
@@ -78,17 +84,26 @@ $(function handleEmoji() {
   $('body').on({
     click: function (e) {
       let emoji = e.target.classList[0];
-      if (emoji != 'unf-user-input__icon-emoji') {
+      /* if (emoji != 'unf-user-input__icon-emoji') {
         $('.unf-user-input__icon-emoji').removeClass('unf-user-input__icon-emoji--show');
-      }
+      } */
     }
   })
 
-  $('.unf-user-input__icon-emoji').on({
+  $(document).on('click', '.unf-user-input__icon-emoji', function(){
+    $(this).toggleClass('unf-user-input__icon-emoji--show');
+  })
+  $(document).on('click', '.emoji-outer', function(e){
+    var $thisEmoji = $(this).children().html()
+    var $targetInput = $(this).parents('.unf-user-input__icon-emoji').prev('input');
+    $targetInput[0].value += $thisEmoji
+    $targetInput.focus()
+  })
+  /* $('.unf-user-input__icon-emoji').on({
     click: function () {
       $(this).toggleClass('unf-user-input__icon-emoji--show');
     },
-  });
+  }); */
 })
 
 function optionsTab(e) {

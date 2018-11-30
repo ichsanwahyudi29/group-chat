@@ -13,7 +13,7 @@ function initContainer() {
           <div class="card__header-sorting">
             <h6 class="sorting-title">Sort</h6>
             <div class="sorting-option">
-              <select>
+              <select class="js__regular-select">
                 <option value="created">Created date</option>
                 <option value="updated">Updated date</option>
               </select>
@@ -46,7 +46,7 @@ function initContainer() {
           <div class="card__header-sorting">
             <h6 class="sorting-title">Sort</h6>
             <div class="sorting-option">
-              <select>
+              <select class="js__regular-select">
                 <option value="created">Created date</option>
                 <option value="updated">Updated date</option>
               </select>

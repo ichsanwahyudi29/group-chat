@@ -5,11 +5,44 @@
   &--414{
     width: 414px;
   }
+  &--454{
+    width: 454px;
+  }
   &--320{
     width: 320px;
   }
 }
 .table{
+  &__template-chat{
+    thead tr td{
+      &:first-child, &:nth-child(2){
+        width: 97px;
+      }
+      &:last-child{
+        width: 308px;
+      }
+    }
+  }
+  &__pin-chat{
+    thead tr td{
+      &:first-child{
+        width: 97px;
+      }
+      &:last-child{
+        width: 318px;
+      }
+    }
+  }
+  &__quick-reply{
+    thead tr td{
+      &:first-child{
+        width: 97px;
+      }
+      &:last-child{
+        width: 318px;
+      }
+    }
+  }
   &__ads{
     thead tr td{
       &:nth-child(2){

@@ -86,4 +86,9 @@
       font-weight: bold;
     }
   }
+  &__body{
+    &--group-chat{
+      overflow: unset;
+    }
+  }
 }

@@ -13,12 +13,19 @@
         font-size: 14px;
         color: $black-54;
         line-height: normal;
-        margin-right: 24px;
+        // margin-right: 24px;
+        margin-right: 16px;
     }
 
     &__select {
         display: block;
         width: 136px;
         text-align: left;
+        & + .unf-user-select__options{
+            text-align: left;
+            li{
+                padding-left: 9.5px;
+            }
+        }
     }
 }

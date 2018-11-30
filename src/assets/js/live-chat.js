@@ -7,21 +7,7 @@ $(function handleQuickReplyLiveChat() {
   $('.live-chat__quick-reply-bubble').on({
     click: function() {
       var chatVal = $(this).children().html()
-      console.log(chatVal)
-      var chat = `
-        <div class="live-chat__content">
-          <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
-          <div class="live-chat__content-text">
-            <div class="live-chat__content-profile">
-              <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
-              <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">admin</label>
-              <span class="profile-time">12.00</span>
-            </div>
-            <p class="live-chat__content-msg">${chatVal}</p>
-          </div>
-        </div>
-      `;
-      $('.live-chat__area').append(chat);
+      $('.live-chat__area').append(renderChatText(chatVal));
       handleScrollLiveChat();
     },
   });
@@ -46,26 +32,31 @@ $(function handleScrollLiveChatSendText() {
   $('#btn__live-chat--text').on({
     click: function() {
       var chatVal = $('#input__live-chat--text').val();
-      var chat = `
-        <div class="live-chat__content">
-          <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
-          <div class="live-chat__content-text">
-            <div class="live-chat__content-profile">
-              <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
-              <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">admin</label>
-              <span class="profile-time">12.00</span>
-            </div>
-            <p class="live-chat__content-msg">${chatVal}</p>
-          </div>
-        </div>
-      `;
-      $('.live-chat__area').append(chat);
+      
+      $('.live-chat__area').append(renderChatText(chatVal));
       handleScrollLiveChat();
       $('#input__live-chat--text').val('');
       $(this).attr('disabled', true);
     },
   });
 });
+
+function renderChatText(chatVal){
+  var chat = `
+  <div class="live-chat__content">
+    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
+    <div class="live-chat__content-text">
+      <div class="live-chat__content-profile">
+        <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
+        <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">admin</label>
+        <span class="profile-time">${getChatTime()}</span>
+      </div>
+      <p class="live-chat__content-msg">${chatVal}</p>
+    </div>
+  </div>`
+
+  return chat;
+}
 
 // send Image
 
@@ -139,29 +130,13 @@ $(function handleScrollLiveChatSendText() {
       var urlVal = $('#input__live-chat--url').val();
       var imgVal = $('#img__live-chat--send-img').attr('src');
       var input = $('#input__live-chat--url').closest('.unf-user-input');
-      var chat = `
-        <div class="live-chat__content">
-          <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
-          <div class="live-chat__content-text">
-            <div class="live-chat__content-profile">
-              <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
-              <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">admin</label>
-              <span class="profile-time">12.00</span>
-            </div>
-            <div class="live-chat__image">
-              <a href="${urlVal}" target="_blank">
-                <img class="live-chat__content-img" src="${imgVal}" alt="">
-              </a> 
-            </div>
-          </div>
-        </div>
-      `;
 
       if (!validateURL(urlVal)) {
         handleInputError(input, helper.link.error[0], false);
         return false;
       }
-      $('.live-chat__area').append(chat);
+
+      $('.live-chat__area').append(renderChatImg(urlVal, imgVal));
       handleScrollLiveChat();
       resetInputImageLiveChat();
       $('#input__live-chat--url').val('');
@@ -169,6 +144,27 @@ $(function handleScrollLiveChatSendText() {
     },
   });
 });
+
+function renderChatImg(urlVal, imgVal){
+  var chat = `
+    <div class="live-chat__content">
+      <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
+      <div class="live-chat__content-text">
+        <div class="live-chat__content-profile">
+          <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
+          <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">admin</label>
+          <span class="profile-time">${getChatTime()}</span>
+        </div>
+        <div class="live-chat__image">
+          <a href="${urlVal}" target="_blank">
+            <img class="live-chat__content-img" src="${imgVal}" alt="">
+          </a> 
+        </div>
+      </div>
+    </div>
+  `
+  return chat
+}
 
 function resetInputImageLiveChat() {
   $('.unf-user-input__image-container').addClass('hide');
@@ -201,14 +197,4 @@ function handleBtnLiveChat(e) {
   } else {
     btn.attr('disabled', true);
   }
-}
-
-function validateURL(val) {
-  var regex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/g;
-
-  if (!regex.test(val)) {
-    return false;
-  }
-
-  return true;
 }

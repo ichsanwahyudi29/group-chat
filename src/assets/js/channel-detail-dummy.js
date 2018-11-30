@@ -33,16 +33,18 @@ $(function templateChatRenderer() {
                             <label class="template-chat__auto-send-label">Auto-Send</label>
                             <div class="unf-user-toggle">
                             ${template.autoSend ? 
-                                '<input checked type="checkbox" class="unf-user-toggle__checkbox" id="testcheck" onclick="autoSendTemplateChat(this)">' :
-                                '<input type="checkbox" class="unf-user-toggle__checkbox" id="testcheck" onclick="autoSendTemplateChat(this)">'}
-                            <label for="testcheck"></label>
+                                `<input checked type="checkbox" class="unf-user-toggle__checkbox" id="testcheck-${template.id}" onclick="autoSendTemplateChat(this)">` :
+                                `<input type="checkbox" class="unf-user-toggle__checkbox" id="testcheck-${template.id}" onclick="autoSendTemplateChat(this)">`}
+                            <label for="testcheck-${template.id}"></label>
                             </div>
                         </div>
-                        <span class="template-chat__time-auto-send">Sisa waktu: <b>59m 59s</b></span>
+                        ${template.autoSend ?
+                            `<span class="template-chat__time-auto-send">Sisa waktu: <b>59m 59s</b></span>` : ``
+                        }
                         </div>
                         <div class="list-action__btn">
-                        <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit" onclick="handleClickEditTemplateChat(this)"><span>edit</span></a>
-                        <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--delete" onclick="handleClickDeleteTemplateChat(this)"><span>delete</span></a>
+                        <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit" onclick="handleClickEditTemplateChat(${template.id})"><span>edit</span></a>
+                        <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--delete" onclick="handleClickDeleteTemplateChat(${template.id})"><span>delete</span></a>
                         </div>
                     </div>
                     </td>

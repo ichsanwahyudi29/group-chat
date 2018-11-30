@@ -155,6 +155,9 @@ html, body {
 .pr-32 {
   padding-right: 32px !important; }
 
+.pb-0 {
+  padding-bottom: 0px !important; }
+
 .m-0 {
   margin: 0 !important; }
 
@@ -329,6 +332,20 @@ html, body {
     color: #FFFFFF;
     background: -o-linear-gradient(169deg, #ff9047, #ff5722);
     background: linear-gradient(281deg, #ff9047, #ff5722); }
+    .group-chat__btn-primary--create {
+      width: 160px; }
+      .group-chat__btn-primary--create:before {
+        content: '';
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        position: relative;
+        top: 2.5px;
+        display: inline-block;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxnIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgOC42NjdoMTZWNy4zMzNIMHoiLz4KICAgICAgICA8cGF0aCBkPSJNNy4zMzMgMTZoMS4zMzRWMEg3LjMzM3oiLz4KICAgIDwvZz4KPC9zdmc+Cg=="); }
   .group-chat__btn-action {
     width: 112px;
     display: -webkit-box;
@@ -645,15 +662,40 @@ html, body {
     .unf-user-select__options li {
       font-size: 13px;
       color: rgba(0, 0, 0, 0.54);
-      padding: 9.5px 16px;
+      padding: 9.5px 16px 9.5px 24px;
       -webkit-user-select: none;
          -moz-user-select: none;
           -ms-user-select: none;
-              user-select: none; }
+              user-select: none;
+      position: relative; }
       .unf-user-select__options li:first-child {
         border-top: none; }
       .unf-user-select__options li:hover {
         background-color: #f3fef3; }
+      .unf-user-select__options li[rel="Active"]::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        background-color: #42B549;
+        border-radius: 50%;
+        -webkit-transition: all ease .2s;
+        -o-transition: all ease .2s;
+        transition: all ease .2s;
+        position: absolute;
+        top: 13px;
+        left: 8px; }
+      .unf-user-select__options li[rel="Inactive"]::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        background-color: #bdbdbd;
+        border-radius: 50%;
+        -webkit-transition: all ease .2s;
+        -o-transition: all ease .2s;
+        transition: all ease .2s;
+        position: absolute;
+        top: 13px;
+        left: 8px; }
 
 .unf-user-input__icon {
   width: 100%;
@@ -915,8 +957,29 @@ html, body {
 .dialog--414 {
   width: 414px; }
 
+.dialog--454 {
+  width: 454px; }
+
 .dialog--320 {
   width: 320px; }
+
+.table__template-chat thead tr td:first-child, .table__template-chat thead tr td:nth-child(2) {
+  width: 97px; }
+
+.table__template-chat thead tr td:last-child {
+  width: 308px; }
+
+.table__pin-chat thead tr td:first-child {
+  width: 97px; }
+
+.table__pin-chat thead tr td:last-child {
+  width: 318px; }
+
+.table__quick-reply thead tr td:first-child {
+  width: 97px; }
+
+.table__quick-reply thead tr td:last-child {
+  width: 318px; }
 
 .table__ads thead tr td:nth-child(2) {
   width: 288px; }
@@ -1843,6 +1906,12 @@ html, body {
   font-size: 18px;
   font-weight: bold; }
 
+.unf-user-dialog__body--group-chat {
+  overflow: unset; }
+
+.dialog-banned-user .unf-user-dialog__body {
+  overflow: auto; }
+
 .dialog-banned-user__input {
   position: absolute;
   width: 100%;
@@ -1886,7 +1955,7 @@ html, body {
               justify-content: space-between;
       margin-bottom: 16px; }
       .dialog-banned-user__search-result .result:last-child {
-        margin-bottom: 0px; }
+        margin-bottom: 24px; }
       .dialog-banned-user__search-result .result button {
         width: 80px; }
       .dialog-banned-user__search-result .result__container {
@@ -1937,11 +2006,15 @@ html, body {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.54);
     line-height: normal;
-    margin-right: 24px; }
+    margin-right: 16px; }
   .auto-send-list__select {
     display: block;
     width: 136px;
     text-align: left; }
+    .auto-send-list__select + .unf-user-select__options {
+      text-align: left; }
+      .auto-send-list__select + .unf-user-select__options li {
+        padding-left: 9.5px; }
 
 .live-chat {
   padding: 0px 0px 24px;
@@ -2188,3 +2261,6 @@ html, body {
     display: block;
     padding-top: 16px;
     padding-bottom: 24px; }
+
+.unf-user-input__control--image--template-chat {
+  width: 80px; }

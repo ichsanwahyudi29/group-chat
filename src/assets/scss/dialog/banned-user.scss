@@ -1,4 +1,7 @@
 .dialog-banned-user{
+  .unf-user-dialog__body{
+    overflow: auto;
+  }
   $dialog: &;
   &__body{
     // padding-bottom: 32px;
@@ -35,7 +38,7 @@
       #{$dialog}{
         &__search{
           &-empty{
-            display: block
+            display: block;
           }
         }
       }
@@ -53,7 +56,7 @@
         justify-content: space-between;
         margin-bottom: 16px;
         &:last-child{
-          margin-bottom: 0px;
+          margin-bottom: 24px;
         }
         button{
           width: 80px;
@@ -86,7 +89,7 @@
       #{$dialog}{
         &__search{
           &-result{
-            display: block
+            display: block;
           }
         }
       }

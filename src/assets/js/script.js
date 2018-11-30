@@ -25,6 +25,10 @@ function counterInput(el, maxLength) {
 
 function initCustomSelect(element) {
   $('select').each(function() {
+    //prevent convert element more than once
+    if($(this).parent().hasClass('unf-user-select')){
+      return;
+    }
     var $this = $(this),
       numberOfOptions = $(this).children('option').length;
 
@@ -72,27 +76,67 @@ function initCustomSelect(element) {
     $listItems.click(function(e) {
       e.stopPropagation();
       $this.val($(this).attr('rel'));
-      // if (status === 'channel__status-select') {
+
+      if($this.hasClass('js__regular-select')){
+        $this.change();
+      }
+      else{
         if ($selectedVal !== $this.val()) {
           $this.change();
-          return;
+          return
         }
-      // }
+      }
 
       $styledSelect
         .removeClass('unf-user-select__selected--open')
         .children('span')
         .text($(this).text());
-      // $list.hide();
-      //console.log($this.val());
     });
 
     $(document).click(function() {
       $styledSelect.removeClass('unf-user-select__selected--open');
-      // $list.hide();
     });
   });
 }
+
+//custom select for dynamic element
+$(function initCustomSelectDynamic(){
+  var $selectedValue;
+  $(document).on('click', 'div.unf-user-select__selected', function(e){
+    e.stopPropagation();
+    $('div.unf-user-select__selected.unf-user-select__selected--open')
+      .not(this)
+      .each(function() {
+        $(this).removeClass('unf-user-select__selected--open');
+      });
+    $(this).toggleClass('unf-user-select__selected--open');
+    $select = $(this).prev('select')
+    $selectedValue = $select[0].options[$select[0].selectedIndex].innerHTML
+  })
+  
+  $(document).on('click', 'ul.unf-user-select__options>li', function(e) {
+    e.stopPropagation();
+    var $select = $(this).parent().siblings('select')
+    $select.val($(this).attr('rel'))
+    if($select.hasClass('js__regular-select')){
+      $select.change();
+    }
+    else{
+      if ($selectedValue !== $select.val()) {
+        $select.change();
+        return
+      }
+    }
+    $select.next('div.unf-user-select__selected')
+      .removeClass('unf-user-select__selected--open')
+      .children('span')
+      .text($(this).text());
+  });
+  
+  $(document).on('click', 'body', function(e){
+    $('div.unf-user-select__selected').removeClass('unf-user-select__selected--open');
+  });
+})
 
 function loadJSON(fileJSON, callback) {   
   var xobj = new XMLHttpRequest();
@@ -106,6 +150,19 @@ function loadJSON(fileJSON, callback) {
   xobj.send(null);  
 }
 
-function resizeDialog(classname){
-  $('.d-inline').removeClass('dialog-520 dialog-414 dialog 320').addClass(classname)
+function validateURL(val) {
+  var regex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/g;
+
+  if (!regex.test(val)) {
+    return false;
+  }
+
+  return true;
+}
+function getChatTime(){
+  var date = new Date
+  var jam = date.getHours()
+  var menit = date.getMinutes()
+  var result = ("0" + jam).slice(-2)+"."+("0" + menit).slice(-2)
+  return result
 }

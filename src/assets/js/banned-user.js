@@ -3,6 +3,9 @@ $(document).ready(function() {
   loopDataBannedUser();
 });
 
+var banUserContent, searchVal;
+var isSearchUser = false;
+
 var dataBannedUser = [
   {
     id: 5512939,
@@ -35,19 +38,19 @@ var dataBannedUser = [
     status: 1,
   },
   {
-    id: 4512939,
+    id: 4512523,
     participantId: 623321,
     name: 'Adek Tokped',
     status: 0,
   },
   {
-    id: 4512939,
+    id: 4512928,
     participantId: 623321,
     name: 'rachel Tokped',
     status: 0,
   },
   {
-    id: 4512939,
+    id: 4509721,
     participantId: 623321,
     name: 'Eraz Tokped',
     status: 0,
@@ -73,7 +76,7 @@ function loopDataBannedUser() {
         <td class="table__list-action">
           <div class="list-action">
             <div class="list-action__btn">
-              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--unban"><span>Unban</span></a>
+              <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--unban" onclick="handleStatusBan(${data.id})"><span>Unban</span></a>
             </div>
           </div>
         </td>
@@ -86,80 +89,107 @@ function loopDataBannedUser() {
   }
 }
 
-$(function onInputSearchBannedUser() {
-  $('#input__banned-user').on({
-    keypress: function(e) {
-      if (e.which === 13) {
-        $('#btn__banned-user--search').click();
-      }
+$(function handleSearchBanUser() {
+  $('#btn__banned-user--add').on({
+    click: function() {
+      banUserContent = $('.js__child-dialog-ban-user').html()
+      dialogModule.renderDialog({
+        title: 'Ban User',
+        children: $('.js__child-dialog-ban-user'),
+        close: true,
+        styleClass: 'dialog--414 pb-0 dialog-banned-user',
+        actionButton: false,
+        handleClickSecondary: handleCloseBanUser
+      });
+      $('.js__child-dialog-ban-user').html('')
     },
   });
+});
+
+$(function onInputSearchBannedUser() {
+  $(document).on('keypress', '#input__banned-user', function(e){
+    if (e.which === 13) {
+      $('#btn__banned-user--search').click();
+    }
+  })
 });
 
 $(function SearchBannedUser() {
-  $('#btn__banned-user--search').on({
-    click: function() {
-      $('.dialog-banned-user__search').removeClass('dialog-banned-user__search--empty dialog-banned-user__search--result');
-      $('.dialog-banned-user__search-result').empty();
-      var notFound = true;
-      var val = $('#input__banned-user').val();
-      var regex = new RegExp(val, 'i');
+  $(document).on('click','#btn__banned-user--search', function(){
+    searchVal = $('#input__banned-user').val();
+    renderSearchResult(searchVal)
+  })
+});
 
-      for (const data of dataBannedUser) {
-        var indexString = data.name.toLowerCase().indexOf(val.toLowerCase());
-        var indexVal = indexString + val.length;
-        var highlightText = data.name.substring(indexString, indexVal);
-        var resultName = data.name.replace(regex, `<b>${highlightText}</b>`);
+function renderSearchResult(val){
+  if(val === undefined){
+    return
+  }
+  $('.dialog-banned-user__search').removeClass('dialog-banned-user__search--empty dialog-banned-user__search--result');
+  $('.dialog-banned-user__search-result').empty();
+  var notFound = true;
+  var regex = new RegExp(val, 'i');
+  for (const data of dataBannedUser) {
+    var indexString = data.name.toLowerCase().indexOf(val.toLowerCase());
+    var indexVal = indexString + val.length;
+    var highlightText = data.name.substring(indexString, indexVal);
+    var resultName = data.name.replace(regex, `<b>${highlightText}</b>`);
 
-        var resultBannedUser = `
-          <div class="result">
-              <div class="result__container">
-                <img class="result__img" src="./assets/img/gc1.jpg" alt="" srcset="">
-                <span class="result__name">${resultName}</span>
-              </div>
-              ${
-                data.status === 0
-                  ? '<button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Ban</button>'
-                  : '<button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary">Unban</button>'
-              }
-             
-            </div>
+    var resultBannedUser = `
+      <div class="result">
+          <div class="result__container">
+            <img class="result__img" src="./assets/img/gc1.jpg" alt="" srcset="">
+            <span class="result__name">${resultName}</span>
           </div>
-        `;
+          ${
+            data.status === 0
+              ? `<button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" onclick="handleStatusBan(${data.id})">Ban</button>`
+              : `<button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleStatusBan(${data.id})">Unban</button>`
+          }
+          
+        </div>
+      </div>
+    `;
 
-        if (indexString >= 0) {
-          $('.dialog-banned-user__search-result').append(resultBannedUser);
-          notFound = false;
-        }
+    if (indexString >= 0) {
+      $('.dialog-banned-user__search-result').append(resultBannedUser);
+      notFound = false;
+    }
+  }
+
+  if (!notFound) {
+    $('.dialog-banned-user__search').addClass(
+      'dialog-banned-user__search--result'
+    );
+  } else {
+    $('.empty-input').text(`No results for “${val}”`);
+    $('.dialog-banned-user__search').addClass(
+      'dialog-banned-user__search--empty'
+    );
+  }
+}
+
+function handleStatusBan(id){
+  dataBannedUser.map(item => {
+    if(item.id === id){
+      if(item.status === 1){
+        item.status = 0
       }
-
-      if (!notFound) {
-        $('.dialog-banned-user__search').addClass(
-          'dialog-banned-user__search--result'
-        );
-      } else {
-        $('.empty-input').text(`No results for “${val}”`);
-        $('.dialog-banned-user__search').addClass(
-          'dialog-banned-user__search--empty'
-        );
+      else{
+        item.status = 1
       }
-    },
-  });
-});
+    }
+  })
+  loopDataBannedUser()
+  renderSearchResult(searchVal)
+}
 
-$(function handleCloseAddQuickReply() {
-  $('.dialog-banned-user__close').on({
-    click: function() {
-      handleDialogClose();
-      $('.dialog-banned-user__search').removeClass('dialog-banned-user__search--empty dialog-banned-user__search--result');
-    },
-  });
-});
+function handleCloseBanUser(){
+  //put back html 
+  $('.js__child-dialog-ban-user').html(banUserContent)
+  handleDialogClose()
+}
 
-$(function onClickAddQuickReply() {
-  $('#btn__banned-user--add').on({
-    click: function() {
-      handleDialogOpen($('.dialog-banned-user'));
-    },
-  });
-});
+function initialSearchBanUser(){
+  isSearchUser = false;
+}

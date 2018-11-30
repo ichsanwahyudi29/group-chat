@@ -254,14 +254,14 @@ function handleFetchAdsData(id){
     var data = dataAds.filter(item => item.id === id)[0]
 	$('#input__ads--title').val(data.name);
 	$('#input__ads--link').val(data.url);
-    handleRevealImg($('#input__ads--cover')[0], data.img);
+    handleRevealAdsImg($('#input__ads--cover')[0], data.img);
     isTitle = true;
     isImg = true;
     isLink = true;
     handleCheckInputAds();
 }
 
-function handleRevealImg(input, img){
+function handleRevealAdsImg(input, img){
     var fileElem = document.getElementById(input.id).nextElementSibling;
     $('#img__ads--cover').attr('src', img);
     $(fileElem).removeClass('hide');
@@ -283,7 +283,7 @@ function handleSaveAds(id){
     else{
         // Edit
         dataAds.map(item => {
-            if(item.id === parseInt(id)){
+            if(item.id === id){
                 item.name = $('#input__ads--title').val()
                 item.url = $('#input__ads--link').val()
                 item.img = $('#img__ads--cover').attr('src')
