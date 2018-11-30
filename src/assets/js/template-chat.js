@@ -274,8 +274,6 @@ function handleSaveTemplateChat(id){
   else{
     handleAddTemplate()
   }
-  loopDataTemplateChat()
-  handleCloseTemplateChat()
 }
 //gohere
 function handleAddTemplate(){
@@ -293,6 +291,11 @@ function handleAddTemplate(){
     })
   }
   else{
+    if (!validateURL($('#input__image-url').val())) {
+      handleInputError($('#input__image-url').parent(), helper.link.error[0], false);
+      return false;
+    }
+
     newTemplateChat = Object.assign({}, defaultNewTemplate, {
       id: newId,
       vibrate: $('#input__template-chat--vibrate').prop('checked'),
@@ -302,6 +305,9 @@ function handleAddTemplate(){
     })
   }
   dataTemplateChat.push(newTemplateChat)
+
+  loopDataTemplateChat()
+  handleCloseTemplateChat()
 }
 function handleEditTemplate(id){
   dataTemplateChat.map(item => {
@@ -312,11 +318,17 @@ function handleEditTemplate(id){
         item.message = $('#input__template-chat--msg').val()
       }
       else{
+        if (!validateURL($('#input__image-url').val())) {
+          handleInputError($('#input__image-url').parent(), helper.link.error[0], false);
+          return false;
+        }
         item.img = $('#img__template--cover').attr('src')
         item.url = $('#input__image-url').val()
         item.message = $('#input__image-title').val()
       }
       item.vibrate = $('#input__template-chat--vibrate').prop('checked')
+      loopDataTemplateChat()
+      handleCloseTemplateChat()
     }
   })
 }

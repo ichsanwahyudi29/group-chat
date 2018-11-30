@@ -269,6 +269,11 @@ function handleRevealAdsImg(input, img){
 
 // Add & Edit handle
 function handleSaveAds(id){
+    if (!validateURL($('#input__ads--link').val())) {
+        handleInputError($('#input__ads--link').parent(), helper.link.error[0], false);
+        return false;
+      }
+
     if(id === undefined){
         // Add
         var newData = {}

@@ -199,6 +199,10 @@ function handleRevealPinImg(input, img){
 
 //dummy action
 function handleSavePinChat(id){
+  if (!validateURL($('#input__pin-chat--url').val())) {
+    handleInputError($('#input__pin-chat--url').parent(), helper.link.error[0], false);
+    return false;
+  }
   if(id === undefined){
     // Add
     var newId = 200
