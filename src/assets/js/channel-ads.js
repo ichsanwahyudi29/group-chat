@@ -32,24 +32,18 @@ $(document).ready(function () {
     initData();
 })
 
-function updateData(id, state, newValue) {
-    for (const data of dataAds) {
-      if(data.id == id){
-        data[state] = newValue
-        break
-      }
-    }
-    handleDialogClose();
-    initData();
-}
-
 // Init
 function initAdsContainer(){
-    if(dataAds.length > 0){
-        $('.ads-card').html(
-            `<div class="card__header">
-                <div class="card__header-title">
-                    Ads List
+    var dataActive = dataAds.filter(item => item.status === 1)
+    var dataInactive = dataAds.filter(item => item.status === 0)
+    var activeList = ''
+    var inactiveList = ''
+    if(dataActive.length > 0){
+        activeList =
+        `<div class="card ads-card channel--active">
+            <div class="card__header">
+                <div class="card__header-title  channel__title">
+                    Active Ads
                 </div>
             </div>
             <div class="table__list table__ads">
@@ -65,77 +59,113 @@ function initAdsContainer(){
                 <tbody>
                 </tbody>
                 </table>
-            </div>`
-        )
+            </div>
+        </div>`
     }
-    else{
-        $('.ads-card').html(
-            `<div class="card__header">
-                <div class="card__header-title">
-                    No Ads
+    if(dataInactive.length > 0){
+        inactiveList = 
+        `<div class="card ads-card channel--inactive">
+            <div class="card__header">
+                <div class="card__header-title channel__title">
+                    Inactive Ads
                 </div>
-            </div>`
-        )
+                <div class="card__header-sorting">
+                    <h6 class="sorting-title">Sort</h6>
+                    <div class="sorting-option">
+                    <select class="js__regular-select">
+                        <option value="created">Created date</option>
+                        <option value="updated">Updated date</option>
+                    </select>
+                </div>
+            </div>
+            </div>
+            <div class="table__list table__ads">
+                <table cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <td>Ads Title</td>
+                        <td>Ads Image</td>
+                        <td>Ads Link</td>
+                        <td>Status</td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                </table>
+            </div>
+        </div>`
     }
+    $('.container').html( activeList + inactiveList )
 }
 
 function initData(){
     initAdsContainer();
-    var element = $('.ads-card .table__list tbody');
-    var notActiveAds = dataAds.filter( item => item.status === 0 )
-    dataAds = dataAds.filter( item => item.status === 1 ).concat(notActiveAds)
 
-    element.empty();
-    for(const data of dataAds){
-        element.append(
-            `<tr>
-                <td class="table__list-num">
-                    <h6 class="list-num__id">${data.name}</h6>
-                </td>
-                <td class="table__list-ads-img">
-                    <img class="list-ads-img" src="${data.img}"/>
-                </td>
-                <td class="table__list-ads-link">
-                    <a class="list-ads-link" href="${data.url}">${data.url}</a>
-                </td>
-                <td class="table__list-ads-status">
-                    <div class="list-ads-status">
-                        <div class="list-ads-status__set">
-                            <select class="list-ads-status__select ${data.status === 0 ? 'list-ads-status__select--inactive' : ''}"  onchange="handleChangeAdsStatus(this, ${data.id})">
-                                <option value="Active" ${data.status === 1 ? 'selected' : ''}>Active</option>
-                                <option value="Inactive" ${data.status === 0 ? 'selected' : ''}>Inactive</option>
-                            </select>
-                        </div>
-                        <div class="list-ads-status__btn">
-                            <a class="unf-user-btn unf-user-btn--small btn-icon btn-icon-action btn-icon--edit" onclick="handleEditAds(${data.id})"></a>
-                            ${data.status === 0 ? `<a class="unf-user-btn unf-user-btn--small btn-icon btn-icon-action btn-icon--delete" onclick="handleDeleteAds(${data.id})"></a>`: ``}                            
-                        </div>
-                    </div>
-                </td>
-            </tr>`
-        )
-    }
+    var dataActive = dataAds.filter(item => item.status === 1)
+    var elementActive = $('.channel--active .table__list tbody')
+    elementActive.empty();
+    dataActive.map(data=>{
+        elementActive.append(renderAdsList(data))
+    })
+
+    var dataInactive = dataAds.filter(item => item.status === 0)
+    var elementInactive= $('.channel--inactive .table__list tbody')
+    elementInactive.empty();
+    dataInactive.map(data=>{
+        elementInactive.append(renderAdsList(data))
+    })
+
     initCustomSelect();
+}
+
+function renderAdsList(data){
+    var template = 
+    `<tr>
+        <td class="table__list-num">
+            <h6 class="list-num__id">${data.name}</h6>
+        </td>
+        <td class="table__list-ads-img">
+            <img class="list-ads-img" src="${data.img}"/>
+        </td>
+        <td class="table__list-ads-link">
+            <a class="list-ads-link" href="${data.url}">${data.url}</a>
+        </td>
+        <td class="table__list-ads-status">
+            <div class="list-ads-status">
+                <div class="list-ads-status__set">
+                    <select class="list-ads-status__select ${data.status === 0 ? 'list-ads-status__select--inactive' : ''}"  onchange="handleChangeAdsStatus(this, ${data.id})">
+                        <option value="Active" ${data.status === 1 ? 'selected' : ''}>Active</option>
+                        <option value="Inactive" ${data.status === 0 ? 'selected' : ''}>Inactive</option>
+                    </select>
+                </div>
+                <div class="list-ads-status__btn">
+                    <a class="unf-user-btn unf-user-btn--small btn-icon btn-icon-action btn-icon--edit" onclick="handleEditAds(${data.id})"></a>
+                    ${data.status === 0 ? `<a class="unf-user-btn unf-user-btn--small btn-icon btn-icon-action btn-icon--delete" onclick="handleDeleteAds(${data.id})"></a>`: ``}                            
+                </div>
+            </div>
+        </td>
+    </tr>`
+    return template
 }
 
 // Create Ads
 $(function handleCreateAds() {
     $('.group-chat__btn--create').on({
-      click: function() {
-        addDialog = $('.js__child-dialog-add-edit-ads').html()
-        dialogModule.renderDialog({
-            title: 'Add Ads',
-            children: $('.js__child-dialog-add-edit-ads'),
-            close: true,
-            styleClass: 'dialog--414',
-            btnTextPrimary: 'Save',
-            btnPrimaryDisabled: true,
-            init: handleResetInputValueAds,
-            handleClickPrimary: function() {handleSaveAds()},
-            handleClickSecondary:  function() {handleCloseAddEditDialog()}
-        });
-        $('.js__child-dialog-add-edit-ads').html('')
-      },
+        click: function() {
+            addDialog = $('.js__child-dialog-add-edit-ads').html()
+            dialogModule.renderDialog({
+                title: 'Add Ads',
+                children: $('.js__child-dialog-add-edit-ads'),
+                close: true,
+                styleClass: 'dialog--414',
+                btnTextPrimary: 'Save',
+                btnPrimaryDisabled: true,
+                init: handleResetInputValueAds,
+                handleClickPrimary: function() {handleSaveAds()},
+                handleClickSecondary:  function() {handleCloseAddEditDialog()}
+            });
+            $('.js__child-dialog-add-edit-ads').html('')
+        },
     });
 });
 
@@ -168,24 +198,24 @@ $(function handleInputAdsImg() {
         var imgType = ['image/png', 'image/jpg', 'image/jpeg'];
 		var file = this.files;
 		if (file.length !== 0) {
-		  if (
-			file[0].type == imgType[0] ||
-			file[0].type == imgType[1] ||
-			file[0].type == imgType[2]
-		  ) {
+		    if (
+                file[0].type == imgType[0] ||
+                file[0].type == imgType[1] ||
+                file[0].type == imgType[2]
+		    ) {
 			if (file[0].size <= 10000000) {
-			  isImg = true;
-			  readURL(this);
+                isImg = true;
+                readURL(this);
 			} else {
-			  handleOpenToaster(true, true, helper.image.error[0]);
+			    handleOpenToaster(true, true, helper.image.error[0]);
 			}
-		  } else {
-			handleOpenToaster(true, true, helper.image.error[1]);
-		  }
+		    } else {
+			    handleOpenToaster(true, true, helper.image.error[1]);
+		    }
 		}
 		handleCheckInputAds();
     })
-  });
+});
 
 $(function handleInputAdsLink() {
     $(document).on('input', '#input__ads--link', function(){
@@ -272,7 +302,7 @@ function handleSaveAds(id){
     if (!validateURL($('#input__ads--link').val())) {
         handleInputError($('#input__ads--link').parent(), helper.link.error[0], false);
         return false;
-      }
+    }
 
     if(id === undefined){
         // Add
@@ -348,6 +378,16 @@ function handleChangeAdsStatus(e, id) {
         });
     }
 }
+
 function handleStatusAds(id, val) {
-    updateData(id, 'status', val)
+    for (const data of dataAds) {
+        if(data.id == id){
+            data.status = val
+        }
+        else{
+            data.status = 0
+        }
+    }
+    handleDialogClose();
+    initData();
 }
