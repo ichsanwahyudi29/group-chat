@@ -2198,8 +2198,9 @@ html, body {
     display: -ms-flexbox;
     display: flex;
     overflow: auto;
-    padding: 4px 0px !important;
     border-bottom: solid #E0E0E0 1px; }
+    .live-chat__quick-reply > div {
+      padding: 4px 0px; }
     .live-chat__quick-reply-bubble {
       min-width: 44px;
       max-width: 80px;

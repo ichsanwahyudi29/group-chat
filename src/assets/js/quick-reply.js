@@ -9,13 +9,33 @@ var dataQuickReply = [
   {
     id: 200,
     message: 'Halo',
-    status: 0,
+    status: 1,
   },
   {
     id: 201,
     message: 'Sundul Gan',
     status: 1,
-  }
+  },
+  {
+    id: 202,
+    message: 'Mulai aja dulu',
+    status: 1,
+  },
+  {
+    id: 203,
+    message: 'Selamat pagi, anak-anak sehat!',
+    status: 1,
+  },
+  {
+    id: 204,
+    message: 'Makan Yuk!',
+    status: 1,
+  },
+  {
+    id: 205,
+    message: 'Leh uga',
+    status: 1,
+  },
 ];
 
 function loopDataQuickReply() {
@@ -48,6 +68,8 @@ function loopDataQuickReply() {
 
     $('.quick-reply .table__list tbody').append(listQuickReply);
   }
+  renderQuickReplyList(dataQuickReply)
+  handleScrollLiveChat()
   initCustomSelect()
 }
 
@@ -134,7 +156,7 @@ function handleSaveQuickReply(id){
     }
     newQuickReply.id = newId,
     newQuickReply.message = $('#input__quick-reply').val(),
-    newQuickReply.status = 0
+    newQuickReply.status = 1
     dataQuickReply.push(newQuickReply)
   }
   else{

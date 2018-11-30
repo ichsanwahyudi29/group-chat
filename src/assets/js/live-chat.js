@@ -2,16 +2,46 @@ $(document).ready(function() {
   handleScrollLiveChat();
 });
 
+//Pinned Chat render
+function renderPinnedChat(data){
+  $('.js__pinned-chat-container').empty()
+  var dataActive = data.filter( item => item.status === 1)
+  if(dataActive.length > 0){
+    $('.js__pinned-chat-container')
+      .html(
+      `<h6 class="live-chat__pinned-admin">Admin:</h6>
+      <p class="live-chat__pinned-text">${dataActive[0].msg}</p>`)
+      .removeClass('p-0')
+  }
+  else{
+    $('.js__pinned-chat-container').addClass('p-0')
+  }
+}
+
 // Quick Reply
 $(function handleQuickReplyLiveChat() {
-  $('.live-chat__quick-reply-bubble').on({
-    click: function() {
-      var chatVal = $(this).children().html()
-      $('.live-chat__area').append(renderChatText(chatVal));
-      handleScrollLiveChat();
-    },
-  });
+  $(document).on('click', '.live-chat__quick-reply-bubble', function(){
+    var chatVal = $(this).children().html()
+    $('.live-chat__area').append(renderChatText(chatVal));
+    handleScrollLiveChat();
+  })
 });
+//render
+function renderQuickReplyList(data){
+  $('.js__quick-reply-container').empty()
+  var dataActive = data.filter( item => item.status === 1)
+  if(dataActive.length > 0){
+    $('.js__quick-reply-container').removeClass('p-0')
+    dataActive.map(item => {
+        $('.js__quick-reply-container').append(
+          `<div class="live-chat__quick-reply-bubble"><span>${item.message}</span></div>`
+        )
+    })
+  }
+  else{
+    $('.js__quick-reply-container').addClass('p-0')
+  }
+}
 
 // Send Text
 
@@ -26,6 +56,10 @@ $(function onInputLiveChatText() {
       }
     },
   });
+
+  $(document).on('click', '.emoji-outer', function(){
+    handleBtnLiveChat($('#input__live-chat--text'))
+  })
 });
 
 $(function handleScrollLiveChatSendText() {

@@ -61,6 +61,7 @@ function loopDataPinChat(){
 
     $('.pinned-chat .table__list tbody').append(listPinChat);
   })
+  renderPinnedChat(dataPinChat)
   initCustomSelect()
 }
 

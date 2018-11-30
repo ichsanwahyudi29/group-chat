@@ -157,8 +157,11 @@
     display: flex;
     overflow: auto;
     // padding: 8px 16px;
-    padding: 4px 0px !important;
+    // padding: 4px 0px !important;
     border-bottom: solid $gray-border 1px;
+    &>div{
+      padding: 4px 0px;
+    }
     &-bubble{
       min-width: 44px;
       max-width: 80px;
