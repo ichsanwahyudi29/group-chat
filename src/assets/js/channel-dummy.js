@@ -226,8 +226,8 @@ function handleArchiveChannel(e, val) {
 
 function pushData(data) {
   dataChannel.push(data)
-  handleDialogClose()
-  resetInputValueChannel()
+  // handleDialogClose()
+  // resetInputValueChannel()
   loopData()
 }
 
@@ -238,6 +238,6 @@ function updateData(id, state, newValue) {
       break
     }
   }
-  handleDialogClose()
+  // handleDialogClose()
   loopData()
 }
