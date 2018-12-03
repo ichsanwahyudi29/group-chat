@@ -909,6 +909,18 @@ html, body {
       color: #42B549;
       padding-left: 20px; }
 
+.dialog--520 {
+  width: 520px; }
+
+.dialog--414 {
+  width: 414px; }
+
+.dialog--454 {
+  width: 454px; }
+
+.dialog--320 {
+  width: 320px; }
+
 .table__list {
   width: 100%; }
   .table__list table {
@@ -1506,65 +1518,69 @@ html, body {
       margin-left: 32px;
       height: 48px; }
 
-.create-channel .unf-user-dialog__body {
-  padding: 0 32px;
-  max-height: 520px;
-  overflow: auto; }
-
-.create-channel .customScrollBar--create-channel > .scroll-element.scroll-y {
-  right: 4px;
-  width: 6px; }
-
-.create-channel__image {
-  margin-bottom: 24px; }
-  .create-channel__image .unf-user-input__control--image {
-    width: 200px;
-    height: 100px;
-    border: none; }
-
-.create-channel__moderator {
-  background-color: #f8f8f8;
-  padding: 16px;
-  display: none;
-  -webkit-transition: all ease-in-out .4s;
-  -o-transition: all ease-in-out .4s;
-  transition: all ease-in-out .4s;
-  margin-top: -30px;
-  position: relative; }
-  .create-channel__moderator--show {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-animation: showEmail .4s;
-            animation: showEmail .4s; }
-  .create-channel__moderator-label {
-    margin: 16px 0 8px;
-    color: rgba(0, 0, 0, 0.7);
-    text-align: left;
-    font-size: 14px; }
-  .create-channel__moderator-pic {
-    width: 64px;
-    height: 64px;
-    -o-object-fit: cover;
-       object-fit: cover;
-    border-radius: 50%;
-    margin-right: 16px; }
-  .create-channel__moderator-input {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin-top: 13px; }
-    .create-channel__moderator-input .unf-user-input:first-child {
-      -ms-flex-preferred-size: 37%;
-          flex-basis: 37%;
-      margin-right: 4px; }
-    .create-channel__moderator-input .unf-user-input:last-child {
-      -ms-flex-preferred-size: 63%;
-          flex-basis: 63%;
-      margin-left: 4px; }
-
-.create-channel #btn__channel--moderator-email {
-  width: 100px; }
+.create-channel {
+  padding: 0; }
+  .create-channel .unf-user-dialog__title {
+    padding-top: 24px;
+    position: relative;
+    z-index: 3; }
+  .create-channel .unf-user-dialog__body:first-child {
+    padding: 0 32px !important;
+    max-height: 520px;
+    overflow: auto; }
+  .create-channel .unf-user-dialog__action {
+    padding: 24px 0 32px 0; }
+  .create-channel .customScrollBar--create-channel > .scroll-element.scroll-y {
+    right: 4px;
+    width: 6px; }
+  .create-channel__image {
+    margin-bottom: 24px; }
+    .create-channel__image .unf-user-input__control--image {
+      width: 200px;
+      height: 100px;
+      border: none; }
+  .create-channel__moderator {
+    background-color: #f8f8f8;
+    padding: 16px;
+    display: none;
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
+    transition: all ease-in-out .4s;
+    margin-top: -30px;
+    position: relative; }
+    .create-channel__moderator--show {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-animation: showEmail .4s;
+              animation: showEmail .4s; }
+    .create-channel__moderator-label {
+      margin: 16px 0 8px;
+      color: rgba(0, 0, 0, 0.7);
+      text-align: left;
+      font-size: 14px; }
+    .create-channel__moderator-pic {
+      width: 64px;
+      height: 64px;
+      -o-object-fit: cover;
+         object-fit: cover;
+      border-radius: 50%;
+      margin-right: 16px; }
+    .create-channel__moderator-input {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      margin-top: 13px; }
+      .create-channel__moderator-input .unf-user-input:first-child {
+        -ms-flex-preferred-size: 37%;
+            flex-basis: 37%;
+        margin-right: 4px; }
+      .create-channel__moderator-input .unf-user-input:last-child {
+        -ms-flex-preferred-size: 63%;
+            flex-basis: 63%;
+        margin-left: 4px; }
+  .create-channel #btn__channel--moderator-email {
+    width: 100px; }
 
 .create-ads__image {
   margin-bottom: 24px; }

@@ -8,14 +8,6 @@ var isModeratorName = false;
 var email = $('#input__channel--moderator-email');
 var inputEmail = $('.unf-user-input--moderator-email');
 
-/* $(function onClickCreateChannel() {
-  $('.group-chat__btn--create').on({
-    click: function() {
-      handleDialogOpen($('.unf-user-dialog--create-channel'));
-    },
-  });
-}); */
-//gohere
 $(function handleClickCreateChannel() {
   $('.group-chat__btn--create').on({
     click: function() {
@@ -25,7 +17,7 @@ $(function handleClickCreateChannel() {
         children: $('.js__child-dialog-create-channel'),
         close: true,
         init: resetInputValueChannel,
-        styleClass: 'dialog--520 customScrollBar--create-channel',
+        styleClass: 'dialog--520 create-channel',
         btnTextPrimary: 'Save',
         btnPrimaryDisabled: true,
         handleClickPrimary: handleCreateChannel,
@@ -42,30 +34,29 @@ function handleCloseCreateChannel(){
   handleDialogClose()
 }
 
-$(function onScrollTopShadow() {
-  $(document).on('scroll', '.customScrollBar--create-channel .unf-user-dialog__body', function(){
-    var scroll = $(this).scrollTop();
-    var title = $('.unf-user-dialog__header')
+function customCreateDialog(state){
+  if(state === 'add'){
+    $('.js__template-dialog').find('.unf-user-dialog__body').addClass('customScrollBar customScrollBar--y customScrollBar--create-channel')
+    $('.customScrollBar').scrollbar();
 
-    if (scroll > 0) {
-      title.addClass('unf-user-dialog__header-shadow');
-    } else {
-      title.removeClass('unf-user-dialog__header-shadow');
-    }
-  })
-  /* $('.customScrollBar--create-channel .unf-user-dialog__body').on({
-    scroll: function() {
-      var scroll = $(this).scrollTop();
-      var title = $('.unf-user-dialog__header')
+    $('.customScrollBar--create-channel').on({
+      scroll: function() {
+        console.log('asas')
+        var scroll = $(this).scrollTop();
+        var title = $('.unf-user-dialog__title')
 
-      if (scroll > 0) {
-        title.addClass('unf-user-dialog__header-shadow');
-      } else {
-        title.removeClass('unf-user-dialog__header-shadow');
-      }
-    },
-  }); */
-})
+        if (scroll > 0) {
+          title.addClass('unf-user-dialog__header-shadow');
+        } else {
+          title.removeClass('unf-user-dialog__header-shadow');
+        }
+      },
+    });
+  }
+  else{
+    $('.js__template-dialog').find('.unf-user-dialog__body').removeClass('customScrollBar customScrollBar--y customScrollBar--create-channel')
+  }
+}
 
 $(function onChangeChannelImg() {
   $(document).on('click', '#upload__channel--cover, #change__channel--cover', function(){
@@ -235,6 +226,9 @@ function resetInputValueChannel() {
 
   // reset img
   resetInputImageChannel()
+
+  //custom dialog
+  customCreateDialog('add')
 }
 
 function resetInputImageChannel() {
