@@ -1,3 +1,4 @@
+var contentCreateChannel, contentPreviewChannel;
 var isCover = false;
 var isName = false;
 var isDesc = false;
@@ -7,13 +8,55 @@ var isModeratorName = false;
 var email = $('#input__channel--moderator-email');
 var inputEmail = $('.unf-user-input--moderator-email');
 
-$(function onClickCreateChannel() {
+/* $(function onClickCreateChannel() {
   $('.group-chat__btn--create').on({
     click: function() {
       handleDialogOpen($('.unf-user-dialog--create-channel'));
     },
   });
+}); */
+//gohere
+$(function handleClickCreateChannel() {
+  $('.group-chat__btn--create').on({
+    click: function() {
+      contentCreateChannel = $('.js__child-dialog-create-channel').html()
+      dialogModule.renderDialog({
+        title: 'Create Group Chat',
+        children: $('.js__child-dialog-create-channel'),
+        close: true,
+        styleClass: 'dialog--520',
+        btnTextPrimary: 'Save',
+        btnPrimaryDisabled: true,
+        handleClickPrimary: handleCloseCreateChannel,
+        handleClickSecondary:  handleCloseCreateChannel
+      });
+    $('.js__child-dialog-create-channel').html('')
+    },
+  });
 });
+
+function handleCloseCreateChannel(){
+  //put back html
+  $('.js__child-dialog-create-channel').html(contentCreateChannel)
+  handleDialogClose()
+}
+
+function handleEditAds(id) {
+  addDialog = $('.js__child-dialog-add-edit-ads').html()
+  dialogModule.renderDialog({
+      title: 'Edit Ads',
+      children: $('.js__child-dialog-add-edit-ads'),
+      close: true,
+      styleClass: 'dialog--414',
+      btnTextPrimary: 'Save',
+      btnPrimaryDisabled: true,
+      init: handleResetInputValueAds,  
+      handleClickPrimary: function() {handleSaveAds(id)},
+      handleClickSecondary:  function() {handleCloseAddEditDialog()}
+  });
+  $('.js__child-dialog-add-edit-ads').html('')
+  handleFetchAdsData(id)
+}
 
 $(function onScrollTopShadow() {
   $('.customScrollBar--create-channel').on({
@@ -22,9 +65,9 @@ $(function onScrollTopShadow() {
       var title = $('.unf-user-dialog__header')
 
       if (scroll > 0) {
-       title.addClass('unf-user-dialog__header-shadow');
+        title.addClass('unf-user-dialog__header-shadow');
       } else {
-       title.removeClass('unf-user-dialog__header-shadow');
+        title.removeClass('unf-user-dialog__header-shadow');
       }
     },
   });
