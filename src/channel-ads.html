@@ -8,7 +8,8 @@
   <link rel="shortcut icon" href="https://ecs7.tokopedia.net/assets-tokopedia-lite/prod/icon144.png">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="../node_modules/normalize.css/normalize.css">
-  <link rel="stylesheet" href="./assets/plugins/scrollBar/scrollBar.css">
+	<link rel="stylesheet" href="./assets/plugins/scrollBar/scrollBar.css">
+	<link rel="stylesheet" href="./assets/plugins/cropperjs/cropper.min.css">
   <link rel="stylesheet" href="./assets/css/unify.css">
   <link rel="stylesheet" href="./assets/css/master.css">
 </head>
@@ -73,7 +74,7 @@
 					<div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Add Ads</div>
 				</div>
 				</div>
-
+				<img id="image-editor-canvas" src=""/>
 				<div class="container">
 				</div>
 
@@ -100,40 +101,38 @@
 
 	<!-- Content dialog add/edit ads -->
 	<div class="js__child-dialog-add-template js__child-dialog-add-edit-ads">
-		<div class="template-chat__type-content">
-			<div class="unf-user-input">
-				<label class="unf-user-input__label">Ads Title</label>
-				<input type="text" id="input__ads--title" class="unf-user-input__control" name="ads-title" maxlength="20">
-				<div class="unf-user-input__info">
-					<span></span>
-					<span class="unf-user-input__info-counter">0/20</span>
+		<div class="unf-user-input">
+			<label class="unf-user-input__label">Ads Title</label>
+			<input type="text" id="input__ads--title" class="unf-user-input__control" name="ads-title" maxlength="20">
+			<div class="unf-user-input__info">
+				<span></span>
+				<span class="unf-user-input__info-counter">0/20</span>
+			</div>
+		</div>
+		<div class="unf-user-input create-ads__image">
+			<label class="unf-user-input__label">Add Image</label>
+			<div class="unf-user-input__control unf-user-input__control--image">
+				<input id="input__ads--cover" type="file" accept=".jpg,.jpeg,.png">
+				<div class="unf-user-input__image-container unf-user-input__image-container--full hide">
+					<img id="img__ads--cover" class="unf-user-input__image-file">
+					<div class="unf-user-input__image-action">
+						<span id="change__ads--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
+						<span id="delete__ads--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
+					</div> 
+				</div>
+				<div id="upload__ads--cover" class="unf-user-input__image-upload">
+					<span class="unf-user-input__image-upload-text unf-user-input__image-upload-text--row">Add Photo</span>
 				</div>
 			</div>
-			<div class="unf-user-input create-ads__image">
-				<label class="unf-user-input__label">Add Image</label>
-				<div class="unf-user-input__control unf-user-input__control--image">
-					<input id="input__ads--cover" type="file" accept=".jpg,.jpeg,.png">
-					<div class="unf-user-input__image-container unf-user-input__image-container--full hide">
-						<img id="img__ads--cover" class="unf-user-input__image-file">
-						<div class="unf-user-input__image-action">
-							<span id="change__ads--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
-							<span id="delete__ads--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
-						</div> 
-					</div>
-					<div id="upload__ads--cover" class="unf-user-input__image-upload">
-						<span class="unf-user-input__image-upload-text unf-user-input__image-upload-text--row">Add Photo</span>
-					</div>
-				</div>
-			</div>  
-			<div class="unf-user-input">
-				<label class="unf-user-input__label">Ads Link</label>
-				<input type="text" id="input__ads--link" class="unf-user-input__control" name="ads-link" placeholder="e.g.https://tokopedia.com">
-				<div class="unf-user-input__info">
-					<span class="unf-user-input__info-msg"></span>
-				</div>
+		</div>  
+		<div class="unf-user-input">
+			<label class="unf-user-input__label">Ads Link</label>
+			<input type="text" id="input__ads--link" class="unf-user-input__control" name="ads-link" placeholder="e.g.https://tokopedia.com">
+			<div class="unf-user-input__info">
+				<span class="unf-user-input__info-msg"></span>
 			</div>
-		</div>          
-	</div>   
+		</div>        
+	</div>  
 
 	</section>
 	
@@ -148,7 +147,8 @@
 	</div>
 
   <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="./assets/plugins/scrollBar/scrollBar.js"></script>
+	<script src="./assets/plugins/scrollBar/scrollBar.js"></script>
+	<script src="./assets/plugins/cropperjs/cropper.min.js"></script>
   <script src="./assets/js/lang.js"></script>
   <script src="./assets/js/unify.js"></script>
   <script src="./assets/js/interaction.js"></script>
