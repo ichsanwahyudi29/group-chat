@@ -41,23 +41,6 @@ function handleCloseCreateChannel(){
   handleDialogClose()
 }
 
-function handleEditAds(id) {
-  addDialog = $('.js__child-dialog-add-edit-ads').html()
-  dialogModule.renderDialog({
-      title: 'Edit Ads',
-      children: $('.js__child-dialog-add-edit-ads'),
-      close: true,
-      styleClass: 'dialog--414',
-      btnTextPrimary: 'Save',
-      btnPrimaryDisabled: true,
-      init: handleResetInputValueAds,  
-      handleClickPrimary: function() {handleSaveAds(id)},
-      handleClickSecondary:  function() {handleCloseAddEditDialog()}
-  });
-  $('.js__child-dialog-add-edit-ads').html('')
-  handleFetchAdsData(id)
-}
-
 $(function onScrollTopShadow() {
   $('.customScrollBar--create-channel').on({
     scroll: function() {
