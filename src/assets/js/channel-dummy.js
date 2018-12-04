@@ -37,7 +37,13 @@ $(document).ready(function () {
 
 function initContainer() {
   $('.channel').remove()
-  var channelActive = `
+  var activeCount = dataChannel.filter(item => item.status === 1).length
+  var inactiveCount = dataChannel.filter(item => item.status === 2).length
+  var channelActive = '';
+  var channelInactive = '';
+  
+  if(activeCount > 0){
+    channelActive = `
       <div class="card channel channel--active">
         <div class="card__header">
           <div class="card__header-title channel__title">
@@ -67,10 +73,11 @@ function initContainer() {
             </tbody>
           </table>
         </div>
-      </div>
-    `
+      </div>`
+  }
 
-  var channelInactive = `
+  if(inactiveCount > 0) {
+    channelInactive = `
       <div class="card channel channel--inactive">
         <div class="card__header">
           <div class="card__header-title channel__title">
@@ -100,8 +107,8 @@ function initContainer() {
             </tbody>
           </table>
         </div>
-      </div>
-    `
+      </div>`
+  }
 
   $('.container').append(channelActive)
   $('.container').append(channelInactive)
@@ -238,6 +245,6 @@ function updateData(id, state, newValue) {
       break
     }
   }
-  // handleDialogClose()
+  handleDialogClose()
   loopData()
 }
