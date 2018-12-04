@@ -8,6 +8,7 @@ var isModeratorName = false;
 var email = $('#input__channel--moderator-email');
 var inputEmail = $('.unf-user-input--moderator-email');
 
+//Create Channel Group Chat]
 $(function handleClickCreateChannel() {
   $('.group-chat__btn--create').on({
     click: function() {
@@ -42,7 +43,6 @@ function customCreateDialog(state){
 
     $('.customScrollBar--create-channel').on({
       scroll: function() {
-        console.log('asas')
         var scroll = $(this).scrollTop();
         var title = $('.unf-user-dialog__title')
 
@@ -246,13 +246,15 @@ function handleCreateChannel() {
   const name = $('#input__channel--name').val()
   const description = $('#input__channel--desc').val()
   const moderator = $('#input__channel--moderator-name').val()
+  const img = $('#img__channel--cover').prop('src')
+  const url = $('#input__channel--moderator-url').val()
 
   const newChannel = {
     id,
-    url: '',
+    url,
     status: 1,
     archive: false,
-    img: './assets/img/gc1.jpg',
+    img,
     name,
     description,
     moderator
