@@ -109,11 +109,6 @@ function readURLCrop(input) {
   }
 }
 
-function editPictureDialog() {
-  handleDialogOpen(".js__dialog-image-editor");
-  $(".js__template-dialog").removeClass("unf-user-dialog--show");
-}
-
 $("#edit-image-cancel").click(function (e) {
   $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
   $(".js__template-dialog").addClass("unf-user-dialog--show");
