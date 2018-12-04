@@ -310,3 +310,65 @@ function loadingCheckEmail(loading) {
     $('.unf-user-input__icon').removeClass('icon-loader');
   }
 }
+
+// Channel Status
+function handleChangeChannelStatus(e, id) {
+  if(e.selectedIndex === 0){
+      dialogModule.renderDialog({
+          title: 'Activate Group Chat',
+          children: $('.js__child-dialog-activate-channel'),
+          close: false,
+          styleClass: 'dialog--320',
+          btnTextPrimary: 'Yes, Activate',
+          handleClickPrimary: function() {handleActivateChannel(id)}
+      });
+  }else{
+      dialogModule.renderDialog({
+          title: 'Deactivate Group Chat',
+          children: $('.js__child-dialog-deactive-channel'),
+          close: false,
+          styleClass: 'dialog--320',
+          btnTextPrimary: 'Yes, Deactivate',
+          handleClickPrimary: function() {handleDeactivateChannel(id)}
+      });
+  }
+}
+function handleActivateChannel(id) {
+  handleStatusChannel(id , 1)
+}
+function handleDeactivateChannel(id) {
+  handleStatusChannel(id , 2)
+}
+function handleStatusChannel(id, val) {
+  for (const data of dataChannel) {
+      if(data.id == id){
+          data.status = val
+          break
+      }
+  }
+  handleDialogClose();
+  loopData()
+}
+
+// Channel Archive
+function handleChangeChannelArchive(id) {
+  dialogModule.renderDialog({
+      title: 'Archive Group Chat',
+      children: $('.js__child-dialog-activate-channel'),
+      close: false,
+      styleClass: 'dialog--320',
+      btnTextPrimary: 'Yes, Archive',
+      handleClickPrimary: function() {handleArchiveChannel(id)}
+  });
+}
+
+function handleArchiveChannel(id) {
+  for (const data of dataChannel) {
+      if(data.id == id){
+          data.archive = true
+          break
+      }
+  }
+  handleDialogClose();
+  loopData()
+}
