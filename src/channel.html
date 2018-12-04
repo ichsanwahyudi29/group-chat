@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="../node_modules/normalize.css/normalize.css">
   <link rel="stylesheet" href="./assets/plugins/scrollBar/scrollBar.css">
+  <link rel="stylesheet" href="./assets/plugins/cropperjs/cropper.min.css">
   <link rel="stylesheet" href="./assets/css/unify.css">
   <link rel="stylesheet" href="./assets/css/master.css">
 </head>
@@ -145,9 +146,33 @@
         </div>
       </section>
 
+      <!-- Dialog image editor -->
+      <div class="js__dialog-image-editor unf-user-dialog edit-image-dialog">
+        <div class="unf-user-dialog__content unf-user-dialog__content--broadcast edit-image-dialog__container ta-center">
+          <div class="unf-user-dialog__title edit-image-dialog__title">
+            Image Editor
+          </div>
+          <div class="edit-image-dialog__img-container">
+            <img id="image-editor-canvas" src="" style="display: none">
+          </div>
+          <div class="edit-image-dialog__controls mt-30 mb-50">
+            <div>
+              <i class="user-icon icon-zoom-pic icon-zoom-pic--out mr-8 va-middle"></i>
+              <input class="edit-image-dialog__slider" type="range" min="1" max="2" step=".01" value="0">
+              <i class="user-icon icon-zoom-pic icon-zoom-pic--in ml-8 va-middle"></i>
+            </div>
+          </div>
+          <div class="broadcast-dialog__action edit-image-dialog__action mt-30">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-btn--dialog" id="edit-image-cancel">Cancel</button>
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary unf-user-btn--dialog" id="edit-image-save">Save</button>
+          </div>
+        </div>
+      </div>
+
       <div class="unf-user-overlay unf-user-overlay--desktop"></div>
       <div class="js__template-dialog unf-user-dialog ta-center"></div>
 
+      
       <!-- Dialog Deactive Channel -->
 
       <div class="unf-user-dialog unf-user-dialog--deactive-channel confirmation-dialog">
@@ -598,6 +623,7 @@
 
   <script src="../node_modules/jquery/dist/jquery.min.js"></script>
   <script src="./assets/plugins/scrollBar/scrollBar.js"></script>
+  <script src="./assets/plugins/cropperjs/cropper.min.js"></script>
   <script src="./assets/js/lang.js"></script>
   <script src="./assets/js/unify.js"></script>
   <script src="./assets/js/interaction.js"></script>

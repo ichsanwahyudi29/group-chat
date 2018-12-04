@@ -31,6 +31,7 @@ $(function handleClickCreateChannel() {
 function handleCloseCreateChannel(){
   //put back html
   $('.js__child-dialog-create-channel').html(contentCreateChannel)
+  customCreateDialog('remove')
   handleDialogClose()
 }
 
@@ -67,6 +68,7 @@ $(function onChangeChannelImg() {
 $(function onDeleteChannelImg() {
   $(document).on('click', '#delete__channel--cover', function(){
     resetInputImageChannel()
+    handleCheckInputChannel()
   })
 });
 
@@ -81,8 +83,7 @@ $(function handleInputChannelImg() {
         file[0].type == imgType[2]
       ) {
         if (file[0].size <= 10000000) {
-          isCover = true;
-          readURL(this);
+          readURLCrop(this);
         } else {
           handleOpenToaster(true, true, helper.image.error[0]);
         }
@@ -93,6 +94,59 @@ $(function handleInputChannelImg() {
     handleCheckInputChannel();
   })
 });
+
+//cropper
+function readURLCrop(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $("#image-editor-canvas").attr("src", e.target.result);
+      editPictureDialog();
+      cropImg(2,1);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function editPictureDialog() {
+  handleDialogOpen(".js__dialog-image-editor");
+  $(".js__template-dialog").removeClass("unf-user-dialog--show");
+}
+
+$(".edit-image-dialog__slider").on("input", function () {
+  let sliderVal = $(".edit-image-dialog__slider").val();
+  cropper.scale(sliderVal);
+});
+
+$("#edit-image-cancel").click(function (e) {
+  $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
+  $(".js__template-dialog").addClass("unf-user-dialog--show");
+
+  handleResetEditDialog()
+  cropper.destroy();
+});
+
+$("#edit-image-save").click(function (e) {
+  let imgsrc = cropper.getCroppedCanvas({width: 600, height: 300}).toDataURL("image/jpeg");
+  
+  $("#img__channel--cover").parent().removeClass("hide");
+  $("#img__channel--cover").attr("src", imgsrc);
+  $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
+  $(".js__template-dialog").addClass("unf-user-dialog--show");
+
+  handleResetEditDialog()
+  cropper.destroy();
+
+  isCover = true;
+  handleCheckInputChannel()
+});
+
+function handleResetEditDialog(){
+  $("#image-editor-canvas").attr("src", '');
+  $(".edit-image-dialog__slider").val(0);
+}
+//
 
 $(function handleInputChannelName() {
   $(document).on('input', '#input__channel--name', function(){
@@ -235,6 +289,7 @@ function resetInputImageChannel() {
   $('.unf-user-input__image-container').addClass('hide');
   $('#img__channel--cover').removeAttr('src');
   $('#input__channel--cover').val('');
+  isCover = false
 }
 
 function handleCheckInputChannel() {

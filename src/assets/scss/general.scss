@@ -20,6 +20,10 @@ html,body{
   margin: 0;
 }
 
+.va-middle{
+  vertical-align: middle;
+}
+
 .d-flex{
   display: flex !important;
 }
@@ -52,8 +56,28 @@ html,body{
   margin-left: 4px !important;
 }
 
+.ml-8{
+  margin-left: 8px !important;
+}
+
 .mb-16{
   margin-bottom: 16px !important;
+}
+
+.mb-24{
+  margin-bottom: 24px !important;
+}
+
+.mb-50{
+  margin-bottom: 50px !important;
+}
+
+.mt-30{
+  margin-top: 30px !important;
+}
+
+.mr-8{
+  margin-right: 8px !important;
 }
 
 .of-init{
@@ -63,6 +87,7 @@ html,body{
 .ta-center {
   text-align: center !important;
 }
+
 
 .wrapper {
   width: 100%;

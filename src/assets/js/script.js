@@ -105,3 +105,17 @@ function loadJSON(fileJSON, callback) {
   };
   xobj.send(null);  
 }
+
+//cropper
+let cropper = "";
+function cropImg(wRatio, hRatio) {
+  const image = document.getElementById("image-editor-canvas");
+  cropper = new Cropper(image, {
+    aspectRatio: wRatio / hRatio,
+    viewMode: 1,
+    background: false,
+    movable: false,
+    zoomOnWheel: false,
+    guides: false
+  });
+}
