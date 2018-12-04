@@ -180,3 +180,21 @@ function cropImg(wRatio, hRatio) {
     guides: false
   });
 }
+function editPictureDialog() {
+  handleDialogOpen(".js__dialog-image-editor");
+  $(".js__template-dialog").removeClass("unf-user-dialog--show");
+}
+function handleResetEditDialog(){
+  $("#image-editor-canvas").attr("src", '');
+  $(".edit-image-dialog__slider").val(0);
+}
+function handleShowCroppedImg(destElement, img){
+  $(destElement).parent().removeClass("hide");
+  $(destElement).attr("src", img);
+}
+$(function handleSliderImageEditor(){
+  $(".edit-image-dialog__slider").on("input", function () {
+    let sliderVal = $(".edit-image-dialog__slider").val();
+    cropper.scale(sliderVal);
+  });
+})
