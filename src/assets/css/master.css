@@ -2422,6 +2422,37 @@ html, body {
     width: 6px;
     right: 5px; }
 
+.pagination-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start; }
+  .pagination-items span {
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    color: #42B549;
+    font-size: 13px;
+    line-height: 32px;
+    height: 32px;
+    min-width: 32px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 4px; }
+    .pagination-items span.page__active {
+      cursor: default;
+      color: #FFFFFF;
+      background-color: #42B549; }
+
 .template-chat__type {
   -webkit-animation-name: content;
           animation-name: content;

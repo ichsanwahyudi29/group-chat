@@ -1,0 +1,24 @@
+.pagination-items{
+    display: flex;
+    justify-content: flex-start;
+    span{
+        cursor: pointer;
+        display: flex;
+        color: $green;
+        font-size: 13px;
+        line-height: 32px;
+        height: 32px;
+        min-width: 32px;
+        justify-content: center;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        border-radius: 4px;
+        &.page__active{
+            cursor: default;
+            color: $white;
+            background-color: $green;
+        }
+    }
+}

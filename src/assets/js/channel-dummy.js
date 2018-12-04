@@ -73,6 +73,16 @@ function initContainer() {
             </tbody>
           </table>
         </div>
+        <div class="pagination-container">
+            <div class="pagination-items">
+                <span data-page="1"><</span>
+                <span data-page="1">1</span>
+                <span data-page="2">2</span>
+                <span class="page__active">3</span>
+                <span data-page="4">4</span>
+                <span data-page="4">></span>
+            </div>
+        </div>
       </div>`
   }
 
@@ -106,6 +116,16 @@ function initContainer() {
             <tbody>
             </tbody>
           </table>
+        </div>
+        <div class="pagination-container">
+            <div class="pagination-items">
+                <span data-page="1"><</span>
+                <span data-page="1">1</span>
+                <span class="page__active">2</span>
+                <span data-page="3">3</span>
+                <span data-page="4">4</span>
+                <span data-page="2">></span>
+            </div>
         </div>
       </div>`
   }
