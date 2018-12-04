@@ -114,11 +114,6 @@ function editPictureDialog() {
   $(".js__template-dialog").removeClass("unf-user-dialog--show");
 }
 
-$(".edit-image-dialog__slider").on("input", function () {
-  let sliderVal = $(".edit-image-dialog__slider").val();
-  cropper.scale(sliderVal);
-});
-
 $("#edit-image-cancel").click(function (e) {
   $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
   $(".js__template-dialog").addClass("unf-user-dialog--show");
@@ -130,22 +125,16 @@ $("#edit-image-cancel").click(function (e) {
 $("#edit-image-save").click(function (e) {
   let imgsrc = cropper.getCroppedCanvas({width: 600, height: 300}).toDataURL("image/jpeg");
   
-  $("#img__channel--cover").parent().removeClass("hide");
-  $("#img__channel--cover").attr("src", imgsrc);
   $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
   $(".js__template-dialog").addClass("unf-user-dialog--show");
-
+  handleShowCroppedImg("#img__channel--cover" ,imgsrc)
   handleResetEditDialog()
-  cropper.destroy();
 
   isCover = true;
+  cropper.destroy();
   handleCheckInputChannel()
 });
 
-function handleResetEditDialog(){
-  $("#image-editor-canvas").attr("src", '');
-  $(".edit-image-dialog__slider").val(0);
-}
 //
 
 $(function handleInputChannelName() {
