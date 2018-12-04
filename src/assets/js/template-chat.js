@@ -175,8 +175,7 @@ $(function handleUploadImg(){
         file[0].type == imgType[2]
 		  ) {
         if (file[0].size <= 10000000) {
-          isTemplateImg = true;
-          readURL(this);
+          readURLTemplate(this);
         } else {
           handleOpenToaster(true, true, helper.image.error[0]);
         }
@@ -187,6 +186,39 @@ $(function handleUploadImg(){
 		handleCheckInput();
   })
 })
+//cropper
+function readURLTemplate(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $("#image-editor-canvas").attr("src", e.target.result);
+      editPictureDialog();
+      cropImg(1,1);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+$("#edit-image-cancel").click(function (e) {
+  $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
+  $(".js__template-dialog").addClass("unf-user-dialog--show");
+
+  handleResetEditDialog()
+  cropper.destroy();
+});
+$("#edit-image-save").click(function (e) {
+  let imgsrc = cropper.getCroppedCanvas({width: 240, height: 240}).toDataURL("image/jpeg");
+  
+  $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
+  $(".js__template-dialog").addClass("unf-user-dialog--show");
+  handleShowCroppedImg("#img__template--cover" ,imgsrc)
+  handleResetEditDialog()
+
+  isTemplateImg = true;
+  cropper.destroy();
+  handleCheckInput()
+});
+//
 
 function handleResetInputCover() {
   isTemplateImg = false;
@@ -396,7 +428,6 @@ function handleSendNowTemplateChat(id){
   var data = dataTemplateChat.filter(item => item.id === id)[0]
   $('.live-chat__area').append(renderChatText(data.message))
   if(data.img !== null && data.img !== ''){
-    console.log('asass')
     $('.live-chat__area')
       .append(renderChatImg(data.url, data.img))
   }
