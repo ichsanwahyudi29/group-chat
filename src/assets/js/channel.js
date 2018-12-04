@@ -1,3 +1,4 @@
+var contentCreateChannel, contentPreviewChannel;
 var isCover = false;
 var isName = false;
 var isDesc = false;
@@ -7,212 +8,259 @@ var isModeratorName = false;
 var email = $('#input__channel--moderator-email');
 var inputEmail = $('.unf-user-input--moderator-email');
 
-$(function onClickCreateChannel() {
+$(function handleClickCreateChannel() {
   $('.group-chat__btn--create').on({
     click: function() {
-      handleDialogOpen($('.unf-user-dialog--create-channel'));
+      contentCreateChannel = $('.js__child-dialog-create-channel').html()
+      dialogModule.renderDialog({
+        title: 'Create Group Chat',
+        children: $('.js__child-dialog-create-channel'),
+        close: true,
+        init: resetInputValueChannel,
+        styleClass: 'dialog--520 create-channel',
+        btnTextPrimary: 'Save',
+        btnPrimaryDisabled: true,
+        handleClickPrimary: handleCreateChannel,
+        handleClickSecondary:  handleCloseCreateChannel
+      });
+    $('.js__child-dialog-create-channel').html('')
     },
   });
 });
 
-$(function onScrollTopShadow() {
-  $('.customScrollBar--create-channel').on({
-    scroll: function() {
-      var scroll = $(this).scrollTop();
-      var title = $('.unf-user-dialog__header')
+function handleCloseCreateChannel(){
+  //put back html
+  $('.js__child-dialog-create-channel').html(contentCreateChannel)
+  customCreateDialog('remove')
+  handleDialogClose()
+}
 
-      if (scroll > 0) {
-       title.addClass('unf-user-dialog__header-shadow');
-      } else {
-       title.removeClass('unf-user-dialog__header-shadow');
-      }
-    },
-  });
-})
+function customCreateDialog(state){
+  if(state === 'add'){
+    $('.js__template-dialog').find('.unf-user-dialog__body').addClass('customScrollBar customScrollBar--y customScrollBar--create-channel')
+    $('.customScrollBar').scrollbar();
 
-$(function onClickResetValueChannel() {
-  $('.unf-user-dialog__close--create-channel').on({
-    click: function() {  
-      resetInputValueChannel()
-    },
-  });
-});
+    $('.customScrollBar--create-channel').on({
+      scroll: function() {
+        console.log('asas')
+        var scroll = $(this).scrollTop();
+        var title = $('.unf-user-dialog__title')
+
+        if (scroll > 0) {
+          title.addClass('unf-user-dialog__header-shadow');
+        } else {
+          title.removeClass('unf-user-dialog__header-shadow');
+        }
+      },
+    });
+  }
+  else{
+    $('.js__template-dialog').find('.unf-user-dialog__body').removeClass('customScrollBar customScrollBar--y customScrollBar--create-channel')
+  }
+}
 
 $(function onChangeChannelImg() {
-  $('#upload__channel--cover, #change__channel--cover').on({
-    click: function() {
-      $('#input__channel--cover').click();
-    },
-  });
+  $(document).on('click', '#upload__channel--cover, #change__channel--cover', function(){
+    $('#input__channel--cover').click();
+  })
 });
 
 $(function onDeleteChannelImg() {
-  $('#delete__channel--cover').on({
-    click: function() {
-      resetInputImageChannel()
-    },
-  });
+  $(document).on('click', '#delete__channel--cover', function(){
+    resetInputImageChannel()
+    handleCheckInputChannel()
+  })
 });
 
 $(function handleInputChannelImg() {
-  $('#input__channel--cover').on({
-    change: function() {
-      var imgType = ['image/png', 'image/jpg', 'image/jpeg'];
-      var file = this.files;
-      if (file.length !== 0) {
-        if (
-          file[0].type == imgType[0] ||
-          file[0].type == imgType[1] ||
-          file[0].type == imgType[2]
-        ) {
-          if (file[0].size <= 10000000) {
-            isCover = true;
-            readURL(this);
-          } else {
-            handleOpenToaster(true, true, helper.image.error[0]);
-          }
+  $(document).on('change', '#input__channel--cover', function(){
+    var imgType = ['image/png', 'image/jpg', 'image/jpeg'];
+    var file = this.files;
+    if (file.length !== 0) {
+      if (
+        file[0].type == imgType[0] ||
+        file[0].type == imgType[1] ||
+        file[0].type == imgType[2]
+      ) {
+        if (file[0].size <= 10000000) {
+          readURLCrop(this);
         } else {
-          handleOpenToaster(true, true, helper.image.error[1]);
+          handleOpenToaster(true, true, helper.image.error[0]);
         }
+      } else {
+        handleOpenToaster(true, true, helper.image.error[1]);
       }
-      handleCheckInputChannel();
-    },
-  });
+    }
+    handleCheckInputChannel();
+  })
 });
 
+//cropper
+function readURLCrop(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $("#image-editor-canvas").attr("src", e.target.result);
+      editPictureDialog();
+      cropImg(2,1);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function editPictureDialog() {
+  handleDialogOpen(".js__dialog-image-editor");
+  $(".js__template-dialog").removeClass("unf-user-dialog--show");
+}
+
+$(".edit-image-dialog__slider").on("input", function () {
+  let sliderVal = $(".edit-image-dialog__slider").val();
+  cropper.scale(sliderVal);
+});
+
+$("#edit-image-cancel").click(function (e) {
+  $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
+  $(".js__template-dialog").addClass("unf-user-dialog--show");
+
+  handleResetEditDialog()
+  cropper.destroy();
+});
+
+$("#edit-image-save").click(function (e) {
+  let imgsrc = cropper.getCroppedCanvas({width: 600, height: 300}).toDataURL("image/jpeg");
+  
+  $("#img__channel--cover").parent().removeClass("hide");
+  $("#img__channel--cover").attr("src", imgsrc);
+  $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
+  $(".js__template-dialog").addClass("unf-user-dialog--show");
+
+  handleResetEditDialog()
+  cropper.destroy();
+
+  isCover = true;
+  handleCheckInputChannel()
+});
+
+function handleResetEditDialog(){
+  $("#image-editor-canvas").attr("src", '');
+  $(".edit-image-dialog__slider").val(0);
+}
+//
+
 $(function handleInputChannelName() {
-  $('#input__channel--name').on({
-    input: function() {
-      counterInput(this, '70');
-      if ($(this).val()) {
-        isName = true;
-      } else {
-        isName = false;
-      }
-      handleCheckInputChannel();
-    },
-  });
+  $(document).on('input', '#input__channel--name', function(){
+    counterInput(this, '70');
+    if ($(this).val()) {
+      isName = true;
+    } else {
+      isName = false;
+    }
+    handleCheckInputChannel();
+  })
 });
 
 $(function handleInputChannelDesc() {
-  $('#input__channel--desc').on({
-    input: function() {
-      counterInput(this, '1000');
-      if ($(this).val()) {
-        isDesc = true;
-      } else {
-        isDesc = false;
-      }
-      handleCheckInputChannel();
-    },
-  });
+  $(document).on('input', '#input__channel--desc', function(){
+    counterInput(this, '1000');
+    if ($(this).val()) {
+      isDesc = true;
+    } else {
+      isDesc = false;
+    }
+    handleCheckInputChannel();
+  })
 });
 
 $(function handleInputModeratorEmail() {
-  $('#input__channel--moderator-email').on({
-    input: function() {
-      handleInputError(
-        inputEmail,
-        'Please enter your email accounts in Tokopedia',
-        true
-      );
-      if ($(this).val()) {
-        isModeratorEmail = true;
-      } else {
-        isModeratorEmail = false;
-      }
-      handleCheckInputChannel()
-    },
-    focus: function() {
-      handleInputError(
-        inputEmail,
-        'Please enter your email accounts in Tokopedia',
-        true
-      );
-    },
-    keypress: function() {
-      if (event.charCode == 13) {
-        $('#btn__channel--moderator-email').click();
-      }
-    },
-  });
+  $(document).on('input', '#input__channel--moderator-email', function(){
+    $('.create-channel__moderator').removeClass('create-channel__moderator--show');
+    $('.unf-user-input__icon').removeClass('icon-check');
+    isModeratorName = false;
+    var inputEmail = $('.unf-user-input--moderator-email');
+    handleInputError(
+      inputEmail,
+      'Please enter your email accounts in Tokopedia',
+      true
+    );
+    if ($(this).val()) {
+      isModeratorEmail = true;
+    } else {
+      isModeratorEmail = false;
+    }
+    handleCheckInputChannel()
+  }).on('focus', '#input__channel--moderator-email', function(){
+    handleInputError(
+      inputEmail,
+      'Please enter your email accounts in Tokopedia',
+      true
+    );
+  }).on('keypress', '#input__channel--moderator-email', function(){
+    if (event.charCode == 13) {
+      $('#btn__channel--moderator-email').click();
+    }
+  })
 });
 
 $(function checkModeratorEmail() {
-  $('#btn__channel--moderator-email').on({
-    click: function() {
-      loadingCheckEmail(true);
-
-      // if (!validateEmail(email)) {
-      //   setTimeout(() => {
-      //     loadingCheckEmail(false);
-      //   }, 500);
-      //   handleInputError(inputEmail, helper.email.error[0], false);
-      //   $('.create-channel__moderator').removeClass('create-channel__moderator--show');
-      //   return false;
-      // }
-
-      if (email.val() !== 'i') {
-        setTimeout(() => {
-          loadingCheckEmail(false);
-        }, 500);
-        handleInputError(inputEmail, helper.email.error[1], false);
-        $('.create-channel__moderator').removeClass('create-channel__moderator--show');
-        return false;
-      }
-
+  $(document).on('click', '#btn__channel--moderator-email', function(){
+    loadingCheckEmail(true);
+    var email = $('#input__channel--moderator-email');
+    var inputEmail = $('.unf-user-input--moderator-email');
+    if (email.val() !== 'i') {
       setTimeout(() => {
         loadingCheckEmail(false);
-        $('.unf-user-input__icon').addClass('icon-check');
       }, 500);
+      handleInputError(inputEmail, helper.email.error[1], false);
+      $('.create-channel__moderator').removeClass('create-channel__moderator--show');
+      return false;
+    }
 
-      isModeratorEmail = true;
-      isModeratorName = true;
-      handleCheckInputChannel();
+    setTimeout(() => {
+      loadingCheckEmail(false);
+      $('.unf-user-input__icon').addClass('icon-check');
+    }, 500);
 
-      $('.customScrollBar--create-channel').animate({ scrollTop: 520 }, 1200);
-      $('.create-channel__moderator').addClass('create-channel__moderator--show');
-    },
-  });
+    isModeratorEmail = true;
+    isModeratorName = true;
+    handleCheckInputChannel();
+
+    $('.customScrollBar--create-channel .unf-user-dialog__body').animate({ scrollTop: 520 }, 1200);
+    $('.create-channel__moderator').addClass('create-channel__moderator--show');
+  })
 });
 
 $(function handleInputModeratorName() {
-  $('#input__channel--moderator-name').on({
-    input: function () {
-      if ($(this).val()) {
-        isModeratorName = true
-      } else {
-        isModeratorName = false
-      }
-      handleCheckInputChannel()
+  $(document).on('input', '#input__channel--moderator-name', function(){
+    if ($(this).val()) {
+      isModeratorName = true
+    } else {
+      isModeratorName = false
     }
+    handleCheckInputChannel()
   })
 })
 
-$(function handleCreateChannel() {
-  $('#btn__channel--create').on({
-    click: function () {
+function handleCreateChannel() {
+  const id = dataChannel[dataChannel.length - 1].id + 1
+  const name = $('#input__channel--name').val()
+  const description = $('#input__channel--desc').val()
+  const moderator = $('#input__channel--moderator-name').val()
 
-      const id = dataChannel[dataChannel.length - 1].id + 1
-      const name = $('#input__channel--name').val()
-      const description = $('#input__channel--desc').val()
-      const moderator = $('#input__channel--moderator-name').val()
+  const newChannel = {
+    id,
+    url: '',
+    status: 1,
+    archive: false,
+    img: './assets/img/gc1.jpg',
+    name,
+    description,
+    moderator
+  }
 
-      const newChannel = {
-        id,
-        url: '',
-        status: 1,
-        archive: false,
-        img: './assets/img/gc1.jpg',
-        name,
-        description,
-        moderator
-      }
-
-      pushData(newChannel)
-    }
-  })
-})
+  pushData(newChannel)
+  handleCloseCreateChannel()
+}
 
 function resetInputValueChannel() {
   if (inputEmail.hasClass('unf-user-input--isError')) {
@@ -232,20 +280,23 @@ function resetInputValueChannel() {
 
   // reset img
   resetInputImageChannel()
-  handleDialogClose();
+
+  //custom dialog
+  customCreateDialog('add')
 }
 
 function resetInputImageChannel() {
   $('.unf-user-input__image-container').addClass('hide');
   $('#img__channel--cover').removeAttr('src');
   $('#input__channel--cover').val('');
+  isCover = false
 }
 
 function handleCheckInputChannel() {
   if (isCover && isName && isDesc && isModeratorEmail && isModeratorName) {
-    $('#btn__channel--create').attr('disabled', false);
+    $('.unf-user-dialog__action .unf-user-btn--primary').attr('disabled', false);
   } else {
-    $('#btn__channel--create').attr('disabled', true);
+    $('.unf-user-dialog__action .unf-user-btn--primary').attr('disabled', true);
   }
 }
 

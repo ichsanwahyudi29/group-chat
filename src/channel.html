@@ -76,8 +76,103 @@
         </div>
       </div> 
 
-      <div class="unf-user-overlay unf-user-overlay--desktop"></div>
+      <section class="hide">
+        <!-- Content dialog create channel -->
+        <div class="js__child-dialog-create-channel">
+          <div class="unf-user-input create-channel__image">
+            <label class="unf-user-input__label">Cover Image</label>
+            <div class="unf-user-input__control unf-user-input__control--image">
+              <input id="input__channel--cover" type="file" accept=".jpg,.jpeg,.png">
+              <div class="unf-user-input__image-container unf-user-input__image-container--full hide">
+                <img id="img__channel--cover" class="unf-user-input__image-file">
+                <div class="unf-user-input__image-action">
+                  <span id="change__channel--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
+                  <span id="delete__channel--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
+                </div> 
+              </div>
+              <div id="upload__channel--cover" class="unf-user-input__image-upload">
+                <span class="unf-user-input__image-upload-text unf-user-input__image-upload-text--column">Add Image</span>
+              </div>
+            </div>
+          </div>    
+          <div class="unf-user-input">
+            <label class="unf-user-input__label">Group Chat Name</label>
+            <input type="text" id="input__channel--name" class="unf-user-input__control" name="channel-name" maxlength="70">
+            <div class="unf-user-input__info">
+              <span></span>
+              <span class="unf-user-input__info-counter">0/70</span>
+            </div>
+          </div>
+          <div class="unf-user-input">
+            <label class="unf-user-input__label">Description</label>
+            <textarea type="text" id="input__channel--desc" class="unf-user-input__control create-channel__input-textarea" name="channel-desc" maxlength="1000" rows="3"></textarea>
+            <div class="unf-user-input__info">
+              <span></span>
+              <span class="unf-user-input__info-counter">0/1000</span>
+            </div>
+          </div>
+          <h6 class="create-channel__moderator-label">Moderator</h6>
+          <div class="unf-user-input unf-user-input--moderator-email">
+            <label class="unf-user-input__label">Moderator Email</label>
+            <div class="unf-user-input__group-btn">
+              <div class="unf-user-input__icon unf-user-input__icon--right">
+                <input type="text" id="input__channel--moderator-email" class="unf-user-input__control" name="description">
+              </div>    
+              <button id="btn__channel--moderator-email" class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary">Check</button>
+            </div>
+            <div class="unf-user-input__info">
+              <span class="unf-user-input__info-msg">Please enter your email accounts in Tokopedia</span>
+            </div>
+          </div>
+          <div class="create-channel__moderator">
+            <img class="create-channel__moderator-pic" src="./assets/img/moderator.jpg" alt="" srcset="">
+            <div>
+              <div class="unf-user-input">
+                <input id="input__channel--moderator-name" type="text" class="unf-user-input__control" name="moderator-name"
+                  value="Ichsan Indra Wahyudi">
+              </div>
+              <div class="create-channel__moderator-input">
+                <div class="unf-user-input">
+                  <label class="unf-user-input__label">User ID</label>
+                  <input type="text" class="unf-user-input__control" name="moderator-Id" disabled value="1234567890">
+                </div>
+                <div class="unf-user-input">
+                  <label class="unf-user-input__label">Profile URL</label>
+                  <input type="text" class="unf-user-input__control" name="moderator-profileUrl" disabled value="http://www.tokopedia.com/ichsanindrawahyudi">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <!-- Dialog image editor -->
+      <div class="js__dialog-image-editor unf-user-dialog edit-image-dialog">
+        <div class="unf-user-dialog__content unf-user-dialog__content--broadcast edit-image-dialog__container ta-center">
+          <div class="unf-user-dialog__title edit-image-dialog__title">
+            Image Editor
+          </div>
+          <div class="edit-image-dialog__img-container">
+            <img id="image-editor-canvas" src="" style="display: none">
+          </div>
+          <div class="edit-image-dialog__controls mt-30 mb-50">
+            <div>
+              <i class="user-icon icon-zoom-pic icon-zoom-pic--out mr-8 va-middle"></i>
+              <input class="edit-image-dialog__slider" type="range" min="1" max="2" step=".01" value="0">
+              <i class="user-icon icon-zoom-pic icon-zoom-pic--in ml-8 va-middle"></i>
+            </div>
+          </div>
+          <div class="broadcast-dialog__action edit-image-dialog__action mt-30">
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-btn--dialog" id="edit-image-cancel">Cancel</button>
+            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary unf-user-btn--dialog" id="edit-image-save">Save</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="unf-user-overlay unf-user-overlay--desktop"></div>
+      <div class="js__template-dialog unf-user-dialog ta-center"></div>
+
+      
       <!-- Dialog Deactive Channel -->
 
       <div class="unf-user-dialog unf-user-dialog--deactive-channel confirmation-dialog">
@@ -119,85 +214,6 @@
           <div class="unf-user-dialog__action">
             <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary" onclick="handleDialogClose()">Cancel</button>
             <button id="btn__channel--archive" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary">Yes, Archive</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dialog Create Channel -->
-
-      <div class="unf-user-dialog unf-user-dialog--create-channel create-channel">
-        <div class="unf-user-dialog__content p-0">
-          <div class="unf-user-dialog__header">Create Group Chat</div>
-          <span class="unf-user-dialog__close unf-user-dialog__close--create-channel"></span> 
-          <div class="unf-user-dialog__body customScrollBar customScrollBar--y customScrollBar--create-channel">
-            <div class="unf-user-input create-channel__image">
-              <label class="unf-user-input__label">Cover Image</label>
-              <div class="unf-user-input__control unf-user-input__control--image">
-                <input id="input__channel--cover" type="file" accept=".jpg,.jpeg,.png">
-                <div class="unf-user-input__image-container unf-user-input__image-container--full hide">
-                  <img id="img__channel--cover" class="unf-user-input__image-file">
-                  <div class="unf-user-input__image-action">
-                    <span id="change__channel--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
-                    <span id="delete__channel--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
-                  </div> 
-                </div>
-                <div id="upload__channel--cover" class="unf-user-input__image-upload">
-                  <span class="unf-user-input__image-upload-text unf-user-input__image-upload-text--column">Add Image</span>
-                </div>
-              </div>
-            </div>    
-            <div class="unf-user-input">
-              <label class="unf-user-input__label">Group Chat Name</label>
-              <input type="text" id="input__channel--name" class="unf-user-input__control" name="channel-name" maxlength="70">
-              <div class="unf-user-input__info">
-                <span></span>
-                <span class="unf-user-input__info-counter">0/70</span>
-              </div>
-            </div>
-            <div class="unf-user-input">
-              <label class="unf-user-input__label">Description</label>
-              <textarea type="text" id="input__channel--desc" class="unf-user-input__control create-channel__input-textarea" name="channel-desc" maxlength="1000" rows="3"></textarea>
-              <div class="unf-user-input__info">
-                <span></span>
-                <span class="unf-user-input__info-counter">0/1000</span>
-              </div>
-            </div>
-            <h6 class="create-channel__moderator-label">Moderator</h6>
-            <div class="unf-user-input unf-user-input--moderator-email">
-              <label class="unf-user-input__label">Moderator Email</label>
-              <div class="unf-user-input__group-btn">
-                <div class="unf-user-input__icon unf-user-input__icon--right">
-                  <input type="text" id="input__channel--moderator-email" class="unf-user-input__control" name="description">
-                </div>    
-                <button id="btn__channel--moderator-email" class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary">Check</button>
-              </div>
-              <div class="unf-user-input__info">
-                <span class="unf-user-input__info-msg">Please enter your email accounts in Tokopedia</span>
-              </div>
-            </div>
-            <div class="create-channel__moderator">
-              <img class="create-channel__moderator-pic" src="./assets/img/moderator.jpg" alt="" srcset="">
-              <div>
-                <div class="unf-user-input">
-                  <input id="input__channel--moderator-name" type="text" class="unf-user-input__control" name="moderator-name"
-                    value="Ichsan Indra Wahyudi">
-                </div>
-                <div class="create-channel__moderator-input">
-                  <div class="unf-user-input">
-                    <label class="unf-user-input__label">User ID</label>
-                    <input type="text" class="unf-user-input__control" name="moderator-Id" disabled value="1234567890">
-                  </div>
-                  <div class="unf-user-input">
-                    <label class="unf-user-input__label">Profile URL</label>
-                    <input type="text" class="unf-user-input__control" name="moderator-profileUrl" disabled value="http://www.tokopedia.com/ichsanindrawahyudi">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="unf-user-dialog__action unf-user-dialog__action--group-chat">
-            <button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-dialog__close--create-channel">Cancel</button>
-            <button id="btn__channel--create" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary" disabled="true">Save</button>
           </div>
         </div>
       </div>
@@ -612,6 +628,7 @@
   <script src="./assets/js/unify.js"></script>
   <script src="./assets/js/interaction.js"></script>
   <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/module-dialog.js"></script>
   <script src="./assets/js/channel-dummy.js"></script>
   <script src="./assets/js/channel.js"></script>
 </body>

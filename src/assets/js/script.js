@@ -166,3 +166,17 @@ function getChatTime(){
   var result = ("0" + jam).slice(-2)+"."+("0" + menit).slice(-2)
   return result
 }
+
+//cropper
+let cropper = "";
+function cropImg(wRatio, hRatio) {
+  const image = document.getElementById("image-editor-canvas");
+  cropper = new Cropper(image, {
+    aspectRatio: wRatio / hRatio,
+    viewMode: 1,
+    background: false,
+    movable: false,
+    zoomOnWheel: false,
+    guides: false
+  });
+}
