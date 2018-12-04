@@ -526,6 +526,13 @@ html,body{
   select{
     display: none;
   }
+  &__regular {
+    &+.unf-user-select__options{
+      li{
+        padding-left: 9.5px;
+      }
+    }
+  }
   &__selected{
     border: solid $gray-border 1px;
     background-color: $white;

@@ -77,7 +77,7 @@ function initCustomSelect(element) {
       e.stopPropagation();
       $this.val($(this).attr('rel'));
 
-      if($this.hasClass('js__regular-select')){
+      if($this.hasClass('unf-user-select__regular')){
         $this.change();
       }
       else{
@@ -118,7 +118,7 @@ $(function initCustomSelectDynamic(){
     e.stopPropagation();
     var $select = $(this).parent().siblings('select')
     $select.val($(this).attr('rel'))
-    if($select.hasClass('js__regular-select')){
+    if($select.hasClass('unf-user-select__regular')){
       $select.change();
     }
     else{

@@ -588,6 +588,8 @@ html, body {
   position: relative; }
   .unf-user-select select {
     display: none; }
+  .unf-user-select__regular + .unf-user-select__options li {
+    padding-left: 9.5px; }
   .unf-user-select__selected {
     border: solid #E0E0E0 1px;
     background-color: #FFFFFF;
