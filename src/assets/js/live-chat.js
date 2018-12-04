@@ -124,12 +124,11 @@ $(function handleInputLiveChatlImg() {
           file[0].type == imgType[2]
         ) {
           if (file[0].size <= 10000000) {
-            isCover = true;
             $(this)
               .closest('.unf-user-input__control--image')
               .find('.unf-user-input__image-name')
               .html(file[0].name);
-            readURL(this);
+              readURLLiveChat(this);
           } else {
             handleOpenToaster(true, true, helper.image.error[0]);
           }
@@ -141,6 +140,23 @@ $(function handleInputLiveChatlImg() {
     },
   });
 });
+//cropper
+function readURLLiveChat(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $("#image-editor-canvas").attr("src", e.target.result);
+      $(".js__dialog-image-editor ")
+        .find("#edit-image-save").data('id', 'livechat').end()
+        .find("#edit-image-cancel").data('id', 'livechat').end();
+      editPictureDialog();
+      cropImg(1,1);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+// save & cancel button in channel-detail.js
 
 $(function onInputLiveChatUrl() {
   $('#input__live-chat--url').on({

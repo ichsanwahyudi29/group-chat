@@ -192,6 +192,7 @@ function readURLTemplate(input) {
     var reader = new FileReader();
     reader.onload = function(e) {
       $("#image-editor-canvas").attr("src", e.target.result);
+      $(".js__dialog-image-editor ").find("#edit-image-save").data('id', 'template');
       editPictureDialog();
       cropImg(1,1);
     };
@@ -199,26 +200,7 @@ function readURLTemplate(input) {
     reader.readAsDataURL(input.files[0]);
   }
 }
-$("#edit-image-cancel").click(function (e) {
-  $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
-  $(".js__template-dialog").addClass("unf-user-dialog--show");
-
-  handleResetEditDialog()
-  cropper.destroy();
-});
-$("#edit-image-save").click(function (e) {
-  let imgsrc = cropper.getCroppedCanvas({width: 240, height: 240}).toDataURL("image/jpeg");
-  
-  $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
-  $(".js__template-dialog").addClass("unf-user-dialog--show");
-  handleShowCroppedImg("#img__template--cover" ,imgsrc)
-  handleResetEditDialog()
-
-  isTemplateImg = true;
-  cropper.destroy();
-  handleCheckInput()
-});
-//
+// save & cancel button in channel-detail.js
 
 function handleResetInputCover() {
   isTemplateImg = false;

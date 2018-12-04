@@ -155,8 +155,7 @@ $(function handleUploadImg(){
 			file[0].type == imgType[2]
 		  ) {
 			if (file[0].size <= 10000000) {
-			  isPinImg = true;
-			  readURL(this);
+        readURLPinChat(this);
 			} else {
 			  handleOpenToaster(true, true, helper.image.error[0]);
 			}
@@ -167,6 +166,22 @@ $(function handleUploadImg(){
 		handleCheckInputPin();
   })
 })
+
+//cropper
+function readURLPinChat(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $("#image-editor-canvas").attr("src", e.target.result);
+      $(".js__dialog-image-editor ").find("#edit-image-save").data('id', 'pinchat');
+      editPictureDialog();
+      cropImg(1,1);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+// save & cancel button in channel-detail.js
 
 
 function handleCheckInputPin(){
