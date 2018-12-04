@@ -730,6 +730,11 @@
         
       }
     }
+    .table__ads{
+      table thead tr td{
+        background-color: $gray;
+      }
+    }
   }
 
   &--inactive {

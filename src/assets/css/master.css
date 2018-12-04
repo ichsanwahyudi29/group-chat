@@ -1492,6 +1492,8 @@ html, body {
       left: 8px; }
   .channel--active .channel__title::before {
     background-color: #42B549; }
+  .channel--active .table__ads table thead tr td {
+    background-color: #F3FEF3; }
   .channel--inactive .channel__title::before {
     background-color: #bdbdbd; }
   .channel--inactive .channel__list table thead tr td {
