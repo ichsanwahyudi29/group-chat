@@ -164,6 +164,8 @@ function loopData() {
     } 
   }   
 
+  initCustomSelect()
+
 }
 
 function previewChannel(id) {
@@ -237,6 +239,6 @@ function updateData(id, state, newValue) {
       break
     }
   }
-  // handleDialogClose()
+  handleDialogClose()
   loopData()
 }
