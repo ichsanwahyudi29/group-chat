@@ -715,6 +715,18 @@ html, body {
         top: 13px;
         left: 8px; }
 
+.unf-user-input__control:-moz-read-only {
+  background-color: rgba(0, 0, 0, 0.04);
+  color: rgba(0, 0, 0, 0.18); }
+
+.unf-user-input__control:read-only {
+  background-color: rgba(0, 0, 0, 0.04);
+  color: rgba(0, 0, 0, 0.18); }
+  .unf-user-input__control:-moz-read-only:active, .unf-user-input__control:-moz-read-only:focus {
+    border-color: #E0E0E0; }
+  .unf-user-input__control:read-only:active, .unf-user-input__control:read-only:focus {
+    border-color: #E0E0E0; }
+
 .unf-user-input__icon {
   width: 100%;
   position: relative;
@@ -1343,9 +1355,13 @@ html, body {
           padding: 15px 0px 15px 24px;
           background-color: #f3fef3; }
           .channel__list table thead tr td:first-child {
+            width: 184px;
             border-radius: 6px 0px 0px 6px; }
+          .channel__list table thead tr td:nth-child(3) {
+            width: 184px; }
           .channel__list table thead tr td:last-child {
-            border-radius: 0px 6px 6px 0px; }
+            border-radius: 0px 6px 6px 0px;
+            width: 284px; }
       .channel__list table tbody tr {
         border-bottom: solid 1px #e0e0e0; }
         .channel__list table tbody tr:nth-child(1) td {
@@ -1359,14 +1375,20 @@ html, body {
           vertical-align: top; }
           .channel__list table tbody tr td:last-child {
             padding-right: 0; }
-      .channel__list table tr td:nth-child(1) {
-        width: 12%; }
-      .channel__list table tr td:nth-child(2) {
-        width: 46%; }
-      .channel__list table tr td:nth-child(3) {
-        width: 17%; }
-      .channel__list table tr td:nth-child(4) {
-        width: 25%; }
+      .channel__list table tr td {
+        /* &:nth-child(3) {
+            width: 184px;
+          }
+          &:last-child{
+          }
+          &:nth-child(3) {
+            width: 17%;
+          }
+          &:nth-child(4) {
+            width: 25%;
+          } */ }
+        .channel__list table tr td:first-child {
+          word-break: break-all; }
     .channel__list-num .list-num__id {
       margin: 0;
       color: rgba(0, 0, 0, 0.7);

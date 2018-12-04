@@ -37,7 +37,13 @@ $(document).ready(function () {
 
 function initContainer() {
   $('.channel').remove()
-  var channelActive = `
+  var activeCount = dataChannel.filter(item => item.status === 1 && item.archive === false).length
+  var inactiveCount = dataChannel.filter(item => item.status === 2 && item.archive === false).length
+  var channelActive = '';
+  var channelInactive = '';
+  
+  if(activeCount > 0){
+    channelActive = `
       <div class="card channel channel--active">
         <div class="card__header">
           <div class="card__header-title channel__title">
@@ -67,10 +73,11 @@ function initContainer() {
             </tbody>
           </table>
         </div>
-      </div>
-    `
+      </div>`
+  }
 
-  var channelInactive = `
+  if(inactiveCount > 0) {
+    channelInactive = `
       <div class="card channel channel--inactive">
         <div class="card__header">
           <div class="card__header-title channel__title">
@@ -100,8 +107,8 @@ function initContainer() {
             </tbody>
           </table>
         </div>
-      </div>
-    `
+      </div>`
+  }
 
   $('.container').append(channelActive)
   $('.container').append(channelInactive)
@@ -129,7 +136,7 @@ function loopData() {
             </div>
           </td>
           <td class="channel__list-status">
-            <select class="channel__status-select" onchange="changeStatus(this, ${data.id})">
+            <select class="channel__status-select" onchange="handleChangeChannelStatus(this, ${data.id})">
               <option value="Active" ${data.status === 1 ? 'selected' : ''}>Active</option>
               <option value="Inactive" ${data.status === 2 ? 'selected' : ''}>Inactive</option>
             </select>
@@ -148,7 +155,7 @@ function loopData() {
                 <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--chat"><span>chat</span></a>
                 <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit"><span>edit</span></a>
                 <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--preview" onclick="previewChannel(${data.id})"><span>preview</span></a>
-                <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--archive" onclick="archiveChannel(${data.id})"><span>archive</span></a>
+                <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--archive" onclick="handleChangeChannelArchive(${data.id})"><span>archive</span></a>
               </div>
             </div>
           </td>
@@ -172,37 +179,6 @@ function previewChannel(id) {
   handleDialogOpen($('.unf-user-dialog--preview-channel'));
 }
 
-function archiveChannel(id) {
-  handleDialogOpen($('.unf-user-dialog--archive-channel'));
-  $('#btn__channel--archive').attr('data-id', id)
-}
-
-function changeStatus(e, id) {
-  if(e.selectedIndex === 0){
-    handleDialogOpen($('.unf-user-dialog--activate-channel'));
-    $('#btn__channel--activate').attr('data-id', id)
-  }else{
-    handleDialogOpen($('.unf-user-dialog--deactive-channel')); 
-    $('#btn__channel--deactive').attr('data-id', id)
-  }
-}
-
-$(function onClickActivateChannel() {
-  $('#btn__channel--activate').on({
-    click: function() {
-      handleStatusChannel(this , 1)
-    }
-  })
-})
-
-$(function onClickDeactiveChannel(){
-  $('#btn__channel--deactive').on({
-    click: function() {
-      handleStatusChannel(this , 2)
-    }
-  })
-})
-
 $(function onClickArchiveChannel() {
   $('#btn__channel--archive').on({
     click: function() {
@@ -210,12 +186,6 @@ $(function onClickArchiveChannel() {
     }
   })
 })
-
-function handleStatusChannel(e, val) {
-  var id = $(e).attr('data-id')
-
-  updateData(id, 'status', val)
-}
 
 function handleArchiveChannel(e, val) {
   var id = $(e).attr('data-id')
