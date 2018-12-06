@@ -85,39 +85,6 @@ function loopDataTemplateChat(){
       handleLooptime(`#${this.id}`, $(this).data('id'))
   })
 }
-function handleLooptime(elem, id){
-  if(timeIntervalId.filter(item => item === elem).length === 0){
-    var timeInterval = setInterval(function(){
-      var data = dataTemplateChat.filter(item => item.id === id)[0]
-      var $target = $(elem).find('b')
-      var procced = data.proccedTime
-      var expired = data.expiredTime
-      $target.text(handleConvertTime(procced))
-      if($(elem).length === 0 || $(elem).length > 1){
-        clearInterval(timeInterval);
-        timeIntervalId.map((item, index) => {
-          if(item === elem) timeIntervalId.splice(index, 1);
-        })
-      }
-      else{
-        if(procced > 0){
-          procced -= 1000
-        }
-        else{
-          handleSendNowTemplateChat(id)
-          procced = expired
-        }
-        $target.text(handleConvertTime(procced))
-        dataTemplateChat.map(item => {
-          if(item.id === id){
-            item.proccedTime = procced
-          }
-        })
-      }
-    },1000)
-    timeIntervalId.push(elem)
-  }
-}
 
 $(function handleClickAddTemplateChat() {
   $('#btn__template-chat--add').on({
@@ -421,6 +388,7 @@ function handleAutoSendTemplateChat(e, id) {
       title: 'Auto-Send Activation',
       children: $('.js__child-dialog-auto-send-template-chat'),
       close: true,
+      init: handleInitAutoSend,
       styleClass: 'dialog--454',
       btnTextPrimary: 'Save',
       handleClickPrimary: function() {handleSaveAutoSend(e, id)},
@@ -430,6 +398,13 @@ function handleAutoSendTemplateChat(e, id) {
   else{
     handleToggleAutoSend(e, id)
   }
+}
+
+function handleInitAutoSend(){
+  var $range = $('#auto-send-range')
+  var $duration = $('#auto-send-duration')
+  $range.val($range[0].options[0].value)
+  $duration.val($duration[0].options[0].value)
 }
 
 function handleChangeAutoSendSelect(e){
@@ -456,7 +431,7 @@ function handleToggleAutoSend(e, id){
 //dummy action
 function handleSaveAutoSend(e, id){
   var duration = $('#auto-send-duration').val()
-
+  console.log(duration)
   dataTemplateChat.map(item => {
     if(item.id === id){
       item.expiredTime = parseInt(duration)
@@ -475,6 +450,40 @@ function handleConvertTime(ms){
   var displayTime = `${displayMin}m ${displaySec}s`
   return displayTime
 }
+function handleLooptime(elem, id){
+  if(timeIntervalId.filter(item => item === elem).length === 0){
+    var timeInterval = setInterval(function(){
+      var data = dataTemplateChat.filter(item => item.id === id)[0]
+      var $target = $(elem).find('b')
+      var procced = data.proccedTime
+      var expired = data.expiredTime
+      $target.text(handleConvertTime(procced))
+      if($(elem).length === 0 || $(elem).length > 1){
+        clearInterval(timeInterval);
+        timeIntervalId.map((item, index) => {
+          if(item === elem) timeIntervalId.splice(index, 1);
+        })
+      }
+      else{
+        if(procced > 0){
+          procced -= 1000
+        }
+        else{
+          handleSendNowTemplateChat(id)
+          procced = expired
+        }
+        $target.text(handleConvertTime(procced))
+        dataTemplateChat.map(item => {
+          if(item.id === id){
+            item.proccedTime = procced
+          }
+        })
+      }
+    },1000)
+    timeIntervalId.push(elem)
+  }
+}
+
 //put back herer
 
 function handleSendNowTemplateChat(id){
