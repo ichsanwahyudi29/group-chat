@@ -32,7 +32,11 @@ function initCustomSelect(element) {
     var $this = $(this),
       numberOfOptions = $(this).children('option').length;
 
+    if(this.selectedIndex < 0){
+    this.selectedIndex = 0
+    }
     var $selectedVal = this.options[this.selectedIndex].innerHTML;
+    
     var status = this.className;
 
     $this.wrap('<div class="unf-user-select"></div>');
