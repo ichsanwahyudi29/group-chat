@@ -4,6 +4,7 @@ var isTemplateMsg = false;
 var isTemplateTitle = false;
 var isTemplateImg = false;
 var isTemplateLink = false;
+var timeIntervalId = [];
 
 $(function initialize() {
   loopDataTemplateChat()
@@ -14,7 +15,8 @@ var dataTemplateChat = [
       "id": 201,
       "vibrate": true,
       "autoSend": false,
-      "expiredTime": "",
+      "expiredTime": null,
+      "proccedTime": null,
       "img": "./assets/img/gc2.jpg",
       "url": "https://www.tokopedia.com/",
       "message": "Selamat malam Toppers, jagokan negara favorit kalian disini. Kira-kira siapa ya negara pemenang piala duni tahun ini?",
@@ -23,7 +25,8 @@ var dataTemplateChat = [
       "id": 202,
       "vibrate": false,
       "autoSend": true,
-      "expiredTime": "",
+      "expiredTime": 120000,
+      "proccedTime": 120000,
       "img": "",
       "url": "",
       "message": "Jawab kuisnya dengan menyertakan #TokopediaChallenge",
@@ -32,7 +35,6 @@ var dataTemplateChat = [
 
 function loopDataTemplateChat(){
   $('.template-chat .table__list tbody').empty();
-
   dataTemplateChat.map(item => {
     var listTemplateChat =
     `<tr class="row-template-chat">
@@ -67,7 +69,7 @@ function loopDataTemplateChat(){
               </div>
             </div>
             ${item.autoSend ?
-              `<span class="template-chat__time-auto-send">Sisa waktu: <b>59m 59s</b></span>` : ``
+              `<span class="template-chat__time-auto-send" id="time-auto-send-${item.id}" data-id="${item.id}">Sisa waktu: <b>${handleConvertTime(item.proccedTime)}</b></span>` : ``
             }
             </div>
           <div class="list-action__btn">
@@ -77,9 +79,44 @@ function loopDataTemplateChat(){
         </div>
       </td>
     </tr>`
-
     $('.template-chat .table__list tbody').append(listTemplateChat);
   })
+  $('.template-chat__time-auto-send').each(function(e){
+      handleLooptime(`#${this.id}`, $(this).data('id'))
+  })
+}
+function handleLooptime(elem, id){
+  if(timeIntervalId.filter(item => item === elem).length === 0){
+    var timeInterval = setInterval(function(){
+      var data = dataTemplateChat.filter(item => item.id === id)[0]
+      var $target = $(elem).find('b')
+      var procced = data.proccedTime
+      var expired = data.expiredTime
+      $target.text(handleConvertTime(procced))
+      if($(elem).length === 0 || $(elem).length > 1){
+        clearInterval(timeInterval);
+        timeIntervalId.map((item, index) => {
+          if(item === elem) timeIntervalId.splice(index, 1);
+        })
+      }
+      else{
+        if(procced > 0){
+          procced -= 1000
+        }
+        else{
+          handleSendNowTemplateChat(id)
+          procced = expired
+        }
+        $target.text(handleConvertTime(procced))
+        dataTemplateChat.map(item => {
+          if(item.id === id){
+            item.proccedTime = procced
+          }
+        })
+      }
+    },1000)
+    timeIntervalId.push(elem)
+  }
 }
 
 $(function handleClickAddTemplateChat() {
@@ -375,36 +412,66 @@ function handleDeleteTemplateChat(id){
 }
 
 function handleAutoSendTemplateChat(e, id) {
-  dialogModule.renderDialog({
-    title: 'Auto-Send Activation',
-    children: $('.js__child-dialog-auto-send-template-chat'),
-    close: true,
-    styleClass: 'dialog--454',
-    btnTextPrimary: 'Save',
-    handleClickPrimary: function() {handleSaveAutoSend(id)},
-    handleClickSecondary: function() {handleCancelAutoSend(e, id)}
-  });
+  if($(e).prop('checked')){
+    dialogModule.renderDialog({
+      title: 'Auto-Send Activation',
+      children: $('.js__child-dialog-auto-send-template-chat'),
+      close: true,
+      styleClass: 'dialog--454',
+      btnTextPrimary: 'Save',
+      handleClickPrimary: function() {handleSaveAutoSend(e, id)},
+      handleClickSecondary: function() {handleCancelAutoSend(e)}
+    });
+  }
+  else{
+    handleToggleAutoSend(e, id)
+  }
 }
 
 function handleChangeAutoSendSelect(e){
   $(`#${e.id}`).val(e.value)
 }
 
-function handleCancelAutoSend(e, id){
+function handleCancelAutoSend(e){
   $(e).prop('checked', !e.checked)
   handleDialogClose()
 }
 
-//dummy action
-function handleSaveAutoSend(id){
+function handleToggleAutoSend(e, id){
   dataTemplateChat.map(item => {
     if(item.id === id){
-      item.autoSend = true
+      item.autoSend = $(e).prop('checked')
     }
   })
-  loopDataTemplateChat()
-  handleDialogClose()
+  setTimeout(function(){
+    loopDataTemplateChat()
+    handleDialogClose()
+  }, 300)
 }
+
+//dummy action
+function handleSaveAutoSend(e, id){
+  var duration = $('#auto-send-duration').val()
+
+  dataTemplateChat.map(item => {
+    if(item.id === id){
+      item.expiredTime = parseInt(duration)
+      item.proccedTime = parseInt(duration)
+    }
+  })
+
+  handleToggleAutoSend(e, id)
+}
+
+function handleConvertTime(ms){
+  var minutesToGo = new Date(ms).getMinutes()
+  var secondsToGo = new Date(ms).getSeconds()
+  var displayMin = (minutesToGo < 10) ? '0'+ minutesToGo : minutesToGo
+  var displaySec = (secondsToGo < 10) ? '0'+ secondsToGo : secondsToGo
+  var displayTime = `${displayMin}m ${displaySec}s`
+  return displayTime
+}
+//put back herer
 
 function handleSendNowTemplateChat(id){
   var data = dataTemplateChat.filter(item => item.id === id)[0]
