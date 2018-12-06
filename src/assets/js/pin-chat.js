@@ -124,14 +124,19 @@ $(function handleInputPinMsg(){
   })
 })
 $(function handleInputPinUrl(){
-  $(document).on('input', '#input__pin-chat--url', function(){
-    if ($(this).val()) {
-      isPinLink = true;
-    } else {
-      isPinLink = false;
-    }
-    handleCheckInputPin();
-  })
+  $(document)
+    .on('input', '#input__pin-chat--url', function(){
+      if ($(this).val()) {
+        isPinLink = true;
+      } else {
+        isPinLink = false;
+      }
+      handleInputError($(this).parent(),'', true);
+      handleCheckInputPin();
+    })
+    .on('focus', '#input__pin-chat--url', function(){
+      handleInputError($(this).parent(),'', true);
+    })
 })
 
 $(function handleChangePinImg(){

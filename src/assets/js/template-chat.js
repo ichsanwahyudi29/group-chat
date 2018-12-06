@@ -179,14 +179,18 @@ $(function handleInputTitle(){
 })
 
 $(function handleInputLink(){
-  $(document).on('input', '#input__image-url', function(){
-    if ($(this).val()) {
-      isTemplateLink = true;
-    } else {
-      isTemplateLink = false;
-    }
-    handleCheckInput();
-  })
+  $(document)
+    .on('input', '#input__image-url', function(){
+      if ($(this).val()) {
+        isTemplateLink = true;
+      } else {
+        isTemplateLink = false;
+      }
+      handleCheckInput();
+    })
+    .on('focus', '#input__image-url', function(){
+      handleInputError($(this).parent(),'', true);
+    })  
 })
 
 $(function handleChangeTemplateImg(){

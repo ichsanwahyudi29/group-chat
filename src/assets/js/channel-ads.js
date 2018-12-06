@@ -261,14 +261,19 @@ $("#edit-image-save").click(function (e) {
 //
 
 $(function handleInputAdsLink() {
-    $(document).on('input', '#input__ads--link', function(){
-		if ($(this).val()) {
-			isLink = true;
-		} else {
-			isLink = false;
-		}
-		handleCheckInputAds();
-    })
+    $(document)
+        .on('input', '#input__ads--link', function(){
+            if ($(this).val()) {
+                isLink = true;
+            } else {
+                isLink = false;
+            }
+            handleInputError($(this).parent(),'', true);
+            handleCheckInputAds();
+        })
+        .on('focus', '#input__ads--link', function(){
+            handleInputError($(this).parent(),'', true);
+        })  
 });
 
 function handleResetInputValueAds() {
