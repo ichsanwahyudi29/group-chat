@@ -338,7 +338,7 @@ function handleStatusChannel(id, val) {
 function handleChangeChannelArchive(id) {
   dialogModule.renderDialog({
       title: 'Archive Group Chat',
-      children: $('.js__child-dialog-activate-channel'),
+      children: $('.js__child-dialog-archive-channel'),
       close: false,
       styleClass: 'dialog--320',
       btnTextPrimary: 'Yes, Archive',
