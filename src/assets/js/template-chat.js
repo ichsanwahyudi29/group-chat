@@ -431,7 +431,6 @@ function handleToggleAutoSend(e, id){
 //dummy action
 function handleSaveAutoSend(e, id){
   var duration = $('#auto-send-duration').val()
-  console.log(duration)
   dataTemplateChat.map(item => {
     if(item.id === id){
       item.expiredTime = parseInt(duration)

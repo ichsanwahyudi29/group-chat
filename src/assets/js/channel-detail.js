@@ -13,7 +13,6 @@ $("#edit-image-cancel").click(function (e) {
 $("#edit-image-save").click(function (e) {
     var section = $(this).data('id')
     var imgsrc = cropper.getCroppedCanvas({width: 800, height: 800}).toDataURL("image/jpeg");
-    console.log(section)
     switch (section) {
         case 'template':{
                 handleShowCroppedImg("#img__template--cover" ,imgsrc)
