@@ -21,8 +21,16 @@ $(window).on({
 
     if (scroll > height) {
       $('.navbar').addClass('navbar--fixed');
+      $('.navbar').css('opacity', 1)
     } else {
-      $('.navbar').removeClass('navbar--fixed');
+      if(scroll >= height/2){
+        $('.navbar').css('opacity', 0)
+      }
+      else{
+        $('.navbar').css('opacity', 1)
+        $('.navbar').removeClass('navbar--fixed');
+      }
+      // $('.navbar').removeClass('navbar--fixed');
     }
   },
 });
@@ -50,7 +58,7 @@ $(document).ready(function() {
   });
 
   var emoji = `
-     <a class="emoji-outer">
+    <a class="emoji-outer">
       <span class="emoji-icon">&#x1F600</span>
     </a>
   `;
