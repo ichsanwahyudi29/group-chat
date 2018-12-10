@@ -20,7 +20,7 @@ var dialogModule = (function() {
             param = $.extend(param, newParam);
 
             var templateDialog = 
-                `<div class="unf-user-dialog__content unf-user-dialog__content--group-chat d-inline ${param.styleClass}">
+                `<div class="unf-user-dialog__content d-inline ${param.styleClass}">
                 <div class="unf-user-dialog__title unf-user-dialog__title--group-chat">${param.title}</div>
                 ${param.close ? '<span class="unf-user-dialog__close"></span>' : ''}
                 <div class="unf-user-dialog__body unf-user-dialog__body--group-chat p-0">${param.children.html()}</div> 
