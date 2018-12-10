@@ -108,7 +108,10 @@ html,body{
     margin-right: 16px;
   }
   &__right{
-    width: 27%;
+    // width: 27%;
+  }
+  &__live-chat{
+    width: 320px;
   }
 }
 
@@ -122,7 +125,8 @@ html,body{
   $channel: &;
   border-radius: 6px;
   background-color: $white;
-  box-shadow: 0 2px 8px 0 $black-8;
+  box-shadow: 0 0 8px 0 $black-8;
+  // box-shadow: 0 2px 8px 0 $black-8;
   padding: 32px 24px 24px;
   margin-bottom: 24px;
   &__header{
@@ -674,12 +678,29 @@ html,body{
 
 .unf-user-input{
   $ui: &;
+  &__label{
+    margin-bottom: 6px;
+  }
   &__control{
+    font-size: 14px;
     &:read-only{
       background-color: rgba(0, 0, 0, 0.04);
       color: rgba(0, 0, 0, 0.18);
       &:active, &:focus{
         border-color: #E0E0E0;
+      }
+    }
+  }
+  &__image-container{
+    &--full{
+      &:before, .unf-user-input__image-action{
+        opacity: 0;
+        transition: all ease-in-out .3s;
+      }
+      &:hover{
+        &:before, .unf-user-input__image-action{
+          opacity: 1;
+        }
       }
     }
   }

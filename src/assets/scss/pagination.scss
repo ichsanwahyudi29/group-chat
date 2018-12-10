@@ -1,24 +1,59 @@
-.pagination-items{
-    display: flex;
-    justify-content: flex-start;
-    span{
-        cursor: pointer;
-        display: flex;
-        color: $green;
-        font-size: 13px;
-        line-height: 32px;
-        height: 32px;
-        min-width: 32px;
+.pagination-container{
+    text-align: right;
+    .pagination-items{
+        display: inline-flex;
         justify-content: center;
-        text-align: center;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        border-radius: 4px;
-        &.page__active{
-            cursor: default;
-            color: $white;
-            background-color: $green;
+        align-items: center;
+        position: relative;
+        .page-item{
+            cursor: pointer;
+            display: block;
+            width: 16px;
+            height: 18px;
+            text-align: center;
+            margin: 0 8px;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 18px;
+            color: $black-38;
+
+            &.active-page{
+                cursor: default;
+                color: $green;
+            }
+        }
+        .page-nav{
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            background-size: 16px 16px;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0 8px;
+            &__prev{
+                background-image: url(../img/icons/icon_caret_left.svg);
+                &--disabled{
+                    cursor: default;
+                    background-image: url(../img/icons/icon_caret_left_disabled.svg);
+                }
+            }
+            &__next{
+                background-image: url(../img/icons/icon_caret_right.svg);
+                &--disabled{
+                    cursor: default;
+                    background-image: url(../img/icons/icon_caret_right_disabled.svg);
+                }
+            }
+        }
+        .page-indicator{
+            min-width: 16px;
+            height: 2px;
+            background: $green;
+            border-radius: 1px;
+            position: absolute;
+            bottom: -2px;
+            left: 48px;
+            transition: all ease 0.4s;
         }
     }
 }

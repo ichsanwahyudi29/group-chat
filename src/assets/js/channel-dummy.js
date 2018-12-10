@@ -199,36 +199,8 @@ function previewChannel(id) {
   handleDialogOpen($('.unf-user-dialog--preview-channel'));
 }
 
-$(function onClickArchiveChannel() {
-  $('#btn__channel--archive').on({
-    click: function() {
-      handleArchiveChannel(this, true)
-    }
-  })
-})
-
-function handleArchiveChannel(e, val) {
-  var id = $(e).attr('data-id')
-
-  updateData(id, 'archive', val)
-}
-
 // CRUD
-
 function pushData(data) {
   dataChannel.push(data)
-  // handleDialogClose()
-  // resetInputValueChannel()
-  loopData()
-}
-
-function updateData(id, state, newValue) {
-  for (const data of dataChannel) {
-    if(data.id == id){
-      data[state] = newValue
-      break
-    }
-  }
-  handleDialogClose()
   loopData()
 }

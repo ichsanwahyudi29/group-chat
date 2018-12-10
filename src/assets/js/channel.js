@@ -1,14 +1,232 @@
-var contentCreateChannel, contentPreviewChannel;
+var contentCreateChannel;
 var isCover = false;
 var isName = false;
 var isDesc = false;
 var isModeratorEmail = false;
 var isModeratorName = false;
+const pageLimit = 2;
 
 var email = $('#input__channel--moderator-email');
 var inputEmail = $('.unf-user-input--moderator-email');
+var dataChannel = [
+  {
+    "id": 201,
+    "url": "http://tokopedia.com",
+    "status": 1,
+    "archive": false,
+    "img": "./assets/img/gc1.jpg",
+    "name": "2018 FIFA World Cup",
+    "description": "Hai para pecinta sepak bola, Ramaikan piala dunia 2018 bersama Tokopedia! Ikuti quiznya dan menangkan Tokocash senilai jutaan rupiah.Buruan, jangan sampai kelewatan!",
+    "moderator": "Darius Sinathrya"
+  },
+  {
+    "id": 202,
+    "url": "http://tokopedia.com",
+    "status": 1,
+    "archive": false,
+    "img": "./assets/img/gc2.jpg",
+    "name": "Pokemon in The 6ix",
+    "description": "Hai para pecinta sepak bola, Ramaikan piala dunia 2018 bersama Tokopedia! Ikuti quiznya dan menangkan Tokocash senilai jutaan rupiah.Buruan, jangan sampai kelewatan!",
+    "moderator": "Darius Sinathrya"
+  },
+  {
+    "id": 203,
+    "url": "http://tokopedia.com",
+    "status": 2,
+    "archive": false,
+    "img": "./assets/img/gc2.jpg",
+    "name": "Inactive Channel Example",
+    "description": "Hai para pecinta sepak bola, Ramaikan piala dunia 2018 bersama Tokopedia! Ikuti quiznya dan menangkan Tokocash senilai jutaan rupiah.Buruan, jangan sampai kelewatan!",
+    "moderator": "Darius Sinathrya"
+  }
+]
 
-//Create Channel Group Chat]
+$(document).ready(function () {
+  loopData()
+})
+
+function initContainer(){
+  $('.channel').remove()
+  var activeCount = dataChannel.filter(item => item.status === 1)
+  var inactiveCount = dataChannel.filter(item => item.status === 2 && item.archive === false)
+  var channelActive = '';
+  var channelInactive = '';
+  if(activeCount.length > 0){
+    channelActive = `
+      <div class="card channel channel--active">
+        <div class="card__header">
+          <div class="card__header-title channel__title">
+            Active Channel
+          </div>
+          <div class="card__header-sorting">
+            <h6 class="sorting-title">Sort</h6>
+            <div class="sorting-option">
+              <select class="unf-user-select__regular">
+                <option value="created">Created date</option>
+                <option value="updated">Updated date</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="table__list channel__list">
+          <table cellspacing="0" cellpadding="0">
+            <thead>
+              <tr>
+                <td>ID</td>
+                <td>Group Chat</td>
+                <td>Status</td>
+                <td>Action</td>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination-container">
+          <div class="pagination-items">
+            <div class="page-nav page-nav__prev page-nav__prev--disabled" data-nav="prev"></div>
+            <div class="page-item active-page" data-page="1">1</div>
+            <div class="page-item" data-page="2">2</div>
+            <div class="page-item" data-page="3">3</div>
+            <div class="page-nav page-nav__next" data-nav="next"></div>
+            <span class="page-indicator"></span>
+          </div>
+        </div>
+      </div>`
+  }
+  if(inactiveCount.length > 0) {
+    channelInactive = `
+      <div class="card channel channel--inactive">
+        <div class="card__header">
+          <div class="card__header-title channel__title">
+            Inactive Channel
+          </div>
+          <div class="card__header-sorting">
+            <h6 class="sorting-title">Sort</h6>
+            <div class="sorting-option">
+              <select class="unf-user-select__regular">
+                <option value="created">Created date</option>
+                <option value="updated">Updated date</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="table__list channel__list">
+          <table cellspacing="0" cellpadding="0">
+            <thead>
+              <tr>
+                <td>ID</td>
+                <td>Group Chat</td>
+                <td>Status</td>
+                <td>Action</td>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination-container">
+          <div class="pagination-items">
+            <div class="page-nav page-nav__prev page-nav__prev--disabled" data-nav="prev"></div>
+            <div class="page-item active-page" data-page="1">1</div>
+            <div class="page-item" data-page="2">2</div>
+            <div class="page-item" data-page="3">3</div>
+            <div class="page-nav page-nav__next" data-nav="next"></div>
+            <span class="page-indicator"></span>
+          </div>
+        </div>
+      </div>`
+  }
+  $('.container').append(channelActive)
+  $('.container').append(channelInactive)
+}
+
+function loopData() {
+  initContainer()
+  var dataActive = dataChannel.filter(item => item.status === 1)
+  var dataInactive = dataChannel.filter(item => item.status === 2 && item.archive === false)
+
+  $('.channel--active .table__list tbody').empty();
+  $('.channel--inactive .table__list tbody').empty();
+
+  dataActive.map(item => {
+    $('.channel--active .channel__list tbody').append(handleRenderChannel(item))
+  })
+  dataInactive.map(item => {
+    $('.channel--inactive .channel__list tbody').append(handleRenderChannel(item))
+  })
+  initCustomSelect()
+}
+
+function handleRenderChannel(data){
+  var listChannel = `
+    <tr> 
+      <td class="channel__list-num">
+        <h6 class="list-num__id">ID ${data.id}</h6>
+        <span class="list-num__url">${data.url}</span>
+      </td>
+      <td class="channel__list-gc">
+        <div class="list-gc">
+          <img class="list-gc__photo" src="${data.img}" alt="">
+          <div class="list-gc__text">
+            <h3 class="list-gc__text-title">${data.name}</h3>
+            <p class="list-gc__text-desc">${data.description}</p>
+            <p class="list-gc__text-moderator">Moderator: <span>${data.moderator}</span></p>
+          </div>
+        </div>
+      </td>
+      <td class="channel__list-status">
+        <div class="status-toggle-container">
+          <div class="unf-user-toggle">
+            ${data.status === 1 ? 
+            `<input checked type="checkbox" class="unf-user-toggle__checkbox" id="testcheck-${data.id}" onclick="handleChangeChannelStatus(this, ${data.id})">` :
+            `<input type="checkbox" class="unf-user-toggle__checkbox" id="testcheck-${data.id}" onclick="handleChangeChannelStatus(this, ${data.id})">`}
+            <label for="testcheck-${data.id}"></label>
+          </div>
+          <label class="status-toggle-label status-toggle-label__right">
+            ${data.status === 1 ? `Active` : `Inactive`}
+          </label>
+        </div>
+      </td>
+      <td class="channel__list-action">
+        <div class="list-action">
+          <div class="list-action__set">
+            <a class="set-btn set-btn__ads">Set Ads</a>
+            <a class="set-btn set-btn__official">Set Official</a>
+            <a class="set-btn set-btn__flashsale">Set Flashsale</a>
+            <a class="set-btn set-btn__rewards">Set Rewards</a>
+            <a class="set-btn set-btn__polling">Set Polling</a>
+            <a class="set-btn set-btn__room">Set Room</a>
+          </div>
+          <div class="list-action__btn">
+            <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--chat" href="./channel-detail.html"><span>chat</span></a>
+            <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit"><span>edit</span></a>
+            <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--preview" onclick="previewChannel(${data.id})"><span>preview</span></a>
+            <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--archive" onclick="handleChangeChannelArchive(${data.id})"><span>archive</span></a>
+          </div>
+        </div>
+      </td>
+    </tr>`
+  return listChannel
+}
+
+$(function handleClickPage(){
+  $(document).on('click', '.pagination-items span', function(){
+
+  })
+})
+
+function previewChannel(id) {
+  handleDialogOpen($('.unf-user-dialog--preview-channel'));
+}
+
+// CRUD
+function pushData(data) {
+  dataChannel.push(data)
+  loopData()
+}
+
+//Create Channel Group Chat
 $(function handleClickCreateChannel() {
   $('.group-chat__btn--create').on({
     click: function() {
@@ -297,14 +515,15 @@ function loadingCheckEmail(loading) {
 
 // Channel Status
 function handleChangeChannelStatus(e, id) {
-  if(e.selectedIndex === 0){
+  if($(e).prop('checked')){
       dialogModule.renderDialog({
           title: 'Activate Group Chat',
           children: $('.js__child-dialog-activate-channel'),
           close: false,
           styleClass: 'dialog--320',
           btnTextPrimary: 'Yes, Activate',
-          handleClickPrimary: function() {handleActivateChannel(id)}
+          handleClickPrimary: ()=>{handleActivateChannel(id)},
+          handleClickSecondary: ()=>{handleCancelStatusChannel(e)}
       });
   }else{
       dialogModule.renderDialog({
@@ -313,7 +532,8 @@ function handleChangeChannelStatus(e, id) {
           close: false,
           styleClass: 'dialog--320',
           btnTextPrimary: 'Yes, Deactivate',
-          handleClickPrimary: function() {handleDeactivateChannel(id)}
+          handleClickPrimary: ()=>{handleDeactivateChannel(id)},
+          handleClickSecondary: ()=>{handleCancelStatusChannel(e)}
       });
   }
 }
@@ -332,6 +552,10 @@ function handleStatusChannel(id, val) {
   }
   handleDialogClose();
   loopData()
+}
+function handleCancelStatusChannel(e){
+  $(e).prop('checked', !e.checked)
+  handleDialogClose()
 }
 
 // Channel Archive
