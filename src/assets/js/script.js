@@ -202,3 +202,89 @@ $(function handleSliderImageEditor(){
     cropper.scale(sliderVal);
   });
 })
+
+//pagination
+function renderPagination(dataLength, limit, page){
+  var pageCount = Math.ceil(dataLength/limit)
+  var pagination = ''
+  page = (page !== undefined) ? page : 1
+  if(page > 1){
+    pagination += `<div class="page-nav page-nav__left" data-page="${page-1}"></div>`
+  }
+  else{
+    pagination += `<div class="page-nav page-nav__left page-nav page-nav__left--disabled"></div>`
+  }
+  for(var i =1;i < pageCount+1;i++){
+    if(page === i){
+      pagination += `<div data-page="${i}" class="page__active">${i}</div>`
+    }else{      
+      pagination += `<div data-page="${i}">${i}</div>`
+    }
+  }
+  if(page < pageCount){
+    pagination += `<div class="page-nav page-nav__right" data-page="${page+1}"></div>`
+  }
+  else{
+    pagination += `<div class="page-nav page-nav__right page-nav page-nav__right--disabled"></div>`
+  }
+
+  pagination += '<span class="page-indicator"></span>'
+  
+  return pagination
+}
+
+$(function handlePagination(){
+  $(document).on('click', '.pagination-items .page-item',function(){
+    var $this = $(this)
+    if(!$this.hasClass('active-page')){
+      $this.siblings().removeClass('active-page').end()
+            .addClass('active-page')
+            
+      handleCheckArrow($this.parent(), $this.data('page'))
+      handlePaginationIndicator($this.siblings('.page-indicator'), $this[0].offsetWidth, $this[0].offsetLeft)
+    }
+  })
+})
+$(function handlePaginationArrow(){
+  $(document).on('click', '.pagination-items .page-nav',function(){
+    var $this = $(this)
+    if(!$(this).hasClass('page-nav__next--disabled') && !$(this).hasClass('page-nav__prev--disabled')){
+      var nav = $this.data('nav')
+      var active = $this.siblings('.active-page')
+      $this.siblings('.active-page').removeClass('active-page')
+      if(nav === 'next'){
+        active.next().addClass('active-page')
+      }
+      else{
+        active.prev().addClass('active-page')
+      }
+    }
+
+    handleCheckArrow($this.parent(), $this.siblings('.active-page').data('page'))
+    handlePaginationIndicator($this.siblings('.page-indicator'), $this.siblings('.active-page')[0].offsetWidth, $this.siblings('.active-page')[0].offsetLeft)
+  })
+})
+function handleCheckArrow(parent, page){
+  var arrowNext = parent.find('.page-nav__next')
+  var arrowPrev = parent.find('.page-nav__prev')
+  if(page > 1){
+    arrowPrev.removeClass('page-nav__prev--disabled')
+  }
+  else{
+    arrowPrev.addClass('page-nav__prev--disabled')
+  }
+
+  if(page < parent.find('.page-item').length){
+    arrowNext.removeClass('page-nav__next--disabled')
+  }
+  else{
+    arrowNext.addClass('page-nav__next--disabled')
+  }
+}
+
+function handlePaginationIndicator(el, w, l) {
+  el.css({
+    width: w,
+    left: l,
+  });
+}
