@@ -171,8 +171,8 @@ $(function handleCreateAds() {
                 btnTextPrimary: 'Save',
                 btnPrimaryDisabled: true,
                 init: handleResetInputValueAds,
-                handleClickPrimary: function() {handleSaveAds()},
-                handleClickSecondary:  function() {handleCloseAddEditDialog()}
+                handleClickPrimary: ()=> {handleSaveAds()},
+                handleClickSecondary:  ()=> {handleCloseAddEditDialog()}
             });
             $('.js__child-dialog-add-edit-ads').html('')
         },
@@ -321,8 +321,8 @@ function handleEditAds(id) {
         btnTextPrimary: 'Save',
         btnPrimaryDisabled: true,
         init: handleResetInputValueAds,  
-        handleClickPrimary: function() {handleSaveAds(id)},
-        handleClickSecondary:  function() {handleCloseAddEditDialog()}
+        handleClickPrimary: ()=>{handleSaveAds(id)},
+        handleClickSecondary:  ()=>{handleCloseAddEditDialog()}
     });
     $('.js__child-dialog-add-edit-ads').html('')
     handleFetchAdsData(id)
@@ -385,7 +385,7 @@ function handleDeleteAds(id) {
         close: false,
         styleClass: 'dialog--320',
         btnTextPrimary: 'Yes, Delete',
-        handleClickPrimary: function() {deleteAds(id)}
+        handleClickPrimary: ()=> {deleteAds(id)}
     });
 }
 function deleteAds(id){
@@ -413,7 +413,7 @@ function handleChangeAdsStatus(e, id) {
             close: false,
             styleClass: 'dialog--320',
             btnTextPrimary: 'Yes, Activate',
-            handleClickPrimary: function() {handleActivateAds(id)}
+            handleClickPrimary: ()=> {handleActivateAds(id)}
         });
     }else{
         dialogModule.renderDialog({
@@ -422,7 +422,7 @@ function handleChangeAdsStatus(e, id) {
             close: false,
             styleClass: 'dialog--320',
             btnTextPrimary: 'Yes, Deactivate',
-            handleClickPrimary: function() {handleDeactivateAds(id)}
+            handleClickPrimary: ()=> {handleDeactivateAds(id)}
         });
     }
 }
