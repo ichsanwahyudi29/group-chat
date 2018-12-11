@@ -4,7 +4,6 @@ var isName = false;
 var isDesc = false;
 var isModeratorEmail = false;
 var isModeratorName = false;
-const pageLimit = 2;
 
 var email = $('#input__channel--moderator-email');
 var inputEmail = $('.unf-user-input--moderator-email');
@@ -183,9 +182,6 @@ function handleRenderChannel(data){
             `<input type="checkbox" class="unf-user-toggle__checkbox" id="testcheck-${data.id}" onclick="handleChangeChannelStatus(this, ${data.id})">`}
             <label for="testcheck-${data.id}"></label>
           </div>
-          <label class="status-toggle-label status-toggle-label__right">
-            ${data.status === 1 ? `Active` : `Inactive`}
-          </label>
         </div>
       </td>
       <td class="channel__list-action">
@@ -200,7 +196,7 @@ function handleRenderChannel(data){
           </div>
           <div class="list-action__btn">
             <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--chat" href="./channel-detail.html"><span>chat</span></a>
-            <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit"><span>edit</span></a>
+            <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit" onclick="handleClickEditChannel(${data.id})"><span>edit</span></a>
             <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--preview" onclick="previewChannel(${data.id})"><span>preview</span></a>
             <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--archive" onclick="handleChangeChannelArchive(${data.id})"><span>archive</span></a>
           </div>
@@ -223,14 +219,13 @@ function previewChannel(id) {
 // CRUD
 function pushData(data) {
   dataChannel.push(data)
-  loopData()
 }
 
 //Create Channel Group Chat
 $(function handleClickCreateChannel() {
   $('.group-chat__btn--create').on({
     click: function() {
-      contentCreateChannel = $('.js__child-dialog-create-channel').html()
+      // contentCreateChannel = $('.js__child-dialog-create-channel').html()
       dialogModule.renderDialog({
         title: 'Create Group Chat',
         children: $('.js__child-dialog-create-channel'),
@@ -239,23 +234,64 @@ $(function handleClickCreateChannel() {
         styleClass: 'dialog--520 create-channel',
         btnTextPrimary: 'Save',
         btnPrimaryDisabled: true,
-        handleClickPrimary: handleCreateChannel,
+        handleClickPrimary: handleSaveChannel,
         handleClickSecondary:  handleCloseCreateChannel
       });
-    $('.js__child-dialog-create-channel').html('')
+    // $('.js__child-dialog-create-channel').html('')
     },
   });
 });
 
+//edit
+function handleClickEditChannel(id) {
+  contentCreateChannel = $('.js__child-dialog-create-channel').html()
+  dialogModule.renderDialog({
+    title: 'Edit Group Chat',
+    children: $('.js__child-dialog-create-channel'),
+    close: true,
+    init: resetInputValueChannel,
+    styleClass: 'dialog--520 create-channel',
+    btnTextPrimary: 'Save',
+    btnPrimaryDisabled: true,
+    handleClickPrimary: ()=>handleSaveChannel(id),
+    handleClickSecondary: handleCloseCreateChannel
+  });
+  $('.js__child-dialog-create-channel').html('')
+  handleFetchChannelData(id)
+}
+
+function handleFetchChannelData(id){
+  var data = dataChannel.filter(item => item.id === id)[0]
+  $('#input__channel--name').val(data.name);
+  $('#input__channel--desc').val(data.description);
+  $('#input__channel--moderator-email').val('i');
+  handleRevealChannelImg($('#input__channel--cover')[0], data.img);
+  $('#btn__channel--moderator-email').click()
+  
+  isCover = true;
+  isName = true;
+  isDesc = true;
+  isModeratorEmail = true;
+  isModeratorName = true;
+
+  handleCheckInputChannel();
+}
+
+function handleRevealChannelImg(input, img){
+  var fileElem = document.getElementById(input.id).nextElementSibling;
+  $('#img__channel--cover').attr('src', img);
+  $(fileElem).removeClass('hide');
+}
+
 function handleCloseCreateChannel(){
   //put back html
   $('.js__child-dialog-create-channel').html(contentCreateChannel)
-  customCreateDialog('remove')
+  customCreateDialog(false)
   handleDialogClose()
 }
 
 function customCreateDialog(state){
-  if(state === 'add'){
+  if(state){
     $('.js__template-dialog').find('.unf-user-dialog__body').addClass('customScrollBar customScrollBar--y customScrollBar--create-channel')
     $('.customScrollBar').scrollbar();
 
@@ -442,27 +478,40 @@ $(function handleInputModeratorName() {
     handleCheckInputChannel()
   })
 })
-
-function handleCreateChannel() {
-  const id = dataChannel[dataChannel.length - 1].id + 1
+//gohere
+function handleSaveChannel(id) {
   const name = $('#input__channel--name').val()
   const description = $('#input__channel--desc').val()
   const moderator = $('#input__channel--moderator-name').val()
   const img = $('#img__channel--cover').prop('src')
   const url = $('#input__channel--moderator-url').val()
-
-  const newChannel = {
-    id,
-    url,
-    status: 1,
-    archive: false,
-    img,
-    name,
-    description,
-    moderator
+  if(id === undefined){
+    const id = dataChannel[dataChannel.length - 1].id + 1
+    const newChannel = {
+      id,
+      url,
+      status: 1,
+      archive: false,
+      img,
+      name,
+      description,
+      moderator
+    }
+    pushData(newChannel)
+  }
+  else{
+    for(const data of dataChannel){
+      if(data.id === id){
+        data.name = name
+        data.description = description
+        data.moderator = moderator
+        data.img = img
+        data.url = url
+      }
+    }
   }
 
-  pushData(newChannel)
+  loopData()
   handleCloseCreateChannel()
 }
 
@@ -486,7 +535,7 @@ function resetInputValueChannel() {
   resetInputImageChannel()
 
   //custom dialog
-  customCreateDialog('add')
+  customCreateDialog(true)
 }
 
 function resetInputImageChannel() {
