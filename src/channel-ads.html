@@ -1,181 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Group Chat</title>
-  <link rel="shortcut icon" href="https://ecs7.tokopedia.net/assets-tokopedia-lite/prod/icon144.png">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="../node_modules/normalize.css/normalize.css">
-	<link rel="stylesheet" href="./assets/plugins/scrollBar/scrollBar.css">
-	<link rel="stylesheet" href="./assets/plugins/cropperjs/cropper.min.css">
-  <link rel="stylesheet" href="./assets/css/unify.css">
-  <link rel="stylesheet" href="./assets/css/master.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Group Chat</title>
+    <link rel="shortcut icon" href="https://ecs7.tokopedia.net/assets-tokopedia-lite/prod/icon144.png">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../node_modules/normalize.css/normalize.css">
+    <link rel="stylesheet" href="./assets/plugins/scrollBar/scrollBar.css">
+    <link rel="stylesheet" href="./assets/plugins/cropperjs/cropper.min.css">
+    <link rel="stylesheet" href="./assets/css/unify.css">
+    <link rel="stylesheet" href="./assets/css/master.css">
 </head>
+
 <body>
-	<div class="wrapper">
-	  <div class="group-chat">
 
-		<div class="sidebar">
-		  <a href="" class="sidebar__icon-tkpd"></a>
-		  <ul class="sidebar__list">
-			<li class="sidebar__list-item unf-user-tooltip">
-			  <div class="unf-user-tooltip__container sidebar__list-item-tooltip" aria-label="Channel" data-position="left"></div>
-			  <a class="list-item list-item--channel list-item--active">
-				<span>Channel</span>
-			  </a>
-			</li>
-			<li class="sidebar__list-item unf-user-tooltip">
-			  <div class="unf-user-tooltip__container sidebar__list-item-tooltip" aria-label="Polling" data-position="left"></div>
-			  <a class="list-item list-item--polling">
-				<span>Polling</span>
-			  </a>
-			</li>
-			<li class="sidebar__list-item unf-user-tooltip">
-			  <div class="unf-user-tooltip__container sidebar__list-item-tooltip" aria-label="Rewards" data-position="left"></div>
-			  <a class="list-item list-item--rewards">
-				<span>Rewards</span>
-			  </a>
-			</li>
-		  </ul>
-		</div>
+    <div class="wrapper">
+        <div class="group-chat">
+            <div class="sidebar">
+                <a href="" class="sidebar__icon-tkpd"></a>
+                <ul class="sidebar__list">
+                    <li class="sidebar__list-item unf-user-tooltip">
+                        <div class="unf-user-tooltip__container sidebar__list-item-tooltip" aria-label="Channel"
+                            data-position="left"></div>
+                        <a class="list-item list-item--channel list-item--active">
+                            <span>Channel</span>
+                        </a>
+                    </li>
+                    <li class="sidebar__list-item unf-user-tooltip">
+                        <div class="unf-user-tooltip__container sidebar__list-item-tooltip" aria-label="Polling"
+                            data-position="left"></div>
+                        <a class="list-item list-item--polling">
+                            <span>Polling</span>
+                        </a>
+                    </li>
+                    <li class="sidebar__list-item unf-user-tooltip">
+                        <div class="unf-user-tooltip__container sidebar__list-item-tooltip" aria-label="Rewards"
+                            data-position="left"></div>
+                        <a class="list-item list-item--rewards">
+                            <span>Rewards</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="main-content">
+                <div class="header">
+                    <div class="header__top navbar">
+                        <div class="navbar__left">
+                            <div class="navbar__menu">
+                                <div class="navbar__menu-container">
+                                    <div class="navbar__menu-bar"></div>
+                                    <div class="navbar__menu-bar"></div>
+                                    <div class="navbar__menu-bar"></div>
+                                </div>
+                            </div>
+                            <h2 class="navbar__title">Channel</h2>
+                            <span class="navbar__arrow breadcrumb__arrow"></span>
+                            <h3 class="navbar__channel-title">2018 FIFA World Cup's Ads</h3>
+                        </div>
+                        <div class="navbar__right">
+                            <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Add Ads</div>
+                            <div class="navbar__profile">
+                                <span class="navbar__profile-img" style="background-image: url('./assets/img/profile.png')"></span>
+                                <h3 class="navbar__profile-name">Ichsan Indra Wahyudi</h3>
+                                <span class="navbar__profile-menu"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header__bottom">
+                        <div class="breadcrumb">
+                            <h2 class="breadcrumb__title breadcrumb__title--detail">Channel</h2>
+                            <span class="breadcrumb__arrow"></span>
+                            <h3 class="breadcrumb__channel-title">2018 FIFA World Cup's Ads</h3>
+                        </div>
+                        <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Add Ads</div>
+                    </div>
+                </div>
+                <div class="container">
+                </div>
+            </div>
+        </div>
 
-		<div class="main-content">
-		  <div class="header">
-				<div class="header__top navbar">
-					<div class="navbar__left">
-					<div class="navbar__menu">
-						<div class="navbar__menu-container">
-						<div class="navbar__menu-bar"></div>
-						<div class="navbar__menu-bar"></div>
-						<div class="navbar__menu-bar"></div>
-						</div>
-					</div>
-					<h2 class="navbar__title">Channel</h2>
-					<span class="navbar__arrow breadcrumb__arrow"></span>
-					<h3 class="navbar__channel-title">2018 FIFA World Cup's Ads</h3>
-					</div>
-					<div class="navbar__right">
-					<div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Add Ads</div>
-					<div class="navbar__profile">
-						<span class="navbar__profile-img" style="background-image: url('./assets/img/profile.png')"></span>
-						<h3 class="navbar__profile-name">Ichsan Indra Wahyudi</h3>
-						<span class="navbar__profile-menu"></span>
-					</div>
-					</div>
-				</div>
-				<div class="header__bottom">
-					<div class="breadcrumb">
-					<h2 class="breadcrumb__title breadcrumb__title--detail">Channel</h2>
-					<span class="breadcrumb__arrow"></span>
-					<h3 class="breadcrumb__channel-title">2018 FIFA World Cup's Ads</h3>
-					</div>
-					<div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Add Ads</div>
-				</div>
-				</div>
-				<div class="container">
-				</div>
+        <section class="hide">
+            <!-- Dialog Delete Ads -->
+            <div class="js__child-dialog-delete-ads">
+                <p class="unf-user-dialog__description">Do you want to delete this ads?</p>
+            </div>
 
-			</div>
-	  </div>
-	<section class="hide">
-		
-	<!-- Dialog Delete Ads -->
-	<div class="js__child-dialog-delete-ads">
-		<p class="unf-user-dialog__description">Do you want to delete this ads?</p>
-	</div>
-		
-	<!-- Dialog Deactive Ads -->
+            <!-- Dialog Deactive Ads -->
 
-	<div class="js__child-dialog-deactivate-ads">
-		<p class="unf-user-dialog__description">Do you want to deactivate this ads?</p>
-	</div>
+            <div class="js__child-dialog-deactivate-ads">
+                <p class="unf-user-dialog__description">Do you want to deactivate this ads?</p>
+            </div>
 
-	<!-- Dialog Activate Ads -->
+            <!-- Dialog Activate Ads -->
 
-	<div class="js__child-dialog-activate-ads">
-		<p class="unf-user-dialog__description">Do you want to activate this ads?</p>
-	</div>
+            <div class="js__child-dialog-activate-ads">
+                <p class="unf-user-dialog__description">Do you want to activate this ads?</p>
+            </div>
+        </section>
 
-	<!-- Content dialog add/edit ads -->
-	<div class="js__child-dialog-add-template js__child-dialog-add-edit-ads">
-		<div class="unf-user-input">
-			<label class="unf-user-input__label">Ads Title</label>
-			<input type="text" id="input__ads--title" class="unf-user-input__control" name="ads-title" maxlength="20">
-			<div class="unf-user-input__info">
-				<span></span>
-				<span class="unf-user-input__info-counter">0/20</span>
-			</div>
-		</div>
-		<div class="unf-user-input create-ads__image">
-			<label class="unf-user-input__label">Add Image</label>
-			<div class="unf-user-input__control unf-user-input__control--image">
-				<input id="input__ads--cover" type="file" accept=".jpg,.jpeg,.png">
-				<div class="unf-user-input__image-container unf-user-input__image-container--full hide">
-					<img id="img__ads--cover" class="unf-user-input__image-file">
-					<div class="unf-user-input__image-action">
-						<span id="change__ads--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
-						<span id="delete__ads--cover" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
-					</div> 
-				</div>
-				<div id="upload__ads--cover" class="unf-user-input__image-upload">
-					<span class="unf-user-input__image-upload-text unf-user-input__image-upload-text--row">Add Photo</span>
-				</div>
-			</div>
-		</div>  
-		<div class="unf-user-input">
-			<label class="unf-user-input__label">Ads Link</label>
-			<input type="text" id="input__ads--link" class="unf-user-input__control" name="ads-link" placeholder="e.g.https://tokopedia.com">
-			<div class="unf-user-input__info">
-				<span class="unf-user-input__info-msg"></span>
-			</div>
-		</div>        
-	</div>  
-	</section>
-	
-	<!-- Dialog image editor -->
-	<div class="js__dialog-image-editor unf-user-dialog edit-image-dialog">
-		<div class="unf-user-dialog__content unf-user-dialog__content--broadcast edit-image-dialog__container ta-center">
-			<div class="unf-user-dialog__title edit-image-dialog__title">
-				Image Editor
-			</div>
-			<div class="edit-image-dialog__img-container">
-				<img id="image-editor-canvas" src="" style="display: none">
-			</div>
-			<div class="edit-image-dialog__controls mt-30 mb-50">
-				<div>
-					<i class="user-icon icon-zoom-pic icon-zoom-pic--out mr-8 va-middle"></i>
-					<input class="edit-image-dialog__slider" type="range" min="1" max="2" step=".01" value="0">
-					<i class="user-icon icon-zoom-pic icon-zoom-pic--in ml-8 va-middle"></i>
-				</div>
-			</div>
-			<div class="broadcast-dialog__action edit-image-dialog__action mt-30">
-				<button class="unf-user-btn unf-user-btn--medium unf-user-btn--secondary unf-user-btn--dialog" id="edit-image-cancel">Cancel</button>
-				<button class="unf-user-btn unf-user-btn--medium unf-user-btn--primary unf-user-btn--dialog" id="edit-image-save">Save</button>
-			</div>
-		</div>
-	</div>
-	
+        <!-- add/edit -->
+        <div class="unf-user-dialog js__unf-user-dialog--ads-channel dialog--414"></div>
 
-	<div class="unf-user-overlay unf-user-overlay--desktop"></div>
-	<div class="js__template-dialog unf-user-dialog ta-center"></div>
+        <div class="unf-user-overlay unf-user-overlay--desktop"></div>
+        <div class="js__template-dialog unf-user-dialog ta-center"></div>
 
-	</div>
-	<div class="unf-user-toaster">
-	  <div class="unf-user-toaster__body">
-		<span id="unf-user-toaster__message"></span>
-	  </div>
-	</div>
+    </div>
 
-  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-	<script src="./assets/plugins/scrollBar/scrollBar.js"></script>
-	<script src="./assets/plugins/cropperjs/cropper.min.js"></script>
-  <script src="./assets/js/lang.js"></script>
-  <script src="./assets/js/unify.js"></script>
-  <script src="./assets/js/interaction.js"></script>
-  <script src="./assets/js/script.js"></script>
-  <script src="./assets/js/module-dialog.js"></script>
-  <script src="./assets/js/channel-ads.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/plugins/scrollBar/scrollBar.js"></script>
+    <script src="./assets/plugins/cropperjs/cropper.min.js"></script>
+    <script src="./assets/js/locale/index.js"></script>
+    <script src="./assets/js/helper/inputCounter.js"></script>
+    <script src="./assets/js/helper/validation.js"></script>
+    <script src="./assets/js/component/textfield/index.js"></script>
+    <script src="./assets/js/component/dialog/index.js"></script>
+    <script src="./assets/js/component/pagination/index.js"></script>
+    <script src="./assets/js/component/select/index.js"></script>
+    <script src="./assets/js/component/cropper/index.js"></script>
+    <script src="./assets/js/content/ads/index.js"></script>
+    <script src="./assets/js/content/ads/confirmation.js"></script>
+    <script src="./assets/js/global/interaction.js"></script>
 </body>
+
 </html>

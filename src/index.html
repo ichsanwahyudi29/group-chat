@@ -57,9 +57,11 @@
                                 </div>
                             </div>
                             <h2 class="navbar__title">Channel</h2>
+                            <span class="navbar__arrow breadcrumb__arrow"></span>
+                            <h3 class="navbar__channel-title">2018 FIFA World Cup's Ads</h3>
                         </div>
                         <div class="navbar__right">
-                            <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Create Group Chat</div>
+                            <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Add Ads</div>
                             <div class="navbar__profile">
                                 <span class="navbar__profile-img" style="background-image: url('./assets/img/profile.png')"></span>
                                 <h3 class="navbar__profile-name">Ichsan Indra Wahyudi</h3>
@@ -69,43 +71,39 @@
                     </div>
                     <div class="header__bottom">
                         <div class="breadcrumb">
-                            <h2 class="breadcrumb__title">Channel</h2>
+                            <h2 class="breadcrumb__title breadcrumb__title--detail">Channel</h2>
+                            <span class="breadcrumb__arrow"></span>
+                            <h3 class="breadcrumb__channel-title">2018 FIFA World Cup's Ads</h3>
                         </div>
-                        <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Create Group Chat</div>
+                        <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Add Ads</div>
                     </div>
                 </div>
-                <div class="container"></div>
+                <div class="container">
+                </div>
             </div>
         </div>
 
         <section class="hide">
-            <!-- Content dialog deactive Channel -->
-            <div class="js__child-dialog-deactive-channel">
-                <p class="unf-user-dialog__description">
-                    Do you want to deactive this group chat?
-                </p>
+            <!-- Dialog Delete Ads -->
+            <div class="js__child-dialog-delete-ads">
+                <p class="unf-user-dialog__description">Do you want to delete this ads?</p>
             </div>
 
-            <!-- Content dialog activate Channel -->
-            <div class="js__child-dialog-activate-channel">
-                <p class="unf-user-dialog__description">
-                    Do you want to activate this group chat?
-                </p>
+            <!-- Dialog Deactive Ads -->
+
+            <div class="js__child-dialog-deactivate-ads">
+                <p class="unf-user-dialog__description">Do you want to deactivate this ads?</p>
             </div>
 
-            <!-- Content dialog archive Channel -->
-            <div class="js__child-dialog-archive-channel">
-                <p class="unf-user-dialog__description">
-                    Do you want to archive this group chat?
-                </p>
+            <!-- Dialog Activate Ads -->
+
+            <div class="js__child-dialog-activate-ads">
+                <p class="unf-user-dialog__description">Do you want to activate this ads?</p>
             </div>
         </section>
 
-        <!-- preview -->
-        <div class="unf-user-dialog js__unf-user-dialog--preview-channel preview-channel"></div>
-
         <!-- add/edit -->
-        <div class="unf-user-dialog js__unf-user-dialog--create-channel create-channel"></div>
+        <div class="unf-user-dialog js__unf-user-dialog--ads-channel dialog--414"></div>
 
         <div class="unf-user-overlay unf-user-overlay--desktop"></div>
         <div class="js__template-dialog unf-user-dialog ta-center"></div>
@@ -122,11 +120,9 @@
     <script src="./assets/js/component/dialog/index.js"></script>
     <script src="./assets/js/component/pagination/index.js"></script>
     <script src="./assets/js/component/select/index.js"></script>
-    <script src="./assets/js/component/tab/index.js"></script>
     <script src="./assets/js/component/cropper/index.js"></script>
-    <script src="./assets/js/content/channel/index.js"></script>
-    <script src="./assets/js/content/channel/confirmation.js"></script>
-    <script src="./assets/js/content/channel/preview.js"></script>
+    <script src="./assets/js/content/ads/index.js"></script>
+    <script src="./assets/js/content/ads/confirmation.js"></script>
     <script src="./assets/js/global/interaction.js"></script>
 </body>
 

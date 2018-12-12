@@ -1,0 +1,25 @@
+{
+    "ads": [
+        {
+            "id": 1,
+            "url": "https://www.tokopedia.com/promokopiluwak",
+            "status": 1,
+            "img": "./assets/img/gc_ads_1.jpg",
+            "name": "Promo Kopi Luwak"
+        },
+        {
+            "id": 2,
+            "url": "https://www.tokopedia.com/detol",
+            "status": 0,
+            "img": "./assets/img/gc_ads_2.jpeg",
+            "name": "Promo Detol"
+        },
+        {
+            "id": 3,
+            "url": "https://www.tokopedia.com/",
+            "status": 0,
+            "img": "./assets/img/gc_ads_3.jpg",
+            "name": "Promo Tokopedia"
+        }
+    ]
+}
