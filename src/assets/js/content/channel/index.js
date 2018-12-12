@@ -261,6 +261,42 @@ $(function handleClickCreateChannel() {
     });
 })
 
+function handleClickEditChannel(id) {
+    $('.js__unf-user-dialog--create-channel')
+        .find('.unf-user-dialog__header').text('Edit Group Chat').end()
+        .find('#btn__channel--create').data('id', id).end()
+    handleFetchChannelData(id)
+    handleDialogOpen($('.js__unf-user-dialog--create-channel'));
+}
+
+function handleCloseCreateChannel() {
+    resetInputValueChannel()
+    handleDialogClose()
+}
+
+function handleFetchChannelData(id) {
+    var data = dataChannel.filter(item => item.id === id)[0]
+    $('#input__channel--name').val(data.name);
+    $('#input__channel--desc').val(data.description);
+    $('#input__channel--moderator-email').val('i');
+    handleRevealChannelImg($('#input__channel--cover')[0], data.img);
+    $('#btn__channel--moderator-email').click()
+
+    isCover = true;
+    isName = true;
+    isDesc = true;
+    isModeratorEmail = true;
+    isModeratorName = true;
+
+    handleCheckInputChannel();
+}
+
+function handleRevealChannelImg(input, img) {
+    var fileElem = document.getElementById(input.id).nextElementSibling;
+    $('#img__channel--cover').attr('src', img);
+    $(fileElem).removeClass('hide');
+}
+
 $(function onChangeChannelImg() {
     $(document).on('click', '#upload__channel--cover, #change__channel--cover', function () {
         $('#input__channel--cover').click();
@@ -273,14 +309,6 @@ $(function onDeleteChannelImg() {
         handleCheckInputChannel()
     })
 });
-
-function handleClickEditChannel(id) {
-    $('.js__unf-user-dialog--create-channel')
-        .find('.unf-user-dialog__header').text('Edit Group Chat').end()
-        .find('#btn__channel--create').data('id', id).end()
-    handleFetchChannelData(id)
-    handleDialogOpen($('.js__unf-user-dialog--create-channel'));
-}
 
 $(function handleInputChannelImg() {
     $(document).on('change', '#input__channel--cover', function () {
@@ -304,42 +332,6 @@ $(function handleInputChannelImg() {
         handleCheckInputChannel();
     })
 });
-
-//cropper
-function readURLCrop(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $("#image-editor-canvas").attr("src", e.target.result);
-            editPictureDialog('.js__unf-user-dialog--create-channel');
-            cropImg(2, 1);
-        };
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-$(document).on('click', '#edit-image-cancel', function(){
-    $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
-    $(".js__unf-user-dialog--create-channel").addClass("unf-user-dialog--show");
-
-    handleResetEditDialog()
-    cropper.destroy();
-})
-
-$(document).on('click', '#edit-image-save', function(){
-    let imgsrc = cropper.getCroppedCanvas({ width: 600, height: 300 }).toDataURL("image/jpeg");
-
-    $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
-    $(".js__unf-user-dialog--create-channel").addClass("unf-user-dialog--show");
-    handleShowCroppedImg("#img__channel--cover", imgsrc)
-    handleResetEditDialog()
-
-    isCover = true;
-    cropper.destroy();
-    handleCheckInputChannel()
-})
-//
 
 $(function handleInputChannelName() {
     $(document).on('input', '#input__channel--name', function () {
@@ -434,76 +426,41 @@ $(function handleInputModeratorName() {
     })
 })
 
-function handleCloseCreateChannel() {
-    resetInputValueChannel()
-    handleDialogClose()
+//cropper
+function readURLCrop(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $("#image-editor-canvas").attr("src", e.target.result);
+            editPictureDialog('.js__unf-user-dialog--create-channel');
+            cropImg(2, 1);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
 }
 
-function handleFetchChannelData(id) {
-    var data = dataChannel.filter(item => item.id === id)[0]
-    $('#input__channel--name').val(data.name);
-    $('#input__channel--desc').val(data.description);
-    $('#input__channel--moderator-email').val('i');
-    handleRevealChannelImg($('#input__channel--cover')[0], data.img);
-    $('#btn__channel--moderator-email').click()
+$(document).on('click', '#edit-image-cancel', function(){
+    $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
+    $(".js__unf-user-dialog--create-channel").addClass("unf-user-dialog--show");
 
-    isCover = true;
-    isName = true;
-    isDesc = true;
-    isModeratorEmail = true;
-    isModeratorName = true;
-
-    handleCheckInputChannel();
-}
-
-function handleRevealChannelImg(input, img) {
-    var fileElem = document.getElementById(input.id).nextElementSibling;
-    $('#img__channel--cover').attr('src', img);
-    $(fileElem).removeClass('hide');
-}
-
-$(function handleSaveChannel() {
-    $(document).on('click', '#btn__channel--create', function () {
-        var id = $(this).data('id')
-        const name = $('#input__channel--name').val()
-        const description = $('#input__channel--desc').val()
-        const moderator = $('#input__channel--moderator-name').val()
-        const img = $('#img__channel--cover').prop('src')
-        const url = $('#input__channel--moderator-url').val()
-        if (id === undefined) {
-            id = dataChannel[dataChannel.length - 1].id + 1
-            const newChannel = {
-                id,
-                url,
-                status: 1,
-                archive: false,
-                img,
-                name,
-                description,
-                moderator
-            }
-            pushData(newChannel)
-        }
-        else {
-            for (const data of dataChannel) {
-                if (data.id === id) {
-                    data.name = name
-                    data.description = description
-                    data.moderator = moderator
-                    data.img = img
-                    data.url = url
-                }
-            }
-        }
-
-        loopData()
-        handleCloseCreateChannel()
-    })
+    handleResetEditDialog()
+    cropper.destroy();
 })
 
-function pushData(data) {
-    dataChannel.push(data)
-}
+$(document).on('click', '#edit-image-save', function(){
+    let imgsrc = cropper.getCroppedCanvas({ width: 600, height: 300 }).toDataURL("image/jpeg");
+
+    $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
+    $(".js__unf-user-dialog--create-channel").addClass("unf-user-dialog--show");
+    handleShowCroppedImg("#img__channel--cover", imgsrc)
+    handleResetEditDialog()
+
+    isCover = true;
+    cropper.destroy();
+    handleCheckInputChannel()
+})
+//
 
 function resetInputValueChannel() {
     if (inputEmail.hasClass('unf-user-input--isError')) {
@@ -549,3 +506,42 @@ function loadingCheckEmail(loading) {
         $('.unf-user-input__icon').removeClass('icon-loader');
     }
 }
+
+$(function handleSaveChannel() {
+    $(document).on('click', '#btn__channel--create', function () {
+        var id = $(this).data('id')
+        const name = $('#input__channel--name').val()
+        const description = $('#input__channel--desc').val()
+        const moderator = $('#input__channel--moderator-name').val()
+        const img = $('#img__channel--cover').prop('src')
+        const url = $('#input__channel--moderator-url').val()
+        if (id === undefined) {
+            id = dataChannel[dataChannel.length - 1].id + 1
+            const newChannel = {
+                id,
+                url,
+                status: 1,
+                archive: false,
+                img,
+                name,
+                description,
+                moderator
+            }
+            dataChannel.push(newChannel)
+        }
+        else {
+            for (const data of dataChannel) {
+                if (data.id === id) {
+                    data.name = name
+                    data.description = description
+                    data.moderator = moderator
+                    data.img = img
+                    data.url = url
+                }
+            }
+        }
+
+        loopData()
+        handleCloseCreateChannel()
+    })
+})
