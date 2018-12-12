@@ -1,0 +1,13 @@
+{
+    "email": {
+        "input": ["Pastikan email ini aktif untuk memperoleh hasil pengajuan"],
+        "error": ["Email tidak valid", "Email tidak terdaftar"]
+    },
+    "image": {
+        "input": ["Besar file: maksimum 10.000 kilobytes (10 Megabytes)"],
+        "error": ["Ukuran file terlalu besar, ukuran maksimum 10.000 Kilobytes", "Image tidak valid"]
+    },
+    "link": {
+        "error": ["Link tidak valid"]
+    }
+}
