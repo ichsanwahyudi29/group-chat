@@ -8,7 +8,8 @@
             "img": "./assets/img/gc1.jpg",
             "name": "2018 FIFA World Cup",
             "description": "Hai para pecinta sepak bola, Ramaikan piala dunia 2018 bersama Tokopedia! Ikuti quiznya dan menangkan Tokocash senilai jutaan rupiah.Buruan, jangan sampai kelewatan!",
-            "moderator": "Darius Sinathrya"
+            "moderator": "Darius Sinathrya",
+            "email": "darius@tokopedia.com"
         },
         {
             "id": 202,
@@ -18,7 +19,8 @@
             "img": "./assets/img/gc2.jpg",
             "name": "Pokemon in The 6ix",
             "description": "Hai para pecinta sepak bola, Ramaikan piala dunia 2018 bersama Tokopedia! Ikuti quiznya dan menangkan Tokocash senilai jutaan rupiah.Buruan, jangan sampai kelewatan!",
-            "moderator": "Darius Sinathrya"
+            "moderator": "Ichsan Tokped",
+            "email": "ichsan@tokopedia.com"
         },
         {
             "id": 203,
@@ -28,7 +30,52 @@
             "img": "./assets/img/gc2.jpg",
             "name": "Inactive Channel Example",
             "description": "Hai para pecinta sepak bola, Ramaikan piala dunia 2018 bersama Tokopedia! Ikuti quiznya dan menangkan Tokocash senilai jutaan rupiah.Buruan, jangan sampai kelewatan!",
-            "moderator": "Darius Sinathrya"
+            "moderator": "Adek Tokped",
+            "email": "adek@tokopedia.com"
+        }
+    ],
+    "admin": [
+        {
+            "id": 231012,
+            "photo":"./assets/img/user-m.png",
+            "name": "Ichsan Tokped",
+            "email": "ichsan@tokopedia.com",
+            "url": "http://tokopedia.com"
+        },
+        {
+            "id": 200192,
+            "photo":"./assets/img/user-m.png",
+            "name": "Darius Sinathrya",
+            "email": "darius@tokopedia.com",
+            "url": "http://tokopedia.com"
+        },
+        {
+            "id": 2210291,
+            "photo":"./assets/img/user-f.png",
+            "name": "Farrah Tokped",
+            "email": "farrah@tokopedia.com",
+            "url": "http://tokopedia.com"
+        },
+        {
+            "id": 2214411,
+            "photo":"./assets/img/user-f.png",
+            "name": "Rachel Tokped",
+            "email": "rachel@tokopedia.com",
+            "url": "http://tokopedia.com"
+        },
+        {
+            "id": 2210029,
+            "photo":"./assets/img/user-f.png",
+            "name": "Shinta Tokped",
+            "email": "shinta@tokopedia.com",
+            "url": "http://tokopedia.com"
+        },
+        {
+            "id": 2318912,
+            "photo":"./assets/img/user-m.png",
+            "name": "Adek Tokped",
+            "email": "adek@tokopedia.com",
+            "url": "http://tokopedia.com"
         }
     ]
 }
