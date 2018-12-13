@@ -120,9 +120,9 @@ function renderAdsList(data){
                     <div class="status-toggle-container">
                         <div class="unf-user-toggle">
                             ${data.status === 1 ?
-                            `<input checked type="checkbox" class="unf-user-toggle__checkbox" id="testcheck-${data.id}" onclick="handleChangeAdsStatus(this, ${data.id})">` :
-                            `<input type="checkbox" class="unf-user-toggle__checkbox" id="testcheck-${data.id}" onclick="handleChangeAdsStatus(this, ${data.id})">`}
-                            <label for="testcheck-${data.id}"></label>
+                            `<input checked type="checkbox" class="unf-user-toggle__checkbox" id="ads-${data.id}" onclick="handleChangeAdsStatus(this, ${data.id})">` :
+                            `<input type="checkbox" class="unf-user-toggle__checkbox" id="ads-${data.id}" onclick="handleChangeAdsStatus(this, ${data.id})">`}
+                            <label for="ads-${data.id}"></label>
                         </div>
                     </div>
                 </div>
@@ -193,7 +193,7 @@ $(function handleClickAddAds() {
         click: function () {
             $('.js__unf-user-dialog--ads-channel')
                 .find('.unf-user-dialog__header').text('Add Ads').end()
-                .find('#btn__ads--add').data('id', undefined).end()
+                .find('#btn__ads--add').removeData('id').end()
             handleDialogOpen($('.js__unf-user-dialog--ads-channel'));
         },
     });
