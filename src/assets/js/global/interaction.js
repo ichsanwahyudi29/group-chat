@@ -57,3 +57,10 @@ function loadJSON(fileJSON, callback) {
     };
     xobj.send(null);
 }
+
+//autofocus
+function autoFocusInput(target){
+    setTimeout(function(){
+        $(target).focus()
+    }, 300)
+}
