@@ -13,10 +13,3 @@ function initTabIndicator(id, w, l) {
         left: l,
     });
 }
-
-// tab use
-$('.send-input__tab .tab-options__item-label').on({
-    click: function() {
-        optionsTab(this);
-    },
-});
