@@ -1,0 +1,215 @@
+{
+    "template_chat": [
+        {
+            "id": 201,
+            "vibrate": true,
+            "autoSend": false,
+            "expiredTime": null,
+            "proccedTime": null,
+            "img": "./assets/img/gc2.jpg",
+            "url": "https://www.tokopedia.com/",
+            "message": "Selamat malam Toppers, jagokan negara favorit kalian disini. Kira-kira siapa ya negara pemenang piala duni tahun ini?"
+        },
+        {
+            "id": 202,
+            "vibrate": false,
+            "autoSend": true,
+            "expiredTime": 120000,
+            "proccedTime": 120000,
+            "img": "",
+            "url": "",
+            "message": "Jawab kuisnya dengan menyertakan #TokopediaChallenge"
+        },
+        {
+            "id": 203,
+            "vibrate": true,
+            "autoSend": true,
+            "expiredTime": 180000,
+            "proccedTime": 180000,
+            "img": "./assets/img/user-f.png",
+            "url": "https://www.tokopedia.com/",
+            "message": "Selamat malam Toppers, jagokan negara favorit kalian disini. Kira-kira siapa ya negara pemenang piala duni tahun ini?"
+        }
+    ],
+    "pinned_chat": [
+        {
+            "id": 200,
+            "title": "Ayo Jawab Kusinya Sekarang",
+            "msg": "Jawab kuisnya dengan menyertakan #TokopediaChallenge",
+            "img": "./assets/img/gc1.jpg",
+            "url": "https://www.tokopedia.com/",
+            "status": 1
+        }
+    ],
+    "quick_reply": [
+        {
+            "id": 200,
+            "message": "Halo",
+            "status": 1
+        },
+        {
+            "id": 201,
+            "message": "Sundul Gan",
+            "status": 1
+        },
+        {
+            "id": 202,
+            "message": "Mulai aja dulu",
+            "status": 1
+        },
+        {
+            "id": 203,
+            "message": "Selamat pagi!",
+            "status": 0
+        },
+        {
+            "id": 203,
+            "message": "Selamat Sore!",
+            "status": 1
+        },
+        {
+            "id": 203,
+            "message": "Selamat Malam!",
+            "status": 1
+        }
+    ],
+    "banned_user": [
+        {
+            "id": 5512939,
+            "participantId": 123321,
+            "photo":"./assets/img/user-m.png",
+            "name": "Ichsan Tokped",
+            "status": 1
+        },
+        {
+            "id": 6512939,
+            "participantId": 223321,
+            "photo":"./assets/img/user-f.png",
+            "name": "Shinta Tokped",
+            "status": 0
+        },
+        {
+            "id": 7512939,
+            "participantId": 323321,
+            "photo":"./assets/img/user-m.png",
+            "name": "Leo Tokped",
+            "status": 0
+        },
+        {
+            "id": 8512939,
+            "participantId": 423321,
+            "photo":"./assets/img/user-f.png",
+            "name": "Farrah Tokped",
+            "status": 1
+        },
+        {
+            "id": 9512939,
+            "participantId": 523321,
+            "photo":"./assets/img/user-f.png",
+            "name": "Zahrah Tokped",
+            "status": 0
+        },
+        {
+            "id": 4512523,
+            "participantId": 623321,
+            "photo":"./assets/img/user-m.png",
+            "name": "Adek Tokped",
+            "status": 0
+        },
+        {
+            "id": 4512928,
+            "participantId": 623321,
+            "photo":"./assets/img/user-f.png",
+            "name": "Rachel Tokped",
+            "status": 0
+        },
+        {
+            "id": 4509721,
+            "participantId": 623321,
+            "photo":"./assets/img/user-m.png",
+            "name": "Eraz Tokped",
+            "status": 0
+        },
+        {
+            "id": 2027280,
+            "participantId": 312132,
+            "photo":"./assets/img/user-m.png",
+            "name": "Fajar Tokped",
+            "status": 0
+        }
+    ],
+    "live_chat":[
+        {
+            "id": 1,
+            "photo":"./assets/img/user-f.png",
+            "name": "Darius Sinathrya",
+            "admin": true,
+            "type": "chat",
+            "time": "12.00",
+            "msg": "Hi! Apa kabar para pecinta sepak bola?",
+            "img": null,
+            "vote": null,
+            "vote_content": null
+        },
+        {
+            "id": 2,
+            "photo":"./assets/img/user-f.png",
+            "name": "Ichsan Indra Wahyudi",
+            "admin": false,
+            "type": "chat",
+            "time": "12.10",
+            "msg": "Wuuu baik om! Go Brazil go!",
+            "img": null,
+            "vote": null,
+            "vote_content": null
+        },
+        {
+            "id": 3,
+            "photo":"./assets/img/user-f.png",
+            "name": "Shinta Tamara bergabung",
+            "admin": false,
+            "type": "new",
+            "time": null,
+            "msg": null,
+            "img": null,
+            "vote": null,
+            "vote_content": null
+        },
+        {
+            "id": 4,
+            "photo":"./assets/img/user-f.png",
+            "name": "Zahrah",
+            "admin": false,
+            "type": "chat",
+            "time": "12.14",
+            "msg": "Saya jual jersey semua negara kumpil! Bisa order di link berikut tokopedia.com y",
+            "img": null,
+            "vote": null,
+            "vote_content": null
+        },
+        {
+            "id": 5,
+            "photo":"./assets/img/user-f.png",
+            "name": "Darius Sinathrya",
+            "admin": true,
+            "type": "vote",
+            "time": "12.20",
+            "msg": null,
+            "img": null,
+            "vote_begin": true,
+            "vote_content": "Menurut Toppers, siapa ya yang akan jadi pemain MVP di Piala Dunia Tahun Ini?"
+        },
+        {
+            "id": 6,
+            "photo":"./assets/img/user-f.png",
+            "name": "Darius Sinathrya",
+            "admin": true,
+            "type": "img",
+            "time": "12.25",
+            "msg": null,
+            "img": "img",
+            "vote_begin": null,
+            "vote_content": null
+        }
+    ]
+}
