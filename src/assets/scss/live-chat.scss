@@ -4,7 +4,12 @@
   &__area{
     overflow-y: auto;
     max-height: 430px;
+    height: 430px;
     padding: 0 8px !important;
+    transform: translateY(8px);
+    .live-chat__area{
+      transform: translateY(0);
+    }
   }
   &__date{
     font-size: 12px;
@@ -124,10 +129,12 @@
     }
   }
   &__pinned{
+    cursor: pointer;
     display: flex;
     align-items: center;
     background-color: $gray-soft;
     padding: 12px 16px;
+    margin-top: 16px;
     &-admin{
       display: flex;
       align-items: center;
@@ -156,11 +163,12 @@
   &__quick-reply{
     display: flex;
     overflow: auto;
+    height: 48px;
     // padding: 8px 16px;
     // padding: 4px 0px !important;
     border-bottom: solid $gray-border 1px;
     &>div{
-      padding: 4px 0px;
+      padding: 8px 0px;
     }
     &-bubble{
       min-width: 44px;
@@ -187,11 +195,22 @@
     }
   }
   &__send-input{
+    .tab-options__content{
+      .unf-user-input__image-name{
+        font-size: 14px;
+      }
+    }
     .send-input{
       &__tab{
-        padding: 13px 16px;
+        // padding: 13px 16px;
+        padding: 0 16px;
         &-indicator{
           min-width: 62px;
+          bottom: -1px;
+        }
+        .tab-options__item-label{
+          padding: 13px 0;
+          display: inline-block;
         }
       }
       &__content{

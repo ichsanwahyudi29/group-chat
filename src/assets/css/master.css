@@ -188,6 +188,9 @@ html, body {
 .of-init {
   overflow: initial !important; }
 
+.of-unset {
+  overflow: unset !important; }
+
 .ta-center {
   text-align: center !important; }
 
@@ -201,10 +204,24 @@ html, body {
   position: relative;
   margin-top: -44px; }
   .container__left {
-    width: 73%;
+    width: calc(100% - 320px - 16px);
     margin-right: 16px; }
   .container__live-chat {
-    width: 320px; }
+    width: 320px;
+    position: absolute;
+    right: 32px;
+    top: 0;
+    -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-transition: all ease-in-out .3s;
+    -o-transition: all ease-in-out .3s;
+    transition: all ease-in-out .3s; }
+    .container__live-chat--fixed {
+      position: fixed;
+      -webkit-transform: translateY(98px);
+          -ms-transform: translateY(98px);
+              transform: translateY(98px); }
 
 .main-content {
   width: 100%;
@@ -1012,19 +1029,40 @@ html, body {
   width: 97px; }
 
 .table__template-chat thead tr td:last-child {
-  width: 308px; }
+  width: 271px; }
 
 .table__pin-chat thead tr td:first-child {
   width: 97px; }
 
 .table__pin-chat thead tr td:last-child {
-  width: 318px; }
+  width: 196px; }
 
 .table__quick-reply thead tr td:first-child {
   width: 97px; }
 
 .table__quick-reply thead tr td:last-child {
-  width: 318px; }
+  width: 196px; }
+
+.table__ban-user thead tr td:first-child {
+  width: 250px; }
+
+.table__ban-user thead tr td:last-child {
+  width: 136px; }
+
+.table__ban-user tbody tr td .banned-user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  .table__ban-user tbody tr td .banned-user img {
+    height: 32px;
+    width: 32px;
+    margin-right: 8px;
+    border-radius: 16px;
+    -o-object-fit: cover;
+       object-fit: cover; }
 
 .table__ads thead tr td:nth-child(2) {
   width: 288px; }
@@ -1237,6 +1275,10 @@ html, body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex; }
+  .table__list-action .list-action__btn {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex; }
   .table__list-action .list-action__set {
     border-right: solid #E0E0E0 1px;
     padding-right: 24px;
@@ -2023,6 +2065,8 @@ html, body {
     display: none;
     padding: 0px 0 80px; }
     .dialog-banned-user__search-empty .empty-img {
+      -o-object-fit: contain;
+         object-fit: contain;
       width: 120px;
       height: 120px;
       margin: auto; }
@@ -2081,6 +2125,33 @@ html, body {
         white-space: nowrap; }
         .dialog-banned-user__search-result .result__name b {
           color: rgba(0, 0, 0, 0.7); }
+      .dialog-banned-user__search-result .result__btn {
+        min-width: 100px;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex; }
+        .dialog-banned-user__search-result .result__btn::before {
+          width: 16px;
+          height: 16px;
+          margin-right: 8px;
+          position: relative;
+          display: inline-block;
+          display: inline-block;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center; }
+        .dialog-banned-user__search-result .result__btn--unban {
+          color: #42B549; }
+          .dialog-banned-user__search-result .result__btn--unban::before {
+            content: '';
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iYSIgZD0iTTAgMGgxMHY5SDB6Ii8+CiAgICA8L2RlZnM+CiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEyIDExLjUpIj4KICAgICAgICAgICAgPG1hc2sgaWQ9ImIiIGZpbGw9IiNmZmYiPgogICAgICAgICAgICAgICAgPHVzZSB4bGluazpocmVmPSIjYSIvPgogICAgICAgICAgICA8L21hc2s+CiAgICAgICAgICAgIDxwYXRoIGZpbGw9IiM0MkI1NDkiIGQ9Ik02LjIwNy4yOTNhLjk5Ny45OTcgMCAwIDAtMS40MTQgMCAuOTk5Ljk5OSAwIDAgMCAwIDEuNDE0TDYuNTg2IDMuNUgxYTEgMSAwIDEgMCAwIDJoNS41ODZMNC43OTMgNy4yOTNhLjk5OS45OTkgMCAxIDAgMS40MTQgMS40MTRsMy41LTMuNWEuOTk5Ljk5OSAwIDAgMCAwLTEuNDE0bC0zLjUtMy41eiIgbWFzaz0idXJsKCNiKSIvPgogICAgICAgIDwvZz4KICAgICAgICA8cGF0aCBmaWxsPSIjNDJCNTQ5IiBkPSJNMTEgMTFjMi4yMSAwIDQtMS43OSA0LTRzLTEuNzktNC00LTQtNCAxLjc5LTQgNCAxLjc5IDQgNCA0TTEwIDE2YTMgMyAwIDAgMSAyLjMxLTIuOTEyQTExLjI2NiAxMS4yNjYgMCAwIDAgMTEgMTNjLTIuNjcgMC04IDEuMzQtOCA0djFjMCAuNTUuNDUgMSAxIDFoOWMtMS42NTQgMC0zLTEuMzQ2LTMtMyIvPgogICAgPC9nPgo8L3N2Zz4K"); }
+        .dialog-banned-user__search-result .result__btn--ban {
+          color: #FFFFFF; }
+          .dialog-banned-user__search-result .result__btn--ban::before {
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iYSIgZD0iTTAgMGgxMHY5SDB6Ii8+CiAgICA8L2RlZnM+CiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEyIDExLjUpIj4KICAgICAgICAgICAgPG1hc2sgaWQ9ImIiIGZpbGw9IiNmZmYiPgogICAgICAgICAgICAgICAgPHVzZSB4bGluazpocmVmPSIjYSIvPgogICAgICAgICAgICA8L21hc2s+CiAgICAgICAgICAgIDxwYXRoIGZpbGw9IiM0MkI1NDkiIGQ9Ik02LjIwNy4yOTNhLjk5Ny45OTcgMCAwIDAtMS40MTQgMCAuOTk5Ljk5OSAwIDAgMCAwIDEuNDE0TDYuNTg2IDMuNUgxYTEgMSAwIDEgMCAwIDJoNS41ODZMNC43OTMgNy4yOTNhLjk5OS45OTkgMCAxIDAgMS40MTQgMS40MTRsMy41LTMuNWEuOTk5Ljk5OSAwIDAgMCAwLTEuNDE0bC0zLjUtMy41eiIgbWFzaz0idXJsKCNiKSIvPgogICAgICAgIDwvZz4KICAgICAgICA8cGF0aCBmaWxsPSIjNDJCNTQ5IiBkPSJNMTEgMTFjMi4yMSAwIDQtMS43OSA0LTRzLTEuNzktNC00LTQtNCAxLjc5LTQgNCAxLjc5IDQgNCA0TTEwIDE2YTMgMyAwIDAgMSAyLjMxLTIuOTEyQTExLjI2NiAxMS4yNjYgMCAwIDAgMTEgMTNjLTIuNjcgMC04IDEuMzQtOCA0djFjMCAuNTUuNDUgMSAxIDFoOWMtMS42NTQgMC0zLTEuMzQ2LTMtMyIvPgogICAgPC9nPgo8L3N2Zz4K"); }
   .dialog-banned-user__search--result {
     margin-top: 40px; }
     .dialog-banned-user__search--result .dialog-banned-user__search-result {
@@ -2249,7 +2320,15 @@ html, body {
   .live-chat__area {
     overflow-y: auto;
     max-height: 430px;
-    padding: 0 8px !important; }
+    height: 430px;
+    padding: 0 8px !important;
+    -webkit-transform: translateY(8px);
+        -ms-transform: translateY(8px);
+            transform: translateY(8px); }
+    .live-chat__area .live-chat__area {
+      -webkit-transform: translateY(0);
+          -ms-transform: translateY(0);
+              transform: translateY(0); }
   .live-chat__date {
     font-size: 12px;
     display: block;
@@ -2381,6 +2460,7 @@ html, body {
       max-width: 100%;
       display: block; }
   .live-chat__pinned {
+    cursor: pointer;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2388,7 +2468,8 @@ html, body {
         -ms-flex-align: center;
             align-items: center;
     background-color: #f8f8f8;
-    padding: 12px 16px; }
+    padding: 12px 16px;
+    margin-top: 16px; }
     .live-chat__pinned-admin {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -2425,9 +2506,10 @@ html, body {
     display: -ms-flexbox;
     display: flex;
     overflow: auto;
+    height: 48px;
     border-bottom: solid #E0E0E0 1px; }
     .live-chat__quick-reply > div {
-      padding: 4px 0px; }
+      padding: 8px 0px; }
     .live-chat__quick-reply-bubble {
       min-width: 44px;
       max-width: 80px;
@@ -2452,10 +2534,16 @@ html, body {
         margin-left: 16px; }
       .live-chat__quick-reply-bubble:last-child {
         margin-right: 16px; }
+  .live-chat__send-input .tab-options__content .unf-user-input__image-name {
+    font-size: 14px; }
   .live-chat__send-input .send-input__tab {
-    padding: 13px 16px; }
+    padding: 0 16px; }
     .live-chat__send-input .send-input__tab-indicator {
-      min-width: 62px; }
+      min-width: 62px;
+      bottom: -1px; }
+    .live-chat__send-input .send-input__tab .tab-options__item-label {
+      padding: 13px 0;
+      display: inline-block; }
   .live-chat__send-input .send-input__content {
     padding: 16px 16px 0px 16px; }
   .live-chat__send-input .send-input__action {

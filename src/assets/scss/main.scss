@@ -19,7 +19,7 @@
         width: 97px;
       }
       &:last-child{
-        width: 308px;
+        width: 271px;
       }
     }
   }
@@ -29,7 +29,7 @@
         width: 97px;
       }
       &:last-child{
-        width: 318px;
+        width: 196px;
       }
     }
   }
@@ -39,7 +39,31 @@
         width: 97px;
       }
       &:last-child{
-        width: 318px;
+        width: 196px;
+      }
+    }
+  }
+  &__ban-user{
+    thead tr td{
+      &:first-child{
+        width: 250px;
+      }
+      &:last-child{
+        width: 136px;
+      }
+    }
+    tbody tr td{
+      .banned-user{
+        display: flex;
+        align-items: center;
+        img{
+          height: 32px;
+          width: 32px;
+          margin-right: 8px;
+          border-radius: 16px;
+          object-fit: cover;
+        }
+
       }
     }
   }
@@ -332,6 +356,9 @@
     &-action{
       .list-action{
         display: flex;
+        &__btn{
+          display: inline-flex;
+        }
         &__set{
           border-right: solid $gray-border 1px;
           padding-right: 24px;
