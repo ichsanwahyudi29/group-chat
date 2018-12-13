@@ -139,16 +139,16 @@ function handleRenderChannel(data) {
                 <div class="status-toggle-container">
                     <div class="unf-user-toggle">
                         ${data.status === 1 ?
-            `<input checked type="checkbox" class="unf-user-toggle__checkbox" id="testcheck-${data.id}" onclick="handleChangeChannelStatus(this, ${data.id})">` :
-            `<input type="checkbox" class="unf-user-toggle__checkbox" id="testcheck-${data.id}" onclick="handleChangeChannelStatus(this, ${data.id})">`}
-                        <label for="testcheck-${data.id}"></label>
+            `<input checked type="checkbox" class="unf-user-toggle__checkbox" id="channel-${data.id}" onclick="handleChangeChannelStatus(this, ${data.id})">` :
+            `<input type="checkbox" class="unf-user-toggle__checkbox" id="channel-${data.id}" onclick="handleChangeChannelStatus(this, ${data.id})">`}
+                        <label for="channel-${data.id}"></label>
                     </div>
                 </div>
             </td>
             <td class="channel__list-action">
                 <div class="list-action">
                     <div class="list-action__set">
-                        <a class="set-btn set-btn__ads">Set Ads</a>
+                        <a class="set-btn set-btn__ads" href="./ads.html">Set Ads</a>
                         <a class="set-btn set-btn__official">Set Official</a>
                         <a class="set-btn set-btn__flashsale">Set Flashsale</a>
                         <a class="set-btn set-btn__rewards">Set Rewards</a>
@@ -221,7 +221,7 @@ $(function renderCreateDialog() {
                     </div>
                 </div>
                 <div class="create-channel__moderator">
-                    <img class="create-channel__moderator-pic" src="./assets/img/moderator.jpg" alt="" srcset="">
+                    <img class="create-channel__moderator-pic" src="./assets/img/moderator.jpg" alt="" srcset="" id="input__channel--moderator-img">
                     <div>
                         <div class="unf-user-input">
                             <input id="input__channel--moderator-name" type="text" class="unf-user-input__control"
@@ -230,13 +230,11 @@ $(function renderCreateDialog() {
                         <div class="create-channel__moderator-input">
                             <div class="unf-user-input">
                                 <label class="unf-user-input__label">User ID</label>
-                                <input type="text" class="unf-user-input__control" name="moderator-Id" disabled
-                                    value="1234567890">
+                                <input type="text" class="unf-user-input__control" name="moderator-Id" readonly value="1234567890" id="input__channel--moderator-id">
                             </div>
                             <div class="unf-user-input">
                                 <label class="unf-user-input__label">Profile URL</label>
-                                <input type="text" class="unf-user-input__control" name="moderator-profileUrl"
-                                    disabled value="http://www.tokopedia.com/ichsanindrawahyudi">
+                                <input type="text" class="unf-user-input__control" name="moderator-profileUrl" readonly value="http://www.tokopedia.com/ichsanindrawahyudi" id="input__channel--moderator-url">
                             </div>
                         </div>
                     </div>
@@ -255,7 +253,7 @@ $(function handleClickCreateChannel() {
         click: function () {
             $('.js__unf-user-dialog--create-channel')
                 .find('.unf-user-dialog__header').text('Create Group Chat').end()
-                .find('#btn__channel--create').data('id', undefined).end()
+                .find('#btn__channel--create').removeData('id').end()
             handleDialogOpen($('.js__unf-user-dialog--create-channel'));
         },
     });
@@ -278,7 +276,7 @@ function handleFetchChannelData(id) {
     var data = dataChannel.filter(item => item.id === id)[0]
     $('#input__channel--name').val(data.name);
     $('#input__channel--desc').val(data.description);
-    $('#input__channel--moderator-email').val('i');
+    $('#input__channel--moderator-email').val(data.email);
     handleRevealChannelImg($('#input__channel--cover')[0], data.img);
     $('#btn__channel--moderator-email').click()
 
@@ -389,29 +387,49 @@ $(function handleInputModeratorEmail() {
 
 $(function checkModeratorEmail() {
     $(document).on('click', '#btn__channel--moderator-email', function () {
-        loadingCheckEmail(true);
         var email = $('#input__channel--moderator-email');
         var inputEmail = $('.unf-user-input--moderator-email');
-        if (email.val() !== 'i') {
-            setTimeout(() => {
-                loadingCheckEmail(false);
-            }, 500);
-            handleInputError(inputEmail, helper.en.email.error[1], false);
-            $('.create-channel__moderator').removeClass('create-channel__moderator--show');
-            return false;
+        
+        if(email.val() === ''){
+            return false
         }
 
-        setTimeout(() => {
-            loadingCheckEmail(false);
-            $('.unf-user-input__icon').addClass('icon-check');
-        }, 500);
+        loadingCheckEmail(true);
+        loadJSON('./assets/js/content/channel/dummy.json', function (response) {
+            var res = JSON.parse(response);
+            var dataAdmin = res.admin
 
-        isModeratorEmail = true;
-        isModeratorName = true;
-        handleCheckInputChannel();
+            var data = dataAdmin.filter(item => item.email === email.val())
+            if (data.length === 0 && email.val() !== 'i') {
+                setTimeout(() => {
+                    loadingCheckEmail(false);
+                }, 500);
+                handleInputError(inputEmail, helper.en.email.error[1], false);
+                $('.create-channel__moderator').removeClass('create-channel__moderator--show');
+                return false;
+            }
+    
+            setTimeout(() => {
+                loadingCheckEmail(false);
+                $('.unf-user-input__icon').addClass('icon-check');
+            }, 500);
+            
+            if(email.val() !== 'i'){
+                //insert data
+                $('#input__channel--moderator-img').attr('src', data[0].photo)
+                $('#input__channel--moderator-name').val(data[0].name)
+                $('#input__channel--moderator-id').val(data[0].id)
+                $('#input__channel--moderator-url').val(data[0].url)
+            }
 
-        $('.customScrollBar--create-channel .unf-user-dialog__body').animate({ scrollTop: 520 }, 1200);
-        $('.create-channel__moderator').addClass('create-channel__moderator--show');
+            isModeratorEmail = true;
+            isModeratorName = true;
+            handleCheckInputChannel();
+    
+            $('.customScrollBar--create-channel .unf-user-dialog__body').animate({ scrollTop: 520 }, 1200);
+            $('.create-channel__moderator').addClass('create-channel__moderator--show');
+        })
+
     })
 });
 
