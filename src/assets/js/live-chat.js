@@ -12,9 +12,11 @@ function renderPinnedChat(data){
       `<h6 class="live-chat__pinned-admin">Admin:</h6>
       <p class="live-chat__pinned-text">${dataActive[0].msg}</p>`)
       .removeClass('p-0')
+      $('.pinned-chat__bottom-sheet').hide()
   }
   else{
     $('.js__pinned-chat-container').addClass('p-0')
+    $('.pinned-chat__bottom-sheet').hide()
   }
 }
 

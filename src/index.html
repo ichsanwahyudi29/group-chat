@@ -58,10 +58,9 @@
                             </div>
                             <h2 class="navbar__title">Channel</h2>
                             <span class="navbar__arrow breadcrumb__arrow"></span>
-                            <h3 class="navbar__channel-title">2018 FIFA World Cup's Ads</h3>
+                            <h3 class="navbar__channel-title">2018 FIFA World Cup's Chat</h3>
                         </div>
                         <div class="navbar__right">
-                            <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Add Ads</div>
                             <div class="navbar__profile">
                                 <span class="navbar__profile-img" style="background-image: url('./assets/img/profile.png')"></span>
                                 <h3 class="navbar__profile-name">Ichsan Indra Wahyudi</h3>
@@ -73,37 +72,381 @@
                         <div class="breadcrumb">
                             <h2 class="breadcrumb__title breadcrumb__title--detail">Channel</h2>
                             <span class="breadcrumb__arrow"></span>
-                            <h3 class="breadcrumb__channel-title">2018 FIFA World Cup's Ads</h3>
+                            <h3 class="breadcrumb__channel-title">2018 FIFA World Cup's Chat</h3>
                         </div>
-                        <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Add Ads</div>
                     </div>
                 </div>
-                <div class="container">
+                <div class="container d-flex">
+                    <div class="container__left">
+                        <!-- Template Chat -->
+                        <div class="card template-chat">
+                            <div class="card__header">
+                                <div class="card__header-title">Template Chat</div>
+                                <div id="btn__template-chat--add" class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn-primary--create">Add
+                                    Template</div>
+                            </div>
+                            <div class="table__list table__template-chat">
+                                <table cellspacing="0" cellpadding="0">
+                                    <thead>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>Vibrate</td>
+                                            <td>Message</td>
+                                            <td>Action</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <div class="pagination-container">
+                                <div class="pagination-items">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Pinned Chat -->
+                        <div class="card pinned-chat">
+                            <div class="card__header">
+                                <div class="card__header-title">Pinned Chat</div>
+                                <div id="btn__pin-chat--add" class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn-primary--create">Add
+                                    Pin Chat</div>
+                            </div>
+                            <div class="table__list table__pin-chat">
+                                <table cellspacing="0" cellpadding="0">
+                                    <thead>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>Title</td>
+                                            <td>Message</td>
+                                            <td>Action</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <div class="pagination-container">
+                                <div class="pagination-items">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Quick Reply -->
+                        <div class="card quick-reply">
+                            <div class="card__header">
+                                <div class="card__header-title">Quick Reply</div>
+                                <div id="btn__quick-reply--add" class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn-primary--create">Add
+                                    Quick Reply</div>
+                            </div>
+                            <div class="table__list table__quick-reply">
+                                <table cellspacing="0" cellpadding="0">
+                                    <thead>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>Message</td>
+                                            <td>Status</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <div class="pagination-container">
+                                <div class="pagination-items">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Banned User-->
+                        <div class="card banned-user">
+                            <div class="card__header">
+                                <div class="card__header-title">Banned User</div>
+                                <div id="btn__banned-user--add" class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn-primary--create">Ban
+                                    User</div>
+                            </div>
+                            <div class="table__list table__ban-user">
+                                <table cellspacing="0" cellpadding="0">
+                                    <thead>
+                                        <tr>
+                                            <td>User ID</td>
+                                            <td>Name</td>
+                                            <td>Action</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <div class="pagination-container">
+                                <div class="pagination-items">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container__live-chat">
+                        <div class="card live-chat">
+                            <div class="live-chat__area customScrollBar customScrollBar--y hiddenScroll customScrollBar--live-chat">
+                                <span class="live-chat__date">HARI INI</span>
+                                <div class="live-chat__content">
+                                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
+                                    <div class="live-chat__content-text">
+                                        <div class="live-chat__content-profile">
+                                            <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
+                                            <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">Admin</label>
+                                            <span class="profile-time">12.00</span>
+                                        </div>
+                                        <p class="live-chat__content-msg">Hi! Apa kabar para pecinta sepak bola?</p>
+                                    </div>
+                                </div>
+                                <div class="live-chat__content">
+                                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
+                                    <div class="live-chat__content-text">
+                                        <div class="live-chat__content-profile">
+                                            <span class="profile-name">Ichsan Indra Wahyudi</span>
+                                            <span class="profile-time">12.00</span>
+                                        </div>
+                                        <p class="live-chat__content-msg">Wuuu baik om! Go Brazil go!</p>
+                                    </div>
+                                </div>
+                                <div class="live-chat__content">
+                                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
+                                    <div class="live-chat__content-text">
+                                        <div class="live-chat__content-profile">
+                                            <span class="profile-name profile-name--joined">Shinta Tamara bergabung</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="live-chat__content">
+                                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
+                                    <div class="live-chat__content-text">
+                                        <div class="live-chat__content-profile">
+                                            <span class="profile-name">Zahrah</span>
+                                            <span class="profile-time">12.00</span>
+                                        </div>
+                                        <p class="live-chat__content-msg">Saya jual jersey semua negara kumpil! Bisa order di link berikut tokopedia.com y</p>
+                                    </div>
+                                </div>
+                                <div class="live-chat__content">
+                                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
+                                    <div class="live-chat__content-text">
+                                        <div class="live-chat__content-profile">
+                                            <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
+                                            <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">Admin</label>
+                                            <span class="profile-time">12.00</span>
+                                        </div>
+                                        <div class="live-chat__vote">
+                                            <h5 class="live-chat__vote-title live-chat__vote-title--poll">Vote Telah Dimulai</h5>
+                                            <p class="live-chat__vote-quest">Menurut Toppers, siapa ya yang akan jadi pemain MVP di Piala Dunia Tahun Ini?</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="live-chat__content">
+                                    <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
+                                    <div class="live-chat__content-text">
+                                        <div class="live-chat__content-profile">
+                                            <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
+                                            <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">Admin</label>
+                                            <span class="profile-time">12.00</span>
+                                        </div>
+                                        <div class="live-chat__image">
+                                            <a href="" target="_blank">
+                                                <img class="live-chat__content-img" src="https://ecs7.tokopedia.net/img/cache/700/attachment/2018/10/17/39112639/39112639_98c0867f-8b3b-478d-aaab-968c03d22ce9.jpg" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="live-chat__pinned-container">
+                                <div class="live-chat__pinned js__pinned-chat-container">
+                                </div>
+                                <div class="live-chat__bottom-sheet pinned-chat__bottom-sheet">
+                                    <div class="bottom-sheet__header">
+                                        <a class="bottom-sheet__close" id="bottom-sheet__close"></a>
+                                        <div class="bottom-sheet__title">Pinned Chat</div>
+                                    </div>
+                                    <div class="bottom-sheet__body customScrollBar customScrollBar--y hiddenScroll">
+                                        <div class="live-chat__content mtb-16">
+                                            <img class="live-chat__content-ava" id="pin-chat-ava" src="./assets/img/gc1.jpg" alt="">
+                                            <div class="live-chat__content-text">
+                                                <div class="live-chat__content-profile">
+                                                    <span class="profile-name profile-name--influencer" id="pin-chat-user">Darius Sinathrya</span>
+                                                    <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">Admin</label>
+                                                </div>
+                                                <p class="live-chat__content-msg" id="pin-chat-msg">
+                                                    Ayo jawab kuisnya dan menangkan hadiah 2 Smartphone Oppo F7! Lihat gambar di bawah ini, dan jawab dengan format #TOPED(jawabannya)
+                                                </p>
+                                                <div class="live-chat__image">
+                                                    <a href="" target="_blank">
+                                                        <img class="live-chat__content-img" id="pin-chat-img" src="https://ecs7.tokopedia.net/img/cache/700/attachment/2018/10/17/39112639/39112639_98c0867f-8b3b-478d-aaab-968c03d22ce9.jpg"
+                                                            alt="">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="live-chat__quick-reply customScrollBar customScrollBar--x hiddenScroll">
+                                <div class="d-flex js__quick-reply-container">
+                                </div>
+                            </div>
+                            <div class="tab-options live-chat__send-input">
+                                <input type="radio" name="send-input" id="send-chat" checked>
+                                <input type="radio" name="send-input" id="send-image">
+                                <ul class="tab-options__container send-input__tab">
+                                    <li class="tab-options__item">
+                                        <label class="tab-options__item-label" for="send-chat">Send Chat</label>
+                                    </li>
+                                    <li class="tab-options-item">
+                                        <label class="tab-options__item-label" for="send-image">Send Image</label>
+                                    </li>
+                                    <span id="send-input__tab-indicator" class="tab-options__indicator send-input__tab-indicator"></span>
+                                </ul>
+                                <div class="tab-options__content">
+                                    <section class="send-input__content">
+                                        <div class="unf-user-input">
+                                            <div class="unf-user-input__group-btn">
+                                                <div class="unf-user-input__icon unf-user-input__icon--right">
+                                                    <input id="input__live-chat--text" type="text" class="unf-user-input__control"
+                                                        placeholder="Type message here…">
+                                                    <div class="unf-user-input__icon-emoji">
+                                                        <div class="unf-user-input__emoji">
+                                                            <div class="card unf-user-input__emoji-container">
+                                                                <div class="unf-user-input__emoji-content">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="unf-user-input__info">
+                                                <span class="unf-user-input__info-msg"></span>
+                                            </div>
+                                        </div>
+                                        <div class="send-input__action">
+                                            <div class="unf-user-checkbox">
+                                                <input type="checkbox" id="with-vibrate-text">
+                                                <label class="unf-user-checkbox__control unf-user-checkbox__control--small"
+                                                    for="with-vibrate-text">
+                                                    <span class="unf-user-checkbox__label">Send with Vibrate</span>
+                                                </label>
+                                            </div>
+                                            <button id="btn__live-chat--text" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary group-chat__btn-send send-input__btn"
+                                                disabled>Send</button>
+                                        </div>
+                                    </section>
+                                    <section class="send-input__content">
+                                        <div class="unf-user-input mb-16">
+                                            <div class="unf-user-input__control unf-user-input__control--image">
+                                                <input id="input__live-chat--send-img" type="file" accept=".jpg,.jpeg,.png">
+                                                <div class="unf-user-input__image-container hide">
+                                                    <img id="img__live-chat--send-img" class="unf-user-input__image-file">
+                                                    <label class="unf-user-input__image-name">ichsan.jpg</label>
+                                                    <div class="unf-user-input__image-action">
+                                                        <span id="change__live-chat--send-img" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--edit"></span>
+                                                        <hr>
+                                                        <span id="delete__live-chat--send-img" class="unf-user-input__image-action-btn unf-user-input__image-action-btn--delete"></span>
+                                                    </div>
+                                                </div>
+                                                <div id="upload__live-chat--send-img" class="unf-user-input__image-upload">
+                                                    <span class="unf-user-input__image-upload-text">Add Image</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="unf-user-input">
+                                            <div class="unf-user-input__group-btn">
+                                                <div class="unf-user-input__icon unf-user-input__icon--left icon-link">
+                                                    <input id="input__live-chat--url" type="text" class="unf-user-input__control"
+                                                        placeholder="e.g.http://www.tokopedia.com">
+                                                </div>
+                                            </div>
+                                            <div class="unf-user-input__info">
+                                                <span class="unf-user-input__info-msg"></span>
+                                            </div>
+                                        </div>
+                                        <div class="send-input__action">
+                                            <div class="unf-user-checkbox">
+                                                <input type="checkbox" id="with-vibrate-img">
+                                                <label class="unf-user-checkbox__control unf-user-checkbox__control--small"
+                                                    for="with-vibrate-img">
+                                                    <span class="unf-user-checkbox__label">Send with Vibrate</span>
+                                                </label>
+                                            </div>
+                                            <button id="btn__live-chat--url" class="unf-user-btn unf-user-btn--medium unf-user-btn--primary group-chat__btn-send send-input__btn"
+                                                disabled>Send</button>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                            <div class="live-chat__bottom-sheet__overlay"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <section class="hide">
-            <!-- Dialog Delete Ads -->
-            <div class="js__child-dialog-delete-ads">
-                <p class="unf-user-dialog__description">Do you want to delete this ads?</p>
+            <!-- Template Chat -->
+            <!-- Content dialog delete template confirm -->
+            <div class="js__child-dialog-delete-template-chat">
+                <p class="unf-user-dialog__description">Do you want to delete the template?</p>
+            </div>
+            <!-- Content dialog auto send -->
+            <div class="js__child-dialog-auto-send-template-chat">
+                <ul class="auto-send-list">
+                    <li class="auto-send-list__item">
+                        <span class="auto-send-list__text">This chat template will be sent every</span>
+                        <select class="auto-send-list__select unf-user-select__regular" id="auto-send-range" onchange="handleChangeAutoSendSelect(this)">
+                            <option value="30">30 Chats</option>
+                            <option value="40">40 Chats</option>
+                        </select>
+                    </li>
+                    <li class="auto-send-list__item">
+                        <span class="auto-send-list__text">With duration of</span>
+                        <select class="auto-send-list__select unf-user-select__regular" id="auto-send-duration"
+                            onchange="handleChangeAutoSendSelect(this)">
+                            <option value="30000">30 Second</option>
+                            <option value="60000">1 minutes</option>
+                            <option value="120000">2 minutes</option>
+                            <option value="180000">3 minutes</option>
+                        </select>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Dialog Deactive Ads -->
-
-            <div class="js__child-dialog-deactivate-ads">
-                <p class="unf-user-dialog__description">Do you want to deactivate this ads?</p>
+            <!-- Pinned Chat -->
+            <!-- Content dialog delete pin chat confirm -->
+            <div class="js__child-dialog-delete-pin-chat">
+                <p class="unf-user-dialog__description">Do you want to delete the pin chat?</p>
+            </div>
+            <!-- Dialog Deactive pin chat -->
+            <div class="js__child-dialog-deactivate-pin-chat">
+                <p class="unf-user-dialog__description">Do you want to deactive the pin chat?</p>
+            </div>
+            <!-- Dialog Activate pin chat -->
+            <div class="js__child-dialog-activate-pin-chat">
+                <p class="unf-user-dialog__description">Do you want to activate the pin chat?</p>
             </div>
 
-            <!-- Dialog Activate Ads -->
-
-            <div class="js__child-dialog-activate-ads">
-                <p class="unf-user-dialog__description">Do you want to activate this ads?</p>
+            <!-- Quick Reply -->
+            <!-- Content dialog delete quick reply -->
+            <div class="js__child-dialog-delete-quick-reply">
+                <p class="unf-user-dialog__description">Do you want to delete the quick reply?</p>
             </div>
+            <!-- Dialog Deactive quick reply -->
+            <div class="js__child-dialog-deactivate-quick-reply">
+                <p class="unf-user-dialog__description">Do you want to deactive the quick reply?</p>
+            </div>
+            <!-- Dialog Activate quick reply -->
+            <div class="js__child-dialog-activate-quick-reply">
+                <p class="unf-user-dialog__description">Do you want to activate the quick reply?</p>
+            </div>
+
+
         </section>
 
-        <!-- add/edit -->
-        <div class="unf-user-dialog js__unf-user-dialog--ads-channel dialog--414"></div>
+        <!-- Add Template Chat -->
+        <div class="unf-user-dialog js__unf-user-dialog--template-chat dialog--414"></div>
+        <!-- Add Pin Chat -->
+        <div class="unf-user-dialog js__unf-user-dialog--pinned-chat dialog--414"></div>
+        <!-- Add Quick Reply -->
+        <div class="unf-user-dialog js__unf-user-dialog--quick-reply dialog--414"></div>
+        <!-- Add Banned User -->
+        <div class="unf-user-dialog js__unf-user-dialog--banned-user dialog--414"></div>
 
         <div class="unf-user-overlay unf-user-overlay--desktop"></div>
         <div class="js__template-dialog unf-user-dialog ta-center"></div>
@@ -113,16 +456,26 @@
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./assets/plugins/scrollBar/scrollBar.js"></script>
     <script src="./assets/plugins/cropperjs/cropper.min.js"></script>
-    <script src="./assets/js/locale/index.js"></script>
-    <script src="./assets/js/helper/inputCounter.js"></script>
-    <script src="./assets/js/helper/validation.js"></script>
+    <script src="./assets/js/content/chat/index.js"></script>
+    <script src="./assets/js/content/chat/template-chat/index.js"></script>
+    <script src="./assets/js/content/chat/template-chat/confirmation.js"></script>
+    <script src="./assets/js/content/chat/template-chat/autosend.js"></script>
+    <script src="./assets/js/content/chat/pinned-chat/index.js"></script>
+    <script src="./assets/js/content/chat/pinned-chat/confirmation.js"></script>
+    <script src="./assets/js/content/chat/quick-reply/index.js"></script>
+    <script src="./assets/js/content/chat/quick-reply/confirmation.js"></script>
+    <script src="./assets/js/content/chat/banned-user/index.js"></script>
+    <script src="./assets/js/content/chat/live-chat/index.js"></script>
     <script src="./assets/js/component/textfield/index.js"></script>
     <script src="./assets/js/component/dialog/index.js"></script>
     <script src="./assets/js/component/pagination/index.js"></script>
     <script src="./assets/js/component/select/index.js"></script>
+    <script src="./assets/js/component/tab/index.js"></script>
     <script src="./assets/js/component/cropper/index.js"></script>
-    <script src="./assets/js/content/ads/index.js"></script>
-    <script src="./assets/js/content/ads/confirmation.js"></script>
+    <script src="./assets/js/component/emoji/index.js"></script>
+    <script src="./assets/js/locale/index.js"></script>
+    <script src="./assets/js/helper/inputCounter.js"></script>
+    <script src="./assets/js/helper/validation.js"></script>
     <script src="./assets/js/global/interaction.js"></script>
 </body>
 

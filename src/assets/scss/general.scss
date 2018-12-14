@@ -75,9 +75,12 @@ html,body{
 .mb-50{
   margin-bottom: 50px !important;
 }
-
 .mt-30{
   margin-top: 30px !important;
+}
+
+.mtb-16{
+  margin-top: 16px;
 }
 
 .mr-8{
@@ -113,7 +116,7 @@ html,body{
     margin-right: 16px;
   }
   &__right{
-    // width: 27%;
+    width: 27%;
   }
   &__live-chat{
     width: 320px;

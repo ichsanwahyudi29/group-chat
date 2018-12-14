@@ -1,3 +1,10 @@
+var firstInitLiveChatScroll = false;
+
+$(document).ready(function() {
+    handleScrollLiveChat();
+});
+
+
 $(function onInputLiveChatText() {
     $('#input__live-chat--text').on({
         input: function () {
@@ -32,22 +39,21 @@ $(function handleScrollLiveChatSendText() {
 function renderChatText(chatVal) {
     var chat = `
     <div class="live-chat__content">
-      <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
-      <div class="live-chat__content-text">
-        <div class="live-chat__content-profile">
-          <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
-          <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">admin</label>
-          <span class="profile-time">${getChatTime()}</span>
+        <img class="live-chat__content-ava" src="./assets/img/gc1.jpg" alt="">
+        <div class="live-chat__content-text">
+            <div class="live-chat__content-profile">
+            <span class="profile-name profile-name--influencer">Darius Sinathrya</span>
+            <label class="unf-user-label unf-user-label--small unf-user-label--green ml-4">admin</label>
+            <span class="profile-time">${getChatTime()}</span>
+            </div>
+            <p class="live-chat__content-msg">${chatVal}</p>
         </div>
-        <p class="live-chat__content-msg">${chatVal}</p>
-      </div>
     </div>`
 
     return chat;
 }
 
 // send Image
-
 $(function onChangeLiveChatImg() {
     $('#upload__live-chat--send-img, #change__live-chat--send-img').on({
         click: function () {
@@ -188,37 +194,51 @@ function handleCheckInputLiveChat() {
 }
 
 function handleScrollLiveChat() {
-    var height = $('.live-chat__area')[0].scrollHeight;
-    $('.live-chat__area').scrollTop(height);
+    // var height = $('.live-chat__area')[0].scrollHeight;
+    $('.live-chat__area').scrollTop(100000000);
 }
 
 function handleBtnLiveChat(e) {
     var btn = $(e)
         .closest('section')
         .find('.send-input__btn');
-    if ($(e).val()) {
-        btn.attr('disabled', false);
-    } else {
-        btn.attr('disabled', true);
-    }
+    setTimeout(function(){
+        if ($(e).val()) {
+            btn.attr('disabled', false);
+        } else {
+            btn.attr('disabled', true);
+        }
+    }, 1)
 }
 
-//fixed
+//fixed live-chat
 $(window).on({
     scroll: function () {
         var scroll = $(this).scrollTop();
         var height1 = 156;
         var height = 200;
-
+        var wHeight = $(window).height();
         if (scroll > height1) {
             $('.container__live-chat').addClass('container__live-chat--fixed').css('transform', 'translateY(10px)')
+            $('.live-chat__area').css('height', `${wHeight - 425}px`)
             if (scroll > height) {
                 $('.container__live-chat').removeAttr('style')
+                $('.live-chat__area').css('height', `${wHeight - 515}px`)
             }
         } else {
             $('.container__live-chat').removeClass('container__live-chat--fixed').removeAttr('style')
+            $('.live-chat__area').css('height', `${wHeight - 574}px`)
+        }
+
+        if(!firstInitLiveChatScroll){
+            handleScrollLiveChat()
+            firstInitLiveChatScroll = true
         }
     },
+    resize: function(){
+        var wHeight = $(window).height();
+        $('.live-chat__area').css('height', `${wHeight - 574}px`)
+    }
 });
 
 function getChatTime() {
@@ -240,15 +260,25 @@ $('.send-input__tab .tab-options__item-label').on({
 function renderPinnedChat(data) {
     $('.js__pinned-chat-container').empty()
     var dataActive = data.filter(item => item.status === 1)
+    
     if (dataActive.length > 0) {
         $('.js__pinned-chat-container')
             .html(
                 `<h6 class="live-chat__pinned-admin">Admin:</h6>
-        <p class="live-chat__pinned-text">${dataActive[0].msg}</p>`)
+                <p class="live-chat__pinned-text">${dataActive[0].msg}</p>`)
             .removeClass('p-0')
+        $('.pinned-chat__bottom-sheet')
+            .find('#pin-chat-msg').text(dataActive[0].msg).end()
+            .find('#pin-chat-img').attr('src', dataActive[0].img)
+                .parent().attr('href', dataActive[0].url).end()
+        $('.pinned-chat__bottom-sheet').show()
     }
     else {
         $('.js__pinned-chat-container').addClass('p-0')
+        $('.live-chat__bottom-sheet').removeClass('live-chat__bottom-sheet--open')
+        $('.live-chat__bottom-sheet__overlay').removeClass('live-chat__bottom-sheet__overlay--show')
+        $('.pinned-chat__bottom-sheet').hide()
+        $(".live-chat__area").css('filter', 'blur(0px)')
     }
 }
 
@@ -260,13 +290,11 @@ $(function handleQuickReplyLiveChat() {
         handleScrollLiveChat();
     })
 });
-
-//render
 function renderQuickReplyList(data) {
     $('.js__quick-reply-container').empty()
     var dataActive = data.filter(item => item.status === 1)
     if (dataActive.length > 0) {
-        $('.js__quick-reply-container').removeClass('p-0')
+        $('.js__quick-reply-container').parents('.live-chat__quick-reply').removeAttr('style')
         dataActive.map(item => {
             $('.js__quick-reply-container').append(
                 `<div class="live-chat__quick-reply-bubble"><span>${item.message}</span></div>`
@@ -274,6 +302,20 @@ function renderQuickReplyList(data) {
         })
     }
     else {
-        $('.js__quick-reply-container').addClass('p-0')
+        $('.js__quick-reply-container').parents('.live-chat__quick-reply').height(0)
     }
 }
+
+// bottom sheet
+$('.live-chat__pinned').on('click', function(){
+    $('.live-chat__bottom-sheet').addClass('live-chat__bottom-sheet--open')
+    $('.live-chat__bottom-sheet__overlay').addClass('live-chat__bottom-sheet__overlay--show')
+    $(".live-chat__area").css('filter', 'blur(3px)')
+})
+$(function handleBottomSheetClose(){
+    $('#bottom-sheet__close').click(function(){
+        $(this).parents('.live-chat__bottom-sheet').removeClass('live-chat__bottom-sheet--open')
+        $('.live-chat__bottom-sheet__overlay').removeClass('live-chat__bottom-sheet__overlay--show')
+        $(".live-chat__area").css('filter', 'blur(0px)')
+    })
+})
