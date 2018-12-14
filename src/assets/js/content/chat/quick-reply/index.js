@@ -21,16 +21,19 @@ function loopDataQuickReply() {
                 <td class="table__list-content">
                     <p class="list-content__text-msg">${item.message}</p>
                 </td>
-                <td class="table__list-action">
+                <td class="table__list-action channel__list-status">
                     <div class="list-action">
-                        <div class="list-action__set">
+                        <div class="list-action__set d-flex">
                             <div class="status-toggle-container">
                                 <div class="unf-user-toggle">
                                     ${item.status === 1 ?
-                `<input checked type="checkbox" class="unf-user-toggle__checkbox" id="quick-${item.id}" onclick="handleChangeQuickReplyStatus(this, ${item.id})">` :
-                `<input type="checkbox" class="unf-user-toggle__checkbox" id="quick-${item.id}" onclick="handleChangeQuickReplyStatus(this, ${item.id})">`}
+                                    `<input checked type="checkbox" class="unf-user-toggle__checkbox" id="quick-${item.id}" onclick="handleChangeQuickReplyStatus(this, ${item.id})">` :
+                                    `<input type="checkbox" class="unf-user-toggle__checkbox" id="quick-${item.id}" onclick="handleChangeQuickReplyStatus(this, ${item.id})">`}
                                     <label for="quick-${item.id}"></label>
                                 </div>
+                                <label class="status-toggle-label status-toggle-label__right">
+                                    ${(item.status === 1)? 'Active' : 'Inactive'}
+                                </label>
                             </div>
                         </div>
                         <div class="list-action__btn">
@@ -89,14 +92,14 @@ $(function renderAddQuickReplyDialog() {
 })
 
 $(function handleClickAddQuickReply() {
-    handleResetInputValueQuickReply()
+    handleResetInputQuickReply()
     $('#btn__quick-reply--add').on({
         click: function () {
             $('.js__unf-user-dialog--quick-reply')
                 .find('.unf-user-dialog__header').text('Add Quick Reply').end()
                 .find('#btn__quick--add').removeData('id').end()
             handleDialogOpen($('.js__unf-user-dialog--quick-reply'));
-            autoFocusInput($('#input__quick-reply'))
+            autoFocusInput('#input__quick-reply')
         },
     });
 })
@@ -110,7 +113,7 @@ function handleClickEditQuickReply(id) {
 }
 
 function handleCloseQuickReply() {
-    handleResetInputValueQuickReply()
+    handleResetInputQuickReply()
     handleDialogClose()
 }
 
@@ -142,7 +145,7 @@ $(function handleInputQuickMsg() {
     })
 })
 
-function handleResetInputValueQuickReply() {
+function handleResetInputQuickReply() {
     isQuickMsg = false;
     $('#input__quick-reply').val('')
 }

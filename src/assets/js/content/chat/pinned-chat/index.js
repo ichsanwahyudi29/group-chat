@@ -36,9 +36,9 @@ function loopDataPinChat() {
                     </div>
                 </div>
             </td>
-            <td class="table__list-action">
+            <td class="table__list-action channel__list-status">
                 <div class="list-action">
-                    <div class="list-action__set">
+                    <div class="list-action__set d-flex">
                         <div class="status-toggle-container">
                             <div class="unf-user-toggle">
                                 ${item.status === 1 ?
@@ -46,6 +46,9 @@ function loopDataPinChat() {
                                 `<input type="checkbox" class="unf-user-toggle__checkbox" id="pinchat-${item.id}" onclick="handleChangePinChatStatus(this, ${item.id})">`}
                                 <label for="pinchat-${item.id}"></label>
                             </div>
+                            <label class="status-toggle-label status-toggle-label__right">
+                                ${(item.status === 1)? 'Active' : 'Inactive'}
+                            </label>
                         </div>
                     </div>
                     <div class="list-action__btn">
