@@ -156,7 +156,7 @@ function handleRenderChannel(data) {
                         <a class="set-btn set-btn__room">Set Room</a>
                     </div>
                     <div class="list-action__btn">
-                        <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--chat" href="./channel-detail.html"><span>chat</span></a>
+                        <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--chat" href="./chat.html"><span>chat</span></a>
                         <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--edit" onclick="handleClickEditChannel(${data.id})"><span>edit</span></a>
                         <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--preview" onclick="previewChannel(${data.id})"><span>preview</span></a>
                         <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--archive" onclick="handleChangeChannelArchive(${data.id})"><span>archive</span></a>
@@ -254,6 +254,7 @@ $(function handleClickCreateChannel() {
             $('.js__unf-user-dialog--create-channel')
                 .find('.unf-user-dialog__header').text('Create Group Chat').end()
                 .find('#btn__channel--create').removeData('id').end()
+                .find('#btn__channel--moderator-email').data('update', false).end()
             handleDialogOpen($('.js__unf-user-dialog--create-channel'));
         },
     });
@@ -263,6 +264,7 @@ function handleClickEditChannel(id) {
     $('.js__unf-user-dialog--create-channel')
         .find('.unf-user-dialog__header').text('Edit Group Chat').end()
         .find('#btn__channel--create').data('id', id).end()
+        .find('#btn__channel--moderator-email').data('update', true).end()
     handleFetchChannelData(id)
     handleDialogOpen($('.js__unf-user-dialog--create-channel'));
 }
@@ -389,6 +391,7 @@ $(function checkModeratorEmail() {
     $(document).on('click', '#btn__channel--moderator-email', function () {
         var email = $('#input__channel--moderator-email');
         var inputEmail = $('.unf-user-input--moderator-email');
+        var isUpdate = $(this).data('update')
         
         if(email.val() === ''){
             return false
@@ -425,8 +428,11 @@ $(function checkModeratorEmail() {
             isModeratorEmail = true;
             isModeratorName = true;
             handleCheckInputChannel();
-    
-            $('.customScrollBar--create-channel .unf-user-dialog__body').animate({ scrollTop: 520 }, 1200);
+            
+            if(!isUpdate){
+                $('.customScrollBar--create-channel .unf-user-dialog__body').animate({ scrollTop: 520 }, 1200);
+            }
+            $('.js__unf-user-dialog--create-channel').find('#btn__channel--moderator-email').data('update', false).end()
             $('.create-channel__moderator').addClass('create-channel__moderator--show');
         })
 
