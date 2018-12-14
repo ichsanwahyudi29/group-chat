@@ -19,7 +19,7 @@ $(document).ready(function(){
         $(document).click(function(e){
             var container = $('.unf-user-input__icon-emoji')
             if(!container.is(e.target) && container.has(e.target).length === 0 && container.hasClass('unf-user-input__icon-emoji--show')){
-                container.click()
+                container.removeClass('unf-user-input__icon-emoji--show')
             }
         })
         $(document).on('click', '.unf-user-input__icon-emoji', function(){
