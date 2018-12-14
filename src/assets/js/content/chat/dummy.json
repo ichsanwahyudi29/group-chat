@@ -63,12 +63,12 @@
             "status": 0
         },
         {
-            "id": 203,
+            "id": 204,
             "message": "Selamat Sore!",
             "status": 1
         },
         {
-            "id": 203,
+            "id": 205,
             "message": "Selamat Malam!",
             "status": 1
         }
@@ -149,7 +149,8 @@
             "msg": "Hi! Apa kabar para pecinta sepak bola?",
             "img": null,
             "vote": null,
-            "vote_content": null
+            "vote_content": null,
+            "date": "2018-12-01 12:00:00"
         },
         {
             "id": 2,
@@ -161,7 +162,8 @@
             "msg": "Wuuu baik om! Go Brazil go!",
             "img": null,
             "vote": null,
-            "vote_content": null
+            "vote_content": null,
+            "date": "2018-12-01 12:05:00"
         },
         {
             "id": 3,
@@ -173,7 +175,8 @@
             "msg": null,
             "img": null,
             "vote": null,
-            "vote_content": null
+            "vote_content": null,
+            "date": "2018-12-01 12:07:00"
         },
         {
             "id": 4,
@@ -185,7 +188,8 @@
             "msg": "Saya jual jersey semua negara kumpil! Bisa order di link berikut tokopedia.com y",
             "img": null,
             "vote": null,
-            "vote_content": null
+            "vote_content": null,
+            "date": "2018-12-01 12:10:00"
         },
         {
             "id": 5,
@@ -197,7 +201,8 @@
             "msg": null,
             "img": null,
             "vote_begin": true,
-            "vote_content": "Menurut Toppers, siapa ya yang akan jadi pemain MVP di Piala Dunia Tahun Ini?"
+            "vote_content": "Menurut Toppers, siapa ya yang akan jadi pemain MVP di Piala Dunia Tahun Ini?",
+            "date": "2018-12-01 12:11:00"
         },
         {
             "id": 6,
@@ -209,7 +214,8 @@
             "msg": null,
             "img": "img",
             "vote_begin": null,
-            "vote_content": null
+            "vote_content": null,
+            "date": "2018-12-02 10:15:00"
         }
     ]
 }
