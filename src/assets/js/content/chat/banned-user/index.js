@@ -78,7 +78,7 @@ $(function handleClickAddBannedUser() {
     $('#btn__banned-user--add').on({
         click: function () {
             handleDialogOpen($('.js__unf-user-dialog--banned-user'));
-            autoFocusInput($('#input__banned-user'))
+            autoFocusInput('#input__banned-user')
         },
     });
 })
