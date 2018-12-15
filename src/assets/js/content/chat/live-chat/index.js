@@ -214,32 +214,35 @@ function handleBtnLiveChat(e) {
 //fixed live-chat
 $(window).on({
     scroll: function () {
-        var scroll = $(this).scrollTop();
-        var height1 = 156;
-        var height = 200;
-        var wHeight = $(window).height();
-        if (scroll > height1) {
-            $('.container__live-chat').addClass('container__live-chat--fixed').css('transform', 'translateY(10px)')
-            $('.live-chat__area').css('height', `${wHeight - 425}px`)
-            if (scroll > height) {
-                $('.container__live-chat').removeAttr('style')
-                $('.live-chat__area').css('height', `${wHeight - 515}px`)
-            }
-        } else {
-            $('.container__live-chat').removeClass('container__live-chat--fixed').removeAttr('style')
-            $('.live-chat__area').css('height', `${wHeight - 574}px`)
-        }
-
-        if(!firstInitLiveChatScroll){
-            handleScrollLiveChat()
-            firstInitLiveChatScroll = true
-        }
+        handleLiveChatResize()
     },
     resize: function(){
-        var wHeight = $(window).height();
-        $('.live-chat__area').css('height', `${wHeight - 574}px`)
+        handleLiveChatResize()
     }
 });
+
+function handleLiveChatResize(){
+    var scroll = $(window).scrollTop();
+    var height1 = 156;
+    var height = 200;
+    var wHeight = $(window).height();
+    if (scroll > height1) {
+        $('.container__live-chat').addClass('container__live-chat--fixed').css('transform', 'translateY(10px)')
+        $('.live-chat__area').css('height', `${wHeight - 425}px`)
+        if (scroll > height) {
+            $('.container__live-chat').removeAttr('style')
+            $('.live-chat__area').css('height', `${wHeight - 515}px`)
+        }
+    } else {
+        $('.container__live-chat').removeClass('container__live-chat--fixed').removeAttr('style')
+        $('.live-chat__area').css('height', `${wHeight - 574}px`)
+    }
+
+    if(!firstInitLiveChatScroll){
+        handleScrollLiveChat()
+        firstInitLiveChatScroll = true
+    }
+}
 
 function getChatTime() {
     var date = new Date
