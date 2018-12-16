@@ -1,4 +1,5 @@
 var firstInitLiveChatScroll = false;
+var sendText = true;
 
 $(document).ready(function() {
     handleScrollLiveChat();
@@ -225,7 +226,7 @@ function handleLiveChatResize(){
     var scroll = $(window).scrollTop();
     var height1 = 156;
     var height = 200;
-    var wHeight = $(window).height();
+    var wHeight = (sendText) ? $(window).height() + 96 : $(window).height();
     if (scroll > height1) {
         $('.container__live-chat').addClass('container__live-chat--fixed').css('transform', 'translateY(10px)')
         $('.live-chat__area').css('height', `${wHeight - 425}px`)
@@ -256,6 +257,14 @@ function getChatTime() {
 $('.send-input__tab .tab-options__item-label').on({
     click: function () {
         optionsTab(this);
+        var $for = $(this).attr('for')
+        if($for === 'send-chat'){
+            sendText = true
+        }
+        else{
+            sendText = false
+        }
+        handleLiveChatResize()
     },
 });
 
