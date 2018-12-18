@@ -2320,6 +2320,7 @@ html, body {
     width: 18px; }
 
 .live-chat {
+  height: 100%;
   position: relative;
   padding: 0;
   margin-bottom: 0; }
@@ -2536,7 +2537,7 @@ html, body {
     .live-chat__bottom-sheet .bottom-sheet__body {
       padding: 0px 16px;
       overflow-y: auto;
-      height: calc(100vh - 590px); }
+      height: calc(100vh - 450px); }
   .live-chat__bottom-sheet__overlay {
     position: absolute;
     height: 90%;

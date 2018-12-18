@@ -1,5 +1,3 @@
-var firstInitLiveChatScroll = false;
-
 $(document).ready(function() {
     handleScrollLiveChat();
 });
@@ -194,8 +192,8 @@ function handleCheckInputLiveChat() {
 }
 
 function handleScrollLiveChat() {
-    // var height = $('.live-chat__area')[0].scrollHeight;
-    $('.live-chat__area').scrollTop(100000000);
+    var height = $('.live-chat__area')[0].scrollHeight;
+    $('.live-chat__area').scrollTop(height);
 }
 
 function handleBtnLiveChat(e) {
@@ -223,25 +221,80 @@ $(window).on({
 
 function handleLiveChatResize(){
     var scroll = $(window).scrollTop();
-    var height1 = 156;
     var height = 200;
-    var wHeight = $(window).height();
-    if (scroll > height1) {
-        $('.container__live-chat').addClass('container__live-chat--fixed').css('transform', 'translateY(10px)')
-        $('.live-chat__area').css('height', `${wHeight - 425}px`)
-        if (scroll > height) {
-            $('.container__live-chat').removeAttr('style')
-            $('.live-chat__area').css('height', `${wHeight - 515}px`)
+    var height2 = 250;
+    if (scroll > height) {
+        $('.container__live-chat')
+            .addClass('container__live-chat--fixed')
+        if(scroll > height2){
+            $('.container__live-chat')
+                .css({
+                    'transition': 'all linear .1'
+                })
+            handleFixLiveChat(scroll, 98)
         }
     } else {
-        $('.container__live-chat').removeClass('container__live-chat--fixed').removeAttr('style')
-        $('.live-chat__area').css('height', `${wHeight - 574}px`)
+        $('.container__live-chat')
+            .removeClass('container__live-chat--fixed')
+            .removeAttr('style')
     }
+    
+}
 
-    if(!firstInitLiveChatScroll){
-        handleScrollLiveChat()
-        firstInitLiveChatScroll = true
+var savedScroll = $(window).scrollTop();
+var isScrollUp = false
+var scrollUpTarget
+var scrollDownTarget
+
+function handleFixLiveChat(wScroll, top){
+    var $win = $(window)
+    var $lc = $('.container__live-chat')
+    var wScroll = $win.scrollTop()
+    var translateNeed = ($lc.height() + top) - $win.height() + 106
+    handleCheckScrollUp(wScroll)
+    if(($lc.height() + top) > $win.height()){
+        if(isScrollUp){
+            var different = (wScroll - scrollUpTarget)
+            if(different > 0){  
+                $lc
+                    .css({
+                        'transform' : `translateY(${(different - top) * -1}px)`
+                    })
+            }
+            else{
+                $lc
+                    .css({
+                        'transform' : `translateY(${top}px)`
+                    })  
+            }
+            scrollDownTarget = wScroll + translateNeed
+        }
+        else{
+            var different = ((scrollDownTarget !== undefined) ? scrollDownTarget : translateNeed)
+            var translateY = translateNeed - (different - wScroll)
+            if(wScroll < different){
+                $lc
+                    .css({
+                        'transform' : `translateY(${(translateY - top) * -1}px)`
+                    })
+            }
+            else{
+                $lc
+                    .css({
+                        'transform' : `translateY(${(translateNeed  - top) * -1}px)`
+                    })
+            }
+            scrollUpTarget = (wScroll - translateNeed >= 0) ? wScroll - translateNeed : 0
+        }
     }
+}
+function handleCheckScrollUp(wScroll){
+    if(wScroll < savedScroll){
+        isScrollUp = true
+    }else{
+        isScrollUp = false
+    }
+    savedScroll = wScroll
 }
 
 function getChatTime() {
@@ -281,7 +334,6 @@ function renderPinnedChat(data) {
         $('.live-chat__bottom-sheet').removeClass('live-chat__bottom-sheet--open')
         $('.live-chat__bottom-sheet__overlay').removeClass('live-chat__bottom-sheet__overlay--show')
         $('.pinned-chat__bottom-sheet').hide()
-        $(".live-chat__area").css('filter', 'blur(0px)')
     }
 }
 
@@ -313,12 +365,10 @@ function renderQuickReplyList(data) {
 $('.live-chat__pinned').on('click', function(){
     $('.live-chat__bottom-sheet').addClass('live-chat__bottom-sheet--open')
     $('.live-chat__bottom-sheet__overlay').addClass('live-chat__bottom-sheet__overlay--show')
-    $(".live-chat__area").css('filter', 'blur(3px)')
 })
 $(function handleBottomSheetClose(){
     $('#bottom-sheet__close').click(function(){
         $(this).parents('.live-chat__bottom-sheet').removeClass('live-chat__bottom-sheet--open')
         $('.live-chat__bottom-sheet__overlay').removeClass('live-chat__bottom-sheet__overlay--show')
-        $(".live-chat__area").css('filter', 'blur(0px)')
     })
 })
