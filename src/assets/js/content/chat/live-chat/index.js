@@ -309,6 +309,14 @@ function getChatTime() {
 $('.send-input__tab .tab-options__item-label').on({
     click: function () {
         optionsTab(this);
+        var $for = $(this).attr('for')
+        if($for === 'send-chat'){
+            sendText = true
+        }
+        else{
+            sendText = false
+        }
+        handleLiveChatResize()
     },
 });
 
