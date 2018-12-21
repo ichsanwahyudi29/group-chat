@@ -3,15 +3,52 @@ var isQuickMsg = false;
 var dataQuickReply
 
 $(document).ready(function () {
-    loadJSON('./assets/js/content/chat/dummy.json', function (response) {
+    loadJSON('./assets/js/content/chat/empty_dummy.json', function (response) {
         var res = JSON.parse(response);
         dataQuickReply = res.quick_reply
         loopDataQuickReply()
     })
 })
 
+function initQuickReplyContainer(){
+    $('.table__quick-reply').empty()
+    var quickContainer
+    if(dataQuickReply.length > 0){
+        $('.btn__quick-reply--add').removeClass('hide')
+        quickContainer = `
+            <table cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Message</td>
+                        <td>Status</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        `
+    }
+    else{
+        $('.btn__quick-reply--add').addClass('hide')
+        quickContainer = `
+        <div class="empty-box">
+            <div class="empty-box__description">
+                <div class="empty-box__description-title">
+                    No Available Quick Reply Yet
+                </div>
+                <div class="empty-box__description-text">
+                    Quick Reply will be shown here as they are added.
+                </div>
+            </div>
+            <div class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn--create btn__quick-reply--add">Add Quick Reply</div>
+        </div>
+    `
+    }
+    $('.table__quick-reply').html(quickContainer)
+}
+
 function loopDataQuickReply() {
-    $('.quick-reply .table__list tbody').empty();
+    initQuickReplyContainer()
     for (const item of dataQuickReply) {
         var listQuickReply = `
             <tr>
@@ -53,10 +90,10 @@ function loopDataQuickReply() {
     }
     renderQuickReplyList(dataQuickReply)
     if (dataQuickReply.length > 0) {
-        $('.quick-reply .pagination-items').html(renderPagination(dataQuickReply.length, 1, 1))
+        $('.quick-reply .pagination-container').html(renderPagination(dataQuickReply.length, 1, 1))
     }
     else {
-        $('.quick-reply .pagination-items').html('')
+        $('.quick-reply .pagination-container').html('')
     }
 }
 
@@ -70,7 +107,7 @@ $(function renderAddQuickReplyDialog() {
                     <label class="unf-user-input__label">Message</label>
                     <div class="unf-user-input__group-btn">
                         <div class="unf-user-input__icon unf-user-input__icon--right">
-                            <input id="input__quick-reply" type="text" class="unf-user-input__control" placeholder="Type message here..." autofocus>
+                            <input id="input__quick-reply" type="text" class="unf-user-input__control br-4" placeholder="Type message here..." autofocus>
                             <div class="unf-user-input__icon-emoji">
                                 <div class="unf-user-input__emoji">
                                     <div class="card unf-user-input__emoji-container">
@@ -93,15 +130,13 @@ $(function renderAddQuickReplyDialog() {
 
 $(function handleClickAddQuickReply() {
     handleResetInputQuickReply()
-    $('#btn__quick-reply--add').on({
-        click: function () {
-            $('.js__unf-user-dialog--quick-reply')
-                .find('.unf-user-dialog__header').text('Add Quick Reply').end()
-                .find('#btn__quick--add').removeData('id').end()
-            handleDialogOpen($('.js__unf-user-dialog--quick-reply'));
-            autoFocusInput('#input__quick-reply')
-        },
-    });
+    $(document).on('click', '.btn__quick-reply--add', function(){
+        $('.js__unf-user-dialog--quick-reply')
+            .find('.unf-user-dialog__header').text('Add Quick Reply').end()
+            .find('#btn__quick--add').removeData('id').end()
+        handleDialogOpen($('.js__unf-user-dialog--quick-reply'));
+        autoFocusInput('#input__quick-reply')
+    })
 })
 
 function handleClickEditQuickReply(id) {

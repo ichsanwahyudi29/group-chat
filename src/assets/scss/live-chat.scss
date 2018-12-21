@@ -281,6 +281,7 @@
       padding: 8px 12px;
       color: $green;
       margin-right: 5px;
+      pointer-events: auto;
       @include ellipsis;
       &:hover{
         background-color: $hover-dropdown;
@@ -290,6 +291,16 @@
       }
       &:last-child{
         margin-right: 16px;
+      }
+      &--disabled{
+        border: 1px solid transparent;
+        color: #E0E0E0;
+        border-color: #E0E0E0;
+        background-color: white;
+        pointer-events: none;
+      }
+      span{
+        margin-left: 3px;
       }
     }
   }
@@ -318,7 +329,7 @@
         }
       }
       &__content{
-        padding: 16px 16px 32px 16px;
+        padding: 16px 16px 24px 16px;
       }
       &__action{
         display: flex;

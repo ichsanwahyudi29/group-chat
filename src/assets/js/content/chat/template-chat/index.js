@@ -8,15 +8,53 @@ var timeIntervalId = [];
 var dataTemplateChat
 
 $(document).ready(function () {
-    loadJSON('./assets/js/content/chat/dummy.json', function (response) {
+    loadJSON('./assets/js/content/chat/empty_dummy.json', function (response) {
         var res = JSON.parse(response);
         dataTemplateChat = res.template_chat
         loopDataTemplateChat()
     })
 })
 
+function initTemplateChatContainer(){
+    $('.table__template-chat').empty()
+    var temContainer
+    if(dataTemplateChat.length > 0){
+        $('.btn__template-chat--add').removeClass('hide')
+        temContainer = `
+            <table cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Vibrate</td>
+                        <td>Message</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        `
+    }
+    else{
+        $('.btn__template-chat--add').addClass('hide')
+        temContainer = `
+        <div class="empty-box">
+            <div class="empty-box__description">
+                <div class="empty-box__description-title">
+                    No Available Template Chat Yet
+                </div>
+                <div class="empty-box__description-text">
+                    Template Chat will be shown here as they are added.
+                </div>
+            </div>
+            <div class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn--create btn__template-chat--add">Add Template Chat</div>
+        </div>
+    `
+    }
+    $('.table__template-chat').html(temContainer)
+}
+
 function loopDataTemplateChat() {
-    $('.template-chat .table__list tbody').empty();
+    initTemplateChatContainer()
     dataTemplateChat.map(item => {
         var listTemplateChat =
             `<tr class="row-template-chat">
@@ -74,10 +112,10 @@ function loopDataTemplateChat() {
     })
 
     if (dataTemplateChat.length > 0) {
-        $('.template-chat .pagination-items').html(renderPagination(dataTemplateChat.length, 1, 1))
+        $('.template-chat .pagination-container').html(renderPagination(dataTemplateChat.length, 1, 1))
     }
     else {
-        $('.template-chat .pagination-items').html('')
+        $('.template-chat .pagination-container').html('')
     }
 }
 
@@ -168,14 +206,12 @@ $(function renderAddTemplateDialog() {
 
 $(function handleClickAddTemplate() {
     handleResetInputValueTemplate()
-    $('#btn__template-chat--add').on({
-        click: function () {
-            $('.js__unf-user-dialog--template-chat')
-                .find('.unf-user-dialog__header').text('Add Template Chat').end()
-                .find('#btn__template--add').removeData('id').end()
-            handleDialogOpen($('.js__unf-user-dialog--template-chat'));
-        },
-    });
+    $(document).on('click', '.btn__template-chat--add', function(){
+        $('.js__unf-user-dialog--template-chat')
+            .find('.unf-user-dialog__header').text('Add Template Chat').end()
+            .find('#btn__template--add').removeData('id').end()
+        handleDialogOpen($('.js__unf-user-dialog--template-chat'));
+    })
 })
 
 function handleClickEditTemplateChat(id) {

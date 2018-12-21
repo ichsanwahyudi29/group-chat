@@ -25,7 +25,7 @@
                     <li class="sidebar__list-item unf-user-tooltip">
                         <div class="unf-user-tooltip__container sidebar__list-item-tooltip" aria-label="Channel"
                             data-position="left"></div>
-                        <a class="list-item list-item--channel list-item--active">
+                        <a href="./channel.html" class="list-item list-item--channel list-item--active">
                             <span>Channel</span>
                         </a>
                     </li>
@@ -82,98 +82,44 @@
                         <div class="card template-chat">
                             <div class="card__header">
                                 <div class="card__header-title">Template Chat</div>
-                                <div id="btn__template-chat--add" class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn-primary--create">Add
-                                    Template</div>
+                                <div class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn-primary--create btn__template-chat--add hide">Add Template</div>
                             </div>
                             <div class="table__list table__template-chat">
-                                <table cellspacing="0" cellpadding="0">
-                                    <thead>
-                                        <tr>
-                                            <td>ID</td>
-                                            <td>Vibrate</td>
-                                            <td>Message</td>
-                                            <td>Action</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
                             </div>
                             <div class="pagination-container">
-                                <div class="pagination-items">
-                                </div>
                             </div>
                         </div>
                         <!-- Pinned Chat -->
                         <div class="card pinned-chat">
                             <div class="card__header">
                                 <div class="card__header-title">Pinned Chat</div>
-                                <div id="btn__pin-chat--add" class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn-primary--create">Add
-                                    Pin Chat</div>
+                                <div class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn-primary--create btn__pin-chat--add hide">Add Pin Chat</div>
                             </div>
                             <div class="table__list table__pin-chat">
-                                <table cellspacing="0" cellpadding="0">
-                                    <thead>
-                                        <tr>
-                                            <td>ID</td>
-                                            <td>Title</td>
-                                            <td>Message</td>
-                                            <td>Action</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
                             </div>
                             <div class="pagination-container">
-                                <div class="pagination-items">
-                                </div>
                             </div>
                         </div>
                         <!-- Quick Reply -->
                         <div class="card quick-reply">
                             <div class="card__header">
                                 <div class="card__header-title">Quick Reply</div>
-                                <div id="btn__quick-reply--add" class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn-primary--create">Add
-                                    Quick Reply</div>
+                                <div class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn-primary--create btn__quick-reply--add hide">Add Quick Reply</div>
                             </div>
                             <div class="table__list table__quick-reply">
-                                <table cellspacing="0" cellpadding="0">
-                                    <thead>
-                                        <tr>
-                                            <td>ID</td>
-                                            <td>Message</td>
-                                            <td>Status</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
                             </div>
                             <div class="pagination-container">
-                                <div class="pagination-items">
-                                </div>
                             </div>
                         </div>
                         <!-- Banned User-->
                         <div class="card banned-user">
                             <div class="card__header">
                                 <div class="card__header-title">Banned User</div>
-                                <div id="btn__banned-user--add" class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn-primary--create">Ban
-                                    User</div>
+                                <div class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn-primary--create btn__banned-user--add hide">Ban User</div>
                             </div>
                             <div class="table__list table__ban-user">
-                                <table cellspacing="0" cellpadding="0">
-                                    <thead>
-                                        <tr>
-                                            <td>User ID</td>
-                                            <td>Name</td>
-                                            <td>Action</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
                             </div>
                             <div class="pagination-container">
-                                <div class="pagination-items">
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -298,10 +244,10 @@
                                 </ul>
                                 <div class="tab-options__content">
                                     <section class="send-input__content">
-                                        <div class="unf-user-input">
+                                        <div class="unf-user-input mb-16">
                                             <div class="unf-user-input__group-btn">
                                                 <div class="unf-user-input__icon unf-user-input__icon--right">
-                                                    <input id="input__live-chat--text" type="text" class="unf-user-input__control"
+                                                    <input id="input__live-chat--text" type="text" class="unf-user-input__control br-4"
                                                         placeholder="Type message here…">
                                                     <div class="unf-user-input__icon-emoji">
                                                         <div class="unf-user-input__emoji">
@@ -312,9 +258,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="unf-user-input__info">
-                                                <span class="unf-user-input__info-msg"></span>
                                             </div>
                                         </div>
                                         <div class="send-input__action">
@@ -347,14 +290,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="unf-user-input">
+                                        <div class="unf-user-input mb-16">
                                             <div class="unf-user-input__group-btn">
                                                 <div class="unf-user-input__icon unf-user-input__icon--left icon-link">
-                                                    <input id="input__live-chat--url" type="text" class="unf-user-input__control"
+                                                    <input id="input__live-chat--url" type="text" class="unf-user-input__control br-4"
                                                         placeholder="e.g.http://www.tokopedia.com">
                                                 </div>
                                             </div>
-                                            <div class="unf-user-input__info">
+                                            <div class="unf-user-input__info hide" id="live-chat-link-info">
                                                 <span class="unf-user-input__info-msg"></span>
                                             </div>
                                         </div>
@@ -391,8 +334,14 @@
                     <li class="auto-send-list__item">
                         <span class="auto-send-list__text">This chat template will be sent every</span>
                         <select class="auto-send-list__select unf-user-select__regular" id="auto-send-range" onchange="handleChangeAutoSendSelect(this)">
+                            <option value="10">10 Chats</option>
+                            <option value="20">20 Chats</option>
                             <option value="30">30 Chats</option>
                             <option value="40">40 Chats</option>
+                            <option value="50">50 Chats</option>
+                            <option value="60">60 Chats</option>
+                            <option value="70">70 Chats</option>
+                            <option value="80">80 Chats</option>
                         </select>
                     </li>
                     <li class="auto-send-list__item">
@@ -403,6 +352,8 @@
                             <option value="60000">1 minutes</option>
                             <option value="120000">2 minutes</option>
                             <option value="180000">3 minutes</option>
+                            <option value="240000">4 minutes</option>
+                            <option value="300000">5 minutes</option>
                         </select>
                     </li>
                 </ul>

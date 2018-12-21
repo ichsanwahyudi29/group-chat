@@ -122,6 +122,7 @@ $(function onInputLiveChatUrl() {
             handleCheckInputLiveChat();
         },
         focus: function () {
+            $('#live-chat-link-info').addClass('hide')
             handleInputError($(this).closest('.unf-user-input'), '', true);
         },
         keypress: function (e) {
@@ -140,6 +141,7 @@ $(function handleScrollLiveChatSendText() {
             var input = $('#input__live-chat--url').closest('.unf-user-input');
 
             if (!validateURL(urlVal)) {
+                $('#live-chat-link-info').removeClass('hide')
                 handleInputError(input, helper.en.link.error[0], false);
                 return false;
             }
@@ -226,10 +228,13 @@ function handleLiveChatResize(){
     if (scroll > height) {
         $('.container__live-chat')
             .addClass('container__live-chat--fixed')
+            .css({
+                'transition': 'all linear .3s'
+            })
         if(scroll > height2){
             $('.container__live-chat')
                 .css({
-                    'transition': 'all linear .1'
+                    'transition': 'all linear .1s'
                 })
             handleFixLiveChat(scroll, 98)
         }
@@ -258,7 +263,7 @@ function handleFixLiveChat(wScroll, top){
             if(different > 0){  
                 $lc
                     .css({
-                        'transform' : `translateY(${(different - top) * -1}px)`
+                        'transform' : `translateY(${(different - top) * -1}px)`,
                     })
             }
             else{
@@ -286,6 +291,12 @@ function handleFixLiveChat(wScroll, top){
             }
             scrollUpTarget = (wScroll - translateNeed >= 0) ? wScroll - translateNeed : 0
         }
+    }
+    else{
+        $lc
+            .css({
+                'transform' : `translateY(${top}px)`
+            })
     }
 }
 function handleCheckScrollUp(wScroll){
@@ -373,10 +384,16 @@ function renderQuickReplyList(data) {
 $('.live-chat__pinned').on('click', function(){
     $('.live-chat__bottom-sheet').addClass('live-chat__bottom-sheet--open')
     $('.live-chat__bottom-sheet__overlay').addClass('live-chat__bottom-sheet__overlay--show')
+    $('.live-chat__quick-reply-bubble').addClass('live-chat__quick-reply-bubble--disabled')
 })
 $(function handleBottomSheetClose(){
-    $('#bottom-sheet__close').click(function(){
-        $(this).parents('.live-chat__bottom-sheet').removeClass('live-chat__bottom-sheet--open')
-        $('.live-chat__bottom-sheet__overlay').removeClass('live-chat__bottom-sheet__overlay--show')
+    $('#bottom-sheet__close, .live-chat__bottom-sheet__overlay').click(function(){
+        handleCloseBottomSheet()
     })
+
+    function handleCloseBottomSheet(){
+        $('.live-chat__bottom-sheet').removeClass('live-chat__bottom-sheet--open')
+        $('.live-chat__bottom-sheet__overlay').removeClass('live-chat__bottom-sheet__overlay--show')
+        $('.live-chat__quick-reply-bubble').removeClass('live-chat__quick-reply-bubble--disabled')
+    }
 })

@@ -3,15 +3,53 @@ var isSearchUser = false;
 var dataBannedUser
 
 $(document).ready(function () {
-    loadJSON('./assets/js/content/chat/dummy.json', function (response) {
+    loadJSON('./assets/js/content/chat/empty_dummy.json', function (response) {
         var res = JSON.parse(response);
         dataBannedUser = res.banned_user
         loopDataBannedUser()
     })
 })
 
+function initBannedUserContainer(){
+    $('.table__ban-user').empty()
+    var bannedCount = dataBannedUser.filter(item => item.status === 1)
+    var banContainer
+    if(dataBannedUser.length > 0 && bannedCount.length > 0){
+        $('.btn__banned-user--add').removeClass('hide')
+        banContainer = `
+            <table cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <td>User ID</td>
+                        <td>Name</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        `
+    }
+    else{
+        $('.btn__banned-user--add').addClass('hide')
+        banContainer = `
+        <div class="empty-box">
+            <div class="empty-box__description">
+                <div class="empty-box__description-title">
+                    No Available Banned User Yet
+                </div>
+                <div class="empty-box__description-text">
+                    Banned User will be shown here as they are added.
+                </div>
+            </div>
+            <div class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn--create btn__banned-user--add">Add Banned User</div>
+        </div>
+    `
+    }
+    $('.table__ban-user').html(banContainer)
+}
+
 function loopDataBannedUser() {
-    $('.banned-user .table__list tbody').empty();
+    initBannedUserContainer()
     for (const data of dataBannedUser) {
         var listBannedUser = `
             <tr>
@@ -41,10 +79,10 @@ function loopDataBannedUser() {
     }
 
     if (dataBannedUser.filter(item => item.status === 1).length > 0) {
-        $('.banned-user .pagination-items').html(renderPagination(dataBannedUser.filter(item => item.status === 1).length, 1, 1))
+        $('.banned-user .pagination-container').html(renderPagination(dataBannedUser.filter(item => item.status === 1).length, 1, 1))
     }
     else {
-        $('.banned-user .pagination-items').html('')
+        $('.banned-user .pagination-container').html('')
     }
 }
 
@@ -75,12 +113,10 @@ $(function renderBannedUserDialog() {
 })
 
 $(function handleClickAddBannedUser() {
-    $('#btn__banned-user--add').on({
-        click: function () {
-            handleDialogOpen($('.js__unf-user-dialog--banned-user'));
-            autoFocusInput('#input__banned-user')
-        },
-    });
+    $(document).on('click', '.btn__banned-user--add', function(){
+        handleDialogOpen($('.js__unf-user-dialog--banned-user'));
+        autoFocusInput('#input__banned-user')
+    })
 })
 
 function handleCloseBanUser() {
@@ -125,7 +161,7 @@ function renderSearchResult(val) {
                 </div>
                     ${
             data.status === 0
-                ? `<a class="unf-user-btn unf-user-btn--small unf-user-btn--primary result__btn" onclick="handleStatusBan(${data.id})">Ban</a>`
+                ? `<a class="unf-user-btn unf-user-btn--small unf-user-btn--primary result__btn result__btn--ban" onclick="handleStatusBan(${data.id})">Ban</a>`
                 : `<a class="unf-user-btn unf-user-btn--small unf-user-btn--secondary result__btn result__btn--unban" onclick="handleStatusBan(${data.id})">Unban</a>`
             }
             </div>

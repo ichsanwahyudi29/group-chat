@@ -6,19 +6,58 @@ var isPinLink = false;
 var dataPinChat
 
 $(document).ready(function () {
-    loadJSON('./assets/js/content/chat/dummy.json', function (response) {
+    loadJSON('./assets/js/content/chat/empty_dummy.json', function (response) {
         var res = JSON.parse(response);
         dataPinChat = res.pinned_chat
         loopDataPinChat()
     })
 })
 
+function initPinChatContainer(){
+    $('.table__pin-chat').empty()
+    var pinContainer
+    if(dataPinChat.length > 0){
+        $('.btn__pin-chat--add').removeClass('hide')
+        pinContainer = `
+            <table cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Title</td>
+                        <td>Message</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        `
+    }
+    else{
+        $('.btn__pin-chat--add').addClass('hide')
+        pinContainer = `
+        <div class="empty-box">
+            <div class="empty-box__description">
+                <div class="empty-box__description-title">
+                    No Available Pinned Chat Yet
+                </div>
+                <div class="empty-box__description-text">
+                    Pinned Chat will be shown here as they are added.
+                </div>
+            </div>
+            <div class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn--create btn__pin-chat--add">Add Pinned Chat</div>
+        </div>
+    `
+    }
+    $('.table__pin-chat').html(pinContainer)
+}
+
+
 function loopDataPinChat() {
 
     var notActivePinChat = dataPinChat.filter(item => item.status === 0)
     dataPinChat = dataPinChat.filter(item => item.status === 1).concat(notActivePinChat)
 
-    $('.pinned-chat .table__list tbody').empty();
+    initPinChatContainer()
     dataPinChat.map(item => {
         var listPinChat = `
         <tr>
@@ -68,10 +107,10 @@ function loopDataPinChat() {
     })
     renderPinnedChat(dataPinChat)
     if (dataPinChat.length > 0) {
-        $('.pinned-chat .pagination-items').html(renderPagination(dataPinChat.length, 1, 1))
+        $('.pinned-chat .pagination-container').html(renderPagination(dataPinChat.length, 1, 1))
     }
     else {
-        $('.pinned-chat .pagination-items').html('')
+        $('.pinned-chat .pagination-container').html('')
     }
 }
 
@@ -131,13 +170,11 @@ $(function renderAddPinChatDialog() {
 })
 
 $(function handleClickAddPin() {
-    $('#btn__pin-chat--add').on({
-        click: function () {
+    $(document).on('click', '.btn__pin-chat--add', function(){
             $('.js__unf-user-dialog--pinned-chat')
                 .find('.unf-user-dialog__header').text('Add Pin Chat').end()
                 .find('#btn__pin--add').removeData('id').end()
             handleDialogOpen($('.js__unf-user-dialog--pinned-chat'));
-        },
     });
 })
 

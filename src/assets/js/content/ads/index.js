@@ -5,7 +5,7 @@ var isImg = false;
 var dataAds
 
 $(document).ready(function () {
-    loadJSON('./assets/js/content/ads/dummy.json', function (response) {
+    loadJSON('./assets/js/content/ads/empty_dummy.json', function (response) {
         var res = JSON.parse(response);
         dataAds = res.ads
         loopAdsData()
@@ -13,73 +13,97 @@ $(document).ready(function () {
 })
 
 function initAdsContainer() {
+    $('.ads-card').remove()
     var dataActive = dataAds.filter(item => item.status === 1)
     var dataInactive = dataAds.filter(item => item.status === 0)
+
     var activeList = ''
     var inactiveList = ''
-    if (dataActive.length > 0) {
-        activeList =
-            `<div class="card ads-card channel--active">
-            <div class="card__header">
-                <div class="card__header-title  channel__title">
-                    Active Ads
+
+    if(dataAds.length === 0){
+        $('.group-chat__btn--create').addClass('hide')
+        var emptyAds = `
+            <div class="card ads-card empty-card">
+                <div class="empty-box">
+                    <img src="./assets/img/empty-state-illustration.png" class="empty-box__img"/>
+                    <div class="empty-box__description">
+                        <div class="empty-box__description-title">
+                            No Available Ads Yet
+                        </div>
+                        <div class="empty-box__description-text">
+                            Ads will be shown here as they are added.
+                        </div>
+                    </div>
+                    <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Add Ads</div>
                 </div>
             </div>
-            <div class="table__list table__ads">
-                <table cellspacing="0" cellpadding="0">
-                <thead>
-                    <tr>
-                        <td>Ads Title</td>
-                        <td>Ads Image</td>
-                        <td>Ads Link</td>
-                        <td>Status</td>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-                </table>
-            </div>
-        </div>`
+        `
+        $('.container').html(emptyAds)
     }
-    if (dataInactive.length > 0) {
-        inactiveList =
-            `<div class="card ads-card channel--inactive">
-            <div class="card__header">
-                <div class="card__header-title channel__title">
-                    Inactive Ads
+    else{
+        $('.group-chat__btn--create').removeClass('hide')
+        if (dataActive.length > 0) {
+            activeList =
+                `<div class="card ads-card channel--active">
+                    <div class="card__header">
+                        <div class="card__header-title channel__title">
+                            Active Ads
+                        </div>
+                    </div>
+                    <div class="table__list table__ads">
+                        <table cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr>
+                                <td>Ads Title</td>
+                                <td>Ads Image</td>
+                                <td>Ads Link</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>`
+        }
+        if (dataInactive.length > 0) {
+            inactiveList =
+                `<div class="card ads-card channel--inactive">
+                <div class="card__header">
+                    <div class="card__header-title channel__title">
+                        Inactive Ads
+                    </div>
+                    <div class="card__header-sorting">
+                        <h6 class="sorting-title">Sort</h6>
+                        <div class="sorting-option">
+                        <select class="unf-user-select__regular">
+                            <option value="created">Created date</option>
+                            <option value="updated">Updated date</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="card__header-sorting">
-                    <h6 class="sorting-title">Sort</h6>
-                    <div class="sorting-option">
-                    <select class="unf-user-select__regular">
-                        <option value="created">Created date</option>
-                        <option value="updated">Updated date</option>
-                    </select>
                 </div>
-            </div>
-            </div>
-            <div class="table__list table__ads">
-                <table cellspacing="0" cellpadding="0">
-                <thead>
-                    <tr>
-                        <td>Ads Title</td>
-                        <td>Ads Image</td>
-                        <td>Ads Link</td>
-                        <td>Status</td>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-                </table>
-            </div>
-            <div class="pagination-container">
-                <div class="pagination-items">
-                    ${renderPagination(dataInactive.length, 1, 1)}
+                <div class="table__list table__ads">
+                    <table cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <td>Ads Title</td>
+                            <td>Ads Image</td>
+                            <td>Ads Link</td>
+                            <td>Status</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    </table>
                 </div>
-            </div>
-        </div>`
+                <div class="pagination-container">
+                        ${renderPagination(dataInactive.length, 1, 1)}
+                </div>
+            </div>`
+        }
+        $('.container').html(activeList + inactiveList)
     }
-    $('.container').html(activeList + inactiveList)
 }
 
 function loopAdsData(){
@@ -114,7 +138,7 @@ function renderAdsList(data){
         <td class="table__list-ads-link">
             <a class="list-ads-link" href="${data.url}">${data.url}</a>
         </td>
-        <td class="table__list-ads-status">
+        <td class="table__list-ads-status channel__list-status">
             <div class="list-ads-status">
                 <div class="list-ads-status__set">
                     <div class="status-toggle-container">
@@ -124,6 +148,9 @@ function renderAdsList(data){
                             `<input type="checkbox" class="unf-user-toggle__checkbox" id="ads-${data.id}" onclick="handleChangeAdsStatus(this, ${data.id})">`}
                             <label for="ads-${data.id}"></label>
                         </div>
+                        <label class="status-toggle-label status-toggle-label__right">
+                            ${(data.status === 1)? 'Active' : 'Inactive'}
+                        </label>
                     </div>
                 </div>
                 <div class="list-ads-status__btn">
@@ -189,14 +216,12 @@ $(function renderAddAdsDialog() {
 })
 
 $(function handleClickAddAds() {
-    $('.group-chat__btn--create').on({
-        click: function () {
-            $('.js__unf-user-dialog--ads-channel')
-                .find('.unf-user-dialog__header').text('Add Ads').end()
-                .find('#btn__ads--add').removeData('id').end()
-            handleDialogOpen($('.js__unf-user-dialog--ads-channel'));
-        },
-    });
+    $(document).on('click', '.group-chat__btn--create', function(){
+        $('.js__unf-user-dialog--ads-channel')
+            .find('.unf-user-dialog__header').text('Add Ads').end()
+            .find('#btn__ads--add').removeData('id').end()
+        handleDialogOpen($('.js__unf-user-dialog--ads-channel'));
+    })
 })
 
 function handleClickEditAds(id) {

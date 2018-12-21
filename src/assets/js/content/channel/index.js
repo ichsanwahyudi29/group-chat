@@ -10,7 +10,7 @@ var inputEmail = $('.unf-user-input--moderator-email');
 var dataChannel
 
 $(document).ready(function () {
-    loadJSON('./assets/js/content/channel/dummy.json', function (response) {
+    loadJSON('./assets/js/content/channel/empty_dummy.json', function (response) {
         var res = JSON.parse(response);
         dataChannel = res.channel
         loopData()
@@ -19,86 +19,109 @@ $(document).ready(function () {
 
 function initContainer() {
     $('.channel').remove()
+    var archiveCount = dataChannel.filter(item => item.archive === true)
     var activeCount = dataChannel.filter(item => item.status === 1)
     var inactiveCount = dataChannel.filter(item => item.status === 2 && item.archive === false)
+
     var channelActive = '';
     var channelInactive = '';
-    if (activeCount.length > 0) {
-        channelActive = `
-        <div class="card channel channel--active">
-            <div class="card__header">
-                <div class="card__header-title channel__title">
-                Active Channel
-            </div>
-            <div class="card__header-sorting">
-                <h6 class="sorting-title">Sort</h6>
-                <div class="sorting-option">
-                    <select class="unf-user-select__regular">
-                        <option value="created">Created date</option>
-                        <option value="updated">Updated date</option>
-                    </select>
+    
+    if(dataChannel.length === 0 || archiveCount.length === dataChannel.length){
+        $('.group-chat__btn--create').addClass('hide')
+        var emptyChannel = `
+            <div class="card channel empty-card">
+                <div class="empty-box">
+                    <img src="./assets/img/empty-state-illustration.png" class="empty-box__img"/>
+                    <div class="empty-box__description">
+                        <div class="empty-box__description-title">
+                            No Available Group Chat Yet
+                        </div>
+                        <div class="empty-box__description-text">
+                            Complete Your Journey as an Admin.<br/>
+                            Group Chat will be shown here as they are added.
+                        </div>
+                    </div>
+                    <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create">Create Group Chat</div>
                 </div>
             </div>
-            </div>
-            <div class="table__list channel__list">
-                <table cellspacing="0" cellpadding="0">
-                    <thead>
-                        <tr>
-                            <td>ID</td>
-                            <td>Group Chat</td>
-                            <td>Status</td>
-                            <td>Action</td>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-            <div class="pagination-container">
-                <div class="pagination-items">
+        `
+        $('.container').append(emptyChannel)
+    }else{
+        $('.group-chat__btn--create').removeClass('hide')
+        if (activeCount.length > 0) {
+            channelActive = `
+            <div class="card channel channel--active">
+                <div class="card__header">
+                    <div class="card__header-title channel__title">
+                    Active Channel
+                </div>
+                <div class="card__header-sorting">
+                    <h6 class="sorting-title">Sort</h6>
+                    <div class="sorting-option">
+                        <select class="unf-user-select__regular">
+                            <option value="created">Created date</option>
+                            <option value="updated">Updated date</option>
+                        </select>
+                    </div>
+                </div>
+                </div>
+                <div class="table__list channel__list">
+                    <table cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td>Group Chat</td>
+                                <td>Status</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="pagination-container">
                     ${renderPagination(activeCount.length, 1, 1)}
                 </div>
-            </div>
-        </div>`
-    }
-    if (inactiveCount.length > 0) {
-        channelInactive = `
-        <div class="card channel channel--inactive">
-            <div class="card__header">
-                <div class="card__header-title channel__title">
-                Inactive Channel
-            </div>
-            <div class="card__header-sorting">
-                <h6 class="sorting-title">Sort</h6>
-                <div class="sorting-option">
-                    <select class="unf-user-select__regular">
-                        <option value="created">Created date</option>
-                        <option value="updated">Updated date</option>
-                    </select>
+            </div>`
+        }
+        if (inactiveCount.length > 0) {
+            channelInactive = `
+            <div class="card channel channel--inactive">
+                <div class="card__header">
+                    <div class="card__header-title channel__title">
+                    Inactive Channel
                 </div>
-            </div>
-            </div>
-            <div class="table__list channel__list">
-                <table cellspacing="0" cellpadding="0">
-                    <thead>
-                        <tr>
-                            <td>ID</td>
-                            <td>Group Chat</td>
-                            <td>Status</td>
-                            <td>Action</td>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-            <div class="pagination-container">
-                <div class="pagination-items">
+                <div class="card__header-sorting">
+                    <h6 class="sorting-title">Sort</h6>
+                    <div class="sorting-option">
+                        <select class="unf-user-select__regular">
+                            <option value="created">Created date</option>
+                            <option value="updated">Updated date</option>
+                        </select>
+                    </div>
+                </div>
+                </div>
+                <div class="table__list channel__list">
+                    <table cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td>Group Chat</td>
+                                <td>Status</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="pagination-container">
                     ${renderPagination(inactiveCount.length, 1, 1)}
                 </div>
-            </div>
-        </div>`
+            </div>`
+        }
+        $('.container').append(channelActive)
+        $('.container').append(channelInactive)
     }
-    $('.container').append(channelActive)
-    $('.container').append(channelInactive)
+
 }
 
 function loopData() {
@@ -135,7 +158,7 @@ function handleRenderChannel(data) {
                 </div>
                 </div>
             </td>
-            <td class="channel__list-status">
+            <td class="channel__list-status channel__list-status">
                 <div class="status-toggle-container">
                     <div class="unf-user-toggle">
                         ${data.status === 1 ?
@@ -143,6 +166,9 @@ function handleRenderChannel(data) {
             `<input type="checkbox" class="unf-user-toggle__checkbox" id="channel-${data.id}" onclick="handleChangeChannelStatus(this, ${data.id})">`}
                         <label for="channel-${data.id}"></label>
                     </div>
+                    <label class="status-toggle-label status-toggle-label__right">
+                        ${(data.status === 1) ? 'Active' : 'Inactive'}
+                    </label>
                 </div>
             </td>
             <td class="channel__list-action">
@@ -249,15 +275,13 @@ $(function renderCreateDialog() {
 })
 
 $(function handleClickCreateChannel() {
-    $('.group-chat__btn--create').on({
-        click: function () {
-            $('.js__unf-user-dialog--create-channel')
-                .find('.unf-user-dialog__header').text('Create Group Chat').end()
-                .find('#btn__channel--create').removeData('id').end()
-                .find('#btn__channel--moderator-email').data('update', false).end()
-            handleDialogOpen($('.js__unf-user-dialog--create-channel'));
-        },
-    });
+    $(document).on('click', '.group-chat__btn--create', function(){
+        $('.js__unf-user-dialog--create-channel')
+            .find('.unf-user-dialog__header').text('Create Group Chat').end()
+            .find('#btn__channel--create').removeData('id').end()
+            .find('#btn__channel--moderator-email').data('update', false).end()
+        handleDialogOpen($('.js__unf-user-dialog--create-channel'));
+    })
 })
 
 function handleClickEditChannel(id) {
@@ -392,8 +416,8 @@ $(function checkModeratorEmail() {
         var email = $('#input__channel--moderator-email');
         var inputEmail = $('.unf-user-input--moderator-email');
         var isUpdate = $(this).data('update')
-        
-        if(email.val() === ''){
+
+        if (email.val() === '') {
             return false
         }
 
@@ -411,13 +435,13 @@ $(function checkModeratorEmail() {
                 $('.create-channel__moderator').removeClass('create-channel__moderator--show');
                 return false;
             }
-    
+
             setTimeout(() => {
                 loadingCheckEmail(false);
                 $('.unf-user-input__icon').addClass('icon-check');
             }, 500);
-            
-            if(email.val() !== 'i'){
+
+            if (email.val() !== 'i') {
                 //insert data
                 $('#input__channel--moderator-img').attr('src', data[0].photo)
                 $('#input__channel--moderator-name').val(data[0].name)
@@ -428,8 +452,8 @@ $(function checkModeratorEmail() {
             isModeratorEmail = true;
             isModeratorName = true;
             handleCheckInputChannel();
-            
-            if(!isUpdate){
+
+            if (!isUpdate) {
                 $('.customScrollBar--create-channel .unf-user-dialog__body').animate({ scrollTop: 520 }, 1200);
             }
             $('.js__unf-user-dialog--create-channel').find('#btn__channel--moderator-email').data('update', false).end()
@@ -464,7 +488,7 @@ function readURLCrop(input) {
     }
 }
 
-$(document).on('click', '#edit-image-cancel', function(){
+$(document).on('click', '#edit-image-cancel', function () {
     $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
     $(".js__unf-user-dialog--create-channel").addClass("unf-user-dialog--show");
 
@@ -472,7 +496,7 @@ $(document).on('click', '#edit-image-cancel', function(){
     cropper.destroy();
 })
 
-$(document).on('click', '#edit-image-save', function(){
+$(document).on('click', '#edit-image-save', function () {
     let imgsrc = cropper.getCroppedCanvas({ width: 600, height: 300 }).toDataURL("image/jpeg");
 
     $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
@@ -540,7 +564,7 @@ $(function handleSaveChannel() {
         const img = $('#img__channel--cover').prop('src')
         const url = $('#input__channel--moderator-url').val()
         if (id === undefined) {
-            id = dataChannel[dataChannel.length - 1].id + 1
+            id = (dataChannel.length > 0) ? dataChannel[dataChannel.length - 1].id + 1 : 1
             const newChannel = {
                 id,
                 url,
@@ -568,4 +592,19 @@ $(function handleSaveChannel() {
         loopData()
         handleCloseCreateChannel()
     })
+})
+
+$(function onScrollTopShadow() {
+    $('.customScrollBar--create-channel').on({
+        scroll: function () {
+            var scroll = $(this).scrollTop();
+            var title = $('.unf-user-dialog__header')
+
+            if (scroll > 0) {
+                title.addClass('unf-user-dialog__header-shadow');
+            } else {
+                title.removeClass('unf-user-dialog__header-shadow');
+            }
+        },
+    });
 })

@@ -108,6 +108,8 @@
           border: none;
           .unf-user-input__image-upload-text{
             font-weight: 400;
+            font-size: 12px;
+            color: $black-38;
             &::before{
               width: 40px;
               height: 38px;
