@@ -1100,7 +1100,7 @@ html, body {
 .dialog--320 {
   width: 320px; }
 
-table thead tr td, table tbody tr td {
+table > thead > tr > td, table > tbody > tr > td {
   word-break: break-word; }
 
 .table__template-chat thead tr td:first-child, .table__template-chat thead tr td:nth-child(2) {
@@ -2682,9 +2682,10 @@ table thead tr td, table tbody tr td {
     overflow: auto;
     height: 48px;
     background-color: #FFFFFF;
-    border-bottom: solid #E0E0E0 1px; }
+    border-bottom: solid #E0E0E0 1px;
+    border-top: solid #f8f8f8 1px; }
     .live-chat__quick-reply > div {
-      padding: 8px 0px; }
+      padding: 7px 0px 8px; }
     .live-chat__quick-reply-bubble {
       min-width: 44px;
       max-width: 80px;

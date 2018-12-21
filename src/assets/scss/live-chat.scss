@@ -266,8 +266,9 @@
     // padding: 8px 16px;
     // padding: 4px 0px !important;
     border-bottom: solid $gray-border 1px;
+    border-top: solid $gray-soft 1px;
     &>div{
-      padding: 8px 0px;
+      padding: 7px 0px 8px;
     }
     &-bubble{
       min-width: 44px;
