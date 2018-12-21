@@ -1,30 +1,36 @@
 function renderPagination(dataLength, limit, page) {
     var pageCount = Math.ceil(dataLength / limit)
     var pagination = ''
-    page = (page !== undefined) ? page : 1
-    if (page > 1) {
-        pagination += `<div class="page-nav page-nav__prev" data-page="${page - 1}" data-nav="prev"></div>`
-    }
-    else {
-        pagination += `<div class="page-nav page-nav__prev page-nav__prev--disabled" data-nav="prev"></div>`
-    }
-
-    for (var i = 1; i < pageCount + 1; i++) {
-        if (page === i) {
-            pagination += `<div class="page-item active-page" data-page="${i}">${i}</div>`
-        } else {
-            pagination += `<div class="page-item" data-page="${i}">${i}</div>`
+    if(pageCount > 1){
+        page = (page !== undefined) ? page : 1
+        pagination += '<div class="pagination-items">'
+        if (page > 1) {
+            pagination += `<div class="page-nav page-nav__prev" data-page="${page - 1}" data-nav="prev"></div>`
         }
-    }
+        else {
+            pagination += `<div class="page-nav page-nav__prev page-nav__prev--disabled" data-nav="prev"></div>`
+        }
 
-    if (page < pageCount) {
-        pagination += `<div class="page-nav page-nav__next" data-page="${page + 1}" data-nav="next"></div>`
-    }
-    else {
-        pagination += `<div class="page-nav page-nav__next page-nav page-nav__next--disabled" data-nav="next"></div>`
-    }
+        for (var i = 1; i < pageCount + 1; i++) {
+            if (page === i) {
+                pagination += `<div class="page-item active-page" data-page="${i}">${i}</div>`
+            } else {
+                pagination += `<div class="page-item" data-page="${i}">${i}</div>`
+            }
+        }
 
-    pagination += '<span class="page-indicator"></span>'
+        if (page < pageCount) {
+            pagination += `<div class="page-nav page-nav__next" data-page="${page + 1}" data-nav="next"></div>`
+        }
+        else {
+            pagination += `<div class="page-nav page-nav__next page-nav page-nav__next--disabled" data-nav="next"></div>`
+        }
+
+        pagination += '<span class="page-indicator"></span></div>'
+    }
+    else{
+        pagination += '<div class="pagination-items hide"></div>'
+    }
 
     return pagination
 }
