@@ -20,3 +20,14 @@ function validateURL(val) {
 
     return true;
 }
+
+// number regex
+function validateNumber(val){
+    var regex = /^\d+$/;
+    
+    if (!regex.test(val)) {
+        return false;
+    }
+
+    return true;
+}
