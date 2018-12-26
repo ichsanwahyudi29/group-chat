@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Group Chat</title>
+    <link rel="shortcut icon" href="https://ecs7.tokopedia.net/assets-tokopedia-lite/prod/icon144.png">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../node_modules/normalize.css/normalize.css">
+    <link rel="stylesheet" href="./assets/plugins/scrollBar/scrollBar.css">
+    <link rel="stylesheet" href="./assets/plugins/cropperjs/cropper.min.css">
+    <link rel="stylesheet" href="./assets/css/unify.css">
+    <link rel="stylesheet" href="./assets/css/master.css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="group-chat">
+            <div class="sidebar">
+                <a href="" class="sidebar__icon-tkpd"></a>
+                <ul class="sidebar__list">
+                    <li class="sidebar__list-item unf-user-tooltip">
+                        <div class="unf-user-tooltip__container sidebar__list-item-tooltip" aria-label="Channel"
+                            data-position="left"></div>
+                        <a href="./channel.html" class="list-item list-item--channel list-item--active">
+                            <span>Channel</span>
+                        </a>
+                    </li>
+                    <li class="sidebar__list-item unf-user-tooltip">
+                        <div class="unf-user-tooltip__container sidebar__list-item-tooltip" aria-label="Polling"
+                            data-position="left"></div>
+                        <a class="list-item list-item--polling">
+                            <span>Polling</span>
+                        </a>
+                    </li>
+                    <li class="sidebar__list-item unf-user-tooltip">
+                        <div class="unf-user-tooltip__container sidebar__list-item-tooltip" aria-label="Rewards"
+                            data-position="left"></div>
+                        <a class="list-item list-item--rewards">
+                            <span>Rewards</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="main-content">
+                <div class="header">
+                    <div class="header__top navbar">
+                        <div class="navbar__left">
+                            <div class="navbar__menu">
+                                <div class="navbar__menu-container">
+                                    <div class="navbar__menu-bar"></div>
+                                    <div class="navbar__menu-bar"></div>
+                                    <div class="navbar__menu-bar"></div>
+                                </div>
+                            </div>
+                            <h2 class="navbar__title">Channel</h2>
+                            <span class="navbar__arrow breadcrumb__arrow"></span>
+                            <h3 class="navbar__channel-title">2018 FIFA World Cup's Chat</h3>
+                        </div>
+                        <div class="navbar__right">
+                            <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create hide">Add Group</div>
+                            <div class="navbar__profile">
+                                <span class="navbar__profile-img" style="background-image: url('./assets/img/profile.png')"></span>
+                                <h3 class="navbar__profile-name">Ichsan Indra Wahyudi</h3>
+                                <span class="navbar__profile-menu"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header__bottom">
+                        <div class="breadcrumb">
+                            <h2 class="breadcrumb__title breadcrumb__title--detail">Channel</h2>
+                            <span class="breadcrumb__arrow"></span>
+                            <h3 class="breadcrumb__channel-title">2018 FIFA World Cup's Chat</h3>
+                        </div>
+                        <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create hide">Add Group</div>
+                    </div>
+                </div>
+                <div class="container"></div>
+            </div>
+        </div>
+
+        <section class="hide">
+        </section>
+
+        <!-- add/edit -->
+        <div class="unf-user-dialog js__unf-user-dialog--group-channel dialog--414"></div>
+
+        <div class="unf-user-overlay unf-user-overlay--desktop"></div>
+        <div class="js__template-dialog unf-user-dialog ta-center"></div>
+
+    </div>
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/plugins/scrollBar/scrollBar.js"></script>
+    <script src="./assets/plugins/cropperjs/cropper.min.js"></script>
+    <script src="./assets/js/locale/index.js"></script>
+    <script src="./assets/js/helper/inputCounter.js"></script>
+    <script src="./assets/js/helper/validation.js"></script>
+    <script src="./assets/js/component/textfield/index.js"></script>
+    <script src="./assets/js/component/dialog/index.js"></script>
+    <script src="./assets/js/component/pagination/index.js"></script>
+    <script src="./assets/js/component/select/index.js"></script>
+    <script src="./assets/js/component/cropper/index.js"></script>
+    <script src="./assets/js/global/interaction.js"></script>
+</body>
+
+</html>
