@@ -333,7 +333,7 @@
                 <ul class="auto-send-list">
                     <li class="auto-send-list__item">
                         <span class="auto-send-list__text">This chat template will be sent every</span>
-                        <select class="auto-send-list__select unf-user-select__regular" id="auto-send-range" onchange="handleChangeAutoSendSelect(this)">
+                        <select class="auto-send-list__select unf-user-select__regular" id="auto-send-chat" onchange="handleChangeAutoSendSelect(this)">
                             <option value="10">10 Chats</option>
                             <option value="20">20 Chats</option>
                             <option value="30">30 Chats</option>
@@ -348,15 +348,17 @@
                     </li>
                     <li class="auto-send-list__item">
                         <span class="auto-send-list__text">With duration of</span>
-                        <select class="auto-send-list__select unf-user-select__regular" id="auto-send-duration"
-                            onchange="handleChangeAutoSendSelect(this)">
-                            <option value="30000">30 Second</option>
-                            <option value="60000">1 minutes</option>
-                            <option value="120000">2 minutes</option>
-                            <option value="180000">3 minutes</option>
-                            <option value="240000">4 minutes</option>
-                            <option value="300000">5 minutes</option>
-                        </select>
+                        <div class="unf-user-input">
+                            <div class="unf-user-input__group-btn input-group__auto-send">
+                                <input type="text" id="auto-send-duration-value" class="unf-user-input__control" name="auto-send-value" placeholder="00" autocomplete="off" maxlength="2">
+                                <select id="auto-send-duration" class="auto-send-list__select unf-user-select__regular"
+                                    onchange="handleChangeAutoSendSelect(this)">
+                                    <option value="1">Second</option>
+                                    <option value="2">Minute</option>
+                                    <option value="3">Hour</option>
+                                </select>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>

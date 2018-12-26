@@ -23,7 +23,7 @@ table>thead>tr>td, table>tbody>tr>td{
         width: 97px;
       }
       &:last-child{
-        width: 271px;
+        width: 296px;
       }
     }
   }
@@ -33,7 +33,6 @@ table>thead>tr>td, table>tbody>tr>td{
         width: 97px;
       }
       &:last-child{
-        // width: 196px;
         width: 258px;
       }
     }
@@ -504,6 +503,13 @@ table>thead>tr>td, table>tbody>tr>td{
     b{
       color: $black-7;
     }
+  }
+  .list-action__set{
+    display: flex;
+    flex-direction: column;
+    min-width: 175px;
+    max-width: 175px;
+    align-items: center;
   }
 }
 

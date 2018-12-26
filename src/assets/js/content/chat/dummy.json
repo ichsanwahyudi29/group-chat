@@ -5,7 +5,6 @@
             "vibrate": true,
             "autoSend": false,
             "expiredTime": null,
-            "proccedTime": null,
             "img": "./assets/img/gc2.jpg",
             "url": "https://www.tokopedia.com/",
             "message": "Selamat malam Toppers, jagokan negara favorit kalian disini. Kira-kira siapa ya negara pemenang piala duni tahun ini?"
@@ -15,7 +14,6 @@
             "vibrate": false,
             "autoSend": true,
             "expiredTime": 120000,
-            "proccedTime": 120000,
             "img": "",
             "url": "",
             "message": "Jawab kuisnya dengan menyertakan #TokopediaChallenge"
@@ -25,7 +23,6 @@
             "vibrate": true,
             "autoSend": true,
             "expiredTime": 180000,
-            "proccedTime": 180000,
             "img": "./assets/img/user-f.png",
             "url": "https://www.tokopedia.com/",
             "message": "Selamat malam Toppers, jagokan negara favorit kalian disini. Kira-kira siapa ya negara pemenang piala duni tahun ini?"
