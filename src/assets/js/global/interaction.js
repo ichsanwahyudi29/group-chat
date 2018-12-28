@@ -32,13 +32,19 @@ $(window).on({
 
         if (scroll > height) {
             $('.navbar').addClass('navbar--fixed');
-            $('.navbar').css('opacity', 1)
+            $('.navbar').css({
+                'opacity': '1',
+                'pointer-events':'auto'
+            })
         } else {
             if (scroll >= height / 2) {
-                $('.navbar').css('opacity', 0)
+                $('.navbar').css({
+                    'opacity': '0',
+                    'pointer-events':'none'
+                })
             }
             else {
-                $('.navbar').css('opacity', 1)
+                $('.navbar').removeAttr('style')
                 $('.navbar').removeClass('navbar--fixed');
             }
         }
