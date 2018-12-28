@@ -1,0 +1,75 @@
+{
+    "official":
+    [
+        {
+            "id": 1,
+            "title" : "Official Partner",
+            "items": [
+                {
+                    "id": 1,
+                    "official_id": 1,
+                    "title": "Adidas Football",
+                    "img": "./assets/img/gc1.jpg",
+                    "link": "https://www.tokopedia.com/adidasfootball",
+                    "status": 1
+                },
+                {
+                    "id": 2,
+                    "official_id": 1,
+                    "title": "Garuda Food",
+                    "img": "./assets/img/gc2.jpg",
+                    "link": "https://www.tokopedia.com/garudafood",
+                    "status": 0
+                },
+                {
+                    "id": 3,
+                    "official_id": 1,
+                    "title": "Tayo The Little Bus",
+                    "img": "./assets/img/gc3.jpg",
+                    "link": "https://www.tokopedia.com/tayo",
+                    "status": 0
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title" : "Chart List",
+            "items": []
+        },
+        {
+            "id": 3,
+            "title" : "Chart List",
+            "items": []
+        },
+        {
+            "id": 4,
+            "title" : "Chart List",
+            "items": []
+        },
+        {
+            "id": 5,
+            "title" : "Chart List",
+            "items": []
+        },
+        {
+            "id": 6,
+            "title" : "Chart List",
+            "items": []
+        },
+        {
+            "id": 7,
+            "title" : "Chart List",
+            "items": []
+        },
+        {
+            "id": 8,
+            "title" : "Chart List",
+            "items": []
+        },
+        {
+            "id": 9,
+            "title" : "Chart List",
+            "items": []
+        }
+    ]
+}

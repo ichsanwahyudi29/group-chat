@@ -56,14 +56,13 @@
                                     <div class="navbar__menu-bar"></div>
                                 </div>
                             </div>
-                            <h2 class="navbar__title">Channel</h2>
+                            <a href="./channel.html" class="navbar__title">Channel</a>
                             <span class="navbar__arrow breadcrumb__arrow"></span>
                             <h3 class="navbar__channel-title">2018 FIFA World Cup's Chat</h3>
                         </div>
                         <div class="navbar__right">
-                            <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create hide">Add Group</div>
                             <div class="navbar__profile">
-                                <span class="navbar__profile-img" style="background-image: url('./assets/img/profile.png')"></span>
+                                <span class="navbar__profile-img" style="background-image: url('./assets/img/user-m.png')"></span>
                                 <h3 class="navbar__profile-name">Ichsan Indra Wahyudi</h3>
                                 <span class="navbar__profile-menu"></span>
                             </div>
@@ -71,11 +70,10 @@
                     </div>
                     <div class="header__bottom">
                         <div class="breadcrumb">
-                            <h2 class="breadcrumb__title breadcrumb__title--detail">Channel</h2>
+                            <a href="./channel.html" class="breadcrumb__title breadcrumb__title--detail">Channel</a>
                             <span class="breadcrumb__arrow"></span>
                             <h3 class="breadcrumb__channel-title">2018 FIFA World Cup's Chat</h3>
                         </div>
-                        <div class="unf-user-btn group-chat__btn-primary group-chat__btn--create hide">Add Group</div>
                     </div>
                 </div>
                 <div class="container"></div>
@@ -83,10 +81,35 @@
         </div>
 
         <section class="hide">
+            <!-- Content dialog delete official -->
+            <div class="js__child-dialog-delete-official">
+                <p class="unf-user-dialog__description">
+                    Do you want to delete this group?
+                </p>
+            </div>
+            
+            <!-- Content dialog delete official item -->
+            <div class="js__child-dialog-delete-official-item">
+                <p class="unf-user-dialog__description">
+                    Do you want to delete this item?
+                </p>
+            </div>
+
+            <!-- Content dialog Deactive official item -->
+            <div class="js__child-dialog-deactivate-official-item">
+                <p class="unf-user-dialog__description">Do you want to deactivate this item?</p>
+            </div>
+
+            <!-- Content dialog Activate official item -->
+            <div class="js__child-dialog-activate-official-item">
+                <p class="unf-user-dialog__description">Do you want to activate this item?</p>
+            </div>
         </section>
 
-        <!-- add/edit -->
-        <div class="unf-user-dialog js__unf-user-dialog--group-channel dialog--414"></div>
+        <!-- add/edit official -->
+        <div class="unf-user-dialog js__unf-user-dialog--add-official dialog--414"></div>
+        <!-- add/edit item -->
+        <div class="unf-user-dialog js__unf-user-dialog--add-official-item dialog--414"></div>
 
         <div class="unf-user-overlay unf-user-overlay--desktop"></div>
         <div class="js__template-dialog unf-user-dialog ta-center"></div>
@@ -104,6 +127,8 @@
     <script src="./assets/js/component/pagination/index.js"></script>
     <script src="./assets/js/component/select/index.js"></script>
     <script src="./assets/js/component/cropper/index.js"></script>
+    <script src="./assets/js/content/official/index.js"></script>
+    <script src="./assets/js/content/official/confirmation.js"></script>
     <script src="./assets/js/global/interaction.js"></script>
 </body>
 
