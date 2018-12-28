@@ -8,7 +8,7 @@ var timeIntervalId = [];
 var dataTemplateChat
 
 $(document).ready(function () {
-    loadJSON('./assets/js/content/chat/empty_dummy.json', function (response) {
+    loadJSON('./assets/js/content/chat/dummy.json', function (response) {
         var res = JSON.parse(response);
         dataTemplateChat = res.template_chat
         loopDataTemplateChat()
@@ -82,14 +82,12 @@ function loopDataTemplateChat() {
                             <div class="template-chat__auto-send">
                                 <label class="template-chat__auto-send-label">Auto-Send</label>
                                 <div class="unf-user-toggle">
-                                    ${item.autoSend ?
-                                    `<input checked type="checkbox" class="unf-user-toggle__checkbox" id="template-${item.id}" onclick="handleAutoSendTemplateChat(this, ${item.id})">` :
-                                    `<input type="checkbox" class="unf-user-toggle__checkbox" id="template-${item.id}" onclick="handleAutoSendTemplateChat(this, ${item.id})">`}
-                                    <label for="template-${item.id}"></label>
+                                <input ${item.autoSend ? "checked":""} type="checkbox" class="unf-user-toggle__checkbox" id="template-${item.id}" onclick="handleAutoSendTemplateChat(this, ${item.id})">
+                                <label for="template-${item.id}"></label>
                                 </div>
                             </div>
                             ${item.autoSend ?
-                `<span class="template-chat__time-auto-send" id="time-auto-send-${item.id}" data-id="${item.id}">Sisa waktu: <b>${handleConvertTime(item.proccedTime)}</b></span>` : ``
+                            `<span class="template-chat__time-auto-send" id="time-auto-send-${item.id}" data-id="${item.id}">Sisa waktu: <b>${handleConvertTime(item.expiredTime)}</b></span>` : ``
             }
                         </div>
                         <div class="list-action__btn">
@@ -393,7 +391,7 @@ function handleResetInputValueTemplate() {
     $('#input__image-title').val('')
     $('#input__image-url').val('')
     $('#input__template-chat--msg').val('')
-
+    handleInputError($('#input__image-url').parent(),'', true);
     //reset image
     handleResetInputCover()
     handleCheckInputTemplate();
@@ -518,11 +516,13 @@ function handleSendNowTemplateChat(id) {
 }
 
 function handleConvertTime(ms) {
+    var hourToGo = parseInt(ms / (1000 * 60 * 60));
     var minutesToGo = new Date(ms).getMinutes()
     var secondsToGo = new Date(ms).getSeconds()
+    var displayHour = (hourToGo < 10) ? '0' + hourToGo : hourToGo
     var displayMin = (minutesToGo < 10) ? '0' + minutesToGo : minutesToGo
     var displaySec = (secondsToGo < 10) ? '0' + secondsToGo : secondsToGo
-    var displayTime = `${displayMin}m ${displaySec}s`
+    var displayTime = ((parseInt(displayHour) > 0) ? `${displayHour}h ` : ``) + `${displayMin}m ${displaySec}s`
     return displayTime
 }
 function handleLooptime(elem, id) {
@@ -530,7 +530,7 @@ function handleLooptime(elem, id) {
         var timeInterval = setInterval(function () {
             var data = dataTemplateChat.filter(item => item.id === id)[0]
             var $target = $(elem).find('b')
-            var procced = data.proccedTime
+            var procced = data.expiredTime
             $target.text(handleConvertTime(procced))
             if ($(elem).length === 0 || $(elem).length > 1) {
                 clearInterval(timeInterval);
@@ -546,7 +546,6 @@ function handleLooptime(elem, id) {
                     dataTemplateChat.map(item => {
                         if (item.id === id) {
                             item.autoSend = false
-                            item.proccedTime = null
                             item.expiredTime = null
                         }
                     })
@@ -555,7 +554,7 @@ function handleLooptime(elem, id) {
                 $target.text(handleConvertTime(procced))
                 dataTemplateChat.map(item => {
                     if (item.id === id) {
-                        item.proccedTime = procced
+                        item.expiredTime = procced
                     }
                 })
             }
