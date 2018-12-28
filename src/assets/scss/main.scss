@@ -14,6 +14,13 @@
 }
 table>thead>tr>td, table>tbody>tr>td{
   word-break: break-word;
+  font-size: 13px;
+}
+table>thead>tr>td{
+  color: $black-38;
+}
+table>tbody>tr>td{
+  color: $black-7;
 }
 
 .table{
