@@ -10,7 +10,7 @@ var inputEmail = $('.unf-user-input--moderator-email');
 var dataChannel
 
 $(document).ready(function () {
-    loadJSON('./assets/js/content/channel/empty_dummy.json', function (response) {
+    loadJSON('./assets/js/content/channel/dummy.json', function (response) {
         var res = JSON.parse(response);
         dataChannel = res.channel
         loopData()
@@ -161,9 +161,7 @@ function handleRenderChannel(data) {
             <td class="channel__list-status channel__list-status">
                 <div class="status-toggle-container">
                     <div class="unf-user-toggle">
-                        ${data.status === 1 ?
-            `<input checked type="checkbox" class="unf-user-toggle__checkbox" id="channel-${data.id}" onclick="handleChangeChannelStatus(this, ${data.id})">` :
-            `<input type="checkbox" class="unf-user-toggle__checkbox" id="channel-${data.id}" onclick="handleChangeChannelStatus(this, ${data.id})">`}
+                        <input ${data.status === 1 ? "checked":""} type="checkbox" class="unf-user-toggle__checkbox" id="channel-${data.id}" onclick="handleChangeChannelStatus(this, ${data.id})">
                         <label for="channel-${data.id}"></label>
                     </div>
                     <label class="status-toggle-label status-toggle-label__right">
@@ -175,7 +173,7 @@ function handleRenderChannel(data) {
                 <div class="list-action">
                     <div class="list-action__set">
                         <a class="set-btn set-btn__ads" href="./ads.html">Set Ads</a>
-                        <a class="set-btn set-btn__official">Set Official</a>
+                        <a class="set-btn set-btn__official" href="./official.html">Set Official</a>
                         <a class="set-btn set-btn__flashsale">Set Flashsale</a>
                         <a class="set-btn set-btn__rewards">Set Rewards</a>
                         <a class="set-btn set-btn__polling">Set Polling</a>

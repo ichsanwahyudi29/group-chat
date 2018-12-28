@@ -3,7 +3,7 @@ var isQuickMsg = false;
 var dataQuickReply
 
 $(document).ready(function () {
-    loadJSON('./assets/js/content/chat/empty_dummy.json', function (response) {
+    loadJSON('./assets/js/content/chat/dummy.json', function (response) {
         var res = JSON.parse(response);
         dataQuickReply = res.quick_reply
         loopDataQuickReply()
@@ -63,9 +63,7 @@ function loopDataQuickReply() {
                         <div class="list-action__set d-flex">
                             <div class="status-toggle-container">
                                 <div class="unf-user-toggle">
-                                    ${item.status === 1 ?
-                                    `<input checked type="checkbox" class="unf-user-toggle__checkbox" id="quick-${item.id}" onclick="handleChangeQuickReplyStatus(this, ${item.id})">` :
-                                    `<input type="checkbox" class="unf-user-toggle__checkbox" id="quick-${item.id}" onclick="handleChangeQuickReplyStatus(this, ${item.id})">`}
+                                    <input ${item.status ? "checked":""} type="checkbox" class="unf-user-toggle__checkbox" id="quick-${item.id}" onclick="handleChangeQuickReplyStatus(this, ${item.id})">
                                     <label for="quick-${item.id}"></label>
                                 </div>
                                 <label class="status-toggle-label status-toggle-label__right">

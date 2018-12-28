@@ -3,7 +3,7 @@ var isSearchUser = false;
 var dataBannedUser
 
 $(document).ready(function () {
-    loadJSON('./assets/js/content/chat/empty_dummy.json', function (response) {
+    loadJSON('./assets/js/content/chat/dummy.json', function (response) {
         var res = JSON.parse(response);
         dataBannedUser = res.banned_user
         loopDataBannedUser()
@@ -128,6 +128,11 @@ $(function onInputSearchBannedUser() {
     $(document).on('keypress', '#input__banned-user', function (e) {
         if (e.which === 13) {
             $('#btn__banned-user--search').click();
+        }
+    })
+    $(document).on('input', '#input__banned-user', function (e) {
+        if($(this).val()=== ' '){
+            $(this).val('')
         }
     })
 });

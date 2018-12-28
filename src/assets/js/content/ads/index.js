@@ -5,7 +5,7 @@ var isImg = false;
 var dataAds
 
 $(document).ready(function () {
-    loadJSON('./assets/js/content/ads/empty_dummy.json', function (response) {
+    loadJSON('./assets/js/content/ads/dummy.json', function (response) {
         var res = JSON.parse(response);
         dataAds = res.ads
         loopAdsData()
@@ -143,9 +143,7 @@ function renderAdsList(data){
                 <div class="list-ads-status__set">
                     <div class="status-toggle-container">
                         <div class="unf-user-toggle">
-                            ${data.status === 1 ?
-                            `<input checked type="checkbox" class="unf-user-toggle__checkbox" id="ads-${data.id}" onclick="handleChangeAdsStatus(this, ${data.id})">` :
-                            `<input type="checkbox" class="unf-user-toggle__checkbox" id="ads-${data.id}" onclick="handleChangeAdsStatus(this, ${data.id})">`}
+                            <input ${data.status === 1 ? "checked":""} type="checkbox" class="unf-user-toggle__checkbox" id="ads-${data.id}" onclick="handleChangeAdsStatus(this, ${data.id})">
                             <label for="ads-${data.id}"></label>
                         </div>
                         <label class="status-toggle-label status-toggle-label__right">
@@ -357,7 +355,8 @@ function handleResetInputValueAds() {
     isLink = false;
 	// reset input
 	$('#input__ads--title').val('');
-	$('#input__ads--link').val('');
+    $('#input__ads--link').val('');
+    handleInputError($('#input__ads--link').parent(),'', true);
 	// reset img
 	handleResetInputImageAds()
     handleCheckInputAds();

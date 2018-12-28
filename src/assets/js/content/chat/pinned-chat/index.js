@@ -6,7 +6,7 @@ var isPinLink = false;
 var dataPinChat
 
 $(document).ready(function () {
-    loadJSON('./assets/js/content/chat/empty_dummy.json', function (response) {
+    loadJSON('./assets/js/content/chat/dummy.json', function (response) {
         var res = JSON.parse(response);
         dataPinChat = res.pinned_chat
         loopDataPinChat()
@@ -80,9 +80,7 @@ function loopDataPinChat() {
                     <div class="list-action__set d-flex">
                         <div class="status-toggle-container">
                             <div class="unf-user-toggle">
-                                ${item.status === 1 ?
-                                `<input checked type="checkbox" class="unf-user-toggle__checkbox" id="pinchat-${item.id}" onclick="handleChangePinChatStatus(this, ${item.id})">` :
-                                `<input type="checkbox" class="unf-user-toggle__checkbox" id="pinchat-${item.id}" onclick="handleChangePinChatStatus(this, ${item.id})">`}
+                                <input ${item.status ? "checked":""} type="checkbox" class="unf-user-toggle__checkbox" id="pinchat-${item.id}" onclick="handleChangePinChatStatus(this, ${item.id})">
                                 <label for="pinchat-${item.id}"></label>
                             </div>
                             <label class="status-toggle-label status-toggle-label__right">
@@ -305,6 +303,7 @@ function handleResetInputValuePin() {
     $('#input__pin-chat--title').val('')
     $('#input__pin-chat--msg').val('')
     $('#input__pin-chat--url').val('')
+    handleInputError($('#input__pin-chat--url').parent(),'', true);
 
     handleResetPinImg()
     handleCheckInputPin();
