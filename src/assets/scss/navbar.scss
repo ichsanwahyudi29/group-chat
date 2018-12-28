@@ -66,17 +66,9 @@
       height: 3px;
       animation-direction: reverse;
 
-      &:nth-child(1) {
-        // animation: outT 0.8s backwards;
-      }
-
       &:nth-child(2) {
         margin: 3px 0;
         // animation: outM 0.8s backwards;
-      }
-
-      &:nth-child(3) {
-        // animation: outB 0.8s backwards;
       }
     }
 
