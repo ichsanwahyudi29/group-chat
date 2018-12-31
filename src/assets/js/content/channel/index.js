@@ -177,7 +177,7 @@ function handleRenderChannel(data) {
                         <a class="set-btn set-btn__flashsale">Set Flashsale</a>
                         <a class="set-btn set-btn__rewards">Set Rewards</a>
                         <a class="set-btn set-btn__polling">Set Polling</a>
-                        <a class="set-btn set-btn__room">Set Room</a>
+                        <a class="set-btn set-btn__room" onclick="handleOpenRoom(${data.id})">Set Room</a>
                     </div>
                     <div class="list-action__btn">
                         <a class="unf-user-btn unf-user-btn--small group-chat__btn-action group-chat__btn--chat" href="./chat.html"><span>chat</span></a>
