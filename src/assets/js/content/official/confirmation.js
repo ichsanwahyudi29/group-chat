@@ -81,9 +81,6 @@ function handleStatusOfficialItem(item_id, official_id, val) {
                 if(data.id === item_id){
                     data.status = val
                 }
-                else{
-                    data.status = 0
-                }
             })
         }
     })
