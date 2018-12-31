@@ -9,7 +9,8 @@
             "name": "2018 FIFA World Cup",
             "description": "Hai para pecinta sepak bola, Ramaikan piala dunia 2018 bersama Tokopedia! Ikuti quiznya dan menangkan Tokocash senilai jutaan rupiah.Buruan, jangan sampai kelewatan!",
             "moderator": "Darius Sinathrya",
-            "email": "darius@tokopedia.com"
+            "email": "darius@tokopedia.com",
+            "room": []
         },
         {
             "id": 202,
@@ -20,7 +21,8 @@
             "name": "Pokemon in The 6ix",
             "description": "Hai para pecinta sepak bola, Ramaikan piala dunia 2018 bersama Tokopedia! Ikuti quiznya dan menangkan Tokocash senilai jutaan rupiah.Buruan, jangan sampai kelewatan!",
             "moderator": "Ichsan Tokped",
-            "email": "ichsan@tokopedia.com"
+            "email": "ichsan@tokopedia.com",
+            "room": []
         },
         {
             "id": 203,
@@ -31,7 +33,8 @@
             "name": "Inactive Channel Example",
             "description": "Hai para pecinta sepak bola, Ramaikan piala dunia 2018 bersama Tokopedia! Ikuti quiznya dan menangkan Tokocash senilai jutaan rupiah.Buruan, jangan sampai kelewatan!",
             "moderator": "Adek Tokped",
-            "email": "adek@tokopedia.com"
+            "email": "adek@tokopedia.com",
+            "room": []
         }
     ],
     "admin": [
