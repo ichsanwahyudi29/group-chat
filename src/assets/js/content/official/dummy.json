@@ -28,48 +28,140 @@
                     "img": "./assets/img/gc3.jpg",
                     "link": "https://www.tokopedia.com/tayo",
                     "status": 0
+                },
+                {
+                    "id": 4,
+                    "official_id": 1,
+                    "title": "Just Jacket",
+                    "img": "./assets/img/moderator.jpg",
+                    "link": "https://www.tokopedia.com/justjacket",
+                    "status": 0
                 }
             ]
         },
         {
             "id": 2,
-            "title" : "Chart List",
-            "items": []
+            "title" : "Group 1",
+            "items": [
+                {
+                    "id": 3,
+                    "official_id": 2,
+                    "title": "Tayo The Little Bus",
+                    "img": "./assets/img/gc3.jpg",
+                    "link": "https://www.tokopedia.com/tayo",
+                    "status": 0
+                },
+                {
+                    "id": 7,
+                    "official_id": 2,
+                    "title": "Adidas Football",
+                    "img": "./assets/img/gc1.jpg",
+                    "link": "https://www.tokopedia.com/adidasfootball",
+                    "status": 1
+                }
+            ]
         },
         {
             "id": 3,
-            "title" : "Chart List",
+            "title" : "Group 2",
             "items": []
         },
         {
             "id": 4,
-            "title" : "Chart List",
+            "title" : "Group 3",
             "items": []
         },
         {
             "id": 5,
-            "title" : "Chart List",
+            "title" : "Group 4",
             "items": []
         },
         {
             "id": 6,
-            "title" : "Chart List",
-            "items": []
+            "title" : "Group 5",
+            "items": [
+                {
+                    "id": 2,
+                    "official_id": 6,
+                    "title": "Garuda Food",
+                    "img": "./assets/img/gc2.jpg",
+                    "link": "https://www.tokopedia.com/garudafood",
+                    "status": 0
+                }
+            ]
         },
         {
             "id": 7,
-            "title" : "Chart List",
+            "title" : "Group 6",
             "items": []
         },
         {
             "id": 8,
-            "title" : "Chart List",
-            "items": []
+            "title" : "Group 7",
+            "items": [
+                {
+                    "id": 3,
+                    "official_id": 8,
+                    "title": "Tayo The Little Bus",
+                    "img": "./assets/img/gc3.jpg",
+                    "link": "https://www.tokopedia.com/tayo",
+                    "status": 0
+                },
+                {
+                    "id": 7,
+                    "official_id": 8,
+                    "title": "Adidas Football",
+                    "img": "./assets/img/gc1.jpg",
+                    "link": "https://www.tokopedia.com/adidasfootball",
+                    "status": 1
+                }
+            ]
         },
         {
             "id": 9,
-            "title" : "Chart List",
+            "title" : "Group 8",
             "items": []
+        },
+        {
+            "id": 10,
+            "title" : "Group 9",
+            "items": [
+                {
+                    "id": 2,
+                    "official_id": 10,
+                    "title": "Garuda Food",
+                    "img": "./assets/img/gc2.jpg",
+                    "link": "https://www.tokopedia.com/garudafood",
+                    "status": 0
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "title" : "Group 10",
+            "items": []
+        },
+        {
+            "id": 12,
+            "title" : "Group 11",
+            "items": [
+                {
+                    "id": 7,
+                    "official_id": 12,
+                    "title": "Adidas Football",
+                    "img": "./assets/img/gc1.jpg",
+                    "link": "https://www.tokopedia.com/adidasfootball",
+                    "status": 1
+                },
+                {
+                    "id": 10,
+                    "official_id": 12,
+                    "title": "Tayo The Little Bus",
+                    "img": "./assets/img/gc3.jpg",
+                    "link": "https://www.tokopedia.com/tayo",
+                    "status": 0
+                }
+            ]
         }
     ]
 }

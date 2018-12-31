@@ -1,11 +1,11 @@
 var officialTitle = false
-    itemTitle = false
-    itemImg = false
-    itemLink = false
+itemTitle = false
+itemImg = false
+itemLink = false
 
 var dataOfficial
 
-$(document).ready(function(){
+$(document).ready(function () {
     loadJSON('./assets/js/content/official/dummy.json', function (response) {
         var res = JSON.parse(response);
         dataOfficial = res.official
@@ -13,11 +13,11 @@ $(document).ready(function(){
     })
 })
 
-function initOfficialContainer(){
+function initOfficialContainer() {
     $('.official-card').empty()
 
     var officialContent
-    if(dataOfficial.length === 0){
+    if (dataOfficial.length === 0) {
         $('.group-chat__btn--create').addClass('hide')
         officialContent = `
             <div class="card channel empty-card empty-card--official">
@@ -37,7 +37,7 @@ function initOfficialContainer(){
             </div>
         `
     }
-    else{
+    else {
         $('.group-chat__btn--create').removeClass('hide')
         officialContent = `
             <div class="card official-card">
@@ -49,7 +49,7 @@ function initOfficialContainer(){
                     </div>
                 </div>
                 <div class="official-card__right" id="official-content">
-                    <div class="right-side__wrapper">
+                    <div class="customScrollBar customScrollBar--y hiddenScroll right-side__wrapper">
                         <div class="right-side__head">
                         </div>
                         <div class="table__list table__official"></div>
@@ -61,18 +61,18 @@ function initOfficialContainer(){
     $('.container').html(officialContent)
     $('.customScrollBar').scrollbar();
 }
-function loopDataOfficial(id){
+function loopDataOfficial(id) {
     initOfficialContainer()
-    if(dataOfficial.length > 0){
+    if (dataOfficial.length > 0) {
         id = (id === undefined) ? dataOfficial[0].id : id
         dataOfficial.map((item) => {
-                $('#official-list').append(renderOfficialList(item))
+            $('#official-list').append(renderOfficialList(item))
         })
         onScrollTopBottomShadow()
         loopDataItem(id)
     }
 }
-function renderOfficialList(data){
+function renderOfficialList(data) {
     var template = `
         <li class="left-side__list" id="official-list-${data.id}" onclick="loopDataItem(${data.id})">
             <a>${data.title}</a>
@@ -81,11 +81,11 @@ function renderOfficialList(data){
     return template
 }
 
-function initItemContainer(official_id){
+function initItemContainer(official_id) {
     var filteredData = dataOfficial.filter(item => item.id === official_id)[0]
 
     var itemContainer
-    
+
     $('.left-side__list').removeClass('left-side__list--active')
     $(`#official-list-${official_id}`).addClass('left-side__list--active')
     $('#official-content .right-side__head').html(`
@@ -101,7 +101,7 @@ function initItemContainer(official_id){
         <div class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn--create official-btn-add-item hide" onclick="handleOpenAddItem(${official_id})">Add Item</div>
     `)
 
-    if(filteredData.items.length > 0){
+    if (filteredData.items.length > 0) {
         $('.official-btn-add-item').removeClass('hide')
         itemContainer = `
             <table cellspacing="0" cellpadding="0">
@@ -113,11 +113,11 @@ function initItemContainer(official_id){
                         <td>Status</td>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody id="sortable-table-row"></tbody>
             </table>
         `
     }
-    else{
+    else {
         $('.official-btn-add-item').addClass('hide')
         itemContainer = `
             <div class="empty-box">
@@ -133,32 +133,55 @@ function initItemContainer(official_id){
                 <div class="unf-user-btn unf-user-btn--medium group-chat__btn-primary group-chat__btn--create" onclick="handleOpenAddItem(${official_id})">Add Item</div>
             </div>
         `
-        
+
     }
     $('.table__official').html(itemContainer)
+
+    $('#sortable-table-row').sortable({
+        handle: '.official-title--sort-icon',
+        axis: 'y',
+        placeholder: "official-sortable-placeholder",
+        forceHelperSize: true,
+        tolerance: "pointer",
+        revert: 100,
+        stop: function (e, ui) {
+            var child = e.target.children
+            var newArr = []
+            for(var i = 0;i < child.length;i++){
+                var itemSort = filteredData.items.filter(item => item.id === parseInt(child[i].dataset.id))[0]
+                newArr.push(itemSort)
+            }
+            dataOfficial.map(item => {
+                if(item.id === official_id){
+                    item.items = newArr
+                }
+            })
+        }
+    })
 }
-function loopDataItem(official_id){
+function loopDataItem(official_id) {
     initItemContainer(official_id)
-    var filteredData, sortedData
+    var filteredData
 
     dataOfficial.map(item => {
-        if(item.id === official_id){
+        if (item.id === official_id) {
             filteredData = item.items
-            sortedData = filteredData.filter(item => item.status === 1).concat(filteredData.filter(item => item.status === 0))
-            item.items = sortedData
         }
     })
 
-    sortedData.map(item => {
+    filteredData.map(item => {
         $('.table__official table>tbody').append(renderItemList(item))
     })
 
 }
-function renderItemList(data){
+function renderItemList(data) {
     var template = `
-    <tr>
+    <tr data-id="${data.id}">
         <td class="official-title">
-            <div>${data.title}</div>
+            <div class="official-title--group">
+                <span class="official-title--sort-icon"></span>
+                <span class="official-title--text">${data.title}</span>
+            </div>
         </td>
         <td class="official-img">
             <img src="${data.img}" class="img-thumb--80"/>
@@ -171,11 +194,11 @@ function renderItemList(data){
                 <div class="list-action__set d-flex">
                     <div class="status-toggle-container">
                         <div class="unf-user-toggle">
-                            <input ${(data.status === 1)? 'checked' : ''} type="checkbox" class="unf-user-toggle__checkbox" id="item-${data.id}" onchange="handleOpenChangeStatusItem(this, ${data.id}, ${data.official_id})">
+                            <input ${(data.status === 1) ? 'checked' : ''} type="checkbox" class="unf-user-toggle__checkbox" id="item-${data.id}" onchange="handleOpenChangeStatusItem(this, ${data.id}, ${data.official_id})">
                             <label for="item-${data.id}"></label>
                         </div>
                         <label class="status-toggle-label status-toggle-label__right">
-                            ${(data.status === 1)? 'Active' : 'Inactive'}
+                            ${(data.status === 1) ? 'Active' : 'Inactive'}
                         </label>
                     </div>
                 </div>
@@ -183,11 +206,11 @@ function renderItemList(data){
                     <a class="unf-user-btn unf-user-btn--small btn-icon btn-icon-action btn-icon--edit unf-user-tooltip" onclick="handleOpenEditItem(${data.official_id}, ${data.id})">
                         <div class="unf-user-tooltip__container btn-tooltip" aria-label="Edit" data-position="top"></div>
                     </a>
-                    ${(data.status === 0)? 
-                    `<a class="unf-user-btn unf-user-btn--small btn-icon btn-icon-action btn-icon--delete unf-user-tooltip" onclick="handleOpenDeleteItem(${data.official_id}, ${data.id})">
+                    ${(data.status === 0) ?
+            `<a class="unf-user-btn unf-user-btn--small btn-icon btn-icon-action btn-icon--delete unf-user-tooltip" onclick="handleOpenDeleteItem(${data.official_id}, ${data.id})">
                         <div class="unf-user-tooltip__container btn-tooltip" aria-label="Delete" data-position="top"></div>
-                    </a>`    
-                    : ''}
+                    </a>`
+            : ''}
                 </div>
             </div>
         </td>
@@ -196,7 +219,7 @@ function renderItemList(data){
     return template
 }
 
-$(function renderAddGroupDialog(){
+$(function renderAddGroupDialog() {
     $('.js__unf-user-dialog--add-official').html(`
         <div class="unf-user-dialog__content p-0">
             <div class="unf-user-dialog__header">Add Group</div>
@@ -219,8 +242,8 @@ $(function renderAddGroupDialog(){
     `)
 })
 
-$(function handleOpenAddOfficial(){
-    $(document).on('click', '.official-btn-add-group', function(){
+$(function handleOpenAddOfficial() {
+    $(document).on('click', '.official-btn-add-group', function () {
         $('.js__unf-user-dialog--add-official')
             .find('.unf-user-dialog__header').text('Add Group').end()
             .find('#btn__official--add').removeData('id').end()
@@ -229,7 +252,7 @@ $(function handleOpenAddOfficial(){
     })
 })
 
-function handleOpenEditOfficial(official_id){
+function handleOpenEditOfficial(official_id) {
     $('.js__unf-user-dialog--add-official')
         .find('.unf-user-dialog__header').text('Edit Group').end()
         .find('#btn__official--add').data('id', official_id).end()
@@ -238,53 +261,53 @@ function handleOpenEditOfficial(official_id){
     autoFocusInput('#input__official--title')
 }
 
-function handleFetchOfficial(id){
+function handleFetchOfficial(id) {
     var data = dataOfficial.filter(item => item.id === id)[0]
     $('#input__official--title').val(data.title)
-    
+
     officialTitle = true
     handleCheckOfficial()
 }
 
-function handleCloseAddOfficial(){
+function handleCloseAddOfficial() {
     handleResetOfficial()
     handleDialogClose()
 }
 
-$(function handleInputOfficialTitle(){
-    $(document).on('input', '#input__official--title', function(){
+$(function handleInputOfficialTitle() {
+    $(document).on('input', '#input__official--title', function () {
         counterInput(this, '20');
         var $val = $(this).val()
-        if($val !== ''){
+        if ($val !== '') {
             officialTitle = true
         }
-        else{
+        else {
             officialTitle = false
         }
         handleCheckOfficial()
     })
 })
 
-function handleCheckOfficial(){
-    if(officialTitle){
+function handleCheckOfficial() {
+    if (officialTitle) {
         $('#btn__official--add').prop('disabled', false)
     }
-    else{
+    else {
         $('#btn__official--add').prop('disabled', true)
     }
 }
 
-$(function handleSaveOfficial(){
+$(function handleSaveOfficial() {
     var defaultOfficialData = {
         "id": null,
-        "title" : null,
+        "title": null,
         "items": []
     }
-    $(document).on('click', '#btn__official--add', function(){
+    $(document).on('click', '#btn__official--add', function () {
         var id = $(this).data('id')
         //add
-        if(id === undefined){
-            var newId = (dataOfficial.length > 0) ? dataOfficial[dataOfficial.length - 1].id + 1 : 1
+        if (id === undefined) {
+            var newId = (dataOfficial.length > 0) ? dataOfficial.length + 50 : 1
             var newData = Object.assign({}, defaultOfficialData, {
                 "id": newId,
                 "title": $('#input__official--title').val()
@@ -293,9 +316,9 @@ $(function handleSaveOfficial(){
             loopDataOfficial(newId)
         }
         //edit
-        else{
+        else {
             dataOfficial.map(item => {
-                if(item.id === id){
+                if (item.id === id) {
                     item.title = $('#input__official--title').val()
                 }
             })
@@ -305,14 +328,14 @@ $(function handleSaveOfficial(){
     })
 })
 
-function handleResetOfficial(){
+function handleResetOfficial() {
     $('#input__official--title').val('')
     officialTitle = false
     handleCheckOfficial()
 }
 
 //item
-$(function renderAddItemDialog(){
+$(function renderAddItemDialog() {
     $('.js__unf-user-dialog--add-official-item').html(`
         <div class="unf-user-dialog__content p-0">
             <div class="unf-user-dialog__header">Add Item</div>
@@ -367,7 +390,7 @@ $(function renderAddItemDialog(){
     `)
 })
 
-function handleOpenAddItem(official_id){
+function handleOpenAddItem(official_id) {
     $('.js__unf-user-dialog--add-official-item')
         .find('.unf-user-dialog__header').text('Add Item').end()
         .find('#btn__official-item--add').removeData('id').data('official', official_id).end()
@@ -375,7 +398,7 @@ function handleOpenAddItem(official_id){
     handleDialogOpen($('.js__unf-user-dialog--add-official-item'));
 }
 
-function handleOpenEditItem(official_id, item_id){
+function handleOpenEditItem(official_id, item_id) {
     $('.js__unf-user-dialog--add-official-item')
         .find('.unf-user-dialog__header').text('Edit Item').end()
         .find('#btn__official-item--add').data('id', item_id).data('official', official_id).end()
@@ -383,11 +406,11 @@ function handleOpenEditItem(official_id, item_id){
     handleDialogOpen($('.js__unf-user-dialog--add-official-item'));
 }
 
-function handleFetchOfficialItem(official_id, item_id){
+function handleFetchOfficialItem(official_id, item_id) {
     var data = dataOfficial.filter(item => item.id === official_id)[0]
-    if(item_id !== undefined){
+    if (item_id !== undefined) {
         var dataItem = data.items.filter(item => item.id === item_id)[0]
-        
+
         $('#input__official-item--title').val(dataItem.title)
         $('#input__official-item--url').val(dataItem.link)
         handleRevealOfficialItemImg($('#input__official-item--cover')[0], dataItem.img);
@@ -407,26 +430,26 @@ function handleRevealOfficialItemImg(input, img) {
     $(fileElem).removeClass('hide');
 }
 
-function handleCloseAddOfficialItem(){
+function handleCloseAddOfficialItem() {
     handleResetOfficialItem()
     handleDialogClose()
 }
 
-$(function handleInputOfficialItemTitle(){
-    $(document).on('input', '#input__official-item--title', function(){
+$(function handleInputOfficialItemTitle() {
+    $(document).on('input', '#input__official-item--title', function () {
         counterInput(this, '20');
         var $val = $(this).val()
-        if($val !== ''){
+        if ($val !== '') {
             itemTitle = true
         }
-        else{
+        else {
             itemTitle = false
         }
         handleCheckOfficialItem()
     })
 })
 
-$(function handleInputOfficialItemLink(){
+$(function handleInputOfficialItemLink() {
     $(document)
         .on('input', '#input__official-item--url', function () {
             if ($(this).val()) {
@@ -480,16 +503,16 @@ $(function handleUploadOfficialItemImg() {
 function readURLOfficialItem(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             $("#image-editor-canvas").attr("src", e.target.result);
             editPictureDialog('.js__unf-user-dialog--add-official-item');
-            cropImg(1,1);
+            cropImg(1, 1);
         };
-    
+
         reader.readAsDataURL(input.files[0]);
     }
 }
-$(document).on('click', '#edit-image-cancel', function(){
+$(document).on('click', '#edit-image-cancel', function () {
     $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
     $(".js__unf-user-dialog--add-official-item").addClass("unf-user-dialog--show");
 
@@ -497,11 +520,11 @@ $(document).on('click', '#edit-image-cancel', function(){
     cropper.destroy();
 });
 
-$(document).on('click', '#edit-image-save', function(){
-    let imgsrc = cropper.getCroppedCanvas({width: 800, height: 800}).toDataURL("image/jpeg");
+$(document).on('click', '#edit-image-save', function () {
+    let imgsrc = cropper.getCroppedCanvas({ width: 800, height: 800 }).toDataURL("image/jpeg");
     $(".js__dialog-image-editor").removeClass("unf-user-dialog--show");
     $(".js__unf-user-dialog--add-official-item").addClass("unf-user-dialog--show");
-    handleShowCroppedImg("#img__official-item--cover" ,imgsrc)
+    handleShowCroppedImg("#img__official-item--cover", imgsrc)
     handleResetEditDialog()
 
     itemImg = true;
@@ -510,16 +533,16 @@ $(document).on('click', '#edit-image-save', function(){
 });
 //
 
-function handleCheckOfficialItem(){
-    if(itemTitle && itemImg && itemLink){
+function handleCheckOfficialItem() {
+    if (itemTitle && itemImg && itemLink) {
         $('#btn__official-item--add').prop('disabled', false)
     }
-    else{
+    else {
         $('#btn__official-item--add').prop('disabled', true)
     }
 }
 
-$(function handleSaveOfficialItem(){
+$(function handleSaveOfficialItem() {
     var defaultItemData = {
         "id": null,
         "official_id": null,
@@ -528,7 +551,7 @@ $(function handleSaveOfficialItem(){
         "link": null,
         "status": 0
     }
-    $(document).on('click', '#btn__official-item--add', function(){
+    $(document).on('click', '#btn__official-item--add', function () {
         if (!validateURL($('#input__official-item--url').val())) {
             handleInputError($('#input__official-item--url').parent(), helper.en.link.error[0], false);
             return false;
@@ -538,8 +561,8 @@ $(function handleSaveOfficialItem(){
         var official_id = $(this).data('official')
         var data = dataOfficial.filter(item => item.id === official_id)[0].items
         //add
-        if(id === undefined){
-            var newId = (data.length > 0) ? data[data.length - 1].id + 1 : 1
+        if (id === undefined) {
+            var newId = (data.length > 0) ? data.length + 50 : 1
             var newData = Object.assign({}, defaultItemData, {
                 "id": newId,
                 "official_id": official_id,
@@ -548,17 +571,17 @@ $(function handleSaveOfficialItem(){
                 "link": $('#input__official-item--url').val(),
             })
             dataOfficial.map(item => {
-                if(item.id === official_id){
-                    item.items.unshift(newData) 
+                if (item.id === official_id) {
+                    item.items.unshift(newData)
                 }
             })
         }
         //edit
-        else{
+        else {
             dataOfficial.map(item => {
-                if(item.id === official_id){
+                if (item.id === official_id) {
                     item.items.map(data => {
-                        if(data.id === id){
+                        if (data.id === id) {
                             data.title = $('#input__official-item--title').val()
                             data.img = $('#img__official-item--cover').attr('src')
                             data.link = $('#input__official-item--url').val()
@@ -572,18 +595,18 @@ $(function handleSaveOfficialItem(){
     })
 })
 
-function handleResetOfficialItem(){
+function handleResetOfficialItem() {
     $('#input__item--official').val('')
     $('#input__official-item--title').val('')
     $('#input__official-item--url').val('')
-    handleInputError($('#input__official-item--url').parent(),'', true);
+    handleInputError($('#input__official-item--url').parent(), '', true);
     itemTitle = false
     itemLink = false
     handleResetOfficialItemImg()
     handleCheckOfficialItem()
 }
 
-function handleResetOfficialItemImg(){
+function handleResetOfficialItemImg() {
     itemImg = false
     $('.unf-user-input__image-container').addClass('hide');
     $('#img__official-item--cover').removeAttr('src');
@@ -593,21 +616,21 @@ function handleResetOfficialItemImg(){
 
 
 function onScrollTopBottomShadow() {
-    function handlePutShadow(e){
+    function handlePutShadow(e) {
         var scroll = $(e).scrollTop();
         var head = $('.left-side__head')
         var foot = $('.left-side__footer')
 
         if (scroll > 0) {
             head.addClass('left-side__head--shadow');
-        } 
+        }
         else {
             head.removeClass('left-side__head--shadow');
         }
 
         if (scroll + $(e).height() < $(e)[0].scrollHeight) {
             foot.addClass('left-side__footer--shadow');
-        } 
+        }
         else {
             foot.removeClass('left-side__footer--shadow');
         }
@@ -616,7 +639,7 @@ function onScrollTopBottomShadow() {
     handlePutShadow($('.left-side__body'))
 
     $('#official-list').on({
-        scroll: function(){
+        scroll: function () {
             handlePutShadow(this)
         }
     })

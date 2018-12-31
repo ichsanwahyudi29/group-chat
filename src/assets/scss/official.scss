@@ -64,19 +64,32 @@
                 .left-side__list{
                     display: flex;
                     &>a{
+                        line-height: 17px;
                         width: 100%;
-                        padding: 20px 24px;
+                        padding: 12px 24px;
                         font-weight: 600;
                         color: $black-7;
                         cursor: pointer;
                         white-space: nowrap;
                         text-overflow: ellipsis;
                         overflow: hidden;
+                        z-index: 0;
+                        transition: all ease-in-out .25s;
+                        &:hover{
+                            background-color: $gray-soft;
+                        }
                     }
                     &--active>a{
-                        // box-shadow: 0 0 4px 0 $black-12;
+                        box-shadow: 0 0 4px 0 $black-12;
                         pointer-events: none;
                         background-color: $gray;
+                        z-index: 1;
+                    }
+                    &:first-child>a{
+                        margin-top: 3px;
+                    }
+                    &:last-child>a{
+                        margin-bottom: 3px;
                     }
                 }
             }&__footer{
@@ -142,6 +155,12 @@
                 height: 100%;
                 width: 100%;
                 padding: 32px 24px 0px 24px;
+                &.hiddenScroll{
+                    padding-top: 0px;
+                    .right-side__head{
+                        margin-top: 32px;
+                    }
+                }
             }
             &__head{
                 display: flex;
@@ -187,33 +206,46 @@
             width: 258px;
         }
     }
-    tbody tr td{
-        &.official{
-            &-title{
-                font-weight: 600;
-                div{
-                    position: relative;
-                    padding-left: 24px;
-                    &::before{
-                        content: '';
-                        cursor: move;
-                        position: absolute;
-                        left: 0;
-                        width: 16px;
-                        height: 16px;
-                        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4gICAgPHBhdGggZmlsbD0iIzAwMCIgZmlsbC1vcGFjaXR5PSIuMjYiIGZpbGwtcnVsZT0ibm9uemVybyIgZD0iTTEzLjMxNiA3LjIxbC0uOTUyLS44NDVhLjc5Ljc5IDAgMSAxIDEuMDUtMS4xODRsMi4xNzkgMS45MzNjLjU0Mi40NzYuNTQyIDEuMjk2LjAwMyAxLjc3bC0yLjE4MyAxLjkzNWEuNzkuNzkgMCAwIDEtMS4wNS0xLjE4NGwuOTUzLS44NDRoLTMuNDNWNy4yMDloMy40M3pNMi42ODQgOC43OWwuOTUyLjg0NWEuNzkuNzkgMCAxIDEtMS4wNSAxLjE4NEwuNDA4IDguODg2YTEuMTY4IDEuMTY4IDAgMCAxLS4wMDMtMS43N2wyLjE4My0xLjkzNWEuNzkuNzkgMCAwIDEgMS4wNSAxLjE4NGwtLjk1My44NDRoMy40M3YxLjU4MmgtMy40M3pNNy4yMSA2LjcyNHYtNC4wNGwtLjg0NC45NTNhLjc5Ljc5IDAgMSAxLTEuMTg0LTEuMDVMNy4xMTQuNDA4YTEuMTY4IDEuMTY4IDAgMCAxIDEuNzctLjAwM2wxLjkzNSAyLjE4M2EuNzkuNzkgMCAwIDEtMS4xODQgMS4wNWwtLjg0NC0uOTUzdjEwLjYzMmwuODQ0LS45NTJhLjc5Ljc5IDAgMSAxIDEuMTg0IDEuMDVsLTEuOTMzIDIuMTc5YTEuMTY4IDEuMTY4IDAgMCAxLTEuNzcuMDAzbC0xLjkzNS0yLjE4M2EuNzkuNzkgMCAwIDEgMS4xODQtMS4wNWwuODQ0Ljk1M1Y2LjcyM3oiLz48L3N2Zz4=);
-                    }
-                }
-            } 
-            &-link>a{
-                color: $green;
+    tbody tr{
+        width: 100%;
+        transition: box-shadow ease-in-out .25s;
+        td{
+            background-color: $white;
+            &:nth-child(2){
+                width: 124px;
             }
-            &-img>img{
-                height: 80px;
-                width: 80px;
-                object-fit: cover;
-                border-radius: 4px;
-                border: 1px solid $black-12;
+            &:last-child{
+                width: 258px;
+            }
+            &.official{
+                &-title{
+                    .official-title{
+                        &--group{
+                            display: flex;
+                        }
+                        &--sort-icon{
+                            cursor: move;
+                            flex: none;
+                            width: 16px;
+                            height: 16px;
+                            margin-right: 8px;
+                            background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4gICAgPHBhdGggZmlsbD0iIzAwMCIgZmlsbC1vcGFjaXR5PSIuMjYiIGZpbGwtcnVsZT0ibm9uemVybyIgZD0iTTEzLjMxNiA3LjIxbC0uOTUyLS44NDVhLjc5Ljc5IDAgMSAxIDEuMDUtMS4xODRsMi4xNzkgMS45MzNjLjU0Mi40NzYuNTQyIDEuMjk2LjAwMyAxLjc3bC0yLjE4MyAxLjkzNWEuNzkuNzkgMCAwIDEtMS4wNS0xLjE4NGwuOTUzLS44NDRoLTMuNDNWNy4yMDloMy40M3pNMi42ODQgOC43OWwuOTUyLjg0NWEuNzkuNzkgMCAxIDEtMS4wNSAxLjE4NEwuNDA4IDguODg2YTEuMTY4IDEuMTY4IDAgMCAxLS4wMDMtMS43N2wyLjE4My0xLjkzNWEuNzkuNzkgMCAwIDEgMS4wNSAxLjE4NGwtLjk1My44NDRoMy40M3YxLjU4MmgtMy40M3pNNy4yMSA2LjcyNHYtNC4wNGwtLjg0NC45NTNhLjc5Ljc5IDAgMSAxLTEuMTg0LTEuMDVMNy4xMTQuNDA4YTEuMTY4IDEuMTY4IDAgMCAxIDEuNzctLjAwM2wxLjkzNSAyLjE4M2EuNzkuNzkgMCAwIDEtMS4xODQgMS4wNWwtLjg0NC0uOTUzdjEwLjYzMmwuODQ0LS45NTJhLjc5Ljc5IDAgMSAxIDEuMTg0IDEuMDVsLTEuOTMzIDIuMTc5YTEuMTY4IDEuMTY4IDAgMCAxLTEuNzcuMDAzbC0xLjkzNS0yLjE4M2EuNzkuNzkgMCAwIDEgMS4xODQtMS4wNWwuODQ0Ljk1M1Y2LjcyM3oiLz48L3N2Zz4=);
+                        }
+                        &--text{
+                            font-weight: 600;
+                        }
+                    }
+                } 
+                &-link>a{
+                    color: $green;
+                }
+                &-img>img{
+                    height: 80px;
+                    width: 80px;
+                    object-fit: cover;
+                    border-radius: 4px;
+                    border: 1px solid $black-12;
+                }
             }
         }
     }
@@ -221,5 +253,14 @@
         .unf-user-btn{
             width: 180px;
         }
+    }
+    .official-sortable-placeholder{
+        &>td{
+            height: 129px;
+        }
+    }
+    .ui-sortable-helper{
+        background-color: $white;
+        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.18);
     }
 }
